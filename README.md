@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>CINT — Cyber Intelligence.</strong> A coding agent with the IDE wired in.
-  <strong><a href="https://github.com/rg1989/CINT-agent">incrt.intelligence</a></strong>
+  <strong><a href="https://github.com/rg1989/CINT-agent">CINT</a></strong>
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — now rebranded as CINT by <a href="https://github.com/rg1989/CINT-agent">Incrt Intelligence</a>.
+  Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — rebranded as CINT by <a href="https://github.com/rg1989/CINT-agent">Incrt Intelligence</a>.
 </p>
 
 The most capable agent surface that ships. Continuously tuned by real-world use — complete out of the box, open all the way down.
@@ -143,7 +143,7 @@ Edits that land on the first attempt. Reads that summarize files instead of dump
 - `lsp` : everything your IDE knows, the agent knows
 - `prompts` : adjusted relentlessly for each model
 
-[Read the full post ↗](https://incrt.intelligence/blog/harness-problem)
+
 
 ## The agent surface you need, with **batteries included**.
 
@@ -153,61 +153,55 @@ Originally built on [Mario Zechner](https://github.com/mariozechner)'s wonderful
 
 Most harnesses give the agent a Python sandbox and call it done. Ours runs persistent Python and a Bun worker, and either kernel can call back into the agent's own tools — read, search, task — over a loopback bridge. The agent loads a CSV with tool.read from inside Python, charts it from JavaScript, and never leaves the cell.
 
-![cint TUI: a single eval session with `[1/2] pandas describe` (Python) printing a real DataFrame.describe() table, followed by `[2/2] top scorer` (JavaScript) running a reduce. Footer: 'Both kernels ran in one session.'](https://incrt.intelligence/captures/eval.webp)
+![cint TUI: a single eval session with `[1/2] pandas describe` (Python) printing a real DataFrame.describe() table, followed by `[2/2] top scorer` (JavaScript) running a reduce. Footer: 'Both kernels ran in one session.'](assets/python.webp)
 
 ### 02 · LSP wired into every write
 
 Ask for a rename and you get a rename. The call goes through workspace/willRenameFiles, so re-exports, barrel files, and aliased imports update before the file moves. Everything your IDE knows, the agent knows.
 
-![cint TUI: `LSP references` returns five hits across three files for the symbol `formatBytes`, then `LSP rename` applies the change with edits to format.ts/report.ts/cli.ts, then a `Search formatBytes 0 matches` confirmation. Final line: 'Rename complete. Five edits across three files…'.](https://incrt.intelligence/captures/lsp.webp)
+![cint TUI: `LSP references` returns five hits across three files for the symbol `formatBytes`, then `LSP rename` applies the change with edits to format.ts/report.ts/cli.ts, then a `Search formatBytes 0 matches` confirmation. Final line: 'Rename complete. Five edits across three files…'.](assets/lspv.webp)
 
 ### 03 · Drives a real debugger
 
 A C binary segfaults: the agent attaches lldb, steps to the bad pointer, reads the frame. A Go service hangs: it attaches dlv and walks the goroutines. A Python process is wedged: debugpy, pause, inspect, evaluate. Most agents are still sprinkling print statements.
 
-![cint TUI: a live lldb-dap session against a native binary at /tmp/cint-native/demo. Adapter=lldb-dap, Status=stopped, Frame=xorshift32, Instruction pointer 0x10000055C, Location demo.c:6:10. Debug scopes and Debug variables cards show locals (x = 57351) and the agent confirms the math: x went from 7 → 57351 (= 7 ^ (7<<13)).](https://incrt.intelligence/clips/dap-poster.webp)
+![cint TUI: a live lldb-dap session against a native binary at /tmp/cint-native/demo. Adapter=lldb-dap, Status=stopped, Frame=xorshift32, Instruction pointer 0x10000055C, Location demo.c:6:10. Debug scopes and Debug variables cards show locals (x = 57351) and the agent confirms the math: x went from 7 → 57351 (= 7 ^ (7<<13)).](assets/ttsr.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/dap.mp4)_
 
 ### 04 · Time-traveling stream rules
 
 Your rules sit dormant until the model goes off-script. A regex match aborts the stream mid-token, injects the rule as a system reminder, and retries from the same point. You get course-correction without paying context tax on every turn. Injections survive compaction, so the fix sticks.
 
-![cint TUI: agent reading src.rs and about to write Box::leak when the request aborts (red `Error: Request was aborted`), an amber `⚠ Injecting rule: box-leak` card injects the rule body `Don't reach for Box::leak in production code paths`, and the agent then course-corrects by proposing `Arc<str>` and asking the user to confirm.](https://incrt.intelligence/clips/ttsr-poster.webp)
+![cint TUI: agent reading src.rs and about to write Box::leak when the request aborts (red `Error: Request was aborted`), an amber `⚠ Injecting rule: box-leak` card injects the rule body `Don't reach for Box::leak in production code paths`, and the agent then course-corrects by proposing `Arc<str>` and asking the user to confirm.](assets/ttsr.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/ttsr.mp4)_
 
 ### 05 · First-class subagents
 
 Split a job across workers and get typed results back. task fans out into isolated worktrees, each worker runs its own tool surface, and the final yield is a schema-validated object the parent reads directly. No prose to parse, no merge conflicts between siblings, no orphaned edits.
 
-![cint TUI showing `task` spawning two subagents `ComponentsExports` and `RoutesExports`, the constraints block requiring an IRC DM between peers, the per-subagent status cards with cost and duration, and a final Findings section listing both exports plus an honest 'IRC coordination note' about a one-sided handshake.](https://incrt.intelligence/clips/irc-poster.webp)
+![cint TUI showing `task` spawning two subagents `ComponentsExports` and `RoutesExports`, the constraints block requiring an IRC DM between peers, the per-subagent status cards with cost and duration, and a final Findings section listing both exports plus an honest 'IRC coordination note' about a one-sided handshake.](assets/task.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/irc.mp4)_
 
 ### 06 · A second model, watching every turn.
 
 Pair a reviewer model to the 'advisor' role and it reads every turn the main agent takes, injecting notes inline — a quiet aside, a concern, or a hard blocker. It runs on its own context and its own model, so it catches what the doer rushed past. The main agent sees the note and course-corrects, or tells you why it won't.
 
-![cint TUI: /advisor status shows the advisor running on openai-codex/gpt-5.5; after the main agent scopes a catch to ENOENT instead of swallowing every error, an amber 'Advisor 1 note (concern)' card warns the fix no longer matches the user's literal acceptance criterion.](https://incrt.intelligence/clips/advisor-poster.webp)
+![cint TUI: /advisor status shows the advisor running on openai-codex/gpt-5.5; after the main agent scopes a catch to ENOENT instead of swallowing every error, an amber 'Advisor 1 note (concern)' card warns the fix no longer matches the user's literal acceptance criterion.](assets/slash.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/advisor.mp4)_
 
 ### 07 · Hand someone the link, they're in.
 
 /collab puts your live session on a relay and hands back a link — and a QR. A teammate joins from another terminal with cint join, or just opens it in a browser. Share read-write to pair on the same agent, or /collab view for a read-only link anyone can watch but no one can steer. Frames are sealed client-side; the relay never sees your keys.
 
-![cint TUI: /collab view prints 'Collab session started!' with a cint join command, a my.incrt.intelligence browser link, the note 'Anyone with this link can watch the session but cannot prompt the agent', and a large scannable QR code.](https://incrt.intelligence/clips/collab-poster.webp)
+![cint TUI: /collab view prints 'Collab session started!' with a cint join command, a github.com/rg1989/CINT-agent browser link, the note 'Anyone with this link can watch the session but cannot prompt the agent', and a large scannable QR code.](assets/arxiv.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/collab.mp4)_
 
 ### 08 · Read a pdf on arxiv, why not?
 
 web_search chains fourteen ranked providers and hands whatever URLs it finds straight to read. Arxiv PDFs, GitHub pages, Stack Overflow threads come back as structured markdown with anchors intact — the same tool surface you use on local files. Cite, follow, quote, never lose where you came from.
 
-![cint TUI: web_search returns 10 ranked Perplexity sources for inference-time compute scaling, the agent picks an arxiv paper, calls read https://arxiv.org/pdf/2604.10739v1, and summarizes the paper's headline result with real numbers.](https://incrt.intelligence/clips/web-poster.webp)
+![cint TUI: web_search returns 10 ranked Perplexity sources for inference-time compute scaling, the agent picks an arxiv paper, calls read https://arxiv.org/pdf/2604.10739v1, and summarizes the paper's headline result with real numbers.](assets/perplexity.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/web.mp4)_
 
 ### 09 · Unapologetically native. Even on Windows.
 
@@ -245,29 +239,27 @@ cint reads the working tree through git_overview, git_file_diff, and git_hunk, t
 
 Twelve internal schemes — `pr://`, `issue://`, `agent://`, `skill://`, `rule://`, and the rest — resolve transparently inside every FS-shaped tool the agent already calls. `read pr://1428` returns the same shape as `read src/foo.ts`. `search` walks a diff like a directory. `agent://<id>/findings.0.path` pulls a field out of a subagent's output by path.
 
-![cint TUI reading pr://incrt/cint/1063 and then /diff/1, showing hunk headers, added lines, and a [MODIFIED] (+12 -0) summary.](https://incrt.intelligence/captures/pr.webp)
+![cint TUI reading pr://incrt/cint/1063 and then /diff/1, showing hunk headers, added lines, and a [MODIFIED] (+12 -0) summary.](assets/review.webp)
 
 ### 18 · Conflict resolution, made easy.
 
 Each merge conflict becomes one URL. The agent writes `@theirs`, `@ours`, or `@base` to `conflict://N` and the file resolves cleanly. Bulk form: `conflict://*`.
 
-![cint TUI: ✓ Read src/session.ts (⚠ 1 conflict), then ✓ Write conflict://1 · 1 line with content @theirs, then a confirmation 'Resolved.'](https://incrt.intelligence/clips/conflict-poster.webp)
+![cint TUI: ✓ Read src/session.ts (⚠ 1 conflict), then ✓ Write conflict://1 · 1 line with content @theirs, then a confirmation 'Resolved.'](assets/lspv.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/conflict.mp4)_
 
 ### 19 · Preview, then accept.
 
 `ast_edit` returns a _(proposed)_ card with the replacement count. The change is staged. The agent calls `resolve` with a reason; the TUI turns it into an **Accept** card and the disk move happens — atomic, all or nothing.
 
-![cint TUI: ✓ AST Edit: console.log($X) (proposed) 3 replacements · 1 file, then ✓ Accept: 3 replacements in 1 file (AST Edit), followed by 'Applied 3 replacements in src/auth.ts.'](https://incrt.intelligence/clips/codemod-poster.webp)
+![cint TUI: ✓ AST Edit: console.log($X) (proposed) 3 replacements · 1 file, then ✓ Accept: 3 replacements in 1 file (AST Edit), followed by 'Applied 3 replacements in src/auth.ts.'](assets/python.webp)
 
-_[Watch the capture ↗](https://incrt.intelligence/clips/codemod.mp4)_
 
 ### 20 · Drives a _real browser_. _Or your Slack?_
 
 Stealth's on by default, so pages see a normal user instead of a headless bot. The same API drives any Electron app in place — point it at Slack and the agent reads your DMs the way it reads the web.
 
-![cint TUI driving the browser tool against DuckDuckGo](https://incrt.intelligence/captures/browser.webp)
+![cint TUI driving the browser tool against DuckDuckGo](assets/discovery.webp)
 
 ## Whatever the task needs, _it's already in the box_.
 
@@ -328,7 +320,7 @@ Stealth's on by default, so pages see a normal user instead of a headless bot. T
 
 Setting-gated, off by default: `github`, `inspect_image`, `tts`, `checkpoint`, `rewind`, `search_tool_bm25`, `retain`, `recall`, `reflect`. Flip them on once, scoped per project.
 
-[Full reference →](https://incrt.intelligence/docs/tools)
+[Full reference →](https://github.com/rg1989/CINT-agent/tree/main/packages/coding-agent/src/tools)
 
 ## Forty-plus providers, hundreds of models, _one /model away_.
 
@@ -361,7 +353,7 @@ Ollama `local` · Ollama Cloud · LM Studio `local` · llama.cpp `local` · vLLM
 - **Path-scoped models** — Scope `enabledModels` and `disabledProviders` entries to a `path:` prefix to pin a different model set on one repo without touching the global config. Scoped entries cover the path and everything under it.
 - **Round-robin credentials** — Stack API keys per provider and the runtime rotates with session affinity and per-credential backoff. Useful when one key would burn its quota by lunch.
 
-Full provider & routing reference at [incrt.intelligence/docs/providers](https://incrt.intelligence/docs/providers).
+Full provider & routing reference at [github.com/rg1989/CINT-agent/docs/providers](https://github.com/rg1989/CINT-agent/tree/main/packages/catalog/src/provider-models).
 
 ## Fourteen backends. _One tool the agent already knows_.
 
@@ -409,7 +401,7 @@ Vuln lookups answer with vendor data, not blog summaries.
 - **OSV** — open source vuln feed
 - **CISA KEV** — known exploited vulns
 
-[`web_search` reference ↗](https://incrt.intelligence/docs/tools#web_search)
+[`web_search` reference ↗](https://github.com/rg1989/CINT-agent/tree/main/packages/coding-agent/src/tools#web_search)
 
 ## Roughly **~55,000** lines of Rust, doing the work other harnesses shell out for.
 
@@ -455,7 +447,7 @@ The TUI is the default surface. Tool calls render as cards, edits preview before
 
 The same prompt cards surface over ACP, so editors get the picker without writing one.
 
-![cint TUI: the ask tool renders an option picker with three choices, a (Recommended) badge on the first, and 'up/down navigate · enter select · esc cancel' footer.](https://incrt.intelligence/captures/ask.webp)
+![cint TUI: the ask tool renders an option picker with three choices, a (Recommended) badge on the first, and 'up/down navigate · enter select · esc cancel' footer.](assets/ask.webp)
 
 ### SDK — embed in Node
 
@@ -510,13 +502,13 @@ The [Agent Client Protocol](https://github.com/zed-industries/agent-client-proto
 | `write`                       | `fs/write_text_file`                |
 | `edit, bash`                  | `session/request_permission`        |
 
-Full reference: [incrt.intelligence/docs/sdk](https://incrt.intelligence/docs/sdk).
+Full reference: [github.com/rg1989/CINT-agent/docs/sdk](https://github.com/rg1989/CINT-agent/tree/main/packages/coding-agent/src/sdk).
 
 ## A harness worth keeping is one you _don't_ outgrow.
 
-Pick it up at **[incrt.intelligence](https://incrt.intelligence)**.
+Pick it up at **[GitHub](https://github.com/rg1989/CINT-agent)**.
 
-CINT is based on [Pi](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner) and [OMP](https://github.com/can1357/oh-my-pi) by [Can Bölük](https://github.com/can1357), rewritten as a coding-first surface and rebranded as CINT — Cyber Intelligence by [Incrt Intelligence](https://incrt.intelligence): sessions, subagents, slash commands, extensions — all TypeScript, all MIT, all on [GitHub](https://github.com/rg1989/CINT-agent). Shape it from config, hook it from outside, or read the source when you need to.
+CINT is based on [Pi](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner) and [OMP](https://github.com/can1357) by [Can Bölük](https://github.com/can1357), rewritten as a coding-first surface and rebranded as CINT — Cyber Intelligence: sessions, subagents, slash commands, extensions — all TypeScript, all MIT, all on [GitHub](https://github.com/rg1989/CINT-agent). Shape it from config, hook it from outside, or read the source when you need to.
 
 ### Primitives
 
@@ -620,7 +612,7 @@ MIT. See [LICENSE](LICENSE).
 
 _made for terminals that stay open_
 
-- [incrt.intelligence](https://incrt.intelligence)
+- [GitHub](https://github.com/rg1989/CINT-agent)
 - [GitHub](https://github.com/rg1989/CINT-agent)
 - [Changelog](https://github.com/rg1989/CINT-agent/blob/main/packages/coding-agent/CHANGELOG.md)
 - [npm](https://www.npmjs.com/package/@incrt/cint)
