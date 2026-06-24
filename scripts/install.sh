@@ -141,7 +141,9 @@ has_git_lfs() {
     command -v git-lfs >/dev/null 2>&1
 }
 
-# Clone the repo at ref $1 and install packages/coding-agent globally via bun.
+# Clone the repo at ref $1 and link packages/coding-agent globally via bun.
+# Uses bun link (not bun install -g) because the monorepo uses the catalog:
+# protocol, which cannot be resolved outside the workspace context.
 install_from_git() {
     REF_ARG="$1"
     if ! has_git; then
@@ -149,28 +151,39 @@ install_from_git() {
         exit 1
     fi
 
-    TMP_DIR="$(mktemp -d)"
-    trap 'rm -rf "$TMP_DIR"' EXIT
+    # Permanent location — bun link creates a symlink to this source.
+    SRC_DIR="${CINT_SRC_DIR:-$HOME/.cint/src}"
+    if [ -d "$SRC_DIR" ]; then
+        rm -rf "$SRC_DIR"
+    fi
+    mkdir -p "$(dirname "$SRC_DIR")"
 
-    if git clone --depth 1 --branch "$REF_ARG" "https://github.com/${REPO}.git" "$TMP_DIR" >/dev/null 2>&1; then
+    if git clone --depth 1 --branch "$REF_ARG" "https://github.com/${REPO}.git" "$SRC_DIR" >/dev/null 2>&1; then
         :
     else
-        git clone "https://github.com/${REPO}.git" "$TMP_DIR"
-        (cd "$TMP_DIR" && git checkout "$REF_ARG")
+        git clone "https://github.com/${REPO}.git" "$SRC_DIR"
+        (cd "$SRC_DIR" && git checkout "$REF_ARG")
     fi
 
     # Pull LFS files
     if has_git_lfs; then
-        (cd "$TMP_DIR" && git lfs pull)
+        (cd "$SRC_DIR" && git lfs pull)
     fi
 
-    if [ ! -d "$TMP_DIR/packages/coding-agent" ]; then
-        echo "Expected package at ${TMP_DIR}/packages/coding-agent"
+    if [ ! -d "$SRC_DIR/packages/coding-agent" ]; then
+        echo "Expected package at ${SRC_DIR}/packages/coding-agent"
         exit 1
     fi
 
-    bun install -g "$TMP_DIR/packages/coding-agent" || {
-        echo "Failed to install from source"
+    # Resolve workspace deps (catalog: protocol needs root install)
+    (cd "$SRC_DIR" && bun install) || {
+        echo "Failed to install dependencies"
+        exit 1
+    }
+
+    # Link globally — creates ~/.bun/bin/cint symlink
+    (cd "$SRC_DIR/packages/coding-agent" && bun link) || {
+        echo "Failed to link cint"
         exit 1
     }
 }
@@ -181,7 +194,7 @@ install_via_bun() {
     if [ -n "$REF" ]; then
         install_from_git "$REF"
     else
-        # Fast path: published npm package. Falls back to cloning the repo
+        # Fast path: published npm package. Falls back to git clone + bun link
         # so the installer works even before the package is on npm.
         if bun install -g "$PACKAGE" 2>/dev/null; then
             :

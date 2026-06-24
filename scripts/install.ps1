@@ -174,50 +174,67 @@ function Install-FromGit {
         throw "git is required to install from source"
     }
 
-    $tmpRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("cint-install-" + [System.Guid]::NewGuid().ToString("N"))
-    New-Item -ItemType Directory -Force -Path $tmpRoot | Out-Null
+    # Permanent location — bun link creates a symlink to this source.
+    $srcDir = if ($env:CINT_SRC_DIR) { $env:CINT_SRC_DIR } else { Join-Path $env:USERPROFILE ".cint\src" }
+    if (Test-Path $srcDir) {
+        Remove-Item -Recurse -Force $srcDir
+    }
+    New-Item -ItemType Directory -Force -Path (Split-Path $srcDir -Parent) | Out-Null
 
+    $repoUrl = "https://github.com/$Repo.git"
+    $cloneOk = $false
     try {
-        $repoUrl = "https://github.com/$Repo.git"
+        git clone --depth 1 --branch $GitRef $repoUrl $srcDir | Out-Null
+        $cloneOk = $true
+    } catch {
         $cloneOk = $false
+    }
+
+    if (-not $cloneOk) {
+        git clone $repoUrl $srcDir | Out-Null
+        Push-Location $srcDir
         try {
-            git clone --depth 1 --branch $GitRef $repoUrl $tmpRoot | Out-Null
-            $cloneOk = $true
-        } catch {
-            $cloneOk = $false
+            git checkout $GitRef | Out-Null
+        } finally {
+            Pop-Location
         }
+    }
 
-        if (-not $cloneOk) {
-            git clone $repoUrl $tmpRoot | Out-Null
-            Push-Location $tmpRoot
-            try {
-                git checkout $GitRef | Out-Null
-            } finally {
-                Pop-Location
-            }
+    # Pull LFS files
+    if (Test-GitLfsInstalled) {
+        Push-Location $srcDir
+        try {
+            git lfs pull | Out-Null
+        } finally {
+            Pop-Location
         }
+    }
 
-        # Pull LFS files
-        if (Test-GitLfsInstalled) {
-            Push-Location $tmpRoot
-            try {
-                git lfs pull | Out-Null
-            } finally {
-                Pop-Location
-            }
-        }
+    $packagePath = Join-Path $srcDir "packages\coding-agent"
+    if (-not (Test-Path $packagePath)) {
+        throw "Expected package at $packagePath"
+    }
 
-        $packagePath = Join-Path $tmpRoot "packages\coding-agent"
-        if (-not (Test-Path $packagePath)) {
-            throw "Expected package at $packagePath"
-        }
-
-        bun install -g $packagePath
+    # Resolve workspace deps (catalog: protocol needs root install)
+    Push-Location $srcDir
+    try {
+        bun install
         if ($LASTEXITCODE -ne 0) {
-            throw "Failed to install from $packagePath via bun"
+            throw "Failed to install dependencies"
         }
     } finally {
-        Remove-Item -Recurse -Force $tmpRoot -ErrorAction SilentlyContinue
+        Pop-Location
+    }
+
+    # Link globally — creates cint symlink in bun's global bin
+    Push-Location $packagePath
+    try {
+        bun link
+        if ($LASTEXITCODE -ne 0) {
+            throw "Failed to link cint"
+        }
+    } finally {
+        Pop-Location
     }
 }
 
@@ -226,7 +243,7 @@ function Install-ViaBun {
     if ($Ref) {
         Install-FromGit -GitRef $Ref
     } else {
-        # Fast path: published npm package. Falls back to cloning the repo
+        # Fast path: published npm package. Falls back to git clone + bun link
         # so the installer works even before the package is on npm.
         bun install -g $Package 2>$null
         if ($LASTEXITCODE -ne 0) {
