@@ -7,14 +7,25 @@ $PreserveData = if ($env:CINT_PRESERVE_DATA) { $env:CINT_PRESERVE_DATA } else { 
 
 Write-Host "Uninstalling CINT..."
 
-# 1. Remove bun link
-if (Get-Command bun -ErrorAction SilentlyContinue) {
-	bun unlink -g "@incrt/cint" 2>$null
-	$globalLink = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@incrt\cint"
-	if (Test-Path $globalLink) { Remove-Item -Recurse -Force $globalLink -ErrorAction SilentlyContinue }
+# 1. Remove bun link — must run from the linked package dir
+$srcDirs = @(
+	(Join-Path $env:USERPROFILE ".cint\src\packages\coding-agent")
+)
+foreach ($d in $srcDirs) {
+	if (Test-Path (Join-Path $d "package.json")) {
+		Push-Location $d
+		try { bun unlink 2>$null } catch {}
+		finally { Pop-Location }
+	}
 }
 
-# 2. Remove binary
+# 2. Force-clean the global link registry
+$globalLink = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@incrt\cint"
+if (Test-Path $globalLink) { Remove-Item -Recurse -Force $globalLink -ErrorAction SilentlyContinue }
+$bunBin = Join-Path $env:USERPROFILE ".bun\bin\cint"
+if (Test-Path $bunBin) { Remove-Item -Force $bunBin -ErrorAction SilentlyContinue }
+
+# 3. Remove binary
 $binaryPaths = @(
 	(Join-Path $env:LOCALAPPDATA "cint\cint.exe"),
 	(Join-Path $env:USERPROFILE ".local\bin\cint.exe")
@@ -23,15 +34,17 @@ foreach ($p in $binaryPaths) {
 	if (Test-Path $p) { Remove-Item -Force $p -ErrorAction SilentlyContinue }
 }
 
-# 3. Remove source install
+# 4. Remove source install
 $srcDir = Join-Path $env:USERPROFILE ".cint\src"
 if (Test-Path $srcDir) { Remove-Item -Recurse -Force $srcDir -ErrorAction SilentlyContinue }
 
-# 4. Remove bun bin symlink
-$bunBin = Join-Path $env:USERPROFILE ".bun\bin\cint"
-if (Test-Path $bunBin) { Remove-Item -Force $bunBin -ErrorAction SilentlyContinue }
+# 5. Verify
+if (Get-Command cint -ErrorAction SilentlyContinue) {
+	Write-Host "  cint is still on PATH at: $(Get-Command cint | Select-Object -ExpandProperty Source)"
+	Write-Host "  Open a new terminal to clear the cached PATH."
+}
 
-# 5. Optionally remove user data
+# 6. Optionally remove user data
 if ($PreserveData -eq "1") {
 	Write-Host "  Preserving user data (~/.cint)"
 } else {

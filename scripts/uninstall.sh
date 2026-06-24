@@ -8,24 +8,33 @@ PRESERVE_DATA="${CINT_PRESERVE_DATA:-0}"
 
 echo "Uninstalling CINT..."
 
-# 1. Remove bun link (if linked)
-if command -v bun >/dev/null 2>&1; then
-	bun unlink -g "@incrt/cint" 2>/dev/null || true
-	# Also remove from the linked-packages registry if present
-	rm -f "$HOME/.bun/install/global/node_modules/@incrt/cint" 2>/dev/null || true
-fi
+# 1. Remove bun link — bun unlink must be run from the linked package dir.
+#    We try the known source locations; if found, cd in and unlink.
+for src in "$HOME/.cint/src/packages/coding-agent" \
+           "$HOME/Documents/Projects/cint/packages/coding-agent"; do
+	if [ -f "$src/package.json" ]; then
+		(cd "$src" && bun unlink 2>/dev/null) || true
+	fi
+done
 
-# 2. Remove binary install
+# 2. Force-clean the global link registry entries that bun link created.
+rm -rf "$HOME/.bun/install/global/node_modules/@incrt/cint" 2>/dev/null || true
+rm -f  "$HOME/.bun/bin/cint" 2>/dev/null || true
+
+# 3. Remove binary install
 rm -f "${CINT_INSTALL_DIR:-$HOME/.local/bin}/cint" 2>/dev/null || true
 rm -f "$HOME/.local/bin/cint" 2>/dev/null || true
 
-# 3. Remove source-based install (bun link target)
+# 4. Remove source-based install (bun link target from install.sh)
 rm -rf "$HOME/.cint/src" 2>/dev/null || true
 
-# 4. Remove the global symlink bun link created
-rm -f "$HOME/.bun/bin/cint" 2>/dev/null || true
+# 5. Verify removal — if cint is still on PATH, report it
+if command -v cint >/dev/null 2>&1; then
+	echo "  ⚠ cint is still on PATH at: $(command -v cint)"
+	echo "  This may be a stale shell hash. Open a new terminal, or run: hash -r"
+fi
 
-# 5. Optionally remove user data (settings, sessions, memory, logs)
+# 6. Optionally remove user data (settings, sessions, memory, logs)
 if [ "$PRESERVE_DATA" = "1" ]; then
 	echo "  Preserving user data (~/.cint)"
 else
