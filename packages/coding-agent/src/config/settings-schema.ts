@@ -982,7 +982,7 @@ export const SETTINGS_SCHEMA = {
 	personality: {
 		type: "enum",
 		values: ["default", "friendly", "pragmatic", "operator", "none"] as const,
-		default: "default",
+		default: "operator",
 		ui: {
 			tab: "model",
 			group: "Prompt",
