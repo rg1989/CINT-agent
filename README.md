@@ -17,6 +17,8 @@
   <a href="https://bun.sh"><img src="https://img.shields.io/badge/runtime-Bun-f472b6?style=flat&colorA=222222" alt="Bun"></a>
 </p>
 
+> ⚠️ **Authorized Use Only** — Hacking, penetration testing, or any offensive cyber operations against systems, networks, or applications without explicit written authorization from the owner is illegal. Users of this tool assume full responsibility for their actions and bear all associated risks. Know your local laws before proceeding.
+
 <p align="center">
   Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — rebranded as CINT by <a href="https://www.linkedin.com/in/roman-grinevich-03b13bab/">Roman Grinevich</a>.
 </p>
