@@ -221,6 +221,30 @@ curl_install() {
     fi
 }
 
+# Install an npm package globally, skipping if the binary is present.
+# Args: <check-binary> <npm-package> <display-name>
+npm_install() {
+    _bin="$1"; _pkg="$2"; _name="$3"
+    if have "$_bin" || npm ls -g "$_pkg" >/dev/null 2>&1; then
+        mark_skipped "$_name (already installed)"
+        return 0
+    fi
+    if [ "$CHECK_ONLY" = "1" ]; then
+        mark_failed "$_name (missing)"
+        return 0
+    fi
+    if ! have npm; then
+        mark_failed "$_name (npm not installed)"
+        return 0
+    fi
+    echo "==> Installing $_name (npm) ..."
+    if npm install -g "$_pkg" >/dev/null 2>&1; then
+        mark_installed "$_name"
+    else
+        mark_failed "$_name"
+    fi
+}
+
 cask_install() {
     _check="$1"; _cask="$2"; _name="$3"
     if have "$_check" || [ -d "/Applications/${_cask}.app" ]; then
@@ -403,6 +427,19 @@ install_all() {
     if have interactsh-client; then
         mark_skipped "interactsh (client installed)"
     fi
+
+    # ===================================================================
+    # WEB INTELLIGENCE
+    # ===================================================================
+    echo
+    echo "### WEB INTELLIGENCE #######################################"
+    npm_install camofox-browser "@askjo/camofox-browser" "camofox-browser (stealth headless browser)"
+    npm_install firecrawl-mcp "firecrawl-mcp" "firecrawl-mcp (web scrape/search MCP server)"
+    echo
+    echo "  camofox-browser: start with 'npx @askjo/camofox-browser' (REST API on :9377)"
+    echo "  firecrawl-mcp: add to ~/.cint/agent/mcp.json:"
+    echo '    {"mcpServers":{"firecrawl":{"command":"npx","args":["-y","firecrawl-mcp"],"env":{"FIRECRAWL_API_KEY":"fc-YOUR_KEY"}}}}'
+    echo "  Get a Firecrawl API key at https://firecrawl.dev"
 }
 
 # ---------------------------------------------------------------------------

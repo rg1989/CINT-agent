@@ -981,7 +981,7 @@ export const SETTINGS_SCHEMA = {
 
 	personality: {
 		type: "enum",
-		values: ["default", "friendly", "pragmatic", "none"] as const,
+		values: ["default", "friendly", "pragmatic", "operator", "none"] as const,
 		default: "default",
 		ui: {
 			tab: "model",
@@ -1003,6 +1003,11 @@ export const SETTINGS_SCHEMA = {
 					value: "pragmatic",
 					label: "Pragmatic",
 					description: "Direct, efficient engineer focused on clarity and rigor",
+				},
+				{
+					value: "operator",
+					label: "Operator",
+					description: "CINTiya — senior intelligence operative; methodical, risk-aware, engages offensive techniques directly",
 				},
 				{ value: "none", label: "None", description: "Omit the personality block entirely" },
 			],

@@ -51,6 +51,19 @@ Thirteen skills covering the full vulnerability-research lifecycle — from atta
 
 Exploit-research tools installed: **Ghidra** (analyzeHeadless + ghidraRun), **AFL++**, **libFuzzer**, **pwntools**, **ROPgadget**, **ropper**, **capstone**, **Diaphora**. Native debugger: **lldb** (macOS); **gdb+pwndbg** inside a Linux VM for Linux targets.
 
+### Web intelligence (camofox + firecrawl)
+
+CINT bundles two web-intelligence services that extend the agent's reach beyond what the built-in `browser` and `web_search` tools can do:
+
+- **camofox-browser** — stealth headless browser powered by Camoufox (Firefox fork with C++-level fingerprint spoofing). Bypasses Cloudflare, bot detection, and anti-scraping. Runs as a local REST API on `:9377` with accessibility snapshots, stable element refs, cookie import, proxy/GeoIP routing, and search macros. Start with `npx @askjo/camofox-browser`.
+- **firecrawl** — web scraping, search, and crawl at scale. Exposed as an MCP server (`firecrawl-mcp`) so the agent gets `mcp__firecrawl_search`, `mcp__firecrawl_scrape`, `mcp__firecrawl_crawl`, and `mcp__firecrawl_map` tools automatically. Works with the hosted API (`firecrawl.dev`) or self-hosted via Docker.
+
+Install both with `cint --install-cyber-tools`. Configure firecrawl by adding an MCP server entry to `~/.cint/agent/mcp.json`:
+
+```json
+{"mcpServers":{"firecrawl":{"command":"npx","args":["-y","firecrawl-mcp"],"env":{"FIRECRAWL_API_KEY":"fc-YOUR_KEY"}}}}
+```
+
 ### Recursive agentic penetration loop
 
 The loop declares a goal, scope, and exit criteria, then iterates recon→exploit→validate per position — tracking penetration depth L0–L6 from initial foothold through reverse shell, lateral movement, credential harvest, and domain compromise. Each confirmed access gain spawns a fresh cycle from the new vantage point. Failed exploit attempts become fuzzer seeds; fuzzer coverage guides exploit dev; CVE research identifies known-buggy components from captured evidence.
@@ -122,7 +135,7 @@ Edits that land on the first attempt. Reads that summarize files instead of dump
 
 [Read the full post ↗](https://incrt.intelligence/blog/harness-problem)
 
-## The Pi _you love_, with **batteries included**.
+## The agent surface you need, with **batteries included**.
 
 Originally built on [Mario Zechner](https://github.com/mariozechner)'s wonderful [Pi](https://github.com/badlogic/pi-mono), CINT adds everything you're missing.
 
@@ -287,6 +300,8 @@ Stealth's on by default, so pages see a normal user instead of a headless bot. T
 - `generate_image` — generate or edit raster images via Gemini, GPT, or xAI Grok image models.
 - `inspect_image` — vision-model analysis of a local image file.
 - `tts` — text-to-speech via xAI Grok Voice — five built-in voices, WAV or MP3.
+- `camofox` — stealth headless browser (Camoufox/Firefox) via local REST API; bypasses Cloudflare and bot detection. Start with `npx @askjo/camofox-browser`, then the agent reads `http://localhost:9377/...`.
+- `firecrawl` — web scrape/search/crawl at scale via MCP; agent gets `mcp__firecrawl_search`, `mcp__firecrawl_scrape`, `mcp__firecrawl_crawl` tools. Requires API key from firecrawl.dev or self-hosted.
 
 **Memory & state**
 

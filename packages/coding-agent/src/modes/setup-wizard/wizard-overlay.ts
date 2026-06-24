@@ -8,7 +8,7 @@ import {
 	visibleWidth,
 } from "@incrt/cint-tui";
 import { APP_NAME } from "@incrt/cint-utils";
-import { gradientLogo, PI_LOGO } from "../components/welcome";
+import { gradientLogo, CINT_LOGO } from "../components/welcome";
 import { theme } from "../theme/theme";
 import type { InteractiveModeContext } from "../types";
 import { renderSetupOutro, SETUP_OUTRO_MS } from "./scenes/outro";
@@ -200,7 +200,7 @@ export class SetupWizardComponent implements Component, OverlayFocusOwner {
 		const title = this.#activeScene?.title ?? scene?.title ?? "Setup";
 		const subtitle = this.#activeScene?.subtitle;
 		const contentWidth = Math.max(MIN_CONTENT_WIDTH, width - SCENE_MARGIN_X * 2);
-		const logo = gradientLogo(PI_LOGO, 0);
+		const logo = gradientLogo(CINT_LOGO, 0);
 		const header = [
 			"",
 			...logo.map(line => centerLine(line, width)),

@@ -19,6 +19,7 @@ import { hasObsidian } from "./internal-urls/vault-protocol";
 import customSystemPromptTemplate from "./prompts/system/custom-system-prompt.md" with { type: "text" };
 import defaultPersonality from "./prompts/system/personalities/default.md" with { type: "text" };
 import friendlyPersonality from "./prompts/system/personalities/friendly.md" with { type: "text" };
+import operatorPersonality from "./prompts/system/personalities/operator.md" with { type: "text" };
 import pragmaticPersonality from "./prompts/system/personalities/pragmatic.md" with { type: "text" };
 import projectPromptTemplate from "./prompts/system/project-prompt.md" with { type: "text" };
 import systemPromptTemplate from "./prompts/system/system-prompt.md" with { type: "text" };
@@ -29,6 +30,7 @@ import { AGENTS_MD_LIMIT, buildWorkspaceTree, type WorkspaceTree } from "./works
 const PERSONALITY_SPECS: Record<Exclude<Personality, "none">, string> = {
 	default: defaultPersonality,
 	friendly: friendlyPersonality,
+	operator: operatorPersonality,
 	pragmatic: pragmaticPersonality,
 };
 
