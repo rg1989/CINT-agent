@@ -76,22 +76,16 @@ The loop declares a goal, scope, and exit criteria, then iterates recon→exploi
 curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
 ```
 
-**Homebrew**
-
-```sh
-brew install incrt/tap/cint
-```
-
-**Bun (recommended)**
-
-```sh
-bun install -g @incrt/cint
-```
-
 **Windows (PowerShell)**
 
 ```powershell
 irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1 | iex
+```
+
+**Bun (source)**
+
+```sh
+bun install -g ./packages/coding-agent
 ```
 
 **Pinned versions (mise)**
@@ -101,6 +95,22 @@ mise use -g github:rg1989/CINT-agent
 ```
 
 macOS · Linux · Windows · bun ≥ 1.3.14
+
+## Uninstall
+
+**macOS · Linux**
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/uninstall.sh | sh
+```
+
+**Windows (PowerShell)**
+
+```powershell
+irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/uninstall.ps1 | iex
+```
+
+User data (settings, sessions, logs) under `~/.cint` is removed by default. Preserve it with `CINT_PRESERVE_DATA=1`.
 
 ### Shell completions
 
