@@ -18,10 +18,10 @@
 </p>
 
 <p align="center">
-  Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — rebranded as CINT by <a href="https://github.com/rg1989/CINT-agent">Incrt Intelligence</a>.
+  Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — rebranded as CINT by <a href="https://www.linkedin.com/in/roman-grinevich-03b13bab/">Roman Grinevich</a>.
 </p>
 
-The most capable agent surface that ships. Continuously tuned by real-world use — complete out of the box, open all the way down.
+The most capable agent surface that ships. Continuously tuned by real-world use — complete out of the box, open all the way down. Works best with open-weight, unrestricted models — tested and optimized for **Z-AI GLM-5.2**.
 
 **40+** providers · **32** built-in tools · **14** lsp ops · **28** dap ops · **~55k** lines of Rust core.
 
@@ -508,7 +508,7 @@ Full reference: [github.com/rg1989/CINT-agent/docs/sdk](https://github.com/rg198
 
 Pick it up at **[GitHub](https://github.com/rg1989/CINT-agent)**.
 
-CINT is based on [Pi](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner) and [OMP](https://github.com/can1357) by [Can Bölük](https://github.com/can1357), rewritten as a coding-first surface and rebranded as CINT — Cyber Intelligence: sessions, subagents, slash commands, extensions — all TypeScript, all MIT, all on [GitHub](https://github.com/rg1989/CINT-agent). Shape it from config, hook it from outside, or read the source when you need to.
+CINT is based on [Pi](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner) and [OMP](https://github.com/can1357) by [Can Bölük](https://github.com/can1357), rewritten as a coding-first surface and rebranded as CINT — Cyber Intelligence by [Roman Grinevich](https://www.linkedin.com/in/roman-grinevich-03b13bab/): sessions, subagents, slash commands, extensions — all TypeScript, all MIT, all on [GitHub](https://github.com/rg1989/CINT-agent). Shape it from config, hook it from outside, or read the source when you need to.
 
 ### Primitives
 
@@ -524,7 +524,7 @@ Ask cint to write the piece you're missing, then `/reload-plugins`. Keep it loca
 
 ## Philosophy
 
-CINT is based on [pi-mono](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner), extended with a batteries-included coding workflow and rebranded by Incrt Intelligence.
+CINT is based on [pi-mono](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner), extended with a batteries-included coding workflow and rebranded by [Roman Grinevich](https://www.linkedin.com/in/roman-grinevich-03b13bab/).
 
 Key ideas:
 
@@ -608,7 +608,7 @@ MIT. See [LICENSE](LICENSE).
 
 © 2025 Mario Zechner  
 © 2025-2026 Can Bölük  
-© 2026 Incrt Intelligence
+© 2026 [Roman Grinevich](https://www.linkedin.com/in/roman-grinevich-03b13bab/)
 
 _made for terminals that stay open_
 

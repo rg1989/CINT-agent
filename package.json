@@ -1,6 +1,6 @@
 {
   "name": "cint-monorepo",
-  "homepage": "https://incrt.intelligence",
+  "homepage": "https://github.com/rg1989/CINT-agent",
   "private": true,
   "type": "module",
   "packageManager": "bun@1.3.14",

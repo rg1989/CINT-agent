@@ -2,7 +2,7 @@
 set -e
 
 # CINT — Cyber Intelligence Coding Agent Installer
-# Incrt Intelligence
+# Roman Grinevich
 #
 # Usage: curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
 #
