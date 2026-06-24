@@ -4,7 +4,7 @@ set -e
 # CINT — Cyber Intelligence Coding Agent Installer
 # Incrt Intelligence
 #
-# Usage: curl -fsSL https://raw.githubusercontent.com/incrt/cint/main/scripts/install.sh | sh
+# Usage: curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
 #
 # Options:
 #   --source       Install via bun (installs bun if needed)
@@ -12,7 +12,7 @@ set -e
 #   --ref <ref>    Install specific tag/commit/branch
 #   -r <ref>       Shorthand for --ref
 
-REPO="incrt/cint"
+REPO="rg1989/CINT-agent"
 PACKAGE="@incrt/cint"
 INSTALL_DIR="${CINT_INSTALL_DIR:-$HOME/.local/bin}"
 MIN_BUN_VERSION="1.3.14"
@@ -141,44 +141,54 @@ has_git_lfs() {
     command -v git-lfs >/dev/null 2>&1
 }
 
+# Clone the repo at ref $1 and install packages/coding-agent globally via bun.
+install_from_git() {
+    REF_ARG="$1"
+    if ! has_git; then
+        echo "git is required to install from source"
+        exit 1
+    fi
+
+    TMP_DIR="$(mktemp -d)"
+    trap 'rm -rf "$TMP_DIR"' EXIT
+
+    if git clone --depth 1 --branch "$REF_ARG" "https://github.com/${REPO}.git" "$TMP_DIR" >/dev/null 2>&1; then
+        :
+    else
+        git clone "https://github.com/${REPO}.git" "$TMP_DIR"
+        (cd "$TMP_DIR" && git checkout "$REF_ARG")
+    fi
+
+    # Pull LFS files
+    if has_git_lfs; then
+        (cd "$TMP_DIR" && git lfs pull)
+    fi
+
+    if [ ! -d "$TMP_DIR/packages/coding-agent" ]; then
+        echo "Expected package at ${TMP_DIR}/packages/coding-agent"
+        exit 1
+    fi
+
+    bun install -g "$TMP_DIR/packages/coding-agent" || {
+        echo "Failed to install from source"
+        exit 1
+    }
+}
+
 # Install via bun
 install_via_bun() {
     echo "Installing CINT via bun..."
     if [ -n "$REF" ]; then
-        if ! has_git; then
-            echo "git is required for --ref when installing from source"
-            exit 1
-        fi
-
-        TMP_DIR="$(mktemp -d)"
-        trap 'rm -rf "$TMP_DIR"' EXIT
-
-        if git clone --depth 1 --branch "$REF" "https://github.com/${REPO}.git" "$TMP_DIR" >/dev/null 2>&1; then
+        install_from_git "$REF"
+    else
+        # Fast path: published npm package. Falls back to cloning the repo
+        # so the installer works even before the package is on npm.
+        if bun install -g "$PACKAGE" 2>/dev/null; then
             :
         else
-            git clone "https://github.com/${REPO}.git" "$TMP_DIR"
-            (cd "$TMP_DIR" && git checkout "$REF")
+            echo "Package $PACKAGE not available on npm; installing from source..."
+            install_from_git main
         fi
-
-        # Pull LFS files
-        if has_git_lfs; then
-            (cd "$TMP_DIR" && git lfs pull)
-        fi
-
-        if [ ! -d "$TMP_DIR/packages/coding-agent" ]; then
-            echo "Expected package at ${TMP_DIR}/packages/coding-agent"
-            exit 1
-        fi
-
-        bun install -g "$TMP_DIR/packages/coding-agent" || {
-            echo "Failed to install from source"
-            exit 1
-        }
-    else
-        bun install -g "$PACKAGE" || {
-            echo "Failed to install $PACKAGE"
-            exit 1
-        }
     fi
     echo ""
     echo "✓ Installed cint via bun"

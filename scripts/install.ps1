@@ -1,12 +1,12 @@
-# OMP Coding Agent Installer for Windows
-# Usage: irm https://raw.githubusercontent.com/can1357/oh-my-pi/main/scripts/install.ps1 | iex
+# CINT — Cyber Intelligence Coding Agent Installer for Windows
+# Usage: irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1 | iex
 #
 # Or with options:
-#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/can1357/oh-my-pi/main/scripts/install.ps1))) -Source
-#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/can1357/oh-my-pi/main/scripts/install.ps1))) -Binary
-#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/can1357/oh-my-pi/main/scripts/install.ps1))) -Source -Ref v3.20.1
-#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/can1357/oh-my-pi/main/scripts/install.ps1))) -Source -Ref main
-#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/can1357/oh-my-pi/main/scripts/install.ps1))) -Binary -Ref v3.20.1
+#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1))) -Source
+#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1))) -Binary
+#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1))) -Source -Ref v3.20.1
+#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1))) -Source -Ref main
+#   & ([scriptblock]::Create((irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1))) -Binary -Ref v3.20.1
 
 param(
     [switch]$Source,
@@ -16,10 +16,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$Repo = "can1357/oh-my-pi"
-$Package = "@oh-my-pi/pi-coding-agent"
-$InstallDir = if ($env:PI_INSTALL_DIR) { $env:PI_INSTALL_DIR } else { "$env:LOCALAPPDATA\omp" }
-$BinaryName = "omp-windows-x64.exe"
+$Repo = "rg1989/CINT-agent"
+$Package = "@incrt/cint"
+$InstallDir = if ($env:CINT_INSTALL_DIR) { $env:CINT_INSTALL_DIR } else { "$env:LOCALAPPDATA\cint" }
+$BinaryName = "cint-windows-x64.exe"
 $MinimumBunVersion = "1.3.14"
 
 function Test-BunInstalled {
@@ -102,7 +102,7 @@ function Find-BashShell {
 
 function Configure-BashShell {
     try {
-        $settingsDir = Join-Path $env:USERPROFILE ".omp\agent"
+        $settingsDir = Join-Path $env:USERPROFILE ".cint\agent"
         $settingsFile = Join-Path $settingsDir "settings.json"
 
         # Check if settings.json already has a shellPath configured
@@ -147,7 +147,7 @@ function Configure-BashShell {
         } else {
             Write-Host ""
             Write-Host "⚠ No bash shell found!" -ForegroundColor Yellow
-            Write-Host "  OMP requires a bash shell on Windows. Options:" -ForegroundColor Yellow
+            Write-Host "  CINT requires a bash shell on Windows. Options:" -ForegroundColor Yellow
             Write-Host "    1. Install Git for Windows: https://git-scm.com/download/win" -ForegroundColor Yellow
             Write-Host "    2. Use WSL, Cygwin, or MSYS2" -ForegroundColor Yellow
             Write-Host ""
@@ -168,71 +168,79 @@ function Install-Bun {
     Assert-BunVersion $MinimumBunVersion
 }
 
+function Install-FromGit {
+    param([string]$GitRef)
+    if (-not (Test-GitInstalled)) {
+        throw "git is required to install from source"
+    }
+
+    $tmpRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("cint-install-" + [System.Guid]::NewGuid().ToString("N"))
+    New-Item -ItemType Directory -Force -Path $tmpRoot | Out-Null
+
+    try {
+        $repoUrl = "https://github.com/$Repo.git"
+        $cloneOk = $false
+        try {
+            git clone --depth 1 --branch $GitRef $repoUrl $tmpRoot | Out-Null
+            $cloneOk = $true
+        } catch {
+            $cloneOk = $false
+        }
+
+        if (-not $cloneOk) {
+            git clone $repoUrl $tmpRoot | Out-Null
+            Push-Location $tmpRoot
+            try {
+                git checkout $GitRef | Out-Null
+            } finally {
+                Pop-Location
+            }
+        }
+
+        # Pull LFS files
+        if (Test-GitLfsInstalled) {
+            Push-Location $tmpRoot
+            try {
+                git lfs pull | Out-Null
+            } finally {
+                Pop-Location
+            }
+        }
+
+        $packagePath = Join-Path $tmpRoot "packages\coding-agent"
+        if (-not (Test-Path $packagePath)) {
+            throw "Expected package at $packagePath"
+        }
+
+        bun install -g $packagePath
+        if ($LASTEXITCODE -ne 0) {
+            throw "Failed to install from $packagePath via bun"
+        }
+    } finally {
+        Remove-Item -Recurse -Force $tmpRoot -ErrorAction SilentlyContinue
+    }
+}
+
 function Install-ViaBun {
     Write-Host "Installing via bun..."
     if ($Ref) {
-        if (-not (Test-GitInstalled)) {
-            throw "git is required for -Ref when installing from source"
-        }
-
-        $tmpRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("omp-install-" + [System.Guid]::NewGuid().ToString("N"))
-        New-Item -ItemType Directory -Force -Path $tmpRoot | Out-Null
-
-        try {
-            $repoUrl = "https://github.com/$Repo.git"
-            $cloneOk = $false
-            try {
-                git clone --depth 1 --branch $Ref $repoUrl $tmpRoot | Out-Null
-                $cloneOk = $true
-            } catch {
-                $cloneOk = $false
-            }
-
-            if (-not $cloneOk) {
-                git clone $repoUrl $tmpRoot | Out-Null
-                Push-Location $tmpRoot
-                try {
-                    git checkout $Ref | Out-Null
-                } finally {
-                    Pop-Location
-                }
-            }
-
-            # Pull LFS files
-            if (Test-GitLfsInstalled) {
-                Push-Location $tmpRoot
-                try {
-                    git lfs pull | Out-Null
-                } finally {
-                    Pop-Location
-                }
-            }
-
-            $packagePath = Join-Path $tmpRoot "packages\coding-agent"
-            if (-not (Test-Path $packagePath)) {
-                throw "Expected package at $packagePath"
-            }
-
-            bun install -g $packagePath
-            if ($LASTEXITCODE -ne 0) {
-                throw "Failed to install from $packagePath via bun"
-            }
-        } finally {
-            Remove-Item -Recurse -Force $tmpRoot -ErrorAction SilentlyContinue
-        }
+        Install-FromGit -GitRef $Ref
     } else {
-        bun install -g $Package
+        # Fast path: published npm package. Falls back to cloning the repo
+        # so the installer works even before the package is on npm.
+        bun install -g $Package 2>$null
         if ($LASTEXITCODE -ne 0) {
-            throw "Failed to install $Package via bun"
+            Write-Host "Package $Package not available on npm; installing from source..."
+            Install-FromGit -GitRef main
         }
     }
 
     Write-Host ""
-    Write-Host "✓ Installed omp via bun" -ForegroundColor Green
+    Write-Host "✓ Installed cint via bun" -ForegroundColor Green
 
     Configure-BashShell
 
-    Write-Host "Run 'omp' to get started!"
+    Write-Host "Run 'cint' to get started!"
 }
 
 function Install-Binary {
@@ -259,11 +267,11 @@ function Install-Binary {
     # Download binary
     $BinaryUrl = "https://github.com/$Repo/releases/download/$Latest/$BinaryName"
     Write-Host "Downloading $BinaryName..."
-    $OutPath = Join-Path $InstallDir "omp.exe"
+    $OutPath = Join-Path $InstallDir "cint.exe"
     Invoke-WebRequest -Uri $BinaryUrl -OutFile $OutPath
 
     Write-Host ""
-    Write-Host "✓ Installed omp to $OutPath" -ForegroundColor Green
+    Write-Host "✓ Installed cint to $OutPath" -ForegroundColor Green
 
     # Add to PATH if not already there
     $UserPath = [Environment]::GetEnvironmentVariable("Path", "User")
@@ -276,9 +284,9 @@ function Install-Binary {
     Configure-BashShell
 
     if ($needsRestart) {
-        Write-Host "Restart your terminal, then run 'omp' to get started!"
+        Write-Host "Restart your terminal, then run 'cint' to get started!"
     } else {
-        Write-Host "Run 'omp' to get started!"
+        Write-Host "Run 'cint' to get started!"
     }
 }
 

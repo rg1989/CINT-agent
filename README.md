@@ -1,24 +1,24 @@
 <p align="center">
-  <img src="https://github.com/incrt/cint/blob/main/assets/hero.png?raw=true" alt="cint">
+  <img src="https://github.com/rg1989/CINT-agent/blob/main/assets/hero.png?raw=true" alt="cint">
 </p>
 
 <p align="center">
   <strong>CINT — Cyber Intelligence.</strong> A coding agent with the IDE wired in.
-  <strong><a href="https://incrt.intelligence">incrt.intelligence</a></strong>
+  <strong><a href="https://github.com/rg1989/CINT-agent">incrt.intelligence</a></strong>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@incrt/cint"><img src="https://img.shields.io/npm/v/@incrt/cint?style=flat&colorA=222222&colorB=CB3837" alt="npm version"></a>
-  <a href="https://github.com/incrt/cint/blob/main/packages/coding-agent/CHANGELOG.md"><img src="https://img.shields.io/badge/changelog-keep-E05735?style=flat&colorA=222222" alt="Changelog"></a>
-  <a href="https://github.com/incrt/cint/actions"><img src="https://img.shields.io/github/actions/workflow/status/incrt/cint/ci.yml?style=flat&colorA=222222&colorB=3FB950" alt="CI"></a>
-  <a href="https://github.com/incrt/cint/blob/main/LICENSE"><img src="https://img.shields.io/github/license/incrt/cint?style=flat&colorA=222222&colorB=58A6FF" alt="License"></a>
+  <a href="https://github.com/rg1989/CINT-agent/blob/main/packages/coding-agent/CHANGELOG.md"><img src="https://img.shields.io/badge/changelog-keep-E05735?style=flat&colorA=222222" alt="Changelog"></a>
+  <a href="https://github.com/rg1989/CINT-agent/actions"><img src="https://img.shields.io/github/actions/workflow/status/rg1989/CINT-agent/ci.yml?style=flat&colorA=222222&colorB=3FB950" alt="CI"></a>
+  <a href="https://github.com/rg1989/CINT-agent/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rg1989/CINT-agent?style=flat&colorA=222222&colorB=58A6FF" alt="License"></a>
   <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&colorA=222222&logo=typescript&logoColor=white" alt="TypeScript"></a>
   <a href="https://www.rust-lang.org"><img src="https://img.shields.io/badge/Rust-DEA584?style=flat&colorA=222222&logo=rust&logoColor=white" alt="Rust"></a>
   <a href="https://bun.sh"><img src="https://img.shields.io/badge/runtime-Bun-f472b6?style=flat&colorA=222222" alt="Bun"></a>
 </p>
 
 <p align="center">
-  Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — now rebranded as CINT by <a href="https://incrt.intelligence">Incrt Intelligence</a>.
+  Based on <a href="https://github.com/badlogic/pi-mono">Pi</a> by <a href="https://github.com/mariozechner">@mariozechner</a> and <a href="https://github.com/can1357">OMP</a> by <a href="https://github.com/can1357">Can Bölük</a> — now rebranded as CINT by <a href="https://github.com/rg1989/CINT-agent">Incrt Intelligence</a>.
 </p>
 
 The most capable agent surface that ships. Continuously tuned by real-world use — complete out of the box, open all the way down.
@@ -60,7 +60,7 @@ The loop declares a goal, scope, and exit criteria, then iterates recon→exploi
 **macOS · Linux**
 
 ```sh
-curl -fsSL https://incrt.intelligence/install | sh
+curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
 ```
 
 **Homebrew**
@@ -78,13 +78,13 @@ bun install -g @incrt/cint
 **Windows (PowerShell)**
 
 ```powershell
-irm https://incrt.intelligence/install.ps1 | iex
+irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1 | iex
 ```
 
 **Pinned versions (mise)**
 
 ```sh
-mise use -g github:incrt/cint
+mise use -g github:rg1989/CINT-agent
 ```
 
 macOS · Linux · Windows · bun ≥ 1.3.14
@@ -491,7 +491,7 @@ Full reference: [incrt.intelligence/docs/sdk](https://incrt.intelligence/docs/sd
 
 Pick it up at **[incrt.intelligence](https://incrt.intelligence)**.
 
-CINT is based on [Pi](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner) and [OMP](https://github.com/can1357/oh-my-pi) by [Can Bölük](https://github.com/can1357), rewritten as a coding-first surface and rebranded as CINT — Cyber Intelligence by [Incrt Intelligence](https://incrt.intelligence): sessions, subagents, slash commands, extensions — all TypeScript, all MIT, all on [GitHub](https://github.com/incrt/cint). Shape it from config, hook it from outside, or read the source when you need to.
+CINT is based on [Pi](https://github.com/badlogic/pi-mono) by [Mario Zechner](https://github.com/mariozechner) and [OMP](https://github.com/can1357/oh-my-pi) by [Can Bölük](https://github.com/can1357), rewritten as a coding-first surface and rebranded as CINT — Cyber Intelligence by [Incrt Intelligence](https://incrt.intelligence): sessions, subagents, slash commands, extensions — all TypeScript, all MIT, all on [GitHub](https://github.com/rg1989/CINT-agent). Shape it from config, hook it from outside, or read the source when you need to.
 
 ### Primitives
 
@@ -578,7 +578,7 @@ For architecture and contribution guidelines, see [packages/coding-agent/DEVELOP
 
 Issues are open to everyone. **Pull requests require a vouch** — PRs from
 unvouched or denounced authors are closed automatically. If you're not yet
-vouched, open a [Discussion](https://github.com/incrt/cint/discussions)
+vouched, open a [Discussion](https://github.com/rg1989/CINT-agent/discussions)
 and ask a maintainer to `!vouch` you rather than opening a PR (which would be
 closed on sight). See **[CONTRIBUTING.md](CONTRIBUTING.md)** and
 [`.github/VOUCHED.td`](.github/VOUCHED.td) for the full policy.
@@ -596,8 +596,8 @@ MIT. See [LICENSE](LICENSE).
 _made for terminals that stay open_
 
 - [incrt.intelligence](https://incrt.intelligence)
-- [GitHub](https://github.com/incrt/cint)
-- [Changelog](https://github.com/incrt/cint/blob/main/packages/coding-agent/CHANGELOG.md)
+- [GitHub](https://github.com/rg1989/CINT-agent)
+- [Changelog](https://github.com/rg1989/CINT-agent/blob/main/packages/coding-agent/CHANGELOG.md)
 - [npm](https://www.npmjs.com/package/@incrt/cint)
-- [MIT](https://github.com/incrt/cint/blob/main/LICENSE)
+- [MIT](https://github.com/rg1989/CINT-agent/blob/main/LICENSE)
 # CINT-agent
