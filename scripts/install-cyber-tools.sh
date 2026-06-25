@@ -44,6 +44,17 @@ SKIPPED_COUNT=0
 FAILED=""
 FAILED_COUNT=0
 
+# Progress tracking
+TOTAL_STEPS=0
+CURRENT_STEP=0
+
+# Print progress prefix: [current/total]
+progress() {
+    if [ "$TOTAL_STEPS" -gt 0 ]; then
+        CURRENT_STEP=$((CURRENT_STEP + 1))
+        printf "[%d/%d] " "$CURRENT_STEP" "$TOTAL_STEPS"
+    fi
+}
 # ---------------------------------------------------------------------------
 # OS / package-manager detection
 # ---------------------------------------------------------------------------
@@ -122,7 +133,7 @@ pkg_install() {
         mark_failed "$_name (missing)"
         return 0
     fi
-    echo "==> Installing $_name ..."
+    progress; echo "==> Installing $_name ..."
     if [ "$PKG_MGR" = "brew" ] && [ -n "$_brew" ]; then
         if brew install "$_brew" >/dev/null 2>&1; then
             mark_installed "$_name"
@@ -152,7 +163,7 @@ pip_install() {
         mark_failed "$_name (missing)"
         return 0
     fi
-    echo "==> Installing $_name (pip) ..."
+    progress; echo "==> Installing $_name (pip) ..."
     if python3 -m pip install --user "$_pip" >/dev/null 2>&1; then
         mark_installed "$_name"
     else
@@ -176,7 +187,7 @@ go_install() {
         mark_failed "$_name (go not installed)"
         return 0
     fi
-    echo "==> Installing $_name (go install) ..."
+    progress; echo "==> Installing $_name (go install) ..."
     if GOBIN="${HOME}/.cint/bin" go install "$_mod" >/dev/null 2>&1; then
         export PATH="${HOME}/.cint/bin:${PATH}"
         mark_installed "$_name"
@@ -202,7 +213,7 @@ git_clone_tool() {
         mark_failed "$_name (git not installed)"
         return 0
     fi
-    echo "==> Cloning $_name ..."
+    progress; echo "==> Cloning $_name ..."
     mkdir -p "${HOME}/.cint/src"
     if git clone --depth 1 "$_url" "$_dest" >/dev/null 2>&1; then
         mark_installed "$_name"
@@ -227,7 +238,7 @@ curl_install() {
         mark_failed "$_name (curl not installed)"
         return 0
     fi
-    echo "==> Installing $_name (curl) ..."
+    progress; echo "==> Installing $_name (curl) ..."
     mkdir -p "$(dirname "$_dest")"
     if curl -fsSL "$_url" -o "$_dest" && chmod +x "$_dest"; then
         mark_installed "$_name"
@@ -252,7 +263,7 @@ npm_install() {
         mark_failed "$_name (npm not installed)"
         return 0
     fi
-    echo "==> Installing $_name (npm) ..."
+    progress; echo "==> Installing $_name (npm) ..."
     if npm install -g "$_pkg" >/dev/null 2>&1; then
         mark_installed "$_name"
     else
@@ -444,6 +455,10 @@ install_all() {
     echo "============================================================"
     echo
 
+    # Count total install steps for progress display (approximate — some
+    # tools are skipped or OS-conditional, but this gives the user a sense
+    # of how far along they are).
+    TOTAL_STEPS=40
     # ---- Prerequisites -------------------------------------------------
     pkg_install python3 python3 python3 "python3"
     pkg_install git git git "git"
@@ -608,7 +623,7 @@ install_all() {
         elif [ "$CHECK_ONLY" = "1" ]; then
             mark_failed "seclists (not installed — run without --check, or skip with --no-wordlists)"
         else
-            echo "==> Installing seclists (this is a ~500MB download) ..."
+            progress; echo "==> Installing seclists (this is a ~500MB download) ..."
             if [ "$PKG_MGR" = "brew" ]; then
                 if brew install seclists >/dev/null 2>&1; then
                     mark_installed "seclists"
