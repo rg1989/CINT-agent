@@ -192,19 +192,36 @@ install_from_git() {
 
     # Build native addons (Rust .node files) — required for the agent to run.
     # The npm package ships prebuilt binaries, but source installs must compile.
+
+    # Install build dependencies
+    if [ "$(uname -s)" = "Linux" ]; then
+        if command -v apt-get >/dev/null 2>&1; then
+            echo "Installing build dependencies (build-essential, pkg-config, libssl-dev)..."
+            sudo apt-get update -qq >/dev/null 2>&1 && sudo apt-get install -y -qq build-essential pkg-config libssl-dev >/dev/null 2>&1 || true
+        elif command -v dnf >/dev/null 2>&1; then
+            echo "Installing build dependencies (gcc, make, pkgconfig, openssl-devel)..."
+            sudo dnf install -y -q gcc gcc-c++ make pkgconfig openssl-devel >/dev/null 2>&1 || true
+        fi
+    fi
+
+    # Install Rust if missing
     if ! command -v cargo >/dev/null 2>&1; then
         echo "Installing Rust (required for native addon build)..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>/dev/null
-        # Source cargo env for this shell
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
         . "${HOME}/.cargo/env" 2>/dev/null || true
     fi
-    echo "Building native addons..."
-    (cd "$SRC_DIR" && bun run build:native) || {
-        echo "WARNING: Native addon build failed."
-        echo "  The agent will not start without the native addon."
-        echo "  Ensure Rust is installed: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
-        echo "  Then rebuild: cd $SRC_DIR && bun run build:native"
-    }
+
+    echo "Building native addons (this takes a few minutes)..."
+    if ! (cd "$SRC_DIR" && bun run build:native 2>&1); then
+        echo ""
+        echo "FATAL: Native addon build failed. The agent cannot run without it."
+        echo ""
+        echo "Common fixes:"
+        echo "  - Install build tools: sudo apt install build-essential pkg-config libssl-dev"
+        echo "  - Install Rust: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+        echo "  - Then rebuild: cd $SRC_DIR && bun run build:native"
+        exit 1
+    fi
 
     # Link globally — creates ~/.bun/bin/cint symlink
     (cd "$SRC_DIR/packages/coding-agent" && bun link) || {
