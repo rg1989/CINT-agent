@@ -207,8 +207,11 @@ install_via_bun() {
     echo "✓ Installed cint via bun"
     echo "Run 'cint' to get started!"
     echo ""
-    echo "To install cyber/exploit toolchain (recommended):"
+    echo "To install cyber/exploit toolchain + skills (recommended):"
     echo "  cint --install-cyber-tools"
+    echo ""
+    echo "To install only skills (no toolchain):"
+    echo "  cint --install-skills"
 }
 
 # Install binary from GitHub releases
@@ -268,8 +271,11 @@ install_binary() {
     esac
 
     echo ""
-    echo "To install cyber/exploit toolchain (recommended):"
+    echo "To install cyber/exploit toolchain + skills (recommended):"
     echo "  cint --install-cyber-tools"
+    echo ""
+    echo "To install only skills (no toolchain):"
+    echo "  cint --install-skills"
 }
 
 # Main logic
