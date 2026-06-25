@@ -88,10 +88,18 @@ The loop declares a goal, scope, and exit criteria, then iterates recon→exploi
 
 ## Install
 
+One command installs everything — the agent, the full cyber toolchain (26 security tools), 38 skills, and optional wordlists (SecLists + dirb).
+
 **macOS · Linux**
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
+```
+
+**From a cloned repo**
+
+```sh
+sh scripts/install.sh
 ```
 
 **Windows (PowerShell)**
@@ -100,10 +108,10 @@ curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/inst
 irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1 | iex
 ```
 
-**Bun (source)**
+**Agent only (no cyber toolchain)**
 
 ```sh
-bun install -g ./packages/coding-agent
+curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh -s -- --no-cyber
 ```
 
 **Pinned versions (mise)**
