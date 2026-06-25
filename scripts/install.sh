@@ -267,7 +267,7 @@ install_binary() {
     if [ -n "$REF" ]; then
         echo "Fetching release $REF..."
         if RELEASE_JSON=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/tags/${REF}"); then
-            LATEST=$(echo "$RELEASE_JSON" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+            LATEST=$(echo "$RELEASE_JSON" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/1/')
         else
             echo "Release tag not found: $REF"
             echo "For branch/commit installs, use --source with --ref."
@@ -275,13 +275,19 @@ install_binary() {
         fi
     else
         echo "Fetching latest release..."
-        RELEASE_JSON=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest")
-        LATEST=$(echo "$RELEASE_JSON" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+        RELEASE_JSON=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" 2>/dev/null) || RELEASE_JSON=""
+        LATEST=$(echo "$RELEASE_JSON" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/1/')
     fi
 
     if [ -z "$LATEST" ]; then
-        echo "Failed to fetch release tag"
-        exit 1
+        echo "No prebuilt binary release found."
+        echo "Falling back to source install (this installs bun if needed)..."
+        if ! has_bun; then
+            install_bun
+        fi
+        require_bun_version
+        install_via_bun
+        return
     fi
     echo "Using version: $LATEST"
 
@@ -289,7 +295,16 @@ install_binary() {
     # Download binary
     BINARY_URL="https://github.com/${REPO}/releases/download/${LATEST}/${BINARY}"
     echo "Downloading ${BINARY}..."
-    curl -fsSL "$BINARY_URL" -o "${INSTALL_DIR}/cint"
+    if ! curl -fsSL "$BINARY_URL" -o "${INSTALL_DIR}/cint" 2>/dev/null; then
+        echo "Binary download failed. Falling back to source install..."
+        if ! has_bun; then
+            install_bun
+        fi
+        require_bun_version
+        install_via_bun
+        return
+    fi
+    chmod +x "${INSTALL_DIR}/cint"
     echo ""
     echo "✓ Installed cint to ${INSTALL_DIR}/cint"
 
