@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"name": "@incrt/cint-ai",
-	"version": "16.1.16",
+	"version": "16.2.0",
 	"description": "Unified LLM API with automatic model discovery and provider configuration",
 	"homepage": "https://omp.sh",
 	"author": "Can Boluk",

@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"name": "@incrt/cint-swarm-extension",
-	"version": "16.1.16",
+	"version": "16.2.0",
 	"description": "Swarm orchestration extension for cint",
 	"homepage": "https://github.com/rg1989/CINT-agent",
 	"author": "Derek Rynd",

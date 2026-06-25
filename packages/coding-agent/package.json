@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"name": "@incrt/cint",
-	"version": "16.1.16",
+	"version": "16.2.0",
 	"description": "CINT — Cyber Intelligence: coding agent CLI with full cyber/exploit toolchain",
 	"homepage": "https://github.com/rg1989/CINT-agent",
 	"author": "Roman Grinevich",
