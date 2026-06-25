@@ -92,7 +92,7 @@ const PROJECT_CONFIG_BASES = priorityList.map(({ dir }) => ({
 
 export interface ConfigDirEntry {
 	path: string;
-	source: string; // e.g., ".omp", ".claude"
+	source: string; // e.g., ".cint", ".claude"
 	level: "user" | "project";
 }
 
@@ -117,7 +117,7 @@ export interface GetConfigDirsOptions {
  * @example
  * // Get all command directories
  * getConfigDirs("commands")
- * // → [{ path: "~/.omp/agent/commands", source: ".omp", level: "user" }, ...]
+ * // → [{ path: "~/.omp/agent/commands", source: ".cint", level: "user" }, ...]
  *
  * @example
  * // Get only existing project skill directories
