@@ -134,17 +134,18 @@ pkg_install() {
         return 0
     fi
     progress; echo "==> Installing $_name ..."
+    _err=""
     if [ "$PKG_MGR" = "brew" ] && [ -n "$_brew" ]; then
-        if brew install "$_brew" >/dev/null 2>&1; then
+        if _err=$(brew install "$_brew" 2>&1); then
             mark_installed "$_name"
         else
-            mark_failed "$_name"
+            mark_failed "$_name ($_err)"
         fi
     elif [ "$PKG_MGR" = "apt" ] && [ -n "$_apt" ]; then
-        if sudo apt-get install -y "$_apt" >/dev/null 2>&1; then
+        if _err=$(sudo apt-get install -y "$_apt" 2>&1); then
             mark_installed "$_name"
         else
-            mark_failed "$_name"
+            mark_failed "$_name ($_err)"
         fi
     else
         mark_failed "$_name (no package manager available)"
@@ -164,10 +165,11 @@ pip_install() {
         return 0
     fi
     progress; echo "==> Installing $_name (pip) ..."
-    if python3 -m pip install --user "$_pip" >/dev/null 2>&1; then
+    _err=""
+    if _err=$(python3 -m pip install --user "$_pip" 2>&1); then
         mark_installed "$_name"
     else
-        mark_failed "$_name"
+        mark_failed "$_name ($_err)"
     fi
 }
 
@@ -188,11 +190,12 @@ go_install() {
         return 0
     fi
     progress; echo "==> Installing $_name (go install) ..."
-    if GOBIN="${HOME}/.cint/bin" go install "$_mod" >/dev/null 2>&1; then
+    _err=""
+    if _err=$(GOBIN="${HOME}/.cint/bin" go install "$_mod" 2>&1); then
         export PATH="${HOME}/.cint/bin:${PATH}"
         mark_installed "$_name"
     else
-        mark_failed "$_name"
+        mark_failed "$_name ($_err)"
     fi
 }
 
@@ -215,10 +218,11 @@ git_clone_tool() {
     fi
     progress; echo "==> Cloning $_name ..."
     mkdir -p "${HOME}/.cint/src"
-    if git clone --depth 1 "$_url" "$_dest" >/dev/null 2>&1; then
+    _err=""
+    if _err=$(git clone --depth 1 "$_url" "$_dest" 2>&1); then
         mark_installed "$_name"
     else
-        mark_failed "$_name"
+        mark_failed "$_name ($_err)"
     fi
 }
 
@@ -711,6 +715,26 @@ print_summary() {
         fi
     else
         echo "All tools present."
+    fi
+
+    # Ensure ~/.cint/bin is on the user's PATH permanently (go-installed tools land here).
+    _cint_bin="$HOME/.cint/bin"
+    if [ -d "$_cint_bin" ]; then
+        _added=0
+        for _profile in "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile"; do
+            [ -f "$_profile" ] || continue
+            if ! grep -q '\.cint/bin' "$_profile" 2>/dev/null; then
+                echo '' >> "$_profile"
+                echo '# CINT cyber tools (go-installed binaries)' >> "$_profile"
+                echo 'export PATH="$HOME/.cint/bin:$PATH"' >> "$_profile"
+                _added=1
+            fi
+        done
+        if [ "$_added" = "1" ]; then
+            echo ""
+            echo "Added ~/.cint/bin to your PATH in shell profile."
+            echo "Restart your terminal or run: source ~/.bashrc"
+        fi
     fi
 }
 
