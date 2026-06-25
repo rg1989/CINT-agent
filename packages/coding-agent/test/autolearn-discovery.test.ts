@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it, spyOn } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { getManagedSkillsDir } from "@incrt/cint-coding-agent/autolearn/managed-skills";
-import "@incrt/cint-coding-agent/discovery";
-import { loadSkills } from "@incrt/cint-coding-agent/extensibility/skills";
+import { getManagedSkillsDir } from "@incrt/cint/autolearn/managed-skills";
+import "@incrt/cint/discovery";
+import { loadSkills } from "@incrt/cint/extensibility/skills";
 import { getAgentDir, setAgentDir } from "@incrt/cint-utils/dirs";
 
 async function writeSkill(dir: string, name: string, description: string): Promise<void> {

@@ -2,12 +2,12 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAgentSession } from "@incrt/cint/sdk";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { AuthStorage } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Snowflake } from "@incrt/cint-utils";
 
 // Contract for B1 (interactive MCP deferral): when `hasUI` is true, MCP

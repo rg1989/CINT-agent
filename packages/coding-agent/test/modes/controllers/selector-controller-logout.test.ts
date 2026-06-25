@@ -1,9 +1,9 @@
 import { beforeAll, describe, expect, it, vi } from "bun:test";
-import { LogoutAccountSelectorComponent } from "@incrt/cint-coding-agent/modes/components/logout-account-selector";
-import { SelectorController } from "@incrt/cint-coding-agent/modes/controllers/selector-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { AuthStorage, StoredAuthCredential } from "@incrt/cint-coding-agent/session/auth-storage";
+import { LogoutAccountSelectorComponent } from "@incrt/cint/modes/components/logout-account-selector";
+import { SelectorController } from "@incrt/cint/modes/controllers/selector-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { AuthStorage, StoredAuthCredential } from "@incrt/cint/session/auth-storage";
 
 interface TestEditorContainer {
 	children: unknown[];

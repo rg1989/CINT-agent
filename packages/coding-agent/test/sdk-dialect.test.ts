@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { resolveDialect } from "@incrt/cint-coding-agent/sdk";
+import { resolveDialect } from "@incrt/cint/sdk";
 
 describe("resolveDialect", () => {
 	it("uses preferred owned dialects in auto mode for models without native tools", () => {

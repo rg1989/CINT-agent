@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import type { SSHHost } from "@incrt/cint-coding-agent/capability/ssh";
-import type { SourceMeta } from "@incrt/cint-coding-agent/capability/types";
-import * as discovery from "@incrt/cint-coding-agent/discovery";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { loadSshTool } from "@incrt/cint-coding-agent/tools";
+import type { SSHHost } from "@incrt/cint/capability/ssh";
+import type { SourceMeta } from "@incrt/cint/capability/types";
+import * as discovery from "@incrt/cint/discovery";
+import type { ToolSession } from "@incrt/cint/tools";
+import { loadSshTool } from "@incrt/cint/tools";
 
 const SOURCE: SourceMeta = {
 	provider: "test",

@@ -9,9 +9,9 @@
  */
 
 import { describe, expect, test } from "bun:test";
-import { expandPromptTemplate, type PromptTemplate } from "@incrt/cint-coding-agent/config/prompt-templates";
-import { expandSlashCommand, type FileSlashCommand } from "@incrt/cint-coding-agent/extensibility/slash-commands";
-import { parseCommandArgs, substituteArgs } from "@incrt/cint-coding-agent/utils/command-args";
+import { expandPromptTemplate, type PromptTemplate } from "@incrt/cint/config/prompt-templates";
+import { expandSlashCommand, type FileSlashCommand } from "@incrt/cint/extensibility/slash-commands";
+import { parseCommandArgs, substituteArgs } from "@incrt/cint/utils/command-args";
 
 // ============================================================================
 // substituteArgs

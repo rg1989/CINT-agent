@@ -1,14 +1,14 @@
 import { beforeAll, describe, expect, it } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { renderMCPResult } from "@incrt/cint/mcp/render";
+import { DeferredMCPTool, MCPTool, type MCPToolDetails } from "@incrt/cint/mcp/tool-bridge";
+import type { MCPServerConnection, MCPToolDefinition, MCPTransport } from "@incrt/cint/mcp/types";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { theme as activeTheme, getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import { formatOutputNotice, type OutputMeta } from "@incrt/cint/tools/output-meta";
+import { formatStatusIcon } from "@incrt/cint/tools/render-utils";
 import type { AgentTool } from "@incrt/cint-agent-core";
 import type { TSchema } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { renderMCPResult } from "@incrt/cint-coding-agent/mcp/render";
-import { DeferredMCPTool, MCPTool, type MCPToolDetails } from "@incrt/cint-coding-agent/mcp/tool-bridge";
-import type { MCPServerConnection, MCPToolDefinition, MCPTransport } from "@incrt/cint-coding-agent/mcp/types";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { theme as activeTheme, getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { formatOutputNotice, type OutputMeta } from "@incrt/cint-coding-agent/tools/output-meta";
-import { formatStatusIcon } from "@incrt/cint-coding-agent/tools/render-utils";
 import { TUI } from "@incrt/cint-tui";
 import { VirtualTerminal } from "../../tui/test/virtual-terminal";
 

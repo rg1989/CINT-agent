@@ -4,9 +4,9 @@ import {
 	createLoopLimitRuntime,
 	isLoopDurationExpired,
 	parseLoopLimitArgs,
-} from "@incrt/cint-coding-agent/modes/loop-limit";
-import type { BuiltinSlashCommandRuntime } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
-import { executeBuiltinSlashCommand } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
+} from "@incrt/cint/modes/loop-limit";
+import type { BuiltinSlashCommandRuntime } from "@incrt/cint/slash-commands/builtin-registry";
+import { executeBuiltinSlashCommand } from "@incrt/cint/slash-commands/builtin-registry";
 
 describe("/loop slash command", () => {
 	test("forwards a bare limit argument verbatim", async () => {

@@ -6,14 +6,14 @@
  * how assistant text snaps at message_end.
  */
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { STREAMING_REVEAL_FRAME_MS } from "@incrt/cint/modes/controllers/streaming-reveal";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { AgentSessionEvent } from "@incrt/cint/session/agent-session";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { STREAMING_REVEAL_FRAME_MS } from "@incrt/cint-coding-agent/modes/controllers/streaming-reveal";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
 
 beforeAll(async () => {
 	await initTheme();

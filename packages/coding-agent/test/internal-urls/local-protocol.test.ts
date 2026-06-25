@@ -7,7 +7,7 @@ import {
 	LocalProtocolHandler,
 	resolveLocalRoot,
 	resolveLocalUrlToPath,
-} from "@incrt/cint-coding-agent/internal-urls";
+} from "@incrt/cint/internal-urls";
 
 async function withTempDir<T>(fn: (dir: string) => Promise<T>): Promise<T> {
 	const dir = await fs.mkdtemp(path.join(os.tmpdir(), "local-protocol-"));

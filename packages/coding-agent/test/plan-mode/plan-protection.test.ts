@@ -1,11 +1,11 @@
 import { describe, expect, it } from "bun:test";
+import { createPlanReadMatcher } from "@incrt/cint/plan-mode/plan-protection";
 import type { AgentToolCall } from "@incrt/cint-agent-core";
 import type { SessionMessageEntry } from "@incrt/cint-agent-core/compaction/entries";
 import { DEFAULT_PRUNE_CONFIG, pruneToolOutputs } from "@incrt/cint-agent-core/compaction/pruning";
 import { AGGRESSIVE_SHAKE_CONFIG, collectShakeRegions } from "@incrt/cint-agent-core/compaction/shake";
 import type { ProtectedToolContext } from "@incrt/cint-agent-core/compaction/tool-protection";
 import type { AssistantMessage, TextContent, ToolResultMessage, Usage } from "@incrt/cint-ai";
-import { createPlanReadMatcher } from "@incrt/cint-coding-agent/plan-mode/plan-protection";
 
 function context(opts: { toolName?: string; callName?: string | undefined; path?: string }): ProtectedToolContext {
 	const toolResult = {

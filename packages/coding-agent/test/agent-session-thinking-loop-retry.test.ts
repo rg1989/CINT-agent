@@ -1,6 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
 import { scheduler } from "node:timers/promises";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentSession, type AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent } from "@incrt/cint-agent-core";
 import type {
 	Api,
@@ -14,11 +19,6 @@ import type {
 import { createMockModel } from "@incrt/cint-ai/providers/mock";
 import { AssistantMessageEventStream } from "@incrt/cint-ai/utils/event-stream";
 import { THINKING_LOOP_ERROR_MARKER, withGeminiThinkingLoopGuard } from "@incrt/cint-ai/utils/thinking-loop";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession, type AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const LOOP_PARAGRAPHS = [

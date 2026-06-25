@@ -3,9 +3,10 @@
  *
  * Shows how to select a specific model and thinking level.
  */
+
+import { createAgentSession, discoverAuthStorage, discoverModels } from "@incrt/cint";
 import { ThinkingLevel } from "@incrt/cint-agent-core";
 import { getModel } from "@incrt/cint-ai";
-import { createAgentSession, discoverAuthStorage, discoverModels } from "@incrt/cint-coding-agent";
 
 // Set up auth storage and model registry
 const authStorage = await discoverAuthStorage();

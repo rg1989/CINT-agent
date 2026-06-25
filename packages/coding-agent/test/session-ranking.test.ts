@@ -1,9 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import {
-	mergeSessionRanking,
-	rankSessionSearchMatches,
-} from "@incrt/cint-coding-agent/modes/components/session-selector";
-import type { SessionInfo } from "@incrt/cint-coding-agent/session/session-listing";
+import { mergeSessionRanking, rankSessionSearchMatches } from "@incrt/cint/modes/components/session-selector";
+import type { SessionInfo } from "@incrt/cint/session/session-listing";
 
 function makeSession(id: string, overrides: Partial<SessionInfo> = {}): SessionInfo {
 	return {

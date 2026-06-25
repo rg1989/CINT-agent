@@ -41,16 +41,16 @@ import { spawnSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { convertToLlm } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { BashTool, type ToolSession } from "@incrt/cint/tools";
 import { Agent, type AgentMessage, type AgentTool } from "@incrt/cint-agent-core";
 import { createMockModel, type MockResponse } from "@incrt/cint-ai/providers/mock";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { convertToLlm } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { BashTool, type ToolSession } from "@incrt/cint-coding-agent/tools";
 import { Snowflake } from "@incrt/cint-utils";
 
 /** Scripted assistant turn that issues a single `bash` tool call. */

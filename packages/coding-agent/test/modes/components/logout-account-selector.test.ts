@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { LogoutAccountSelectorComponent } from "@incrt/cint-coding-agent/modes/components/logout-account-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { StoredAuthCredential } from "@incrt/cint-coding-agent/session/auth-storage";
-import { toLogoutAccounts } from "@incrt/cint-coding-agent/slash-commands/helpers/logout";
+import { LogoutAccountSelectorComponent } from "@incrt/cint/modes/components/logout-account-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { StoredAuthCredential } from "@incrt/cint/session/auth-storage";
+import { toLogoutAccounts } from "@incrt/cint/slash-commands/helpers/logout";
 
 beforeAll(async () => {
 	await initTheme();

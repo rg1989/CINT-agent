@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { getSettingsListTheme, initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { getSettingsListTheme, initTheme, theme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await initTheme();

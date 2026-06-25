@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, test } from "bun:test";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { LoadContext } from "@incrt/cint-coding-agent/capability/types";
-import { getConfigDirs } from "@incrt/cint-coding-agent/config";
-import { getUserPath } from "@incrt/cint-coding-agent/discovery/helpers";
+import type { LoadContext } from "@incrt/cint/capability/types";
+import { getConfigDirs } from "@incrt/cint/config";
+import { getUserPath } from "@incrt/cint/discovery/helpers";
 import { getAgentDir } from "@incrt/cint-utils";
 
 describe("PI_CONFIG_DIR", () => {

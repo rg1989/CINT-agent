@@ -1,9 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { DiscoverableTool } from "@incrt/cint-coding-agent/tool-discovery/tool-index";
-import {
-	buildDiscoverableToolSearchIndex,
-	searchDiscoverableTools,
-} from "@incrt/cint-coding-agent/tool-discovery/tool-index";
+import type { DiscoverableTool } from "@incrt/cint/tool-discovery/tool-index";
+import { buildDiscoverableToolSearchIndex, searchDiscoverableTools } from "@incrt/cint/tool-discovery/tool-index";
 
 describe("generic index: DiscoverableTool round-trip", () => {
 	const tools: DiscoverableTool[] = [

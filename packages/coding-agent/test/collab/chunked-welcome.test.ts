@@ -11,19 +11,19 @@
  * are stubbed.
  */
 import { afterAll, afterEach, beforeAll, describe, expect, it, spyOn } from "bun:test";
-import { importRoomKey } from "@incrt/cint-coding-agent/collab/crypto";
-import { CollabGuestLink } from "@incrt/cint-coding-agent/collab/guest";
-import { CollabHost } from "@incrt/cint-coding-agent/collab/host";
+import { importRoomKey } from "@incrt/cint/collab/crypto";
+import { CollabGuestLink } from "@incrt/cint/collab/guest";
+import { CollabHost } from "@incrt/cint/collab/host";
 import {
 	COLLAB_PROTO,
 	type CollabFrame,
 	parseCollabLink,
 	rewriteEnvelopePeer,
 	unpackEnvelope,
-} from "@incrt/cint-coding-agent/collab/protocol";
-import { CollabSocket } from "@incrt/cint-coding-agent/collab/relay-client";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { SessionEntry } from "@incrt/cint-coding-agent/session/session-entries";
+} from "@incrt/cint/collab/protocol";
+import { CollabSocket } from "@incrt/cint/collab/relay-client";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { SessionEntry } from "@incrt/cint/session/session-entries";
 
 // ── In-memory transport (verbatim copy of the relay used in read-only.test.ts) ──
 

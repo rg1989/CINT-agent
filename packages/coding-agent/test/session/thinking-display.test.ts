@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { canonicalizeMessage } from "@incrt/cint-coding-agent/utils/thinking-display";
+import { canonicalizeMessage } from "@incrt/cint/utils/thinking-display";
 
 describe("canonicalizeMessage", () => {
 	it("returns empty string for undefined, empty, or whitespace-only", () => {

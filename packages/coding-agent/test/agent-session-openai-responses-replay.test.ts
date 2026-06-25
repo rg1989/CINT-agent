@@ -2,6 +2,13 @@ import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:te
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAgentSession } from "@incrt/cint/sdk";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import type { SessionEntry, SessionMessageEntry } from "@incrt/cint/session/session-entries";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type {
 	AssistantMessage,
 	Message,
@@ -12,13 +19,6 @@ import type {
 } from "@incrt/cint-ai/types";
 import { createOpenAIResponsesHistoryPayload } from "@incrt/cint-ai/utils";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import type { SessionEntry, SessionMessageEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Snowflake } from "@incrt/cint-utils";
 
 function createUsage(): Usage {

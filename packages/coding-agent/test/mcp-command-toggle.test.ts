@@ -2,10 +2,10 @@ import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "bu
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { SourceMeta } from "@incrt/cint-coding-agent/capability/types";
-import type { MCPServerConfig } from "@incrt/cint-coding-agent/mcp/types";
-import { MCPCommandController } from "@incrt/cint-coding-agent/modes/controllers/mcp-command-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import type { SourceMeta } from "@incrt/cint/capability/types";
+import type { MCPServerConfig } from "@incrt/cint/mcp/types";
+import { MCPCommandController } from "@incrt/cint/modes/controllers/mcp-command-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import { getConfigRootDir, getMCPConfigPath, getProjectDir, setAgentDir, setProjectDir } from "@incrt/cint-utils";
 
 const originalProjectDir = getProjectDir();

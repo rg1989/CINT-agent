@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "bun:test";
-import { executePython } from "@incrt/cint-coding-agent/eval/py/executor";
-import type { KernelExecuteOptions, KernelExecuteResult } from "@incrt/cint-coding-agent/eval/py/kernel";
-import { PythonKernel } from "@incrt/cint-coding-agent/eval/py/kernel";
+import { executePython } from "@incrt/cint/eval/py/executor";
+import type { KernelExecuteOptions, KernelExecuteResult } from "@incrt/cint/eval/py/kernel";
+import { PythonKernel } from "@incrt/cint/eval/py/kernel";
 import { TempDir } from "@incrt/cint-utils";
 
 interface KernelStub {

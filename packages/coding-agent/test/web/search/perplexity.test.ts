@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { PerplexityProvider, searchPerplexity } from "@incrt/cint/web/search/providers/perplexity";
+import { getAvailableAuthMethods } from "@incrt/cint/web/search/providers/perplexity-auth";
 import type { AuthStorage, FetchImpl } from "@incrt/cint-ai";
-import { PerplexityProvider, searchPerplexity } from "@incrt/cint-coding-agent/web/search/providers/perplexity";
-import { getAvailableAuthMethods } from "@incrt/cint-coding-agent/web/search/providers/perplexity-auth";
 
 const API_URL = "https://api.perplexity.ai/chat/completions";
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";

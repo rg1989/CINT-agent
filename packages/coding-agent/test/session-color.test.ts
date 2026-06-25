@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
 
-import { getSessionAccentHex } from "@incrt/cint-coding-agent/utils/session-color";
+import { getSessionAccentHex } from "@incrt/cint/utils/session-color";
 import { hexToHsv, relativeLuminance } from "@incrt/cint-utils";
 
 const NO_THEME_COLORS: string[] = [];

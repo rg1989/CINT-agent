@@ -1,5 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { buildSessionContext } from "@incrt/cint/session/session-context";
+import type {
+	CompactionEntry,
+	ModelChangeEntry,
+	SessionEntry,
+	SessionMessageEntry,
+	ThinkingLevelChangeEntry,
+} from "@incrt/cint/session/session-entries";
+import { parseSessionEntries } from "@incrt/cint/session/session-loader";
+import { migrateSessionEntries } from "@incrt/cint/session/session-migrations";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import {
 	type CompactionSettings,
@@ -17,16 +27,6 @@ import * as ai from "@incrt/cint-ai";
 import { encodeTextSignatureV1 } from "@incrt/cint-ai/providers/openai-shared";
 import type { AssistantMessage, Model, ProviderPayload, Usage } from "@incrt/cint-ai/types";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { buildSessionContext } from "@incrt/cint-coding-agent/session/session-context";
-import type {
-	CompactionEntry,
-	ModelChangeEntry,
-	SessionEntry,
-	SessionMessageEntry,
-	ThinkingLevelChangeEntry,
-} from "@incrt/cint-coding-agent/session/session-entries";
-import { parseSessionEntries } from "@incrt/cint-coding-agent/session/session-loader";
-import { migrateSessionEntries } from "@incrt/cint-coding-agent/session/session-migrations";
 import { mockFetch } from "./helpers/fetch-mock";
 import { e2eApiKey } from "./utilities";
 

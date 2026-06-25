@@ -2,6 +2,8 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry, type ProviderConfigInput } from "@incrt/cint/config/model-registry";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import {
 	type AssistantMessageEventStream,
 	clearCustomApis,
@@ -11,8 +13,6 @@ import {
 } from "@incrt/cint-ai";
 import { getOAuthProviders, unregisterOAuthProviders } from "@incrt/cint-ai/oauth";
 import type { OAuthCredentials } from "@incrt/cint-ai/oauth/types";
-import { ModelRegistry, type ProviderConfigInput } from "@incrt/cint-coding-agent/config/model-registry";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
 import { Snowflake } from "@incrt/cint-utils";
 
 describe("ModelRegistry runtime provider registration", () => {

@@ -15,8 +15,8 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { loadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+import { loadExtensions } from "@incrt/cint/extensibility/extensions";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 
 describe("loadExtensions per-session binding (#2190 review fix)", () => {
 	let tmp: string;

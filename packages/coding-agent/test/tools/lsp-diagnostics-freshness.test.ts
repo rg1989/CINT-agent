@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
-import { createLspWritethrough, type FileDiagnosticsResult } from "@incrt/cint-coding-agent/lsp";
-import * as lspClient from "@incrt/cint-coding-agent/lsp/client";
-import * as lspConfig from "@incrt/cint-coding-agent/lsp/config";
-import type { Diagnostic, LspClient, ServerConfig } from "@incrt/cint-coding-agent/lsp/types";
-import { fileToUri } from "@incrt/cint-coding-agent/lsp/utils";
+import { createLspWritethrough, type FileDiagnosticsResult } from "@incrt/cint/lsp";
+import * as lspClient from "@incrt/cint/lsp/client";
+import * as lspConfig from "@incrt/cint/lsp/config";
+import type { Diagnostic, LspClient, ServerConfig } from "@incrt/cint/lsp/types";
+import { fileToUri } from "@incrt/cint/lsp/utils";
 import { type ptree, TempDir } from "@incrt/cint-utils";
 
 const TEST_SERVER: ServerConfig = {

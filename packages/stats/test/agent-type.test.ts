@@ -7,14 +7,7 @@ import { getOverviewStats } from "@incrt/cint-stats/aggregator";
 import { closeDb, getStatsByAgentType, initDb, insertMessageStats } from "@incrt/cint-stats/db";
 import { classifyAgentType } from "@incrt/cint-stats/parser";
 import type { AgentType, MessageStats } from "@incrt/cint-stats/types";
-import {
-	getAgentDir,
-	getConfigRootDir,
-	getSessionsDir,
-	getStatsDbPath,
-	setAgentDir,
-	TempDir,
-} from "@incrt/cint-utils";
+import { getAgentDir, getConfigRootDir, getSessionsDir, getStatsDbPath, setAgentDir, TempDir } from "@incrt/cint-utils";
 
 const originalConfigDir = process.env.PI_CONFIG_DIR;
 const originalAgentDir = getAgentDir();

@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { previewWindowRows } from "@incrt/cint-coding-agent/tools/render-utils";
-import { sshToolRenderer } from "@incrt/cint-coding-agent/tools/ssh";
+import { getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import { previewWindowRows } from "@incrt/cint/tools/render-utils";
+import { sshToolRenderer } from "@incrt/cint/tools/ssh";
 import { sanitizeText } from "@incrt/cint-utils";
 
 beforeAll(async () => {

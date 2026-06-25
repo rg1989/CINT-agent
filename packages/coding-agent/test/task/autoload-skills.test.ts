@@ -1,14 +1,14 @@
 import { afterEach, describe, expect, it, type Mock, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { Skill } from "@incrt/cint-coding-agent/extensibility/skills";
-import * as skillsModule from "@incrt/cint-coding-agent/extensibility/skills";
-import type { CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession, AgentSessionEvent, PromptOptions } from "@incrt/cint-coding-agent/session/agent-session";
-import { SKILL_PROMPT_MESSAGE_TYPE } from "@incrt/cint-coding-agent/session/messages";
-import { runSubprocess } from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition } from "@incrt/cint-coding-agent/task/types";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+import { Settings } from "@incrt/cint/config/settings";
+import type { Skill } from "@incrt/cint/extensibility/skills";
+import * as skillsModule from "@incrt/cint/extensibility/skills";
+import type { CreateAgentSessionResult } from "@incrt/cint/sdk";
+import * as sdkModule from "@incrt/cint/sdk";
+import type { AgentSession, AgentSessionEvent, PromptOptions } from "@incrt/cint/session/agent-session";
+import { SKILL_PROMPT_MESSAGE_TYPE } from "@incrt/cint/session/messages";
+import { runSubprocess } from "@incrt/cint/task/executor";
+import type { AgentDefinition } from "@incrt/cint/task/types";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -60,8 +60,7 @@ function createMockSession(
 function createSessionResult(session: AgentSession): CreateAgentSessionResult {
 	return {
 		session,
-		extensionsResult:
-			{} as unknown as import("@incrt/cint-coding-agent/extensibility/extensions/types").LoadExtensionsResult,
+		extensionsResult: {} as unknown as import("@incrt/cint/extensibility/extensions/types").LoadExtensionsResult,
 		setToolUIContext: () => {},
 		eventBus: new EventBus(),
 	};
@@ -90,7 +89,7 @@ describe("autoloadSkills in executor", () => {
 		settings: Settings.isolated(),
 		modelRegistry: {
 			refresh: async () => {},
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry,
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry,
 		enableLsp: false,
 	};
 

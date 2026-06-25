@@ -2,9 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { FetchImpl } from "@incrt/cint-ai/types";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import {
 	buildExaRequestBody,
 	ExaProvider,
@@ -12,7 +11,8 @@ import {
 	resetExaSearchThrottleForTest,
 	searchExa,
 	synthesizeAnswer,
-} from "@incrt/cint-coding-agent/web/search/providers/exa";
+} from "@incrt/cint/web/search/providers/exa";
+import type { FetchImpl } from "@incrt/cint-ai/types";
 
 async function withLocalAuthStorage<T>(run: (authStorage: AuthStorage) => Promise<T>): Promise<T> {
 	const dir = await fs.mkdtemp(path.join(os.tmpdir(), "web-search-exa-auth-"));

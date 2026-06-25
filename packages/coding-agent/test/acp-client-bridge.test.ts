@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import type { AgentSideConnection, RequestPermissionRequest } from "@agentclientprotocol/sdk";
-import { createAcpClientBridge } from "@incrt/cint-coding-agent/modes/acp/acp-client-bridge";
+import { createAcpClientBridge } from "@incrt/cint/modes/acp/acp-client-bridge";
 
 describe("ACP client bridge permission requests", () => {
 	it("forwards pending tool-call status to session/request_permission", async () => {

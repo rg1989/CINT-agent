@@ -2,22 +2,22 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import type { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import type { LoadExtensionsResult } from "@incrt/cint/extensibility/extensions/types";
+import type { PlanModeState } from "@incrt/cint/plan-mode/state";
+import type { CreateAgentSessionOptions, CreateAgentSessionResult } from "@incrt/cint/sdk";
+import * as sdkModule from "@incrt/cint/sdk";
+import type { AgentSession, AgentSessionEvent, PromptOptions } from "@incrt/cint/session/agent-session";
+import { TaskTool } from "@incrt/cint/task";
+import * as discoveryModule from "@incrt/cint/task/discovery";
+import type { AgentDefinition, TaskParams } from "@incrt/cint/task/types";
+import type { IsolationHandle, WorktreeBaseline } from "@incrt/cint/task/worktree";
+import * as worktreeModule from "@incrt/cint/task/worktree";
+import type { ToolSession } from "@incrt/cint/tools";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import type { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { LoadExtensionsResult } from "@incrt/cint-coding-agent/extensibility/extensions/types";
-import type { PlanModeState } from "@incrt/cint-coding-agent/plan-mode/state";
-import type { CreateAgentSessionOptions, CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession, AgentSessionEvent, PromptOptions } from "@incrt/cint-coding-agent/session/agent-session";
-import { TaskTool } from "@incrt/cint-coding-agent/task";
-import * as discoveryModule from "@incrt/cint-coding-agent/task/discovery";
-import type { AgentDefinition, TaskParams } from "@incrt/cint-coding-agent/task/types";
-import type { IsolationHandle, WorktreeBaseline } from "@incrt/cint-coding-agent/task/worktree";
-import * as worktreeModule from "@incrt/cint-coding-agent/task/worktree";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import "@incrt/cint-coding-agent/tools/yield";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+import "@incrt/cint/tools/yield";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 
 const TEST_TASK: TaskParams = {
 	agent: "task",

@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { UserMessageSelectorComponent } from "@incrt/cint-coding-agent/modes/components/user-message-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { UserMessageSelectorComponent } from "@incrt/cint/modes/components/user-message-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await initTheme();

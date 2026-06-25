@@ -1,9 +1,9 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
 import * as path from "node:path";
 import * as url from "node:url";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { searchToolRenderer } from "@incrt/cint-coding-agent/tools/search";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
+import { searchToolRenderer } from "@incrt/cint/tools/search";
 import { sanitizeText } from "@incrt/cint-utils";
 
 function extractLinkUris(text: string): string[] {

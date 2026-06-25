@@ -1,8 +1,8 @@
+import type { AgentTool, AgentToolContext, AgentToolResult, AgentToolUpdateCallback } from "@incrt/cint-agent-core";
+import type { ToolExample } from "@incrt/cint-ai";
 import { MismatchError as HashlineMismatchError } from "@incrt/cint-hashline";
 import hashlineGrammar from "@incrt/cint-hashline/grammar.lark" with { type: "text" };
 import hashlineDescription from "@incrt/cint-hashline/prompt.md" with { type: "text" };
-import type { AgentTool, AgentToolContext, AgentToolResult, AgentToolUpdateCallback } from "@incrt/cint-agent-core";
-import type { ToolExample } from "@incrt/cint-ai";
 import { prompt } from "@incrt/cint-utils";
 import {
 	createLspWritethrough,

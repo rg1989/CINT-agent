@@ -9,7 +9,7 @@ import {
 	openMemoryDb,
 	tryClaimGlobalPhase2Job,
 	upsertThreads,
-} from "@incrt/cint-coding-agent/memories/storage";
+} from "@incrt/cint/memories/storage";
 import { TempDir } from "@incrt/cint-utils";
 
 const GLOBAL_KIND = "memory_consolidate_global";

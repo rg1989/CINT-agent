@@ -2,12 +2,12 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAgentSession } from "@incrt/cint/sdk";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type { AgentToolContext } from "@incrt/cint-agent-core";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Snowflake } from "@incrt/cint-utils";
 
 const BASE_SETTINGS = {

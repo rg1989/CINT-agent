@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
 import * as url from "node:url";
-import { toJsonRpcError } from "@incrt/cint-coding-agent/mcp/types";
+import { toJsonRpcError } from "@incrt/cint/mcp/types";
 
 describe("toJsonRpcError", () => {
 	it("extracts code from Error with .code property", () => {

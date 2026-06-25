@@ -9,7 +9,7 @@ import {
 	sanitizeSkillName,
 	toSkillFrontmatter,
 	writeManagedSkill,
-} from "@incrt/cint-coding-agent/autolearn/managed-skills";
+} from "@incrt/cint/autolearn/managed-skills";
 import { parseFrontmatter } from "@incrt/cint-utils";
 import { getAgentDir, setAgentDir } from "@incrt/cint-utils/dirs";
 

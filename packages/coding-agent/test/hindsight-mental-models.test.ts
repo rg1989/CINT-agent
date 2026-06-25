@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import type { BankScope } from "@incrt/cint-coding-agent/hindsight/bank";
+import type { BankScope } from "@incrt/cint/hindsight/bank";
 import {
 	type HindsightApi,
 	HindsightApi as HindsightApiCtor,
 	type MentalModelSummary,
-} from "@incrt/cint-coding-agent/hindsight/client";
+} from "@incrt/cint/hindsight/client";
 import {
 	diffMentalModelContent,
 	ensureMentalModels,
@@ -12,7 +12,7 @@ import {
 	MENTAL_MODEL_RENDER_BUDGET_CHARS_DEFAULT,
 	renderMentalModelsBlock,
 	resolveSeedsForScope,
-} from "@incrt/cint-coding-agent/hindsight/mental-models";
+} from "@incrt/cint/hindsight/mental-models";
 
 afterEach(() => {
 	vi.restoreAllMocks();

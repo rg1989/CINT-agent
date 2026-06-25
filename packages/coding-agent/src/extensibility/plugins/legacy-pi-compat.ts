@@ -130,7 +130,7 @@ export function __computeBunfsPackageRoot(metaDir: string, pathImpl: typeof path
  *
  * `bundle-dist.ts` defines `process.env.PI_BUNDLED="true"`; after bundling,
  * `import.meta.dir` points at `<package>/dist`. Do not resolve the package via
- * bare `@incrt/cint-coding-agent` here: from a global install Bun can pick an
+ * bare `@incrt/cint` here: from a global install Bun can pick an
  * older cache entry, recreating mixed-runtime plugin loading.
  */
 export function __computeBundledSelfPackageRoot(metaDir: string, pathImpl: typeof path = path): string {

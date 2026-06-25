@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import type { Rule } from "@incrt/cint-coding-agent/capability/rule";
-import { resetActiveRulesForTests, setActiveRules } from "@incrt/cint-coding-agent/capability/rule";
-import type { Skill } from "@incrt/cint-coding-agent/extensibility/skills";
-import { resetActiveSkillsForTests, setActiveSkills } from "@incrt/cint-coding-agent/extensibility/skills";
-import { InternalUrlRouter } from "@incrt/cint-coding-agent/internal-urls/router";
+import type { Rule } from "@incrt/cint/capability/rule";
+import { resetActiveRulesForTests, setActiveRules } from "@incrt/cint/capability/rule";
+import type { Skill } from "@incrt/cint/extensibility/skills";
+import { resetActiveSkillsForTests, setActiveSkills } from "@incrt/cint/extensibility/skills";
+import { InternalUrlRouter } from "@incrt/cint/internal-urls/router";
 import {
 	applyInternalUrlCompletion,
 	extractInternalUrlContext,
 	getInternalUrlSuggestions,
 	isInternalUrlPrefix,
-} from "@incrt/cint-coding-agent/modes/internal-url-autocomplete";
-import { PromptActionAutocompleteProvider } from "@incrt/cint-coding-agent/modes/prompt-action-autocomplete";
+} from "@incrt/cint/modes/internal-url-autocomplete";
+import { PromptActionAutocompleteProvider } from "@incrt/cint/modes/prompt-action-autocomplete";
 
 function skill(name: string, description = ""): Skill {
 	return { name, description, filePath: `/skills/${name}/SKILL.md`, baseDir: `/skills/${name}`, source: "test" };

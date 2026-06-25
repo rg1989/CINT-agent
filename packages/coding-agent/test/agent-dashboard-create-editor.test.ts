@@ -2,10 +2,10 @@ import { afterEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentDashboard } from "@incrt/cint-coding-agent/modes/components/agent-dashboard";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import * as discovery from "@incrt/cint-coding-agent/task/discovery";
+import type { Settings } from "@incrt/cint/config/settings";
+import { AgentDashboard } from "@incrt/cint/modes/components/agent-dashboard";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import * as discovery from "@incrt/cint/task/discovery";
 
 const ANSI_PATTERN = /\x1b\[[0-?]*[ -/]*[@-~]/g;
 const tempDirs: string[] = [];

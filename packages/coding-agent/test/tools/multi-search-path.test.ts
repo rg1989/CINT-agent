@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createTools, type ToolSession } from "@incrt/cint-coding-agent/tools";
-import { resolveExplicitSearchPaths } from "@incrt/cint-coding-agent/tools/path-utils";
+import { Settings } from "@incrt/cint/config/settings";
+import { createTools, type ToolSession } from "@incrt/cint/tools";
+import { resolveExplicitSearchPaths } from "@incrt/cint/tools/path-utils";
 
 const isWindows = process.platform === "win32";
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { resolveModels } from "@incrt/cint-coding-agent/cli/tiny-models-cli";
-import { TINY_LOCAL_MODELS } from "@incrt/cint-coding-agent/tiny/models";
+import { resolveModels } from "@incrt/cint/cli/tiny-models-cli";
+import { TINY_LOCAL_MODELS } from "@incrt/cint/tiny/models";
 
 describe("tiny-models download model resolution", () => {
 	it("excludes load-blocked models from `all` so the bulk prefetch stays green", () => {

@@ -2,11 +2,8 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import {
-	SPINNER_GLYPH_ADVANCE_MS,
-	sharedSpinnerFrame,
-} from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { SPINNER_GLYPH_ADVANCE_MS, sharedSpinnerFrame } from "@incrt/cint/modes/components/tool-execution";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
 import { getConfigRootDir, getCustomThemesDir, setAgentDir } from "@incrt/cint-utils";
 
 // Path of the built-in dark theme JSON, used as a known-valid base we can

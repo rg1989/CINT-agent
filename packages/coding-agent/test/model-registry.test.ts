@@ -3,12 +3,12 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, test } fr
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { Effort, type FetchImpl, type Model, type OpenAICompat, type ThinkingConfig } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
 import { writeModelCache } from "@incrt/cint-catalog/model-cache";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
 import { Snowflake } from "@incrt/cint-utils";
 
 describe("ModelRegistry", () => {

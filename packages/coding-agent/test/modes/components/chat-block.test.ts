@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "bun:test";
-import { ChatBlock, type ChatBlockHost } from "@incrt/cint-coding-agent/modes/components/chat-block";
+import { ChatBlock, type ChatBlockHost } from "@incrt/cint/modes/components/chat-block";
 import type { Component } from "@incrt/cint-tui";
 
 /** Concrete subclass exposing the protected lifecycle seams for assertions. */

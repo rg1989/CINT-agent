@@ -452,7 +452,7 @@ export class PluginManager {
 			}
 
 			const pkgPath = path.join(getPluginsNodeModules(), actualName, "package.json");
-			let pkg: { name: string; version: string; omp?: PluginManifest; pi?: PluginManifest };
+			let pkg: { name: string; version: string; cint?: PluginManifest; omp?: PluginManifest; pi?: PluginManifest };
 			try {
 				pkg = await Bun.file(pkgPath).json();
 			} catch (err) {
@@ -616,7 +616,7 @@ export class PluginManager {
 		const absolutePath = path.resolve(this.#cwd, localPath);
 
 		const pkgFilePath = path.join(absolutePath, "package.json");
-		let pkg: { name?: string; version: string; omp?: PluginManifest; pi?: PluginManifest };
+		let pkg: { name?: string; version: string; cint?: PluginManifest; omp?: PluginManifest; pi?: PluginManifest };
 		try {
 			pkg = await Bun.file(pkgFilePath).json();
 		} catch (err) {

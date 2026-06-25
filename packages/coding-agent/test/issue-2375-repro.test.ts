@@ -17,10 +17,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as os from "node:os";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import type { ImageContent } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
 
 // A clipboard with no image on it — the deterministic default for the
 // not-found assertions so a real screenshot on the dev's clipboard cannot

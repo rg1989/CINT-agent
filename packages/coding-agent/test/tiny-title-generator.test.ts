@@ -1,28 +1,28 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import type { Api, Model } from "@incrt/cint-ai";
-import * as ai from "@incrt/cint-ai";
-import { getBundledModel } from "@incrt/cint-catalog/models";
-import { isSubcommand } from "@incrt/cint-coding-agent/cli-commands";
-import { getDefault, getEnumValues, getUi } from "@incrt/cint-coding-agent/config/settings-schema";
-import { TinyTitleDownloadProgressComponent } from "@incrt/cint-coding-agent/modes/components/tiny-title-download-progress";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { isSubcommand } from "@incrt/cint/cli-commands";
+import { getDefault, getEnumValues, getUi } from "@incrt/cint/config/settings-schema";
+import { TinyTitleDownloadProgressComponent } from "@incrt/cint/modes/components/tiny-title-download-progress";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import {
 	TINY_MODEL_DEVICE_DEFAULT,
 	TINY_MODEL_DEVICE_SETTING_OPTIONS,
 	TINY_MODEL_DEVICE_SETTING_VALUES,
-} from "@incrt/cint-coding-agent/tiny/device";
+} from "@incrt/cint/tiny/device";
 import {
 	TINY_MODEL_DTYPE_DEFAULT,
 	TINY_MODEL_DTYPE_SETTING_OPTIONS,
 	TINY_MODEL_DTYPE_SETTING_VALUES,
-} from "@incrt/cint-coding-agent/tiny/dtype";
+} from "@incrt/cint/tiny/dtype";
 import {
 	ONLINE_TINY_TITLE_MODEL_KEY,
 	TINY_TITLE_MODEL_OPTIONS,
 	TINY_TITLE_MODEL_VALUES,
-} from "@incrt/cint-coding-agent/tiny/models";
-import { createTinyTitleSubprocess, tinyTitleClient } from "@incrt/cint-coding-agent/tiny/title-client";
-import { generateSessionTitle } from "@incrt/cint-coding-agent/utils/title-generator";
+} from "@incrt/cint/tiny/models";
+import { createTinyTitleSubprocess, tinyTitleClient } from "@incrt/cint/tiny/title-client";
+import { generateSessionTitle } from "@incrt/cint/utils/title-generator";
+import type { Api, Model } from "@incrt/cint-ai";
+import * as ai from "@incrt/cint-ai";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 import type { Subprocess } from "bun";
 
 function getModelOrThrow(id: string): Model<Api> {

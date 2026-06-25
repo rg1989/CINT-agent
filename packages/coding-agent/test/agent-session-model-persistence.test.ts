@@ -1,16 +1,16 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { type CreateAgentSessionResult, createAgentSession } from "@incrt/cint/sdk";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { getRestorableSessionModels } from "@incrt/cint/session/session-context";
+import { EPHEMERAL_MODEL_CHANGE_ROLE } from "@incrt/cint/session/session-entries";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent } from "@incrt/cint-agent-core";
 import { type Api, Effort, type Model } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { type CreateAgentSessionResult, createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { getRestorableSessionModels } from "@incrt/cint-coding-agent/session/session-context";
-import { EPHEMERAL_MODEL_CHANGE_ROLE } from "@incrt/cint-coding-agent/session/session-entries";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("AgentSession model persistence", () => {

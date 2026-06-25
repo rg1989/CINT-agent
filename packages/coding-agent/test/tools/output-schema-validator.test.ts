@@ -6,7 +6,7 @@ import {
 	formatAllValidationIssues,
 	formatValidationIssueHeadline,
 	summarizeValidationFailure,
-} from "@incrt/cint-coding-agent/tools/output-schema-validator";
+} from "@incrt/cint/tools/output-schema-validator";
 
 describe("buildOutputValidator", () => {
 	it("returns the empty result for an absent schema", () => {

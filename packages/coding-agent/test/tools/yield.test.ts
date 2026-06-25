@@ -1,10 +1,10 @@
 import { describe, expect, it } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
+import { YieldTool } from "@incrt/cint/tools/yield";
 import type { Tool, ToolCall } from "@incrt/cint-ai/types";
 import { enforceStrictSchema } from "@incrt/cint-ai/utils/schema";
 import { validateToolArguments } from "@incrt/cint-ai/utils/validation";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { YieldTool } from "@incrt/cint-coding-agent/tools/yield";
 
 function createSession(overrides: Partial<ToolSession> = {}): ToolSession {
 	return {

@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { getThemeByName, setThemeInstance, type Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { TaskParams } from "@incrt/cint-coding-agent/task";
-import { taskToolRenderer } from "@incrt/cint-coding-agent/task/render";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { getThemeByName, setThemeInstance, type Theme } from "@incrt/cint/modes/theme/theme";
+import type { TaskParams } from "@incrt/cint/task";
+import { taskToolRenderer } from "@incrt/cint/task/render";
 
 describe("task renderer: streaming call preview", () => {
 	let theme: Theme;

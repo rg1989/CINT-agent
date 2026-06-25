@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { HookSelectorComponent } from "@incrt/cint-coding-agent/modes/components/hook-selector";
-import { getThemeByName, setThemeInstance, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { HookSelectorComponent } from "@incrt/cint/modes/components/hook-selector";
+import { getThemeByName, setThemeInstance, theme } from "@incrt/cint/modes/theme/theme";
 import { visibleWidth } from "@incrt/cint-tui";
 
 beforeAll(async () => {

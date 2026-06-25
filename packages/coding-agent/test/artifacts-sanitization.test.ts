@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { ArtifactManager } from "@incrt/cint-coding-agent/session/artifacts";
+import { ArtifactManager } from "@incrt/cint/session/artifacts";
 
 describe("ArtifactManager tool-type sanitization", () => {
 	const dirs: string[] = [];

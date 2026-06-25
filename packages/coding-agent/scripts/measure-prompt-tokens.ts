@@ -1,8 +1,8 @@
+import { Settings } from "@incrt/cint/config/settings";
+import { estimateToolSchemaTokens } from "@incrt/cint/modes/utils/context-usage";
+import { buildSystemPrompt } from "@incrt/cint/system-prompt";
+import { createTools, type Tool, type ToolSession } from "@incrt/cint/tools";
 import { countTokens } from "@incrt/cint-agent-core";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { estimateToolSchemaTokens } from "@incrt/cint-coding-agent/modes/utils/context-usage";
-import { buildSystemPrompt } from "@incrt/cint-coding-agent/system-prompt";
-import { createTools, type Tool, type ToolSession } from "@incrt/cint-coding-agent/tools";
 
 function bytes(s: string): number {
 	return Buffer.byteLength(s, "utf-8");

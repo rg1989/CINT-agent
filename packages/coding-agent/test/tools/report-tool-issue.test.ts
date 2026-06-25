@@ -1,11 +1,7 @@
 import { Database } from "bun:sqlite";
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import {
-	__resetAutoQaFlushStateForTests,
-	flushGrievances,
-	isAutoQaEnabled,
-} from "@incrt/cint-coding-agent/tools/report-tool-issue";
+import { Settings } from "@incrt/cint/config/settings";
+import { __resetAutoQaFlushStateForTests, flushGrievances, isAutoQaEnabled } from "@incrt/cint/tools/report-tool-issue";
 import * as piUtils from "@incrt/cint-utils";
 import { mockFetch } from "../helpers/fetch-mock";
 

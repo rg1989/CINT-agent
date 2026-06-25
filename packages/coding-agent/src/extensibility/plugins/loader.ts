@@ -189,7 +189,11 @@ function readDeclaredManifestEntries(dir: string): DeclaredManifestEntries {
 	}
 	let pkg: { cint?: { extensions?: unknown }; omp?: { extensions?: unknown }; pi?: { extensions?: unknown } };
 	try {
-		pkg = JSON.parse(raw) as { cint?: { extensions?: unknown }; omp?: { extensions?: unknown }; pi?: { extensions?: unknown } };
+		pkg = JSON.parse(raw) as {
+			cint?: { extensions?: unknown };
+			omp?: { extensions?: unknown };
+			pi?: { extensions?: unknown };
+		};
 	} catch {
 		return { declared: false, files: [] };
 	}

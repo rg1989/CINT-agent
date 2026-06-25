@@ -5,8 +5,8 @@ import {
 	goalTokenDelta,
 	renderGoalPrompt,
 	renderTrustedObjective,
-} from "@incrt/cint-coding-agent/goals/runtime";
-import type { Goal, GoalModeState, GoalRuntimeEvent, GoalTokenUsage } from "@incrt/cint-coding-agent/goals/state";
+} from "@incrt/cint/goals/runtime";
+import type { Goal, GoalModeState, GoalRuntimeEvent, GoalTokenUsage } from "@incrt/cint/goals/state";
 import { escapeXmlText } from "@incrt/cint-utils";
 
 function createUsage(overrides: Partial<GoalTokenUsage> = {}): GoalTokenUsage {

@@ -13,11 +13,11 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { loadCapability } from "@incrt/cint-coding-agent/capability";
-import { clearCache } from "@incrt/cint-coding-agent/capability/fs";
-import type { Skill } from "@incrt/cint-coding-agent/capability/skill";
-import "@incrt/cint-coding-agent/capability/skill";
-import "@incrt/cint-coding-agent/discovery/github";
+import { loadCapability } from "@incrt/cint/capability";
+import { clearCache } from "@incrt/cint/capability/fs";
+import type { Skill } from "@incrt/cint/capability/skill";
+import "@incrt/cint/capability/skill";
+import "@incrt/cint/discovery/github";
 
 function writeSkill(root: string, name: string, description: string | null): void {
 	const skillDir = path.join(root, name);

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
-import type { MCPReconnect } from "@incrt/cint-coding-agent/mcp/tool-bridge";
-import { DeferredMCPTool, isRetriableConnectionError, MCPTool } from "@incrt/cint-coding-agent/mcp/tool-bridge";
-import type { MCPServerConnection, MCPToolCallResult, MCPTransport } from "@incrt/cint-coding-agent/mcp/types";
-import { ToolAbortError } from "@incrt/cint-coding-agent/tools/tool-errors";
+import type { MCPReconnect } from "@incrt/cint/mcp/tool-bridge";
+import { DeferredMCPTool, isRetriableConnectionError, MCPTool } from "@incrt/cint/mcp/tool-bridge";
+import type { MCPServerConnection, MCPToolCallResult, MCPTransport } from "@incrt/cint/mcp/types";
+import { ToolAbortError } from "@incrt/cint/tools/tool-errors";
 
 // ---------------------------------------------------------------------------
 // Helpers

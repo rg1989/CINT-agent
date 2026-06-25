@@ -1,18 +1,18 @@
 import { afterEach, beforeAll, describe, expect, it, spyOn, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { runGuidedGoalTurn } from "@incrt/cint/goals/guided-setup";
+import { InteractiveMode } from "@incrt/cint/modes/interactive-mode";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { AgentSession as RealAgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { createTools, type Tool, type ToolSession } from "@incrt/cint/tools";
 import * as core from "@incrt/cint-agent-core";
 import { ThinkingLevel } from "@incrt/cint-agent-core";
 import type { Api, Model } from "@incrt/cint-ai";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { runGuidedGoalTurn } from "@incrt/cint-coding-agent/goals/guided-setup";
-import { InteractiveMode } from "@incrt/cint-coding-agent/modes/interactive-mode";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AgentSession as RealAgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { createTools, type Tool, type ToolSession } from "@incrt/cint-coding-agent/tools";
 import { TempDir } from "@incrt/cint-utils";
 
 const planModel = { provider: "test", id: "plan" } as unknown as Model<Api>;

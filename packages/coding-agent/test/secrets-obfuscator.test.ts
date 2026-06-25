@@ -3,16 +3,16 @@
  */
 
 import { describe, expect, it } from "bun:test";
-import type { AgentMessage } from "@incrt/cint-agent-core";
-import type { AssistantMessage, Context, Message } from "@incrt/cint-ai";
 import {
 	deobfuscateAgentMessages,
 	deobfuscateToolArguments,
 	obfuscateMessages,
 	obfuscateProviderContext,
 	SecretObfuscator,
-} from "@incrt/cint-coding-agent/secrets/obfuscator";
-import { compileSecretRegex } from "@incrt/cint-coding-agent/secrets/regex";
+} from "@incrt/cint/secrets/obfuscator";
+import { compileSecretRegex } from "@incrt/cint/secrets/regex";
+import type { AgentMessage } from "@incrt/cint-agent-core";
+import type { AssistantMessage, Context, Message } from "@incrt/cint-ai";
 import { type } from "arktype";
 
 describe("compileSecretRegex", () => {

@@ -2,17 +2,17 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import type { ToolSession } from "@incrt/cint/tools";
+import { queueResolveHandler, ResolveTool } from "@incrt/cint/tools/resolve";
+import { buildNamedToolChoice } from "@incrt/cint/utils/tool-choice";
 import { Agent, isSoftToolRequirement } from "@incrt/cint-agent-core";
 import { createMockModel, type MockModel } from "@incrt/cint-ai/providers/mock";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { queueResolveHandler, ResolveTool } from "@incrt/cint-coding-agent/tools/resolve";
-import { buildNamedToolChoice } from "@incrt/cint-coding-agent/utils/tool-choice";
 import { Snowflake } from "@incrt/cint-utils";
 
 describe("AgentSession resolve reminder", () => {

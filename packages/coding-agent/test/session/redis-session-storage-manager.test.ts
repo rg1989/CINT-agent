@@ -9,12 +9,9 @@
  */
 
 import { describe, expect, it } from "bun:test";
+import { RedisSessionStorage, type RedisSessionStorageClient } from "@incrt/cint/session/redis-session-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type { Usage } from "@incrt/cint-ai";
-import {
-	RedisSessionStorage,
-	type RedisSessionStorageClient,
-} from "@incrt/cint-coding-agent/session/redis-session-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 
 interface FakeRedis extends RedisSessionStorageClient {
 	strings: Map<string, string>;

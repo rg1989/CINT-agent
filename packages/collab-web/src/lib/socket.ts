@@ -1,6 +1,6 @@
 /**
  * Browser WebSocket wrapper for collab live-session sharing (vendored mirror
- * of `@incrt/cint-coding-agent/src/collab/relay-client.ts` semantics).
+ * of `@incrt/cint/src/collab/relay-client.ts` semantics).
  *
  * Connects to a relay room, seals/opens AES-GCM frames in strict order, and
  * reconnects with exponential backoff on transient drops. Fatal relay close

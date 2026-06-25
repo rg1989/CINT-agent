@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { handleYouTube } from "@incrt/cint-coding-agent/web/scrapers/youtube";
+import { handleYouTube } from "@incrt/cint/web/scrapers/youtube";
 
 const SKIP = !Bun.env.WEB_FETCH_INTEGRATION;
 

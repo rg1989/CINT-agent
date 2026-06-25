@@ -2,9 +2,9 @@ import { afterEach, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { SegmentContext } from "@incrt/cint-coding-agent/modes/components/status-line/segments";
-import { renderSegment } from "@incrt/cint-coding-agent/modes/components/status-line/segments";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import type { SegmentContext } from "@incrt/cint/modes/components/status-line/segments";
+import { renderSegment } from "@incrt/cint/modes/components/status-line/segments";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
 import { getProjectDir, setProjectDir } from "@incrt/cint-utils";
 
 const originalProjectDir = getProjectDir();

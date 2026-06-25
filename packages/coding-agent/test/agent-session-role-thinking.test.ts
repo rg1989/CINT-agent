@@ -1,19 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import * as autoThinkingClassifier from "@incrt/cint/auto-thinking/classifier";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { AUTO_THINKING, clampAutoThinkingEffort, resolveProvisionalAutoLevel } from "@incrt/cint/thinking";
 import { Agent } from "@incrt/cint-agent-core";
 import { Effort } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import * as autoThinkingClassifier from "@incrt/cint-coding-agent/auto-thinking/classifier";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import {
-	AUTO_THINKING,
-	clampAutoThinkingEffort,
-	resolveProvisionalAutoLevel,
-} from "@incrt/cint-coding-agent/thinking";
 import { TempDir } from "@incrt/cint-utils";
 import { createAssistantMessage } from "./helpers/agent-session-setup";
 

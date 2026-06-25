@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent } from "@incrt/cint-agent-core";
 import * as compactionModule from "@incrt/cint-agent-core/compaction";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 import { assistantMsg, userMsg } from "./utilities";
 

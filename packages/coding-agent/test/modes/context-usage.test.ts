@@ -6,12 +6,12 @@
  * internals, which massively overcounts.
  */
 import { describe, expect, it } from "bun:test";
-import { arkToWireSchema } from "@incrt/cint-ai/utils/schema";
 import {
 	type ContextBreakdown,
 	estimateToolSchemaTokens,
 	renderContextUsage,
-} from "@incrt/cint-coding-agent/modes/utils/context-usage";
+} from "@incrt/cint/modes/utils/context-usage";
+import { arkToWireSchema } from "@incrt/cint-ai/utils/schema";
 import { type } from "arktype";
 
 describe("estimateToolSchemaTokens", () => {

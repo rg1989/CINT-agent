@@ -7,7 +7,7 @@ import {
 	loadProjectContextFiles,
 	loadSystemPromptFiles,
 	type SystemPromptToolMetadata,
-} from "@incrt/cint-coding-agent/system-prompt";
+} from "@incrt/cint/system-prompt";
 import { cleanupTempHome } from "./helpers/temp-home-cleanup";
 
 function escapeRegExp(text: string): string {

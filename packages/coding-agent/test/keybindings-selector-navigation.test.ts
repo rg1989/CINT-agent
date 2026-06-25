@@ -1,16 +1,16 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { KeybindingsManager } from "@incrt/cint/config/keybindings";
+import { ExtensionList } from "@incrt/cint/modes/components/extensions/extension-list";
+import type { Extension } from "@incrt/cint/modes/components/extensions/types";
+import { HistorySearchComponent } from "@incrt/cint/modes/components/history-search";
+import { SessionSelectorComponent } from "@incrt/cint/modes/components/session-selector";
+import { TreeSelectorComponent } from "@incrt/cint/modes/components/tree-selector";
+import { UserMessageSelectorComponent } from "@incrt/cint/modes/components/user-message-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { HistoryStorage } from "@incrt/cint/session/history-storage";
+import type { SessionTreeNode } from "@incrt/cint/session/session-entries";
+import type { SessionInfo } from "@incrt/cint/session/session-listing";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import { ExtensionList } from "@incrt/cint-coding-agent/modes/components/extensions/extension-list";
-import type { Extension } from "@incrt/cint-coding-agent/modes/components/extensions/types";
-import { HistorySearchComponent } from "@incrt/cint-coding-agent/modes/components/history-search";
-import { SessionSelectorComponent } from "@incrt/cint-coding-agent/modes/components/session-selector";
-import { TreeSelectorComponent } from "@incrt/cint-coding-agent/modes/components/tree-selector";
-import { UserMessageSelectorComponent } from "@incrt/cint-coding-agent/modes/components/user-message-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { HistoryStorage } from "@incrt/cint-coding-agent/session/history-storage";
-import type { SessionTreeNode } from "@incrt/cint-coding-agent/session/session-entries";
-import type { SessionInfo } from "@incrt/cint-coding-agent/session/session-listing";
 import { setKeybindings } from "@incrt/cint-tui";
 import { TempDir } from "@incrt/cint-utils";
 

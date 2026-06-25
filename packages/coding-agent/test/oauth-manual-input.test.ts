@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { OAuthManualInputManager } from "@incrt/cint-coding-agent/modes/oauth-manual-input";
+import { OAuthManualInputManager } from "@incrt/cint/modes/oauth-manual-input";
 
 describe("OAuthManualInputManager", () => {
 	it("resolves waitForInput with submitted value", async () => {

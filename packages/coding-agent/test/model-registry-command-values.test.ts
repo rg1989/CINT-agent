@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { Snowflake } from "@incrt/cint-utils";
 
 function stdoutCommand(value: string): string {

@@ -1,10 +1,10 @@
 import { describe, expect, it } from "bun:test";
-import { parseArgs } from "@incrt/cint-coding-agent/cli/args";
-import { applyExtensionFlags, type ExtensionFlagSink } from "@incrt/cint-coding-agent/cli/extension-flags";
-import { buildInitialMessage } from "@incrt/cint-coding-agent/cli/initial-message";
-import { ExtensionRuntime, loadExtensionFromFactory } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
-import { ExtensionRunner } from "@incrt/cint-coding-agent/extensibility/extensions/runner";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+import { parseArgs } from "@incrt/cint/cli/args";
+import { applyExtensionFlags, type ExtensionFlagSink } from "@incrt/cint/cli/extension-flags";
+import { buildInitialMessage } from "@incrt/cint/cli/initial-message";
+import { ExtensionRuntime, loadExtensionFromFactory } from "@incrt/cint/extensibility/extensions/loader";
+import { ExtensionRunner } from "@incrt/cint/extensibility/extensions/runner";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 
 // Regression coverage for extension-registered flags leaking into the initial
 // prompt. The CLI parses argv twice: once at startup (before extensions load,

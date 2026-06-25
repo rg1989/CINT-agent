@@ -6,21 +6,21 @@
  * behavior they have in the TUI.
  */
 import { afterEach, beforeEach, expect, it, spyOn } from "bun:test";
-import { Agent, type AgentTool } from "@incrt/cint-agent-core";
-import { createMockModel, type MockModelOptions } from "@incrt/cint-ai/providers/mock";
-import { AssistantMessageEventStream } from "@incrt/cint-ai/utils/event-stream";
-import { getBundledModel } from "@incrt/cint-catalog/models";
-import { type SettingPath, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { EditTool } from "@incrt/cint-coding-agent/edit";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
+import { type SettingPath, Settings } from "@incrt/cint/config/settings";
+import { EditTool } from "@incrt/cint/edit";
+import { AgentSession } from "@incrt/cint/session/agent-session";
 import type {
 	ClientBridge,
 	ClientBridgePermissionOutcome,
 	ClientBridgePermissionToolCall,
-} from "@incrt/cint-coding-agent/session/client-bridge";
-import { convertToLlm } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+} from "@incrt/cint/session/client-bridge";
+import { convertToLlm } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import type { ToolSession } from "@incrt/cint/tools";
+import { Agent, type AgentTool } from "@incrt/cint-agent-core";
+import { createMockModel, type MockModelOptions } from "@incrt/cint-ai/providers/mock";
+import { AssistantMessageEventStream } from "@incrt/cint-ai/utils/event-stream";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 import { TempDir } from "@incrt/cint-utils";
 import { type } from "arktype";
 

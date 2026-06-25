@@ -1,13 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { convertAnthropicMessages, streamAnthropic } from "@incrt/cint-ai/providers/anthropic";
-import type {
-	AssistantMessage,
-	Message,
-	Model,
-	ModelSpec,
-	ToolResultMessage,
-	UserMessage,
-} from "@incrt/cint-ai/types";
+import type { AssistantMessage, Message, Model, ModelSpec, ToolResultMessage, UserMessage } from "@incrt/cint-ai/types";
 import { buildModel } from "@incrt/cint-catalog/build";
 
 /**

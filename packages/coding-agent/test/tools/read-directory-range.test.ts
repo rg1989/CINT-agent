@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ReadTool } from "@incrt/cint/tools/read";
 import { Snowflake } from "@incrt/cint-utils";
 
 function getTextOutput(result: { content: Array<{ type: string; text?: string }> }): string {

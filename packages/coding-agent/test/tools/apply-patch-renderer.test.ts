@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
-import { toolRenderers } from "@incrt/cint-coding-agent/tools/renderers";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
+import { toolRenderers } from "@incrt/cint/tools/renderers";
 import type { TUI } from "@incrt/cint-tui";
 
 async function getUiTheme() {

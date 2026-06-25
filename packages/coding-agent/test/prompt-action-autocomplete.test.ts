@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { KeybindingsManager as AppKeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import { createPromptActionAutocompleteProvider } from "@incrt/cint-coding-agent/modes/prompt-action-autocomplete";
+import { KeybindingsManager as AppKeybindingsManager } from "@incrt/cint/config/keybindings";
+import { createPromptActionAutocompleteProvider } from "@incrt/cint/modes/prompt-action-autocomplete";
 import { KeybindingsManager, setKeybindings, TUI_KEYBINDINGS } from "@incrt/cint-tui";
 
 describe("prompt action autocomplete", () => {

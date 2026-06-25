@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { generateDiffString } from "@incrt/cint-coding-agent/edit/diff";
+import { generateDiffString } from "@incrt/cint/edit/diff";
 
 describe("generateDiffString", () => {
 	it("collapses unchanged lines between distant edits", () => {

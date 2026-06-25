@@ -7,7 +7,7 @@ import {
 	normalizeGeneratedTitle,
 	prepareTitleInput,
 	stripCodeBlocks,
-} from "@incrt/cint-coding-agent/tiny/text";
+} from "@incrt/cint/tiny/text";
 
 describe("stripCodeBlocks", () => {
 	it("drops fenced code blocks but keeps the surrounding prose", () => {

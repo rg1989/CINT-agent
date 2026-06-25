@@ -7,7 +7,7 @@ import {
 	filterEnv,
 	resolveExplicitPythonRuntime,
 	resolvePythonRuntime,
-} from "@incrt/cint-coding-agent/eval/py/runtime";
+} from "@incrt/cint/eval/py/runtime";
 import * as piUtils from "@incrt/cint-utils";
 
 describe("Python gateway environment filtering", () => {

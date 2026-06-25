@@ -7,7 +7,7 @@ import type {
 	InstalledPluginsRegistry,
 	MarketplaceRegistryEntry,
 	MarketplacesRegistry,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 import {
 	addInstalledPlugin,
 	addMarketplaceEntry,
@@ -22,7 +22,7 @@ import {
 	removeMarketplaceEntry,
 	writeInstalledPluginsRegistry,
 	writeMarketplacesRegistry,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 
 // Inline the parseClaudePluginsRegistry validation logic to avoid pulling
 // in discovery/helpers.ts which transitively imports @incrt/cint-natives.

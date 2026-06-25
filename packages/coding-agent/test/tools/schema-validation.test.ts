@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint/tools";
 import { normalizeSchemaForGoogle, toolWireSchema } from "@incrt/cint-ai";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint-coding-agent/tools";
 
 /**
  * Problematic JSON Schema features that cause issues with various providers.

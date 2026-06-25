@@ -17,26 +17,22 @@ import {
 	zPromptResponse,
 	zSessionNotification,
 } from "@agentclientprotocol/sdk/dist/schema/zod.gen.js";
-import type { Model } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { resolveLocalUrlToPath } from "@incrt/cint-coding-agent/internal-urls";
-import {
-	ACP_BOOTSTRAP_RACE_GUARD_MS,
-	AcpAgent,
-	createAcpExtensionUiContext,
-} from "@incrt/cint-coding-agent/modes/acp/acp-agent";
-import type { PlanModeState } from "@incrt/cint-coding-agent/plan-mode/state";
-import type { AgentSession, AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { SILENT_ABORT_MARKER } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { DEFAULT_STT_MODEL_KEY, STT_MODEL_OPTIONS } from "@incrt/cint-coding-agent/stt/models";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { resolveLocalUrlToPath } from "@incrt/cint/internal-urls";
+import { ACP_BOOTSTRAP_RACE_GUARD_MS, AcpAgent, createAcpExtensionUiContext } from "@incrt/cint/modes/acp/acp-agent";
+import type { PlanModeState } from "@incrt/cint/plan-mode/state";
+import type { AgentSession, AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { SILENT_ABORT_MARKER } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { DEFAULT_STT_MODEL_KEY, STT_MODEL_OPTIONS } from "@incrt/cint/stt/models";
 import {
 	DEFAULT_TTS_LOCAL_MODEL_KEY,
 	DEFAULT_TTS_VOICE,
 	TTS_LOCAL_MODELS,
 	TTS_LOCAL_VOICE_OPTIONS,
-} from "@incrt/cint-coding-agent/tts/models";
+} from "@incrt/cint/tts/models";
+import type { Model } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 import type { z } from "zod/v4";
 

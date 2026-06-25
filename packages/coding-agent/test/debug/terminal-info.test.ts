@@ -1,9 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import {
-	collectTerminalState,
-	formatTerminalState,
-	type TerminalStateInfo,
-} from "@incrt/cint-coding-agent/debug/terminal-info";
+import { collectTerminalState, formatTerminalState, type TerminalStateInfo } from "@incrt/cint/debug/terminal-info";
 import { TERMINAL } from "@incrt/cint-tui";
 
 const sample: TerminalStateInfo = {

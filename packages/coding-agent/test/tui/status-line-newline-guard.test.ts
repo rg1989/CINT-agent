@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { renderStatusLine } from "@incrt/cint-coding-agent/tui";
+import { getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import { renderStatusLine } from "@incrt/cint/tui";
 import { sanitizeText } from "@incrt/cint-utils";
 
 beforeAll(async () => {

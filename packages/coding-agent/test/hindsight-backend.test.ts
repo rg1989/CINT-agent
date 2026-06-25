@@ -8,12 +8,12 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { hindsightBackend, reloadMentalModelsForSession } from "@incrt/cint/hindsight/backend";
+import { HindsightApi } from "@incrt/cint/hindsight/client";
+import type { HindsightSessionState } from "@incrt/cint/hindsight/state";
+import type { AgentSessionEventListener } from "@incrt/cint/session/agent-session";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { hindsightBackend, reloadMentalModelsForSession } from "@incrt/cint-coding-agent/hindsight/backend";
-import { HindsightApi } from "@incrt/cint-coding-agent/hindsight/client";
-import type { HindsightSessionState } from "@incrt/cint-coding-agent/hindsight/state";
-import type { AgentSessionEventListener } from "@incrt/cint-coding-agent/session/agent-session";
 
 interface FakeSessionDeps {
 	sessionId: string | null;

@@ -1,16 +1,12 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import {
-	disposeAllKernelSessions,
-	disposeKernelSessionsByOwner,
-	executePython,
-} from "@incrt/cint-coding-agent/eval/py/executor";
+import { disposeAllKernelSessions, disposeKernelSessionsByOwner, executePython } from "@incrt/cint/eval/py/executor";
 import type {
 	KernelExecuteResult,
 	KernelShutdownResult,
 	PythonKernel as PythonKernelInstance,
-} from "@incrt/cint-coding-agent/eval/py/kernel";
-import * as pythonKernel from "@incrt/cint-coding-agent/eval/py/kernel";
-import { PythonKernel } from "@incrt/cint-coding-agent/eval/py/kernel";
+} from "@incrt/cint/eval/py/kernel";
+import * as pythonKernel from "@incrt/cint/eval/py/kernel";
+import { PythonKernel } from "@incrt/cint/eval/py/kernel";
 
 const OK_RESULT: KernelExecuteResult = {
 	status: "ok",

@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as toolsManager from "@incrt/cint-coding-agent/utils/tools-manager";
-import * as parallelModule from "@incrt/cint-coding-agent/web/parallel";
-import { handleYouTube } from "@incrt/cint-coding-agent/web/scrapers/youtube";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import * as toolsManager from "@incrt/cint/utils/tools-manager";
+import * as parallelModule from "@incrt/cint/web/parallel";
+import { handleYouTube } from "@incrt/cint/web/scrapers/youtube";
 
 describe("handleYouTube with Parallel extract", () => {
 	beforeEach(async () => {

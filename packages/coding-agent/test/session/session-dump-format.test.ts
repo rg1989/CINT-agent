@@ -8,8 +8,8 @@
  * previous `<parameter>`-per-key JSON Schema dump dropped entirely.
  */
 import { describe, expect, it } from "bun:test";
+import { formatSessionDumpText } from "@incrt/cint/session/session-dump-format";
 import type { Model, Usage } from "@incrt/cint-ai";
-import { formatSessionDumpText } from "@incrt/cint-coding-agent/session/session-dump-format";
 import { INTENT_FIELD } from "@incrt/cint-wire";
 import { type } from "arktype";
 

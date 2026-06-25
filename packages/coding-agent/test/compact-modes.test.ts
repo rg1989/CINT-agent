@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { findCompactMode, parseCompactArgs } from "@incrt/cint-coding-agent/session/compact-modes";
+import { findCompactMode, parseCompactArgs } from "@incrt/cint/session/compact-modes";
 
 describe("compact mode registry", () => {
 	it("maps each mode to the settings overrides the engine relies on", () => {

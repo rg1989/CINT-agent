@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { AutoLearnController, buildAutoLearnInstructions } from "@incrt/cint-coding-agent/autolearn/controller";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { AgentSession, AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
+import { AutoLearnController, buildAutoLearnInstructions } from "@incrt/cint/autolearn/controller";
+import { Settings } from "@incrt/cint/config/settings";
+import type { AgentSession, AgentSessionEvent } from "@incrt/cint/session/agent-session";
 
 interface CapturedNudge {
 	message: { customType: string; content: string; display?: boolean; attribution?: string };

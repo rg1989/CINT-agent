@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
-import { createLspWritethrough } from "@incrt/cint-coding-agent/lsp";
-import * as lspConfig from "@incrt/cint-coding-agent/lsp/config";
+import { createLspWritethrough } from "@incrt/cint/lsp";
+import * as lspConfig from "@incrt/cint/lsp/config";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("createLspWritethrough batching", () => {

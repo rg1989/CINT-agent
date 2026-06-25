@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { type ContextFile, contextFileCapability } from "@incrt/cint-coding-agent/capability/context-file";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initializeWithSettings, loadCapability } from "@incrt/cint-coding-agent/discovery";
+import { type ContextFile, contextFileCapability } from "@incrt/cint/capability/context-file";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initializeWithSettings, loadCapability } from "@incrt/cint/discovery";
 
 describe("disabledExtensions runtime filtering", () => {
 	let tempDir = "";

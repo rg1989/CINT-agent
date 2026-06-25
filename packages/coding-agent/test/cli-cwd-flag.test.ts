@@ -2,8 +2,8 @@ import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { parseArgs } from "@incrt/cint-coding-agent/cli/args";
-import { applyStartupCwd } from "@incrt/cint-coding-agent/cli/startup-cwd";
+import { parseArgs } from "@incrt/cint/cli/args";
+import { applyStartupCwd } from "@incrt/cint/cli/startup-cwd";
 import { getProjectDir, normalizePathForComparison, setProjectDir } from "@incrt/cint-utils";
 
 const originalProjectDir = getProjectDir();

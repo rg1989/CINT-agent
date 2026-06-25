@@ -1,15 +1,15 @@
 import { describe, expect, it } from "bun:test";
-import type { AgentTool, ToolApproval } from "@incrt/cint-agent-core";
-import { LSP_READONLY_ACTIONS } from "@incrt/cint-coding-agent/lsp";
+import { LSP_READONLY_ACTIONS } from "@incrt/cint/lsp";
 import {
 	type ApprovalMode,
 	formatApprovalPrompt,
 	requiresApproval,
 	resolveApproval,
 	truncateForPrompt,
-} from "@incrt/cint-coding-agent/tools/approval";
-import { BashTool } from "@incrt/cint-coding-agent/tools/bash";
-import { DEBUG_READONLY_ACTIONS } from "@incrt/cint-coding-agent/tools/debug";
+} from "@incrt/cint/tools/approval";
+import { BashTool } from "@incrt/cint/tools/bash";
+import { DEBUG_READONLY_ACTIONS } from "@incrt/cint/tools/debug";
+import type { AgentTool, ToolApproval } from "@incrt/cint-agent-core";
 
 type ApprovalTool = Pick<AgentTool, "name" | "approval" | "formatApprovalDetails">;
 

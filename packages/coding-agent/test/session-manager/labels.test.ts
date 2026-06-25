@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { LabelEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import type { LabelEntry } from "@incrt/cint/session/session-entries";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 
 describe("SessionManager labels", () => {
 	it("sets and gets labels", () => {

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import type { Skill } from "@incrt/cint-coding-agent/extensibility/skills";
-import { resolveLocalUrlToPath } from "@incrt/cint-coding-agent/internal-urls";
-import { expandInternalUrls, expandSkillUrls } from "@incrt/cint-coding-agent/tools/bash-skill-urls";
-import { ToolError } from "@incrt/cint-coding-agent/tools/tool-errors";
+import type { Skill } from "@incrt/cint/extensibility/skills";
+import { resolveLocalUrlToPath } from "@incrt/cint/internal-urls";
+import { expandInternalUrls, expandSkillUrls } from "@incrt/cint/tools/bash-skill-urls";
+import { ToolError } from "@incrt/cint/tools/tool-errors";
 
 function shellEscape(p: string): string {
 	return `'${p.replace(/'/g, "'\\''")}'`;

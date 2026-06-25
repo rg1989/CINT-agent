@@ -13,14 +13,14 @@
  */
 
 import { afterEach, beforeAll, describe, expect, it, type Mock, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import type { SessionContext } from "@incrt/cint/session/session-context";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import type { AssistantMessage, ImageContent, Usage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import type { SessionContext } from "@incrt/cint-coding-agent/session/session-context";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { type Component, Container, Image, ImageProtocol, setTerminalImageProtocol, TERMINAL } from "@incrt/cint-tui";
 import { TempDir } from "@incrt/cint-utils";
 

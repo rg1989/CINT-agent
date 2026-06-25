@@ -15,11 +15,8 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ADVISOR_TRANSCRIPT_FILENAME, AdvisorTranscriptRecorder } from "@incrt/cint/advisor/transcript-recorder";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import {
-	ADVISOR_TRANSCRIPT_FILENAME,
-	AdvisorTranscriptRecorder,
-} from "@incrt/cint-coding-agent/advisor/transcript-recorder";
 
 interface AdvisorEntry {
 	type?: string;

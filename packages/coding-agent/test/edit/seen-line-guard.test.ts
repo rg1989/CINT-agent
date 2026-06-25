@@ -2,12 +2,12 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { type ExecuteHashlineSingleOptions, executeHashlineSingle } from "@incrt/cint-coding-agent/edit";
-import { canonicalSnapshotKey, getFileSnapshotStore } from "@incrt/cint-coding-agent/edit/file-snapshot-store";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
-import { SearchTool } from "@incrt/cint-coding-agent/tools/search";
+import { Settings } from "@incrt/cint/config/settings";
+import { type ExecuteHashlineSingleOptions, executeHashlineSingle } from "@incrt/cint/edit";
+import { canonicalSnapshotKey, getFileSnapshotStore } from "@incrt/cint/edit/file-snapshot-store";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ReadTool } from "@incrt/cint/tools/read";
+import { SearchTool } from "@incrt/cint/tools/search";
 
 function createSession(cwd: string): ToolSession {
 	return {

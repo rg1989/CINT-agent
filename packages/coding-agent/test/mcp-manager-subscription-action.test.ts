@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { resolveSubscriptionPostAction } from "@incrt/cint-coding-agent/mcp/manager";
+import { resolveSubscriptionPostAction } from "@incrt/cint/mcp/manager";
 
 describe("resolveSubscriptionPostAction", () => {
 	it("returns rollback when notifications are disabled", () => {

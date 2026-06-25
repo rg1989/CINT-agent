@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { getRoleInfo } from "@incrt/cint-coding-agent/config/model-roles";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
+import { getRoleInfo } from "@incrt/cint/config/model-roles";
+import { Settings } from "@incrt/cint/config/settings";
 
 describe("getRoleInfo", () => {
 	test("returns built-in role info", () => {

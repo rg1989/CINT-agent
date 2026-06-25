@@ -8,15 +8,15 @@
  * pin a banner.
  */
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AssistantMessageComponent } from "@incrt/cint/modes/components/assistant-message";
+import { ErrorBannerComponent } from "@incrt/cint/modes/components/error-banner";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { AgentSessionEvent } from "@incrt/cint/session/agent-session";
 import type { AssistantMessage } from "@incrt/cint-ai";
 import { THINKING_LOOP_ERROR_MARKER } from "@incrt/cint-ai/utils/thinking-loop";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AssistantMessageComponent } from "@incrt/cint-coding-agent/modes/components/assistant-message";
-import { ErrorBannerComponent } from "@incrt/cint-coding-agent/modes/components/error-banner";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
 
 function makeAssistantMessage(overrides: Partial<AssistantMessage> = {}): AssistantMessage {
 	return {

@@ -19,10 +19,10 @@
  */
 
 import { beforeAll, describe, expect, mock, test } from "bun:test";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { CompactionQueuedMessage, InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
 import { AgentBusyError } from "@incrt/cint-agent-core";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { CompactionQueuedMessage, InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
 
 beforeAll(() => {
 	initTheme();

@@ -1,12 +1,8 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import {
-	containsOrchestrate,
-	highlightOrchestrate,
-	ORCHESTRATE_NOTICE,
-} from "@incrt/cint-coding-agent/modes/orchestrate";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { containsUltrathink, highlightUltrathink } from "@incrt/cint-coding-agent/modes/ultrathink";
-import { clearBundledCommandsCache, loadBundledCommands } from "@incrt/cint-coding-agent/task/commands";
+import { containsOrchestrate, highlightOrchestrate, ORCHESTRATE_NOTICE } from "@incrt/cint/modes/orchestrate";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { containsUltrathink, highlightUltrathink } from "@incrt/cint/modes/ultrathink";
+import { clearBundledCommandsCache, loadBundledCommands } from "@incrt/cint/task/commands";
 
 beforeAll(() => {
 	// highlightOrchestrate/highlightUltrathink read the global theme's color mode.

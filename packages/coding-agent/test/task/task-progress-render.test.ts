@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import type { SettingPath, SettingValue } from "@incrt/cint/config/settings";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import { taskToolRenderer } from "@incrt/cint/task/render";
+import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint/task/types";
 import type { RenderResultOptions } from "@incrt/cint-agent-core";
-import type { SettingPath, SettingValue } from "@incrt/cint-coding-agent/config/settings";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { taskToolRenderer } from "@incrt/cint-coding-agent/task/render";
-import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint-coding-agent/task/types";
 
 function runningProgress(overrides: Partial<AgentProgress> = {}): AgentProgress {
 	return {

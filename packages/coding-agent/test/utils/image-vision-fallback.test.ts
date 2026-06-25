@@ -2,13 +2,13 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { AssistantMessage, completeSimple, Model } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
+import { Settings } from "@incrt/cint/config/settings";
 import {
 	type DescribeAttachedImagesDeps,
 	describeAttachedImagesForTextModel,
-} from "@incrt/cint-coding-agent/utils/image-vision-fallback";
+} from "@incrt/cint/utils/image-vision-fallback";
+import type { AssistantMessage, completeSimple, Model } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
 
 // 1x1 transparent PNG.
 const TINY_PNG_BASE64 =

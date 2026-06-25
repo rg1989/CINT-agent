@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { Effort } from "@incrt/cint-ai";
 import {
 	getDefault,
 	getEnumValues,
@@ -10,7 +9,8 @@ import {
 	resetSettingsForTest,
 	type SettingPath,
 	Settings,
-} from "@incrt/cint-coding-agent/config/settings";
+} from "@incrt/cint/config/settings";
+import { Effort } from "@incrt/cint-ai";
 import { getProjectAgentDir, TempDir } from "@incrt/cint-utils";
 import { YAML } from "bun";
 import { beginSettingsTest, restoreSettingsTestState, type SettingsTestState } from "./helpers/settings-test-state";

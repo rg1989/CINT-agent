@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it } from "bun:test";
-import type { AuthStorage } from "@incrt/cint-ai";
-import { SelectorController } from "@incrt/cint-coding-agent/modes/controllers/selector-controller";
+import { SelectorController } from "@incrt/cint/modes/controllers/selector-controller";
 import {
 	resolveProviderChain,
 	setExcludedSearchProviders,
 	setPreferredSearchProvider,
-} from "@incrt/cint-coding-agent/web/search/provider";
-import { SEARCH_PROVIDER_ORDER } from "@incrt/cint-coding-agent/web/search/types";
+} from "@incrt/cint/web/search/provider";
+import { SEARCH_PROVIDER_ORDER } from "@incrt/cint/web/search/types";
+import type { AuthStorage } from "@incrt/cint-ai";
 
 const authStorage = {} as AuthStorage;
 const originalBraveApiKey = process.env.BRAVE_API_KEY;

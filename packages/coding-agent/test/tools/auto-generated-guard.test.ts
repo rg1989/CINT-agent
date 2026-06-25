@@ -2,9 +2,9 @@ import { beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { assertEditableFile, assertEditableFileContent } from "@incrt/cint-coding-agent/tools/auto-generated-guard";
-import { ToolError } from "@incrt/cint-coding-agent/tools/tool-errors";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { assertEditableFile, assertEditableFileContent } from "@incrt/cint/tools/auto-generated-guard";
+import { ToolError } from "@incrt/cint/tools/tool-errors";
 
 let tempDir: string;
 

@@ -2,11 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, spyOn } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { discoverAndLoadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
+import { discoverAndLoadExtensions } from "@incrt/cint/extensibility/extensions/loader";
 import { getAgentDir, getPluginsDir, setAgentDir, TempDir } from "@incrt/cint-utils";
 
-const currentPiCodingAgentPath = Bun.resolveSync("@incrt/cint-coding-agent", import.meta.dir);
-const currentPiExtensionsPath = Bun.resolveSync("@incrt/cint-coding-agent/extensibility/extensions", import.meta.dir);
+const currentPiCodingAgentPath = Bun.resolveSync("@incrt/cint", import.meta.dir);
+const currentPiExtensionsPath = Bun.resolveSync("@incrt/cint/extensibility/extensions", import.meta.dir);
 
 describe("plugin extension discovery", () => {
 	let projectDir: TempDir;

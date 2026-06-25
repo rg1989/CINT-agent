@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { buildAriaSnapshotScript, parseAriaRefSelector } from "@incrt/cint-coding-agent/tools/browser";
+import { buildAriaSnapshotScript, parseAriaRefSelector } from "@incrt/cint/tools/browser";
 
 describe("parseAriaRefSelector", () => {
 	it("accepts the explicit aria-ref prefixes and returns the bare id", () => {

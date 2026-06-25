@@ -7,20 +7,20 @@
  */
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import { AgentSession, type AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SKILL_PROMPT_MESSAGE_TYPE, type SkillPromptDetails } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent } from "@incrt/cint-agent-core";
 import type { ImageContent } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import { AgentSession, type AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SKILL_PROMPT_MESSAGE_TYPE, type SkillPromptDetails } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Container } from "@incrt/cint-tui";
 import { TempDir } from "@incrt/cint-utils";
 

@@ -1,11 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { buildRequestBody, searchTavily, type TavilySearchParams } from "@incrt/cint/web/search/providers/tavily";
 import type { AuthStorage } from "@incrt/cint-ai";
 import type { FetchImpl } from "@incrt/cint-ai/types";
-import {
-	buildRequestBody,
-	searchTavily,
-	type TavilySearchParams,
-} from "@incrt/cint-coding-agent/web/search/providers/tavily";
 
 describe("Tavily buildRequestBody", () => {
 	afterEach(() => {

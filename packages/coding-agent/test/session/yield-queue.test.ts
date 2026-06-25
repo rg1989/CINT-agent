@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
+import { YieldQueue } from "@incrt/cint/session/yield-queue";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { YieldQueue } from "@incrt/cint-coding-agent/session/yield-queue";
 
 type Entry = {
 	id: string;

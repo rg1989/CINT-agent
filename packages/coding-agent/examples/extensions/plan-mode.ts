@@ -18,7 +18,7 @@
  * 2. Use /plan to toggle plan mode on/off
  * 3. Or start in plan mode with --plan flag
  */
-import type { ExtensionAPI, ExtensionContext } from "@incrt/cint-coding-agent";
+import type { ExtensionAPI, ExtensionContext } from "@incrt/cint";
 import { Key } from "@incrt/cint-tui";
 
 // Read-only tools for plan mode

@@ -10,11 +10,7 @@
  * protobuf POST at /v1/traces.
  */
 
-import {
-	flushTelemetryExport,
-	initTelemetryExport,
-	isTelemetryExportEnabled,
-} from "@incrt/cint-coding-agent/telemetry-export";
+import { flushTelemetryExport, initTelemetryExport, isTelemetryExportEnabled } from "@incrt/cint/telemetry-export";
 import { trace } from "@opentelemetry/api";
 
 let received = false;

@@ -2,14 +2,13 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { RenderResultOptions } from "@incrt/cint-agent-core";
-import { preloadPluginRoots } from "@incrt/cint-coding-agent/discovery/helpers";
-import { LspTool } from "@incrt/cint-coding-agent/lsp";
-import * as lspClient from "@incrt/cint-coding-agent/lsp/client";
-import * as lspConfig from "@incrt/cint-coding-agent/lsp/config";
-import { getServersForFile, loadConfig } from "@incrt/cint-coding-agent/lsp/config";
-import { applyTextEditsToString, applyWorkspaceEdit } from "@incrt/cint-coding-agent/lsp/edits";
-import { renderCall, renderResult } from "@incrt/cint-coding-agent/lsp/render";
+import { preloadPluginRoots } from "@incrt/cint/discovery/helpers";
+import { LspTool } from "@incrt/cint/lsp";
+import * as lspClient from "@incrt/cint/lsp/client";
+import * as lspConfig from "@incrt/cint/lsp/config";
+import { getServersForFile, loadConfig } from "@incrt/cint/lsp/config";
+import { applyTextEditsToString, applyWorkspaceEdit } from "@incrt/cint/lsp/edits";
+import { renderCall, renderResult } from "@incrt/cint/lsp/render";
 import type {
 	CodeAction,
 	CreateFile,
@@ -21,7 +20,7 @@ import type {
 	SymbolInformation,
 	TextDocumentEdit,
 	WorkspaceEdit,
-} from "@incrt/cint-coding-agent/lsp/types";
+} from "@incrt/cint/lsp/types";
 import {
 	applyCodeAction,
 	collectGlobMatches,
@@ -33,10 +32,11 @@ import {
 	resolveDiagnosticTargets,
 	resolveSymbolColumn,
 	uriToFile,
-} from "@incrt/cint-coding-agent/lsp/utils";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { clampTimeout } from "@incrt/cint-coding-agent/tools/tool-timeouts";
+} from "@incrt/cint/lsp/utils";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
+import type { ToolSession } from "@incrt/cint/tools";
+import { clampTimeout } from "@incrt/cint/tools/tool-timeouts";
+import type { RenderResultOptions } from "@incrt/cint-agent-core";
 import * as piUtils from "@incrt/cint-utils";
 import { sanitizeText, TempDir } from "@incrt/cint-utils";
 import DEFAULTS from "../../src/lsp/defaults.json" with { type: "json" };

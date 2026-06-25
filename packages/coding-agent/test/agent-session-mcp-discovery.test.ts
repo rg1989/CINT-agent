@@ -2,6 +2,11 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { Settings } from "@incrt/cint/config/settings";
+import type { CustomTool } from "@incrt/cint/extensibility/custom-tools/types";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import type { OutputMeta } from "@incrt/cint/tools/output-meta";
 import {
 	Agent,
 	type AgentTool,
@@ -11,11 +16,6 @@ import {
 } from "@incrt/cint-agent-core";
 import { Effort, type Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { CustomTool } from "@incrt/cint-coding-agent/extensibility/custom-tools/types";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import type { OutputMeta } from "@incrt/cint-coding-agent/tools/output-meta";
 import { type } from "arktype";
 
 function createModel(): Model<"openai-responses"> {

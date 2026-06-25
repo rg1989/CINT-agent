@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
-import { runConfigCommand } from "@incrt/cint-coding-agent/cli/config-cli";
-import { resetSettingsForTest } from "@incrt/cint-coding-agent/config/settings";
-import { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
+import { runConfigCommand } from "@incrt/cint/cli/config-cli";
+import { resetSettingsForTest } from "@incrt/cint/config/settings";
+import { AgentStorage } from "@incrt/cint/session/agent-storage";
 import { getConfigRootDir, setAgentDir, TempDir } from "@incrt/cint-utils";
 
 let testAgentDir: TempDir | undefined;

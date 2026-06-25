@@ -11,8 +11,8 @@ import {
 	getRepoRoot,
 	mergeTaskBranches,
 	parseIsolationMode,
-} from "@incrt/cint-coding-agent/task/worktree";
-import * as jj from "@incrt/cint-coding-agent/utils/jj";
+} from "@incrt/cint/task/worktree";
+import * as jj from "@incrt/cint/utils/jj";
 import * as natives from "@incrt/cint-natives";
 
 const tempDirs: string[] = [];

@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import * as PiCodingAgent from "@incrt/cint-coding-agent";
-import { loadCustomCommands } from "@incrt/cint-coding-agent/extensibility/custom-commands/loader";
-import { loadCustomTools } from "@incrt/cint-coding-agent/extensibility/custom-tools/loader";
-import { loadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
-import { loadHooks } from "@incrt/cint-coding-agent/extensibility/hooks/loader";
+import * as PiCodingAgent from "@incrt/cint";
+import { loadCustomCommands } from "@incrt/cint/extensibility/custom-commands/loader";
+import { loadCustomTools } from "@incrt/cint/extensibility/custom-tools/loader";
+import { loadExtensions } from "@incrt/cint/extensibility/extensions/loader";
+import { loadHooks } from "@incrt/cint/extensibility/hooks/loader";
 import { TempDir } from "@incrt/cint-utils";
 
 declare global {

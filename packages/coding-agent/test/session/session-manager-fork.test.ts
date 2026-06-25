@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import { CURRENT_SESSION_VERSION, type SessionHeader } from "@incrt/cint-coding-agent/session/session-entries";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { CURRENT_SESSION_VERSION, type SessionHeader } from "@incrt/cint/session/session-entries";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { getTerminalId } from "@incrt/cint-tui";
 import { getAgentDir, getTerminalSessionsDir, setAgentDir, TempDir } from "@incrt/cint-utils";
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { OAuthManualInputManager } from "@incrt/cint-coding-agent/modes/oauth-manual-input";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { executeBuiltinSlashCommand } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
+import { OAuthManualInputManager } from "@incrt/cint/modes/oauth-manual-input";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { executeBuiltinSlashCommand } from "@incrt/cint/slash-commands/builtin-registry";
 
 type RuntimeHarness = {
 	runtime: { ctx: InteractiveModeContext };

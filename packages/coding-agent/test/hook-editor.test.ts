@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, describe, expect, it, type Mock, vi } from "bun:test";
-import { KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import { HookEditorComponent } from "@incrt/cint-coding-agent/modes/components/hook-editor";
-import { ExtensionUiController } from "@incrt/cint-coding-agent/modes/controllers/extension-ui-controller";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+import { KeybindingsManager } from "@incrt/cint/config/keybindings";
+import { HookEditorComponent } from "@incrt/cint/modes/components/hook-editor";
+import { ExtensionUiController } from "@incrt/cint/modes/controllers/extension-ui-controller";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import { setKeybindings, type TUI } from "@incrt/cint-tui";
 
 beforeAll(async () => {

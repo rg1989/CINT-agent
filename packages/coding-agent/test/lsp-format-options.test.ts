@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { detectIndentFromContent, resolveFormatOptions } from "@incrt/cint-coding-agent/lsp/format-options";
+import { detectIndentFromContent, resolveFormatOptions } from "@incrt/cint/lsp/format-options";
 import { getProjectDir, Snowflake, setProjectDir } from "@incrt/cint-utils";
 
 /**

@@ -1,8 +1,8 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
 import * as os from "node:os";
 import * as path from "node:path";
-import { KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import { getThemeByName, initTheme, type Theme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { KeybindingsManager } from "@incrt/cint/config/keybindings";
+import { getThemeByName, initTheme, type Theme, theme } from "@incrt/cint/modes/theme/theme";
 import {
 	dedupeParseErrors,
 	expandKeyHint,
@@ -14,7 +14,7 @@ import {
 	formatScreenshot,
 	shortenPath,
 	truncateDiffByHunk,
-} from "@incrt/cint-coding-agent/tools/render-utils";
+} from "@incrt/cint/tools/render-utils";
 import { getKeybindings, setKeybindings, type KeybindingsManager as TuiKeybindingsManager } from "@incrt/cint-tui";
 
 describe("parse error formatting", () => {

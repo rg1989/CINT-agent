@@ -2,9 +2,9 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, type 
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { computeBankScope, deriveBankId, ensureBankExists } from "@incrt/cint-coding-agent/hindsight/bank";
-import { HindsightApi } from "@incrt/cint-coding-agent/hindsight/client";
-import type { HindsightConfig } from "@incrt/cint-coding-agent/hindsight/config";
+import { computeBankScope, deriveBankId, ensureBankExists } from "@incrt/cint/hindsight/bank";
+import { HindsightApi } from "@incrt/cint/hindsight/client";
+import type { HindsightConfig } from "@incrt/cint/hindsight/config";
 
 // Isolate `git` invocations in this file from the host's global config —
 // `~/.gitconfig` commit signing or template hooks would otherwise turn the

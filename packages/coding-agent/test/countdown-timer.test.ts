@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { CountdownTimer } from "@incrt/cint-coding-agent/modes/components/countdown-timer";
+import { CountdownTimer } from "@incrt/cint/modes/components/countdown-timer";
 
 describe("CountdownTimer", () => {
 	beforeEach(() => {

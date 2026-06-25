@@ -4,7 +4,7 @@
  *
  * Requires: npm install in this directory
  */
-import type { ExtensionAPI } from "@incrt/cint-coding-agent";
+import type { ExtensionAPI } from "@incrt/cint";
 import ms from "ms";
 
 export default function (pi: ExtensionAPI) {

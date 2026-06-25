@@ -2,11 +2,8 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import {
-	resolvePluginExtensionPaths,
-	resolvePluginToolPaths,
-} from "@incrt/cint-coding-agent/extensibility/plugins/loader";
-import type { InstalledPlugin, PluginManifest } from "@incrt/cint-coding-agent/extensibility/plugins/types";
+import { resolvePluginExtensionPaths, resolvePluginToolPaths } from "@incrt/cint/extensibility/plugins/loader";
+import type { InstalledPlugin, PluginManifest } from "@incrt/cint/extensibility/plugins/types";
 
 function makePlugin(pluginPath: string, manifest: PluginManifest): InstalledPlugin {
 	return {

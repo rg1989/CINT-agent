@@ -16,9 +16,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { clearCache as clearFsCache } from "@incrt/cint-coding-agent/capability/fs";
-import { type MCPServer, mcpCapability } from "@incrt/cint-coding-agent/capability/mcp";
-import { loadCapability } from "@incrt/cint-coding-agent/discovery";
+import { clearCache as clearFsCache } from "@incrt/cint/capability/fs";
+import { type MCPServer, mcpCapability } from "@incrt/cint/capability/mcp";
+import { loadCapability } from "@incrt/cint/discovery";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 const originalAgentDirEnv = process.env.PI_CODING_AGENT_DIR;

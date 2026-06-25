@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { pickElectronTarget } from "@incrt/cint-coding-agent/tools/browser/attach";
-import { normalizeConnectedCdpUrl } from "@incrt/cint-coding-agent/tools/browser/registry";
+import { pickElectronTarget } from "@incrt/cint/tools/browser/attach";
+import { normalizeConnectedCdpUrl } from "@incrt/cint/tools/browser/registry";
 import type { Browser, Page, Target } from "puppeteer-core";
 
 interface FakePageOptions {

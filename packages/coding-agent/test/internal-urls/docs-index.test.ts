@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { gzipSync } from "node:zlib";
-import { decodeDocsIndex } from "@incrt/cint-coding-agent/internal-urls/docs-index";
+import { decodeDocsIndex } from "@incrt/cint/internal-urls/docs-index";
 
 // The embed path only runs in compiled binaries / the npm bundle; dev tests
 // otherwise exercise the disk fallback (empty placeholder), so a regression in

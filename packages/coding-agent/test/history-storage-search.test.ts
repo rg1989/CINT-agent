@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { HistoryStorage } from "@incrt/cint-coding-agent/session/history-storage";
+import { HistoryStorage } from "@incrt/cint/session/history-storage";
 import { TempDir } from "@incrt/cint-utils";
 
 let tempDir: TempDir | null = null;

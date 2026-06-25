@@ -15,8 +15,8 @@ import { describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { commands, isSubcommand, resolveCliArgv } from "@incrt/cint-coding-agent/cli-commands";
-import { looksLikeLocalPath } from "@incrt/cint-coding-agent/commands/install";
+import { commands, isSubcommand, resolveCliArgv } from "@incrt/cint/cli-commands";
+import { looksLikeLocalPath } from "@incrt/cint/commands/install";
 
 describe("install command is registered as a top-level subcommand", () => {
 	test("CLI runner sees `install` as a known command", () => {

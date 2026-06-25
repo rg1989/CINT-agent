@@ -1,10 +1,10 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
 import * as path from "node:path";
 import * as url from "node:url";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { theme as activeTheme, getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { readToolRenderer } from "@incrt/cint-coding-agent/tools/read";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { theme as activeTheme, getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import { readToolRenderer } from "@incrt/cint/tools/read";
 import type { TUI } from "@incrt/cint-tui";
 
 function extractLinkUris(text: string): string[] {

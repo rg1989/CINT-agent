@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, spyOn, test } from "bun:test";
-import { isMCPTimeoutEnabled, resolveMCPTimeoutMs } from "@incrt/cint-coding-agent/mcp/timeout";
+import { isMCPTimeoutEnabled, resolveMCPTimeoutMs } from "@incrt/cint/mcp/timeout";
 import { logger } from "@incrt/cint-utils";
 
 const ORIGINAL_TIMEOUT = process.env.OMP_MCP_TIMEOUT_MS;

@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { TaskTool } from "@incrt/cint-coding-agent/task";
-import * as discoveryModule from "@incrt/cint-coding-agent/task/discovery";
-import type { TaskParams } from "@incrt/cint-coding-agent/task/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { TaskTool } from "@incrt/cint/task";
+import * as discoveryModule from "@incrt/cint/task/discovery";
+import type { TaskParams } from "@incrt/cint/task/types";
+import type { ToolSession } from "@incrt/cint/tools";
 
 function createSession(overrides: Partial<Record<string, unknown>> = {}): ToolSession {
 	return {

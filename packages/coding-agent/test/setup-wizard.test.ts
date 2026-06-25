@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, mock } from "bun:test";
-import { runOnboardingSetup } from "@incrt/cint-coding-agent/commands/setup";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { SETTINGS_SCHEMA } from "@incrt/cint-coding-agent/config/settings-schema";
+import { runOnboardingSetup } from "@incrt/cint/commands/setup";
+import { Settings } from "@incrt/cint/config/settings";
+import { SETTINGS_SCHEMA } from "@incrt/cint/config/settings-schema";
 import {
 	ALL_SCENES,
 	CURRENT_SETUP_VERSION,
@@ -10,12 +10,12 @@ import {
 	type SetupScene,
 	type SetupSceneHost,
 	selectSetupScenes,
-} from "@incrt/cint-coding-agent/modes/setup-wizard";
-import { WebSearchTab } from "@incrt/cint-coding-agent/modes/setup-wizard/scenes/web-search";
-import { SetupWizardComponent } from "@incrt/cint-coding-agent/modes/setup-wizard/wizard-overlay";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { SEARCH_PROVIDER_OPTIONS, SEARCH_PROVIDER_PREFERENCES } from "@incrt/cint-coding-agent/web/search/types";
+} from "@incrt/cint/modes/setup-wizard";
+import { WebSearchTab } from "@incrt/cint/modes/setup-wizard/scenes/web-search";
+import { SetupWizardComponent } from "@incrt/cint/modes/setup-wizard/wizard-overlay";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { SEARCH_PROVIDER_OPTIONS, SEARCH_PROVIDER_PREFERENCES } from "@incrt/cint/web/search/types";
 
 function fakeContextWithConfiguredModel(): InteractiveModeContext {
 	return {

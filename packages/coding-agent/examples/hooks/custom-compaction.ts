@@ -12,9 +12,10 @@
  * Usage:
  *   omp --hook examples/hooks/custom-compaction.ts
  */
+
+import type { HookAPI } from "@incrt/cint";
+import { convertToLlm, serializeConversation } from "@incrt/cint";
 import { complete, getModel } from "@incrt/cint-ai";
-import type { HookAPI } from "@incrt/cint-coding-agent";
-import { convertToLlm, serializeConversation } from "@incrt/cint-coding-agent";
 
 export default function (pi: HookAPI) {
 	pi.on("session_before_compact", async (event, ctx) => {

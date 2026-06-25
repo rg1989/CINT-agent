@@ -13,12 +13,12 @@
  */
 
 import { describe, expect, it } from "bun:test";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAcpSessionFactory } from "@incrt/cint-coding-agent/main";
-import type { CreateAgentSessionOptions, CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAcpSessionFactory } from "@incrt/cint/main";
+import type { CreateAgentSessionOptions, CreateAgentSessionResult } from "@incrt/cint/sdk";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("createAcpSessionFactory MCP isolation (issue #1234)", () => {

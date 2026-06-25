@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { buildSpec, type CompletionSpec, generateCompletion } from "@incrt/cint-coding-agent/cli/completion-gen";
+import { buildSpec, type CompletionSpec, generateCompletion } from "@incrt/cint/cli/completion-gen";
 import type { CliConfig, CommandCtor } from "@incrt/cint-utils/cli";
 
 const repoRoot = path.resolve(import.meta.dir, "..", "..", "..", "..");

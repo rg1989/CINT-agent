@@ -1,9 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import {
-	applyEmojiCompletion,
-	getEmojiSuggestions,
-	tryEmojiInlineReplace,
-} from "@incrt/cint-coding-agent/modes/emoji-autocomplete";
+import { applyEmojiCompletion, getEmojiSuggestions, tryEmojiInlineReplace } from "@incrt/cint/modes/emoji-autocomplete";
 
 describe("emoji autocomplete", () => {
 	describe("getEmojiSuggestions", () => {

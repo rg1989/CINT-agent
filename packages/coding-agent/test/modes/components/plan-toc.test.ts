@@ -5,7 +5,7 @@ import {
 	parsePlanSections,
 	sectionDeletionSpan,
 	stripInlineMarkdown,
-} from "@incrt/cint-coding-agent/modes/components/plan-toc";
+} from "@incrt/cint/modes/components/plan-toc";
 
 const titles = (sections: readonly PlanSection[]): string[] => sections.map(s => s.title);
 const levels = (sections: readonly PlanSection[]): number[] => sections.map(s => s.level);

@@ -1,15 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import * as pythonExecutor from "@incrt/cint/eval/py/executor";
+import * as bashExecutor from "@incrt/cint/exec/bash-executor";
+import type { ExtensionRunner } from "@incrt/cint/extensibility/extensions";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent } from "@incrt/cint-agent-core";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as pythonExecutor from "@incrt/cint-coding-agent/eval/py/executor";
-import * as bashExecutor from "@incrt/cint-coding-agent/exec/bash-executor";
-import type { ExtensionRunner } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("AgentSession user shortcut hooks", () => {

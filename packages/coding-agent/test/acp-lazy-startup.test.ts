@@ -10,13 +10,13 @@ import {
 	type RequestPermissionResponse,
 	type SessionNotification,
 } from "@agentclientprotocol/sdk";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAcpConnection } from "@incrt/cint/modes/acp/acp-mode";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAcpConnection } from "@incrt/cint-coding-agent/modes/acp/acp-mode";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const TEST_MODEL: Model = buildModel({
@@ -157,7 +157,7 @@ async function closeTransport(writable: WritableStream<unknown>): Promise<void> 
 
 describe("ACP lazy startup", () => {
 	it("applies schema defaults for ACP background jobs and preserves explicit overrides", async () => {
-		const { runRootCommand } = await import("@incrt/cint-coding-agent/main");
+		const { runRootCommand } = await import("@incrt/cint/main");
 
 		type ObservedBackgroundSettings = {
 			asyncEnabled: boolean;
@@ -248,7 +248,7 @@ describe("ACP lazy startup", () => {
 		// configured value (caller, project, --config overlay, or global) with the
 		// schema default. The fix (re-)added an `isConfigured` guard so explicit
 		// configuration survives, and the schema default only fills holes.
-		const { runRootCommand } = await import("@incrt/cint-coding-agent/main");
+		const { runRootCommand } = await import("@incrt/cint/main");
 
 		const explicit = {
 			"task.isolation.mode": "rcopy",
@@ -337,7 +337,7 @@ describe("ACP lazy startup", () => {
 	});
 
 	it("honors explicit todo settings for protocol hosts", async () => {
-		const { runRootCommand } = await import("@incrt/cint-coding-agent/main");
+		const { runRootCommand } = await import("@incrt/cint/main");
 
 		type ObservedTodoSettings = {
 			enabled: boolean;
@@ -489,8 +489,8 @@ describe("ACP lazy startup", () => {
 		const authStorage = await AuthStorage.create(path.join(cwd, "auth.db"));
 		try {
 			const settings = Settings.isolated({ "marketplace.autoUpdate": "off" });
-			const { runRootCommand } = await import("@incrt/cint-coding-agent/main");
-			const { createAgentSession } = await import("@incrt/cint-coding-agent/sdk");
+			const { runRootCommand } = await import("@incrt/cint/main");
+			const { createAgentSession } = await import("@incrt/cint/sdk");
 			let session: AgentSession | undefined;
 
 			const stopped = runRootCommand(

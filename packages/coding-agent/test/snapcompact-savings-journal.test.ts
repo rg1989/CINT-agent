@@ -2,12 +2,12 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { Model } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
 import {
 	createSnapcompactSavingsRecorder,
 	readSnapcompactSavingsJournal,
-} from "@incrt/cint-coding-agent/session/snapcompact-savings-journal";
+} from "@incrt/cint/session/snapcompact-savings-journal";
+import type { Model } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
 
 function model(provider = "anthropic", id = "claude-test"): Model {
 	return buildModel({

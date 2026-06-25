@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import type { Api, Model } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
-import { getBundledModels } from "@incrt/cint-catalog/models";
 import {
 	modelLacksWebpSupport,
 	normalizeModelContextImages,
 	webpExclusionForModel,
-} from "@incrt/cint-coding-agent/utils/image-loading";
+} from "@incrt/cint/utils/image-loading";
+import type { Api, Model } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
+import { getBundledModels } from "@incrt/cint-catalog/models";
 
 // 1x1 red PNG seed, upscaled + re-encoded as WebP at test time so no binary
 // fixture is checked in. Bun.Image sniffs format from bytes.

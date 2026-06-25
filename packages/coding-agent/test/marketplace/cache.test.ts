@@ -11,7 +11,7 @@ import {
 	isCached,
 	isValidVersionForCache,
 	removeCachedPlugin,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 

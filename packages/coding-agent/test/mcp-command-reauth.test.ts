@@ -3,12 +3,12 @@ import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "bu
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import * as mcpClient from "@incrt/cint/mcp/client";
+import * as oauthFlow from "@incrt/cint/mcp/oauth-flow";
+import type { MCPServerConfig } from "@incrt/cint/mcp/types";
+import { MCPCommandController } from "@incrt/cint/modes/controllers/mcp-command-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import { AuthStorage, SqliteAuthCredentialStore } from "@incrt/cint-ai";
-import * as mcpClient from "@incrt/cint-coding-agent/mcp/client";
-import * as oauthFlow from "@incrt/cint-coding-agent/mcp/oauth-flow";
-import type { MCPServerConfig } from "@incrt/cint-coding-agent/mcp/types";
-import { MCPCommandController } from "@incrt/cint-coding-agent/modes/controllers/mcp-command-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
 import { getConfigRootDir, getMCPConfigPath, getProjectDir, setAgentDir, setProjectDir } from "@incrt/cint-utils";
 
 const RAW_SERVER_URL = `https://\${MCP_HOST}/mcp`;

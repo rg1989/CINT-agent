@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { ModelRegistry, SingleResult } from "@incrt/cint-coding-agent";
-import * as taskExecutor from "@incrt/cint-coding-agent";
+import type { ModelRegistry, SingleResult } from "@incrt/cint";
+import * as taskExecutor from "@incrt/cint";
 import { executeSwarmAgent } from "../executor";
 import { StateTracker } from "../state";
 

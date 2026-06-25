@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { JsRuntime, type RuntimeHooks } from "@incrt/cint-coding-agent/eval/js/shared/runtime";
-import type { JsDisplayOutput } from "@incrt/cint-coding-agent/eval/js/shared/types";
+import { JsRuntime, type RuntimeHooks } from "@incrt/cint/eval/js/shared/runtime";
+import type { JsDisplayOutput } from "@incrt/cint/eval/js/shared/types";
 
 function makeRuntime(): {
 	runtime: JsRuntime;

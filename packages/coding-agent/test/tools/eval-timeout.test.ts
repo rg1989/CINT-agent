@@ -1,8 +1,8 @@
 import { afterAll, describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { disposeAllVmContexts } from "@incrt/cint-coding-agent/eval/js/context-manager";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { EvalTool } from "@incrt/cint-coding-agent/tools/eval";
+import { Settings } from "@incrt/cint/config/settings";
+import { disposeAllVmContexts } from "@incrt/cint/eval/js/context-manager";
+import type { ToolSession } from "@incrt/cint/tools";
+import { EvalTool } from "@incrt/cint/tools/eval";
 
 function makeSession(): ToolSession {
 	return {

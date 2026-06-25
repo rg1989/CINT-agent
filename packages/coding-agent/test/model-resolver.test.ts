@@ -1,8 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type Api, Effort, type Model } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
-import { DEFAULT_MODEL_PER_PROVIDER } from "@incrt/cint-catalog/provider-models";
-import type { CanonicalModelVariant } from "@incrt/cint-coding-agent/config/model-registry";
+import type { CanonicalModelVariant } from "@incrt/cint/config/model-registry";
 import {
 	type CanonicalModelRegistry,
 	expandRoleAlias,
@@ -18,8 +15,11 @@ import {
 	resolveModelOverride,
 	resolveModelRoleValue,
 	resolveModelScope,
-} from "@incrt/cint-coding-agent/config/model-resolver";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
+} from "@incrt/cint/config/model-resolver";
+import { Settings } from "@incrt/cint/config/settings";
+import { type Api, Effort, type Model } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
+import { DEFAULT_MODEL_PER_PROVIDER } from "@incrt/cint-catalog/provider-models";
 
 // Mock models for testing
 const mockModels: Model<"anthropic-messages">[] = [

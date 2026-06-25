@@ -1,11 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import {
-	generateRoomKey,
-	generateWriteToken,
-	importRoomKey,
-	open,
-	seal,
-} from "@incrt/cint-coding-agent/collab/crypto";
+import { generateRoomKey, generateWriteToken, importRoomKey, open, seal } from "@incrt/cint/collab/crypto";
 import {
 	type CollabFrame,
 	DEFAULT_RELAY_URL,
@@ -16,7 +10,7 @@ import {
 	parseCollabLink,
 	rewriteEnvelopePeer,
 	unpackEnvelope,
-} from "@incrt/cint-coding-agent/collab/protocol";
+} from "@incrt/cint/collab/protocol";
 
 describe("collab crypto", () => {
 	it("round-trips a frame through seal/open", async () => {

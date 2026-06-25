@@ -18,8 +18,6 @@ import * as os from "node:os";
 import * as path from "node:path";
 import { scheduler } from "node:timers/promises";
 import { isPromise } from "node:util/types";
-
-import type { InMemorySnapshotStore } from "@incrt/cint-hashline";
 import {
 	type AfterToolCallContext,
 	type AfterToolCallResult,
@@ -109,7 +107,9 @@ import { THINKING_LOOP_ERROR_MARKER } from "@incrt/cint-ai/utils/thinking-loop";
 import { isFireworksFastModelId, toFireworksBaseModelId } from "@incrt/cint-catalog/fireworks-model-id";
 import { getSupportedEfforts } from "@incrt/cint-catalog/model-thinking";
 import { modelsAreEqual } from "@incrt/cint-catalog/models";
+import type { InMemorySnapshotStore } from "@incrt/cint-hashline";
 import { MacOSPowerAssertion } from "@incrt/cint-natives";
+import * as snapcompact from "@incrt/cint-snapcompact";
 import {
 	extractRetryHint,
 	formatDuration,
@@ -124,7 +124,6 @@ import {
 	Snowflake,
 	withTimeout,
 } from "@incrt/cint-utils";
-import * as snapcompact from "@incrt/cint-snapcompact";
 import {
 	AdviseTool,
 	type AdvisorAgent,

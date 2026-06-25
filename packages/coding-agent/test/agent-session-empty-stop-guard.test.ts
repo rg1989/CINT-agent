@@ -1,15 +1,15 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
 import { scheduler } from "node:timers/promises";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { type SettingPath, Settings } from "@incrt/cint/config/settings";
+import { AgentSession, type AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { convertToLlm } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentMessage, type AgentTool } from "@incrt/cint-agent-core";
 import { z } from "@incrt/cint-ai";
 import { createMockModel, type MockModel, type MockResponse } from "@incrt/cint-ai/providers/mock";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { type SettingPath, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession, type AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { convertToLlm } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const recordToolSchema = z.object({ value: z.string() });

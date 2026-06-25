@@ -1,9 +1,6 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import {
-	HookSelectorComponent,
-	type HookSelectorSlider,
-} from "@incrt/cint-coding-agent/modes/components/hook-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { HookSelectorComponent, type HookSelectorSlider } from "@incrt/cint/modes/components/hook-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 
 const LEFT = "\x1b[D";
 const RIGHT = "\x1b[C";

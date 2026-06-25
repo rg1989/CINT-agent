@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { BUILTIN_DEFAULTS_PROVIDER_ID, type Rule } from "@incrt/cint-coding-agent/capability/rule";
-import { bucketRules } from "@incrt/cint-coding-agent/capability/rule-buckets";
-import { TtsrManager } from "@incrt/cint-coding-agent/export/ttsr";
+import { BUILTIN_DEFAULTS_PROVIDER_ID, type Rule } from "@incrt/cint/capability/rule";
+import { bucketRules } from "@incrt/cint/capability/rule-buckets";
+import { TtsrManager } from "@incrt/cint/export/ttsr";
 
 function source(provider: string): Rule["_source"] {
 	return { provider, providerName: provider, path: "/tmp/rule.md", level: "user" };

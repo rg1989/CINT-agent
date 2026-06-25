@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { loadMnemopiConfig } from "@incrt/cint-coding-agent/mnemopi/config";
+import { Settings } from "@incrt/cint/config/settings";
+import { loadMnemopiConfig } from "@incrt/cint/mnemopi/config";
 
 // `mnemopi.embeddingVariant` selects the concrete local embedding model, while an
 // explicit `mnemopi.embeddingModel` is an advanced override that wins. Scoping is

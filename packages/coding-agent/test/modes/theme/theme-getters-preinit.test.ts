@@ -5,7 +5,7 @@ import {
 	getSettingsListTheme,
 	getSymbolTheme,
 	theme,
-} from "@incrt/cint-coding-agent/modes/theme/theme";
+} from "@incrt/cint/modes/theme/theme";
 
 /**
  * Contract for issue #2998: the exported theme-getter functions must not crash

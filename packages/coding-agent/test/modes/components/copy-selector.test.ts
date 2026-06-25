@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import { KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import { CopySelectorComponent } from "@incrt/cint-coding-agent/modes/components/copy-selector";
-import { getThemeByName, setThemeInstance, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { CopyTarget } from "@incrt/cint-coding-agent/modes/utils/copy-targets";
+import { KeybindingsManager } from "@incrt/cint/config/keybindings";
+import { CopySelectorComponent } from "@incrt/cint/modes/components/copy-selector";
+import { getThemeByName, setThemeInstance, theme } from "@incrt/cint/modes/theme/theme";
+import type { CopyTarget } from "@incrt/cint/modes/utils/copy-targets";
 import { setKeybindings } from "@incrt/cint-tui";
 
 const UP = "\x1b[A";

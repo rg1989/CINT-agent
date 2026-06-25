@@ -14,7 +14,7 @@ import chalk from "chalk";
 import { theme } from "../modes/theme/theme";
 
 const REPO = "can1357/oh-my-pi";
-const PACKAGE = "@incrt/cint-coding-agent";
+const PACKAGE = "@incrt/cint";
 const HOMEBREW_FORMULA = "can1357/tap/omp";
 const MISE_TOOL = "github:can1357/oh-my-pi";
 /**
@@ -476,7 +476,7 @@ export async function replaceBinaryForUpdate(options: BinaryReplacementOptions):
  * does not reliably refresh transitive `optionalDependencies` when the
  * top-level package is the only one bumped, so the native addon and its
  * version sentinel can drift out of sync with the freshly installed
- * `@incrt/cint-coding-agent` and the loader aborts at
+ * `@incrt/cint` and the loader aborts at
  * `validateLoadedBindings` on the next launch
  * (`The .node file on disk is from a different release than this loader`).
  * Listing the natives explicitly forces bun to replace them in lock-step.

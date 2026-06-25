@@ -1,6 +1,6 @@
-import type { InMemorySnapshotStore } from "@incrt/cint-hashline";
 import type { AgentTelemetryConfig, AgentTool } from "@incrt/cint-agent-core";
 import type { FetchImpl, ImageContent, Model, ToolChoice } from "@incrt/cint-ai";
+import type { InMemorySnapshotStore } from "@incrt/cint-hashline";
 import { logger } from "@incrt/cint-utils";
 import type { AsyncJobManager } from "../async/job-manager";
 import type { Rule } from "../capability/rule";

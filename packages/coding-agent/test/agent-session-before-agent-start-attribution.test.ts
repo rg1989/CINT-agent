@@ -1,17 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ExtensionRunner } from "@incrt/cint/extensibility/extensions";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { convertToLlm } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentMessage } from "@incrt/cint-agent-core";
 import type { Message } from "@incrt/cint-ai";
 import { inferCopilotInitiator } from "@incrt/cint-ai/providers/github-copilot-headers";
 import { createMockModel } from "@incrt/cint-ai/providers/mock";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ExtensionRunner } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { convertToLlm } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("AgentSession before_agent_start attribution fallback", () => {

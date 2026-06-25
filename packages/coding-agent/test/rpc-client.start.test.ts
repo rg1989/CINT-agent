@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import * as path from "node:path";
-import { RpcClient } from "@incrt/cint-coding-agent/modes/rpc/rpc-client";
+import { RpcClient } from "@incrt/cint/modes/rpc/rpc-client";
 
 describe("RpcClient.start", () => {
 	test("rejects when RPC process exits immediately", async () => {

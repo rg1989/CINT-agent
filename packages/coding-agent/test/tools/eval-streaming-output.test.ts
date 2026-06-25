@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as evalIndex from "@incrt/cint-coding-agent/eval";
-import type { EvalToolDetails } from "@incrt/cint-coding-agent/eval/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { EvalTool } from "@incrt/cint-coding-agent/tools/eval";
+import { Settings } from "@incrt/cint/config/settings";
+import * as evalIndex from "@incrt/cint/eval";
+import type { EvalToolDetails } from "@incrt/cint/eval/types";
+import type { ToolSession } from "@incrt/cint/tools";
+import { EvalTool } from "@incrt/cint/tools/eval";
 
 function makeSession(): ToolSession {
 	return {

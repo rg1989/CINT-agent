@@ -1,8 +1,8 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import type { AgentTool } from "@incrt/cint-agent-core";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
 import { Text, type TUI } from "@incrt/cint-tui";
 
 /**

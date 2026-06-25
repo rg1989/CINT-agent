@@ -1,19 +1,19 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
-import { Agent } from "@incrt/cint-agent-core";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
 import {
 	formatMCPConnectionStatusMessage,
 	MCP_CONNECTION_STATUS_EVENT_CHANNEL,
 	type McpConnectionStatusEvent,
-} from "@incrt/cint-coding-agent/mcp/startup-events";
-import { InteractiveMode } from "@incrt/cint-coding-agent/modes/interactive-mode";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+} from "@incrt/cint/mcp/startup-events";
+import { InteractiveMode } from "@incrt/cint/modes/interactive-mode";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { EventBus } from "@incrt/cint/utils/event-bus";
+import { Agent } from "@incrt/cint-agent-core";
 import { logger, TempDir } from "@incrt/cint-utils";
 
 /**

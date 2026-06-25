@@ -2,9 +2,9 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { PlanModeState } from "@incrt/cint-coding-agent/plan-mode/state";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { enforcePlanModeWrite, resolvePlanPath } from "@incrt/cint-coding-agent/tools/plan-mode-guard";
+import type { PlanModeState } from "@incrt/cint/plan-mode/state";
+import type { ToolSession } from "@incrt/cint/tools";
+import { enforcePlanModeWrite, resolvePlanPath } from "@incrt/cint/tools/plan-mode-guard";
 
 const ARTIFACTS_DIR = path.join(os.tmpdir(), "agent-artifacts");
 const REPO_ROOT = path.join(os.tmpdir(), "repo");

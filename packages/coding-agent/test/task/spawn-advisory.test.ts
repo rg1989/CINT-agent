@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentLifecycleManager } from "@incrt/cint-coding-agent/registry/agent-lifecycle";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import { buildSpecializationAdvisory, TaskTool } from "@incrt/cint-coding-agent/task";
-import * as discoveryModule from "@incrt/cint-coding-agent/task/discovery";
-import * as executorModule from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition, SingleResult, TaskItem, TaskParams } from "@incrt/cint-coding-agent/task/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentLifecycleManager } from "@incrt/cint/registry/agent-lifecycle";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import { buildSpecializationAdvisory, TaskTool } from "@incrt/cint/task";
+import * as discoveryModule from "@incrt/cint/task/discovery";
+import * as executorModule from "@incrt/cint/task/executor";
+import type { AgentDefinition, SingleResult, TaskItem, TaskParams } from "@incrt/cint/task/types";
+import type { ToolSession } from "@incrt/cint/tools";
 
 // Contract: the task tool appends an advisory (never a rejection) steering the
 // spawner toward tailored specialists when it spawns generic role-less workers

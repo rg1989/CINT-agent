@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const tempDirs: TempDir[] = [];

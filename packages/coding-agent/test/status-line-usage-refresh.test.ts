@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { StatusLineComponent } from "@incrt/cint-coding-agent/modes/components/status-line";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { StatusLineComponent } from "@incrt/cint/modes/components/status-line";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
 
 async function flushMicrotasks(): Promise<void> {
 	await Promise.resolve();

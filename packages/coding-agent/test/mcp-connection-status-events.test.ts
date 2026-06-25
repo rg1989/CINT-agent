@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { MCPManager } from "@incrt/cint-coding-agent/mcp/manager";
-import type { McpConnectionStatusEvent } from "@incrt/cint-coding-agent/mcp/startup-events";
-import type { MCPServerConfig } from "@incrt/cint-coding-agent/mcp/types";
+import { MCPManager } from "@incrt/cint/mcp/manager";
+import type { McpConnectionStatusEvent } from "@incrt/cint/mcp/startup-events";
+import type { MCPServerConfig } from "@incrt/cint/mcp/types";
 
 const FIXTURE_PATH = path.join(import.meta.dir, "fixtures", "many-tools-mcp.ts");
 const BUN_EXEC = process.execPath;

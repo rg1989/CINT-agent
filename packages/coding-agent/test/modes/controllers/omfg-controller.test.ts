@@ -2,12 +2,12 @@ import { afterEach, beforeAll, describe, expect, it, type Mock, vi } from "bun:t
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import type { Rule } from "@incrt/cint/capability/rule";
+import { OmfgController } from "@incrt/cint/modes/controllers/omfg-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import type { AssistantMessage, Usage } from "@incrt/cint-ai";
-import type { Rule } from "@incrt/cint-coding-agent/capability/rule";
-import { OmfgController } from "@incrt/cint-coding-agent/modes/controllers/omfg-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
 import { Container, type TUI } from "@incrt/cint-tui";
 
 const PROJECT_OPTION = "This project (.omp/rules)";

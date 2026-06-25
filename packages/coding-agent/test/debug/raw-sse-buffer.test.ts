@@ -1,11 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import { RawSseDebugBuffer, rawSseRecordLines, resolveRawSseDebugBuffer } from "@incrt/cint/debug/raw-sse-buffer";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import {
-	RawSseDebugBuffer,
-	rawSseRecordLines,
-	resolveRawSseDebugBuffer,
-} from "@incrt/cint-coding-agent/debug/raw-sse-buffer";
 
 const model: Model<"anthropic-messages"> = buildModel({
 	id: "claude-test",

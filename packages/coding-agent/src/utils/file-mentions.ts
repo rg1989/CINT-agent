@@ -7,9 +7,9 @@
  */
 import * as fs from "node:fs/promises";
 import path from "node:path";
-import { formatHashlineHeader, formatNumberedLines, type SnapshotStore } from "@incrt/cint-hashline";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import type { ImageContent } from "@incrt/cint-ai";
+import { formatHashlineHeader, formatNumberedLines, type SnapshotStore } from "@incrt/cint-hashline";
 import { formatAge, formatBytes, readImageMetadata } from "@incrt/cint-utils";
 import { canonicalSnapshotKey } from "../edit/file-snapshot-store";
 import { normalizeToLF } from "../edit/normalize";

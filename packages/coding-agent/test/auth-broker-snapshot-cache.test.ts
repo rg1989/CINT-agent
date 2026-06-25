@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { discoverAuthStorage } from "@incrt/cint/sdk";
 import { AuthStorage, SqliteAuthCredentialStore } from "@incrt/cint-ai";
 import {
 	type AuthBrokerServerHandle,
@@ -10,7 +11,6 @@ import {
 	startAuthBroker,
 	writeAuthBrokerSnapshotCache,
 } from "@incrt/cint-ai/auth-broker";
-import { discoverAuthStorage } from "@incrt/cint-coding-agent/sdk";
 
 const ENV_KEYS = [
 	"OMP_AUTH_BROKER_URL",

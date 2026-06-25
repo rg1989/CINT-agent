@@ -12,14 +12,14 @@ import * as fs from "node:fs";
 import * as fsp from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { Args } from "@incrt/cint-coding-agent/cli/args";
-import type { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createSessionManager } from "@incrt/cint-coding-agent/main";
-import type { SessionHeader } from "@incrt/cint-coding-agent/session/session-entries";
-import type { SessionInfo } from "@incrt/cint-coding-agent/session/session-listing";
-import * as sessionListingModule from "@incrt/cint-coding-agent/session/session-listing";
-import { loadEntriesFromFile } from "@incrt/cint-coding-agent/session/session-loader";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import type { Args } from "@incrt/cint/cli/args";
+import type { Settings } from "@incrt/cint/config/settings";
+import { createSessionManager } from "@incrt/cint/main";
+import type { SessionHeader } from "@incrt/cint/session/session-entries";
+import type { SessionInfo } from "@incrt/cint/session/session-listing";
+import * as sessionListingModule from "@incrt/cint/session/session-listing";
+import { loadEntriesFromFile } from "@incrt/cint/session/session-loader";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 
 function buildArgs(resume: string, sessionDir?: string): Args {
 	return {

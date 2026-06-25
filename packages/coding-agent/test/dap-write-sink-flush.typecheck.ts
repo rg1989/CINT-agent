@@ -1,4 +1,4 @@
-import type { DapClient } from "@incrt/cint-coding-agent/dap/client";
+import type { DapClient } from "@incrt/cint/dap/client";
 
 // Type-only import forces standard TypeScript to check src/dap/client.ts,
 // including the socketToSink() implementation against DapWriteSink.flush().

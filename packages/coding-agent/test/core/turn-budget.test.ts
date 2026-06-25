@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { parseTurnBudget } from "@incrt/cint-coding-agent/modes/turn-budget";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { parseTurnBudget } from "@incrt/cint/modes/turn-budget";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 
 describe("parseTurnBudget", () => {
 	it("parses k/m multipliers, plain counts, and decimals", () => {

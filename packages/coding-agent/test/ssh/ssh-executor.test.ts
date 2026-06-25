@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import * as connectionManager from "@incrt/cint-coding-agent/ssh/connection-manager";
-import { executeSSH } from "@incrt/cint-coding-agent/ssh/ssh-executor";
-import * as sshfsMount from "@incrt/cint-coding-agent/ssh/sshfs-mount";
+import * as connectionManager from "@incrt/cint/ssh/connection-manager";
+import { executeSSH } from "@incrt/cint/ssh/ssh-executor";
+import * as sshfsMount from "@incrt/cint/ssh/sshfs-mount";
 import { type ChildProcess, ptree } from "@incrt/cint-utils";
 
 type TestStdin = "pipe" | "ignore" | Buffer | Uint8Array | null;

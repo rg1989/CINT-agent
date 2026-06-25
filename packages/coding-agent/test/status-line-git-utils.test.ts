@@ -5,7 +5,7 @@ import {
 	isSamePrCacheContext,
 	parseDefaultBranch,
 	parseGitHubRepo,
-} from "@incrt/cint-coding-agent/modes/components/status-line/git-utils";
+} from "@incrt/cint/modes/components/status-line/git-utils";
 
 describe("parseGitHubRepo", () => {
 	test("parses HTTPS URL", () => {

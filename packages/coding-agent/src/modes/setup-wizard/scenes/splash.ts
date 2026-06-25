@@ -1,5 +1,5 @@
 import { padding, truncateToWidth, visibleWidth } from "@incrt/cint-tui";
-import { gradientEscape, gradientLogo, CINT_LOGO, type ShineConfig } from "../../components/welcome";
+import { CINT_LOGO, gradientEscape, gradientLogo, type ShineConfig } from "../../components/welcome";
 import { theme } from "../../theme/theme";
 
 export const SETUP_SPLASH_MS = 2600;

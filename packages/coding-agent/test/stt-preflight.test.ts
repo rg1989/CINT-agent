@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import * as downloader from "@incrt/cint-coding-agent/stt/downloader";
-import * as recorder from "@incrt/cint-coding-agent/stt/recorder";
-import { STTController } from "@incrt/cint-coding-agent/stt/stt-controller";
+import { Settings, settings } from "@incrt/cint/config/settings";
+import * as downloader from "@incrt/cint/stt/downloader";
+import * as recorder from "@incrt/cint/stt/recorder";
+import { STTController } from "@incrt/cint/stt/stt-controller";
 import { getTinyModelsCacheDir, setAgentDir } from "@incrt/cint-utils";
 import { beginSettingsTest, restoreSettingsTestState, type SettingsTestState } from "./helpers/settings-test-state";
 

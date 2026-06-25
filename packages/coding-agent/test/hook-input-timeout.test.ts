@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
 
-import { HookInputComponent } from "@incrt/cint-coding-agent/modes/components/hook-input";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { HookInputComponent } from "@incrt/cint/modes/components/hook-input";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
 import type { TUI } from "@incrt/cint-tui";
 
 beforeAll(async () => {

@@ -2,10 +2,10 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { Settings } from "@incrt/cint/config/settings";
+import { ToolChoiceQueue } from "@incrt/cint/session/tool-choice-queue";
+import { createTools, type ToolSession } from "@incrt/cint/tools";
 import { adaptSchemaForStrict, toolWireSchema } from "@incrt/cint-ai/utils/schema";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ToolChoiceQueue } from "@incrt/cint-coding-agent/session/tool-choice-queue";
-import { createTools, type ToolSession } from "@incrt/cint-coding-agent/tools";
 
 type InvokedToolResult = {
 	content: Array<{ type: string; text?: string }>;

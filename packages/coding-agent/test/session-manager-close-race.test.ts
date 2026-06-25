@@ -24,13 +24,13 @@
  */
 
 import { describe, expect, it } from "bun:test";
-import { getBundledModel } from "@incrt/cint-catalog/models";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import {
 	MemorySessionStorage,
 	type SessionStorage,
 	type SessionStorageWriter,
-} from "@incrt/cint-coding-agent/session/session-storage";
+} from "@incrt/cint/session/session-storage";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 
 class CloseHoldingStorage implements SessionStorage {
 	readonly #inner = new MemorySessionStorage();

@@ -1,5 +1,5 @@
 import { vi } from "bun:test";
-import { resetSettingsForTest } from "@incrt/cint-coding-agent/config/settings";
+import { resetSettingsForTest } from "@incrt/cint/config/settings";
 import { isTuiTight, setTuiTight } from "@incrt/cint-tui";
 import { getAgentDir, getProjectDir, setAgentDir, setProjectDir } from "@incrt/cint-utils";
 

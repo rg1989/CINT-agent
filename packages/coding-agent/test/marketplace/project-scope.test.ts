@@ -16,14 +16,14 @@ import {
 	clearClaudePluginRootsCache,
 	listClaudePluginRoots,
 	resolveActiveProjectRegistryPath,
-} from "@incrt/cint-coding-agent/discovery/helpers";
-import type { InstalledPluginEntry } from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/discovery/helpers";
+import type { InstalledPluginEntry } from "@incrt/cint/extensibility/plugins/marketplace";
 import {
 	addInstalledPlugin,
 	buildPluginId,
 	readInstalledPluginsRegistry,
 	writeInstalledPluginsRegistry,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 
 // ── Fixtures ──────────────────────────────────────────────────────────────────
 

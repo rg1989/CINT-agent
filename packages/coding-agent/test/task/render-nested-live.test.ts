@@ -1,8 +1,8 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint-coding-agent/task";
-import { taskToolRenderer } from "@incrt/cint-coding-agent/task/render";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint/task";
+import { taskToolRenderer } from "@incrt/cint/task/render";
 import { formatDuration, formatNumber } from "@incrt/cint-utils";
 
 describe("task renderer: nested live rendering", () => {

@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, mock, spyOn } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { IrcBus } from "@incrt/cint-coding-agent/irc/bus";
-import { AgentLifecycleManager } from "@incrt/cint-coding-agent/registry/agent-lifecycle";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { IrcTool } from "@incrt/cint-coding-agent/tools/irc";
+import { Settings } from "@incrt/cint/config/settings";
+import { IrcBus } from "@incrt/cint/irc/bus";
+import { AgentLifecycleManager } from "@incrt/cint/registry/agent-lifecycle";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { ToolSession } from "@incrt/cint/tools";
+import { IrcTool } from "@incrt/cint/tools/irc";
 
 // Contract: the work-aware roster (`irc list`) surfaces each peer's role
 // (via displayName) and current activity gist, and a peer with no activity

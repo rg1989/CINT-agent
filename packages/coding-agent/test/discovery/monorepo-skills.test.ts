@@ -9,10 +9,10 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { clearCache } from "@incrt/cint-coding-agent/capability/fs";
-import type { Skill } from "@incrt/cint-coding-agent/capability/skill";
-import type { LoadContext, LoadResult } from "@incrt/cint-coding-agent/capability/types";
-import { scanSkillsFromDir } from "@incrt/cint-coding-agent/discovery/helpers";
+import { clearCache } from "@incrt/cint/capability/fs";
+import type { Skill } from "@incrt/cint/capability/skill";
+import type { LoadContext, LoadResult } from "@incrt/cint/capability/types";
+import { scanSkillsFromDir } from "@incrt/cint/discovery/helpers";
 
 function writeSkill(dir: string, name: string, description: string): void {
 	const skillDir = path.join(dir, name);

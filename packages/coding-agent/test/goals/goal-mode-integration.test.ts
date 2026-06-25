@@ -1,16 +1,16 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { GoalTool } from "@incrt/cint/goals/tools/goal-tool";
+import { InteractiveMode } from "@incrt/cint/modes/interactive-mode";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { createTools, type Tool, type ToolSession } from "@incrt/cint/tools";
 import { Agent } from "@incrt/cint-agent-core";
 import type { Model } from "@incrt/cint-ai";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { GoalTool } from "@incrt/cint-coding-agent/goals/tools/goal-tool";
-import { InteractiveMode } from "@incrt/cint-coding-agent/modes/interactive-mode";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { createTools, type Tool, type ToolSession } from "@incrt/cint-coding-agent/tools";
 import { TempDir } from "@incrt/cint-utils";
 
 function createToolSession(cwd: string, settings: Settings, overrides: Partial<ToolSession> = {}): ToolSession {

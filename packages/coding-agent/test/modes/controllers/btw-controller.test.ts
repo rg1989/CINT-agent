@@ -1,10 +1,10 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { BtwPanelComponent } from "@incrt/cint/modes/components/btw-panel";
+import { BtwController } from "@incrt/cint/modes/controllers/btw-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import * as clipboard from "@incrt/cint/utils/clipboard";
 import type { AssistantMessage, Usage } from "@incrt/cint-ai";
-import { BtwPanelComponent } from "@incrt/cint-coding-agent/modes/components/btw-panel";
-import { BtwController } from "@incrt/cint-coding-agent/modes/controllers/btw-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import * as clipboard from "@incrt/cint-coding-agent/utils/clipboard";
 import { Container, replaceTabs, type TUI } from "@incrt/cint-tui";
 
 const usage: Usage = {

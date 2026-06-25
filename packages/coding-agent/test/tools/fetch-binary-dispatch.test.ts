@@ -3,13 +3,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ReadTool } from "@incrt/cint/tools/read";
+import { zip } from "@incrt/cint/utils/zip";
+import * as scrapers from "@incrt/cint/web/scrapers/types";
+import * as scraperUtils from "@incrt/cint/web/scrapers/utils";
 import type { ImageContent, TextContent } from "@incrt/cint-ai";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
-import { zip } from "@incrt/cint-coding-agent/utils/zip";
-import * as scrapers from "@incrt/cint-coding-agent/web/scrapers/types";
-import * as scraperUtils from "@incrt/cint-coding-agent/web/scrapers/utils";
 import { Snowflake } from "@incrt/cint-utils";
 
 function makeSession(testDir: string): ToolSession {

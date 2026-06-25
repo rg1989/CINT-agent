@@ -4,7 +4,7 @@
  * Uses all defaults: discovers skills, hooks, tools, context files
  * from cwd and ~/.omp/agent. Model chosen from settings or first available.
  */
-import { createAgentSession } from "@incrt/cint-coding-agent";
+import { createAgentSession } from "@incrt/cint";
 
 const { session } = await createAgentSession();
 

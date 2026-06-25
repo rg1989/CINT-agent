@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { runCommitAgentSession } from "@incrt/cint/commit/agentic/agent";
+import * as toolsModule from "@incrt/cint/commit/agentic/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import type { CreateAgentSessionResult } from "@incrt/cint/sdk";
+import * as sdkModule from "@incrt/cint/sdk";
+import type { PromptOptions } from "@incrt/cint/session/agent-session";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { runCommitAgentSession } from "@incrt/cint-coding-agent/commit/agentic/agent";
-import * as toolsModule from "@incrt/cint-coding-agent/commit/agentic/tools";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import type { PromptOptions } from "@incrt/cint-coding-agent/session/agent-session";
 
 describe("commit agent prompt attribution", () => {
 	afterEach(() => {

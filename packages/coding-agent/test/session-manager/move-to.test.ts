@@ -3,10 +3,10 @@ import * as fs from "node:fs";
 import * as fsp from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { SessionHeader } from "@incrt/cint-coding-agent/session/session-entries";
-import { loadEntriesFromFile } from "@incrt/cint-coding-agent/session/session-loader";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { stripOuterDoubleQuotes } from "@incrt/cint-coding-agent/tools/path-utils";
+import type { SessionHeader } from "@incrt/cint/session/session-entries";
+import { loadEntriesFromFile } from "@incrt/cint/session/session-loader";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { stripOuterDoubleQuotes } from "@incrt/cint/tools/path-utils";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 // -- helpers ----------------------------------------------------------------

@@ -19,13 +19,13 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { InstalledPluginEntry } from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+import type { InstalledPluginEntry } from "@incrt/cint/extensibility/plugins/marketplace";
 import {
 	addInstalledPlugin,
 	buildPluginId,
 	readInstalledPluginsRegistry,
 	writeInstalledPluginsRegistry,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 
 // ── Inline validator ───────────────────────────────────────────────────────────
 //

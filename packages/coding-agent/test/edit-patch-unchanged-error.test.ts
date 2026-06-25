@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { DEFAULT_FUZZY_THRESHOLD, executePatchSingle } from "@incrt/cint-coding-agent/edit";
-import type { FileDiagnosticsResult } from "@incrt/cint-coding-agent/lsp";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { DEFAULT_FUZZY_THRESHOLD, executePatchSingle } from "@incrt/cint/edit";
+import type { FileDiagnosticsResult } from "@incrt/cint/lsp";
+import type { ToolSession } from "@incrt/cint/tools";
 
 function makeSession(cwd: string): ToolSession {
 	return {

@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { SessionSelectorComponent } from "@incrt/cint-coding-agent/modes/components/session-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { SessionInfo } from "@incrt/cint-coding-agent/session/session-listing";
+import { SessionSelectorComponent } from "@incrt/cint/modes/components/session-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { SessionInfo } from "@incrt/cint/session/session-listing";
 
 beforeAll(() => {
 	initTheme();

@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import type { ToolSession } from "@incrt/cint/tools";
 import {
 	resolveTodoMarkdownPath,
 	selectStickyTodoWindow,
@@ -13,7 +13,7 @@ import {
 	TodoTool,
 	todoMatchesAnyDescription,
 	todoToolRenderer,
-} from "@incrt/cint-coding-agent/tools";
+} from "@incrt/cint/tools";
 import type { Component } from "@incrt/cint-tui";
 
 function createSession(initialPhases: TodoPhase[] = []): ToolSession {

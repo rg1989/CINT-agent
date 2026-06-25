@@ -1,6 +1,5 @@
 import { describe, expect, it } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import type { UsageReport } from "@incrt/cint-ai";
 import {
 	buildRedactionMap,
 	collectUnreportedAccounts,
@@ -8,7 +7,8 @@ import {
 	formatUsageBreakdown,
 	formatUsageHistory,
 	type UsageAccountIdentity,
-} from "@incrt/cint-coding-agent/cli/usage-cli";
+} from "@incrt/cint/cli/usage-cli";
+import type { UsageReport } from "@incrt/cint-ai";
 
 const HOUR = 3_600_000;
 const FIVE_HOURS = 5 * HOUR;

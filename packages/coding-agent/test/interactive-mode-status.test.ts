@@ -1,9 +1,9 @@
 import { beforeAll, describe, expect, test, vi } from "bun:test";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import { buildSessionContext, type SessionContext } from "@incrt/cint/session/session-context";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import { buildSessionContext, type SessionContext } from "@incrt/cint-coding-agent/session/session-context";
 import { type Component, Container } from "@incrt/cint-tui";
 
 function renderLastLine(container: Container, width = 120): string {

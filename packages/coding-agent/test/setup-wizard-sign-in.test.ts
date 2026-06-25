@@ -1,10 +1,10 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { SignInTab } from "@incrt/cint/modes/setup-wizard/scenes/sign-in";
+import type { SetupSceneHost } from "@incrt/cint/modes/setup-wizard/scenes/types";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import * as clipboard from "@incrt/cint/utils/clipboard";
 import type { AuthStorage } from "@incrt/cint-ai";
 import type { OAuthLoginCallbacks, OAuthProviderId } from "@incrt/cint-ai/oauth/types";
-import { SignInTab } from "@incrt/cint-coding-agent/modes/setup-wizard/scenes/sign-in";
-import type { SetupSceneHost } from "@incrt/cint-coding-agent/modes/setup-wizard/scenes/types";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import * as clipboard from "@incrt/cint-coding-agent/utils/clipboard";
 import type { Component } from "@incrt/cint-tui";
 
 beforeAll(async () => {

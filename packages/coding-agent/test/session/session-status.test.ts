@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import type { SessionStatus } from "@incrt/cint-coding-agent/session/session-listing";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { MemorySessionStorage } from "@incrt/cint-coding-agent/session/session-storage";
+import type { SessionStatus } from "@incrt/cint/session/session-listing";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { MemorySessionStorage } from "@incrt/cint/session/session-storage";
 
 const SESSION_DIR = "/sessions/status-proj";
 

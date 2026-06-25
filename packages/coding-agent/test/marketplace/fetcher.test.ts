@@ -7,7 +7,7 @@ import {
 	classifySource,
 	fetchMarketplace,
 	parseMarketplaceCatalog,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 
 // Fixture lives at test/marketplace/fixtures/valid-marketplace/
 const FIXTURE_DIR = path.join(import.meta.dir, "fixtures", "valid-marketplace");

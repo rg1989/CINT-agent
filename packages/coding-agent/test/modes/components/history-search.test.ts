@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { HistorySearchComponent } from "@incrt/cint-coding-agent/modes/components/history-search";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { HistoryEntry, HistoryStorage } from "@incrt/cint-coding-agent/session/history-storage";
+import { HistorySearchComponent } from "@incrt/cint/modes/components/history-search";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import type { HistoryEntry, HistoryStorage } from "@incrt/cint/session/history-storage";
 
 beforeAll(async () => {
 	await initTheme();

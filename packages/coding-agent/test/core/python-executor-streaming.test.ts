@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { executePythonWithKernel } from "@incrt/cint-coding-agent/eval/py/executor";
-import { DEFAULT_MAX_BYTES } from "@incrt/cint-coding-agent/session/streaming-output";
+import { executePythonWithKernel } from "@incrt/cint/eval/py/executor";
+import { DEFAULT_MAX_BYTES } from "@incrt/cint/session/streaming-output";
 import { FakeKernel } from "./helpers";
 
 describe("executePythonWithKernel streaming", () => {

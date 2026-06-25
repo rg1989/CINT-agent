@@ -2,17 +2,17 @@ import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:te
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { toolWireSchema } from "@incrt/cint-ai/utils/schema";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
 import {
 	buildSearchDateQualifier,
 	GithubTool,
 	parsePrUnifiedDiff,
 	parseSearchDateBound,
 	resolveDefaultRepoMemoized,
-} from "@incrt/cint-coding-agent/tools/gh";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+} from "@incrt/cint/tools/gh";
+import * as git from "@incrt/cint/utils/git";
+import { toolWireSchema } from "@incrt/cint-ai/utils/schema";
 import { getAgentDir, hashPath, setAgentDir } from "@incrt/cint-utils";
 
 // Isolate every `git` invocation in this file from the developer's host

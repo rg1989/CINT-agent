@@ -2,18 +2,13 @@ import { afterEach, describe, expect, it, spyOn, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as dapModule from "@incrt/cint-coding-agent/dap";
-import { DapClient } from "@incrt/cint-coding-agent/dap/client";
-import { DapSessionManager } from "@incrt/cint-coding-agent/dap/session";
-import type {
-	DapCapabilities,
-	DapClientState,
-	DapEventMessage,
-	DapResolvedAdapter,
-} from "@incrt/cint-coding-agent/dap/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { DebugTool } from "@incrt/cint-coding-agent/tools/debug";
+import { Settings } from "@incrt/cint/config/settings";
+import * as dapModule from "@incrt/cint/dap";
+import { DapClient } from "@incrt/cint/dap/client";
+import { DapSessionManager } from "@incrt/cint/dap/session";
+import type { DapCapabilities, DapClientState, DapEventMessage, DapResolvedAdapter } from "@incrt/cint/dap/types";
+import type { ToolSession } from "@incrt/cint/tools";
+import { DebugTool } from "@incrt/cint/tools/debug";
 
 const TEST_ADAPTER: DapResolvedAdapter = {
 	name: "lldb-dap",

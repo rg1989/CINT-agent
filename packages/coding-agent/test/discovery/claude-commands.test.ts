@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { clearCache as clearFsCache } from "@incrt/cint-coding-agent/capability/fs";
-import { type SlashCommand, slashCommandCapability } from "@incrt/cint-coding-agent/capability/slash-command";
-import { resetSettingsForTest } from "@incrt/cint-coding-agent/config/settings";
-import { loadCapability } from "@incrt/cint-coding-agent/discovery";
+import { clearCache as clearFsCache } from "@incrt/cint/capability/fs";
+import { type SlashCommand, slashCommandCapability } from "@incrt/cint/capability/slash-command";
+import { resetSettingsForTest } from "@incrt/cint/config/settings";
+import { loadCapability } from "@incrt/cint/discovery";
 
 async function writeFile(filePath: string, content: string): Promise<void> {
 	await fs.mkdir(path.dirname(filePath), { recursive: true });

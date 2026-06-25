@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, describe, expect, test } from "bun:test";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { TranscriptContainer } from "@incrt/cint-coding-agent/modes/components/transcript-container";
-import { theme as activeTheme, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { evalToolRenderer } from "@incrt/cint-coding-agent/tools/eval-render";
-import { previewWindowRows } from "@incrt/cint-coding-agent/tools/render-utils";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { TranscriptContainer } from "@incrt/cint/modes/components/transcript-container";
+import { theme as activeTheme, initTheme } from "@incrt/cint/modes/theme/theme";
+import { evalToolRenderer } from "@incrt/cint/tools/eval-render";
+import { previewWindowRows } from "@incrt/cint/tools/render-utils";
 import { type Component, TUI } from "@incrt/cint-tui";
 import { VirtualTerminal } from "../../tui/test/virtual-terminal";
 

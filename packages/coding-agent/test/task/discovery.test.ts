@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { discoverAgents } from "@incrt/cint-coding-agent/task/discovery";
+import { discoverAgents } from "@incrt/cint/task/discovery";
 
 const OMP_AGENT_MD = [
 	"---",

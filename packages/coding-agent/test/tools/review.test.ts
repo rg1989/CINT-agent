@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { finalizeSubprocessOutput } from "@incrt/cint-coding-agent/task/executor";
-import { subprocessToolRegistry } from "@incrt/cint-coding-agent/task/subprocess-tool-registry";
-import { parseReportFindingDetails, toReviewFinding } from "@incrt/cint-coding-agent/tools/review";
+import { finalizeSubprocessOutput } from "@incrt/cint/task/executor";
+import { subprocessToolRegistry } from "@incrt/cint/task/subprocess-tool-registry";
+import { parseReportFindingDetails, toReviewFinding } from "@incrt/cint/tools/review";
 
 describe("report_finding subprocess extraction", () => {
 	it("returns undefined for malformed finding details", () => {

@@ -18,7 +18,7 @@
  * if you need those off-host too.
  */
 
-import { createAgentSession, SessionManager, SqlSessionStorage } from "@incrt/cint-coding-agent";
+import { createAgentSession, SessionManager, SqlSessionStorage } from "@incrt/cint";
 import { SQL } from "bun";
 
 // Pick one — Bun.SQL auto-detects the dialect from the URL scheme.

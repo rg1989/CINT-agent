@@ -6,10 +6,10 @@
  * `[Uncaught Exception]`.
  */
 import { describe, expect, it, vi } from "bun:test";
-import type { Args } from "@incrt/cint-coding-agent/cli/args";
-import type { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createSessionManager, SessionResolutionError, writeStartupNotice } from "@incrt/cint-coding-agent/main";
-import * as sessionListingModule from "@incrt/cint-coding-agent/session/session-listing";
+import type { Args } from "@incrt/cint/cli/args";
+import type { Settings } from "@incrt/cint/config/settings";
+import { createSessionManager, SessionResolutionError, writeStartupNotice } from "@incrt/cint/main";
+import * as sessionListingModule from "@incrt/cint/session/session-listing";
 
 function buildResumeArgs(resume: string): Args {
 	return {

@@ -17,12 +17,12 @@
  *         `errorMessage` is NOT set (TTSR existing behavior unchanged).
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { SILENT_ABORT_MARKER, USER_INTERRUPT_LABEL } from "@incrt/cint/session/messages";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { SILENT_ABORT_MARKER, USER_INTERRUPT_LABEL } from "@incrt/cint-coding-agent/session/messages";
 
 function makeAssistantMessage(overrides: Partial<AssistantMessage> = {}): AssistantMessage {
 	return {

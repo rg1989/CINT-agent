@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { renderTreeList } from "@incrt/cint-coding-agent/tui/tree-list";
+import { renderTreeList } from "@incrt/cint/tui/tree-list";
 
 const stubTheme = {
 	fg: (_color: string, text: string) => text,

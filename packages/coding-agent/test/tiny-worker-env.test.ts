@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { tinyWorkerEnvOverlay } from "@incrt/cint-coding-agent/tiny/title-client";
+import { tinyWorkerEnvOverlay } from "@incrt/cint/tiny/title-client";
 
 describe("tinyWorkerEnvOverlay", () => {
 	it("maps non-default settings onto the worker env vars when neither is already set", () => {

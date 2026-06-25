@@ -2,16 +2,16 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
 import {
 	DEFAULT_FUZZY_THRESHOLD,
 	EditTool,
 	type EditToolDetails,
 	executePatchSingle,
 	executeReplaceSingle,
-} from "@incrt/cint-coding-agent/edit";
-import { writethroughNoop } from "@incrt/cint-coding-agent/lsp";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+} from "@incrt/cint/edit";
+import { writethroughNoop } from "@incrt/cint/lsp";
+import type { ToolSession } from "@incrt/cint/tools";
 
 // ─── Minimal ToolSession stub ────────────────────────────────────────────────
 

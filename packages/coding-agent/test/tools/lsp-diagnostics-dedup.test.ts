@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { FileDiagnosticsResult } from "@incrt/cint-coding-agent/lsp";
-import { DiagnosticsLedger, diagnosticIdentity } from "@incrt/cint-coding-agent/lsp/diagnostics-ledger";
+import type { FileDiagnosticsResult } from "@incrt/cint/lsp";
+import { DiagnosticsLedger, diagnosticIdentity } from "@incrt/cint/lsp/diagnostics-ledger";
 
 const FILE_A = "/repo/src/a.ts";
 const FILE_B = "/repo/src/b.ts";

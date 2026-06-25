@@ -4,7 +4,7 @@
  * Skills provide specialized instructions loaded into the system prompt.
  * Discover, filter, merge, or replace them.
  */
-import { createAgentSession, discoverSkills, SessionManager, type Skill } from "@incrt/cint-coding-agent";
+import { createAgentSession, discoverSkills, SessionManager, type Skill } from "@incrt/cint";
 
 // Discover all skills from cwd/.omp/skills, ~/.omp/agent/skills, etc.
 const { skills: allSkills } = await discoverSkills();

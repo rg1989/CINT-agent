@@ -10,11 +10,11 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentTranscriptViewer } from "@incrt/cint-coding-agent/modes/components/agent-transcript-viewer";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import { CURRENT_SESSION_VERSION } from "@incrt/cint-coding-agent/session/session-entries";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AgentTranscriptViewer } from "@incrt/cint/modes/components/agent-transcript-viewer";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import { CURRENT_SESSION_VERSION } from "@incrt/cint/session/session-entries";
 
 const TS = new Date().toISOString();
 

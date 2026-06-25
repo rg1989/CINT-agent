@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { BashTool } from "@incrt/cint-coding-agent/tools/bash";
+import type { ToolSession } from "@incrt/cint/tools";
+import { BashTool } from "@incrt/cint/tools/bash";
 
 function makeSession(): ToolSession {
 	return {

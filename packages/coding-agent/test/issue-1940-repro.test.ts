@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { TinyTitleClient } from "@incrt/cint-coding-agent/tiny/title-client";
-import type { TinyTitleWorkerInbound, TinyTitleWorkerOutbound } from "@incrt/cint-coding-agent/tiny/title-protocol";
+import { TinyTitleClient } from "@incrt/cint/tiny/title-client";
+import type { TinyTitleWorkerInbound, TinyTitleWorkerOutbound } from "@incrt/cint/tiny/title-protocol";
 
 class FakeTinyWorker {
 	terminated = false;

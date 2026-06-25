@@ -10,7 +10,7 @@ import {
 	discoverModels,
 	ModelRegistry,
 	SessionManager,
-} from "@incrt/cint-coding-agent";
+} from "@incrt/cint";
 
 // Default: discoverAuthStorage() uses ~/.omp/agent/agent.db
 // discoverModels() loads built-in + custom models from ~/.omp/agent/models.json

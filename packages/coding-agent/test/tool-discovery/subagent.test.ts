@@ -1,9 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import {
-	resolveEffectiveToolDiscoveryMode,
-	TOOL_DISCOVERY_AUTO_THRESHOLD,
-} from "@incrt/cint-coding-agent/tool-discovery/mode";
+import { Settings } from "@incrt/cint/config/settings";
+import { resolveEffectiveToolDiscoveryMode, TOOL_DISCOVERY_AUTO_THRESHOLD } from "@incrt/cint/tool-discovery/mode";
 
 // ─── Subagent discovery mode inheritance tests ────────────────────────────────
 // These are unit-level tests that verify the settings resolution logic

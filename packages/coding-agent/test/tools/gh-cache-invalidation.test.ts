@@ -7,12 +7,8 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { invalidateGithubCacheForBashCommand } from "@incrt/cint-coding-agent/tools/gh-cache-invalidation";
-import {
-	getCached,
-	putCached,
-	resetForTests as resetCacheForTests,
-} from "@incrt/cint-coding-agent/tools/github-cache";
+import { invalidateGithubCacheForBashCommand } from "@incrt/cint/tools/gh-cache-invalidation";
+import { getCached, putCached, resetForTests as resetCacheForTests } from "@incrt/cint/tools/github-cache";
 
 const REPO = "owner/example";
 

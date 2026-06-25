@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { splitInternalUrlSel } from "@incrt/cint-coding-agent/tools/path-utils";
+import { splitInternalUrlSel } from "@incrt/cint/tools/path-utils";
 
 describe("splitInternalUrlSel", () => {
 	it("returns the input unchanged when there is no selector tail", () => {

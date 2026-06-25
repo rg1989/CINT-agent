@@ -11,12 +11,12 @@ import { afterEach, beforeEach, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { getCapability } from "@incrt/cint-coding-agent/capability";
-import { clearCache } from "@incrt/cint-coding-agent/capability/fs";
-import { type Rule, ruleCapability } from "@incrt/cint-coding-agent/capability/rule";
-import type { LoadContext } from "@incrt/cint-coding-agent/capability/types";
+import { getCapability } from "@incrt/cint/capability";
+import { clearCache } from "@incrt/cint/capability/fs";
+import { type Rule, ruleCapability } from "@incrt/cint/capability/rule";
+import type { LoadContext } from "@incrt/cint/capability/types";
 // Register all discovery providers as a side effect.
-import "@incrt/cint-coding-agent/discovery";
+import "@incrt/cint/discovery";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 let tempDir: string;

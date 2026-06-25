@@ -2,16 +2,16 @@ import { beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
 import {
 	type ExecuteHashlineSingleOptions,
 	executeHashlineSingle,
 	formatHashlineHeader,
 	getFileSnapshotStore as getFileReadCache,
-} from "@incrt/cint-coding-agent/edit";
-import { NOOP_HARD_LIMIT } from "@incrt/cint-coding-agent/edit/hashline/noop-loop-guard";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ToolError } from "@incrt/cint-coding-agent/tools/tool-errors";
+} from "@incrt/cint/edit";
+import { NOOP_HARD_LIMIT } from "@incrt/cint/edit/hashline/noop-loop-guard";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ToolError } from "@incrt/cint/tools/tool-errors";
 
 beforeAll(async () => {
 	resetSettingsForTest();

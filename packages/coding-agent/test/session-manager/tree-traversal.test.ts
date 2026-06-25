@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { CustomEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import type { CustomEntry } from "@incrt/cint/session/session-entries";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { assistantMsg, userMsg } from "../utilities";
 
 describe("SessionManager append and tree traversal", () => {

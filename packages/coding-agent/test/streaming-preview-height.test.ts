@@ -2,12 +2,12 @@ import { afterEach, beforeAll, beforeEach, describe, expect, test } from "bun:te
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { EDIT_MODE_STRATEGIES } from "@incrt/cint/edit";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { theme as activeTheme, initTheme } from "@incrt/cint/modes/theme/theme";
+import { previewWindowRows } from "@incrt/cint/tools/render-utils";
 import type { AgentTool } from "@incrt/cint-agent-core";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { EDIT_MODE_STRATEGIES } from "@incrt/cint-coding-agent/edit";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { theme as activeTheme, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { previewWindowRows } from "@incrt/cint-coding-agent/tools/render-utils";
 import { TUI, visibleWidth } from "@incrt/cint-tui";
 import { VirtualTerminal } from "../../tui/test/virtual-terminal";
 

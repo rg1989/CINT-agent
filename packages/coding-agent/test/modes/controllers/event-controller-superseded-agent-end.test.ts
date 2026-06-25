@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { AgentSessionEvent } from "@incrt/cint/session/agent-session";
 import { TERMINAL } from "@incrt/cint-tui";
 
 /**

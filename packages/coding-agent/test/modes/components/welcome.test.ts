@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { WelcomeComponent } from "@incrt/cint-coding-agent/modes/components/welcome";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { Settings } from "@incrt/cint/config/settings";
+import { WelcomeComponent } from "@incrt/cint/modes/components/welcome";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
 
 describe("WelcomeComponent tips", () => {
 	beforeAll(async () => {

@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from "bun:test";
+import { TreeSelectorComponent } from "@incrt/cint/modes/components/tree-selector";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
+import type { SessionEntry, SessionTreeNode } from "@incrt/cint/session/session-entries";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { TreeSelectorComponent } from "@incrt/cint-coding-agent/modes/components/tree-selector";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { SessionEntry, SessionTreeNode } from "@incrt/cint-coding-agent/session/session-entries";
 
 let counter = 0;
 function makeMessageNode(message: AgentMessage, parentId: string | null = null, label?: string): SessionTreeNode {

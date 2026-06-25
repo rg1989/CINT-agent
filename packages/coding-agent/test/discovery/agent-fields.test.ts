@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
+import { parseAgentFields } from "@incrt/cint/discovery/helpers";
 import { Effort } from "@incrt/cint-ai";
-import { parseAgentFields } from "@incrt/cint-coding-agent/discovery/helpers";
 
 describe("parseAgentFields", () => {
 	test("parses blocking from boolean frontmatter", () => {

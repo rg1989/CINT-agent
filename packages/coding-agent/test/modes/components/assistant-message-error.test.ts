@@ -1,11 +1,8 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, spyOn } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AssistantMessageComponent, resetThinkingSpeedTracker } from "@incrt/cint/modes/components/assistant-message";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import {
-	AssistantMessageComponent,
-	resetThinkingSpeedTracker,
-} from "@incrt/cint-coding-agent/modes/components/assistant-message";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
 import { setTerminalImageProtocol, TERMINAL } from "@incrt/cint-tui";
 
 const originalImageProtocol = TERMINAL.imageProtocol;

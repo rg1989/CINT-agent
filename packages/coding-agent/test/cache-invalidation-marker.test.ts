@@ -1,10 +1,10 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import type { Usage } from "@incrt/cint-ai/types";
 import {
 	CacheInvalidationMarkerComponent,
 	detectCacheInvalidation,
-} from "@incrt/cint-coding-agent/modes/components/cache-invalidation-marker";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+} from "@incrt/cint/modes/components/cache-invalidation-marker";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { Usage } from "@incrt/cint-ai/types";
 
 function usage(parts: { input?: number; cacheRead?: number; cacheWrite?: number; output?: number }): Usage {
 	const input = parts.input ?? 0;

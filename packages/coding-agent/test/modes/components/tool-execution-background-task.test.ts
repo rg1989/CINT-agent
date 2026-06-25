@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint-coding-agent/task/types";
+import { Settings } from "@incrt/cint/config/settings";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint/task/types";
 import type { TUI } from "@incrt/cint-tui";
 
 function progressEntry(description: string): AgentProgress {

@@ -16,22 +16,19 @@ import { afterEach, beforeEach, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { getCapability } from "@incrt/cint-coding-agent/capability";
-import { clearCache } from "@incrt/cint-coding-agent/capability/fs";
-import { hookCapability } from "@incrt/cint-coding-agent/capability/hook";
-import { mcpCapability } from "@incrt/cint-coding-agent/capability/mcp";
-import { promptCapability } from "@incrt/cint-coding-agent/capability/prompt";
-import { ruleCapability } from "@incrt/cint-coding-agent/capability/rule";
-import { skillCapability } from "@incrt/cint-coding-agent/capability/skill";
-import { slashCommandCapability } from "@incrt/cint-coding-agent/capability/slash-command";
-import { toolCapability } from "@incrt/cint-coding-agent/capability/tool";
-import type { LoadContext, Provider } from "@incrt/cint-coding-agent/capability/types";
+import { getCapability } from "@incrt/cint/capability";
+import { clearCache } from "@incrt/cint/capability/fs";
+import { hookCapability } from "@incrt/cint/capability/hook";
+import { mcpCapability } from "@incrt/cint/capability/mcp";
+import { promptCapability } from "@incrt/cint/capability/prompt";
+import { ruleCapability } from "@incrt/cint/capability/rule";
+import { skillCapability } from "@incrt/cint/capability/skill";
+import { slashCommandCapability } from "@incrt/cint/capability/slash-command";
+import { toolCapability } from "@incrt/cint/capability/tool";
+import type { LoadContext, Provider } from "@incrt/cint/capability/types";
 // Register all discovery providers as a side effect.
-import "@incrt/cint-coding-agent/discovery";
-import {
-	clearOmpExtensionCliRoots,
-	injectOmpExtensionCliRoots,
-} from "@incrt/cint-coding-agent/discovery/omp-extension-roots";
+import "@incrt/cint/discovery";
+import { clearOmpExtensionCliRoots, injectOmpExtensionCliRoots } from "@incrt/cint/discovery/omp-extension-roots";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 const PROVIDER_ID = "omp-plugins";

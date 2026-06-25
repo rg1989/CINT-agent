@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { TranscriptContainer } from "@incrt/cint-coding-agent/modes/components/transcript-container";
+import { TranscriptContainer } from "@incrt/cint/modes/components/transcript-container";
 import type { Component } from "@incrt/cint-tui";
 
 class MutableLiveBlock implements Component {

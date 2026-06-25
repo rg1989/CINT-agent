@@ -14,9 +14,9 @@
 
 import { afterAll, beforeAll, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
+import { runModelsListing } from "@incrt/cint/cli/models-cli";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
 import { AuthStorage } from "@incrt/cint-ai";
-import { runModelsListing } from "@incrt/cint-coding-agent/cli/models-cli";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
 import { TempDir } from "@incrt/cint-utils";
 
 let tmp: TempDir;

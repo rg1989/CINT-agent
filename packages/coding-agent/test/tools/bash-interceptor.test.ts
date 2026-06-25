@@ -1,13 +1,10 @@
 import { describe, expect, it } from "bun:test";
+import { type BashInterceptorRule, DEFAULT_BASH_INTERCEPTOR_RULES } from "@incrt/cint/config/settings-schema";
+import type { ToolSession } from "@incrt/cint/tools";
+import { BashTool, type BashToolInput } from "@incrt/cint/tools/bash";
+import { checkBashInterception } from "@incrt/cint/tools/bash-interceptor";
 import type { AgentToolContext } from "@incrt/cint-agent-core";
 import { validateToolArguments } from "@incrt/cint-ai/utils/validation";
-import {
-	type BashInterceptorRule,
-	DEFAULT_BASH_INTERCEPTOR_RULES,
-} from "@incrt/cint-coding-agent/config/settings-schema";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { BashTool, type BashToolInput } from "@incrt/cint-coding-agent/tools/bash";
-import { checkBashInterception } from "@incrt/cint-coding-agent/tools/bash-interceptor";
 
 function createBashTool(rules: BashInterceptorRule[]): BashTool {
 	const session = {

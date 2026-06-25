@@ -2,15 +2,15 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { RenderResultOptions } from "@incrt/cint-coding-agent/extensibility/custom-tools/types";
-import { getThemeByName, initTheme, type Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { findToolRenderer } from "@incrt/cint-coding-agent/tools/find";
+import type { RenderResultOptions } from "@incrt/cint/extensibility/custom-tools/types";
+import { getThemeByName, initTheme, type Theme } from "@incrt/cint/modes/theme/theme";
+import { findToolRenderer } from "@incrt/cint/tools/find";
 import {
 	expandDelimitedPathEntries,
 	parseFindPattern,
 	resolveToolSearchScope,
 	splitDelimitedPathEntry,
-} from "@incrt/cint-coding-agent/tools/path-utils";
+} from "@incrt/cint/tools/path-utils";
 import type { Component } from "@incrt/cint-tui";
 
 let uiTheme: Theme;

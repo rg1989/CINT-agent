@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { AgentLifecycleManager } from "@incrt/cint-coding-agent/registry/agent-lifecycle";
-import { AgentRegistry, MAIN_AGENT_ID } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
+import { AgentLifecycleManager } from "@incrt/cint/registry/agent-lifecycle";
+import { AgentRegistry, MAIN_AGENT_ID } from "@incrt/cint/registry/agent-registry";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
 
 interface SessionStub {
 	session: AgentSession;

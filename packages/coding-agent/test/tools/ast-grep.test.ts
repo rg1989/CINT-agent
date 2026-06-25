@@ -2,8 +2,8 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createTools, type ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { createTools, type ToolSession } from "@incrt/cint/tools";
 
 function createTestSession(cwd = "/tmp/test", overrides: Partial<ToolSession> = {}): ToolSession {
 	return {

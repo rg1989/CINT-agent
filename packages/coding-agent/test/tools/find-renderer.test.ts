@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { findToolRenderer } from "@incrt/cint-coding-agent/tools/find";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
+import { findToolRenderer } from "@incrt/cint/tools/find";
 import { sanitizeText } from "@incrt/cint-utils";
 
 describe("findToolRenderer", () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import type { IrcMessage } from "@incrt/cint-coding-agent/irc/bus";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { type IrcDetails, ircToolRenderer } from "@incrt/cint-coding-agent/tools/irc";
+import type { IrcMessage } from "@incrt/cint/irc/bus";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
+import { type IrcDetails, ircToolRenderer } from "@incrt/cint/tools/irc";
 import { sanitizeText } from "@incrt/cint-utils";
 
 async function theme() {

@@ -9,7 +9,7 @@
  * - No system prompt / tool catalog sections.
  */
 import { describe, expect, it } from "bun:test";
-import { formatSessionHistoryMarkdown } from "@incrt/cint-coding-agent/session/session-history-format";
+import { formatSessionHistoryMarkdown } from "@incrt/cint/session/session-history-format";
 import { INTENT_FIELD } from "@incrt/cint-wire";
 
 function buildMessages(): unknown[] {

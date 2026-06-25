@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { MCPOAuthFlow, refreshMCPOAuthToken } from "@incrt/cint/mcp/oauth-flow";
 import type { FetchImpl } from "@incrt/cint-ai/types";
-import { MCPOAuthFlow, refreshMCPOAuthToken } from "@incrt/cint-coding-agent/mcp/oauth-flow";
 
 afterEach(() => {
 	vi.restoreAllMocks();

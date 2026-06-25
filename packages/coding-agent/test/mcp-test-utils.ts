@@ -1,4 +1,4 @@
-import type { MCPServerCapabilities, MCPServerConnection, MCPTransport } from "@incrt/cint-coding-agent/mcp/types";
+import type { MCPServerCapabilities, MCPServerConnection, MCPTransport } from "@incrt/cint/mcp/types";
 
 export function createMockTransport(
 	responses: Map<string, unknown[]>,

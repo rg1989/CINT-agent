@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "bun:test";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { executeBuiltinSlashCommand } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { executeBuiltinSlashCommand } from "@incrt/cint/slash-commands/builtin-registry";
 
 function createRuntime(didRetry: boolean) {
 	const retry = vi.fn(async () => didRetry);

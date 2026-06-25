@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { generateSessionTitle } from "@incrt/cint/utils/title-generator";
 import type { Api, Model } from "@incrt/cint-ai";
 import * as ai from "@incrt/cint-ai";
 import { type GeneratedProvider, getBundledModel } from "@incrt/cint-catalog/models";
-import { generateSessionTitle } from "@incrt/cint-coding-agent/utils/title-generator";
 import { logger } from "@incrt/cint-utils";
 
 function getModelOrThrow(id: string): Model<Api> {

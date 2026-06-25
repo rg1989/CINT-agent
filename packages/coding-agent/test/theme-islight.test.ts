@@ -2,9 +2,9 @@ import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { generateThemeVars } from "@incrt/cint-coding-agent/export/html";
-import { defaultThemes } from "@incrt/cint-coding-agent/modes/theme/defaults";
-import { getResolvedThemeColors, getThemeByName, isLightTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { generateThemeVars } from "@incrt/cint/export/html";
+import { defaultThemes } from "@incrt/cint/modes/theme/defaults";
+import { getResolvedThemeColors, getThemeByName, isLightTheme } from "@incrt/cint/modes/theme/theme";
 import { getAgentDir, getCustomThemesDir, setAgentDir } from "@incrt/cint-utils";
 
 describe("Theme.isLight", () => {

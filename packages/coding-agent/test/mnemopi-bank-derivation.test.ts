@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import { mkdirSync } from "node:fs";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import { computeMnemopiBankScope, extendRecallWithLegacyBanks } from "@incrt/cint-coding-agent/mnemopi/config";
+import { computeMnemopiBankScope, extendRecallWithLegacyBanks } from "@incrt/cint/mnemopi/config";
 import { TempDir } from "@incrt/cint-utils";
 
 // Set up a fixture filesystem we can reuse across the two regression

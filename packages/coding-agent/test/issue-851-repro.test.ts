@@ -2,11 +2,11 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { loadCapability } from "@incrt/cint-coding-agent/capability";
-import { clearCache as clearFsCache } from "@incrt/cint-coding-agent/capability/fs";
-import { clearClaudePluginRootsCache } from "@incrt/cint-coding-agent/discovery/helpers";
-import "@incrt/cint-coding-agent/discovery/claude-plugins";
-import type { MCPServer } from "@incrt/cint-coding-agent/capability/mcp";
+import { loadCapability } from "@incrt/cint/capability";
+import { clearCache as clearFsCache } from "@incrt/cint/capability/fs";
+import { clearClaudePluginRootsCache } from "@incrt/cint/discovery/helpers";
+import "@incrt/cint/discovery/claude-plugins";
+import type { MCPServer } from "@incrt/cint/capability/mcp";
 
 describe("issue-851: claude-plugins loads flat .mcp.json shape", () => {
 	let tempDir: string;

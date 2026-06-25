@@ -7,12 +7,12 @@
  * flushes it after the turn's tools are placed.
  */
 import { beforeAll, describe, expect, it, vi } from "bun:test";
+import { ReadToolGroupComponent } from "@incrt/cint/modes/components/read-tool-group";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import type { SessionContext } from "@incrt/cint/session/session-context";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { ReadToolGroupComponent } from "@incrt/cint-coding-agent/modes/components/read-tool-group";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import type { SessionContext } from "@incrt/cint-coding-agent/session/session-context";
 import { Container } from "@incrt/cint-tui";
 import { formatNumber } from "@incrt/cint-utils";
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { renderWelcomeTip } from "@incrt/cint-coding-agent/modes/components/welcome";
+import { renderWelcomeTip } from "@incrt/cint/modes/components/welcome";
 import { visibleWidth } from "@incrt/cint-tui";
 
 describe("renderWelcomeTip", () => {

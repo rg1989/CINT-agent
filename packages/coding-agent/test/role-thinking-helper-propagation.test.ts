@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { generateCommitMessage } from "@incrt/cint/utils/commit-message-generator";
+import { generateSessionTitle } from "@incrt/cint/utils/title-generator";
 import * as ai from "@incrt/cint-ai";
 import { Effort } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { generateCommitMessage } from "@incrt/cint-coding-agent/utils/commit-message-generator";
-import { generateSessionTitle } from "@incrt/cint-coding-agent/utils/title-generator";
 
 function getModelOrThrow(id: string) {
 	const model = getBundledModel("anthropic", id);

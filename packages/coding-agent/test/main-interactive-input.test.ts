@@ -2,10 +2,10 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { applyResolvedSystemPromptInputs, submitInteractiveInput } from "@incrt/cint-coding-agent/main";
-import type { SubmittedUserInput } from "@incrt/cint-coding-agent/modes/types";
-import type { CreateAgentSessionOptions } from "@incrt/cint-coding-agent/sdk";
-import { discoverTitleSystemPromptFile } from "@incrt/cint-coding-agent/system-prompt";
+import { applyResolvedSystemPromptInputs, submitInteractiveInput } from "@incrt/cint/main";
+import type { SubmittedUserInput } from "@incrt/cint/modes/types";
+import type { CreateAgentSessionOptions } from "@incrt/cint/sdk";
+import { discoverTitleSystemPromptFile } from "@incrt/cint/system-prompt";
 
 const cleanupDirs: string[] = [];
 

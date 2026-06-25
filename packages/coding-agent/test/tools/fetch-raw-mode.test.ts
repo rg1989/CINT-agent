@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
-import * as scrapers from "@incrt/cint-coding-agent/web/scrapers/types";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ReadTool } from "@incrt/cint/tools/read";
+import * as scrapers from "@incrt/cint/web/scrapers/types";
 import { Snowflake } from "@incrt/cint-utils";
 
 const ATOM = `<?xml version="1.0"?>\n<feed xmlns="http://www.w3.org/2005/Atom"><title>Sample</title><entry><title>One</title><id>1</id><updated>2024-01-01T00:00:00Z</updated><content>body</content></entry></feed>`;

@@ -5,7 +5,7 @@ import {
 	externalizeImageData,
 	parseBlobRef,
 	resolveImageData,
-} from "@incrt/cint-coding-agent/session/blob-store";
+} from "@incrt/cint/session/blob-store";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("BlobStore image display paths", () => {

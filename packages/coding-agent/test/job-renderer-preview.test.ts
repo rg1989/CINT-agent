@@ -5,9 +5,9 @@
  * passes through unchanged.
  */
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { jobToolRenderer } from "@incrt/cint-coding-agent/tools/job";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import { jobToolRenderer } from "@incrt/cint/tools/job";
 import { prompt } from "@incrt/cint-utils";
 import taskSummaryTemplate from "../src/prompts/tools/task-summary.md" with { type: "text" };
 

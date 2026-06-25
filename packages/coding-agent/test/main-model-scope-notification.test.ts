@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
+import type { ScopedModel } from "@incrt/cint/config/model-resolver";
+import { buildModelScopeNotification } from "@incrt/cint/main";
 import type { ThinkingLevel } from "@incrt/cint-agent-core";
 import { buildModel } from "@incrt/cint-catalog/build";
-import type { ScopedModel } from "@incrt/cint-coding-agent/config/model-resolver";
-import { buildModelScopeNotification } from "@incrt/cint-coding-agent/main";
 
 function scopedModel(id: string): ScopedModel {
 	return {

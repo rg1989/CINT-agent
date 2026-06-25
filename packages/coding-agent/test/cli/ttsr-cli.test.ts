@@ -8,8 +8,8 @@ import {
 	type TtsrCommandArgs,
 	type TtsrScanArgs,
 	type TtsrTestArgs,
-} from "@incrt/cint-coding-agent/cli/ttsr-cli";
-import { resetSettingsForTest } from "@incrt/cint-coding-agent/config/settings";
+} from "@incrt/cint/cli/ttsr-cli";
+import { resetSettingsForTest } from "@incrt/cint/config/settings";
 import { getProjectAgentDir, getProjectDir, setProjectDir } from "@incrt/cint-utils";
 
 let testTmpDir: string;

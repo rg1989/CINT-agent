@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { sanitizeSnapshotForBrush } from "@incrt/cint-coding-agent/utils/shell-snapshot";
+import { sanitizeSnapshotForBrush } from "@incrt/cint/utils/shell-snapshot";
 
 // `sanitizeSnapshotForBrush` is the snapshot-side mitigation for brush's
 // whitespace-only alias expander (`crates/brush-core-vendored/src/interp.rs:1500`,

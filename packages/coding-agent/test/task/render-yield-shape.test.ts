@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint-coding-agent/task";
-import { taskToolRenderer } from "@incrt/cint-coding-agent/task/render";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import type { AgentProgress, SingleResult, TaskToolDetails } from "@incrt/cint/task";
+import { taskToolRenderer } from "@incrt/cint/task/render";
 
 // Regression for #1987: when a subagent stores a non-array value in
 // `extractedToolData.yield`, the renderer cast it to `Array<{ data }>` and

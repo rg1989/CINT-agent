@@ -1,5 +1,6 @@
 import type { ThinkingLevel } from "@incrt/cint-agent-core";
 import type { Effort } from "@incrt/cint-ai";
+import type { ShapeTarget } from "@incrt/cint-snapcompact";
 import {
 	type Component,
 	Container,
@@ -23,7 +24,6 @@ import {
 	truncateToWidth,
 	visibleWidth,
 } from "@incrt/cint-tui";
-import type { ShapeTarget } from "@incrt/cint-snapcompact";
 import { getDefault, type SettingPath, settings } from "../../config/settings";
 import type {
 	SettingTab,

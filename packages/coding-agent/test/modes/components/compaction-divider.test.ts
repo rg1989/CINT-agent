@@ -7,10 +7,10 @@
  */
 
 import { beforeAll, describe, expect, it } from "bun:test";
+import { CompactionSummaryMessageComponent } from "@incrt/cint/modes/components/compaction-summary-message";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import { createCompactionSummaryMessage } from "@incrt/cint-agent-core/compaction";
 import type { ImageContent } from "@incrt/cint-ai";
-import { CompactionSummaryMessageComponent } from "@incrt/cint-coding-agent/modes/components/compaction-summary-message";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
 
 beforeAll(() => {
 	initTheme();
