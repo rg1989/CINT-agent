@@ -360,4 +360,7 @@ if [ "$NO_CYBER" = "0" ]; then
 fi
 
 echo ""
-echo "✓ Done. Run 'cint' to get started!"
+echo "✓ Done."
+echo ""
+echo "IMPORTANT: Restart your terminal session (or run: source ~/.bashrc / source ~/.zshrc)"
+echo "for 'cint' to be available on your PATH."
