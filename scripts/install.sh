@@ -190,6 +190,22 @@ install_from_git() {
         exit 1
     }
 
+    # Build native addons (Rust .node files) — required for the agent to run.
+    # The npm package ships prebuilt binaries, but source installs must compile.
+    if ! command -v cargo >/dev/null 2>&1; then
+        echo "Installing Rust (required for native addon build)..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 2>/dev/null
+        # Source cargo env for this shell
+        . "${HOME}/.cargo/env" 2>/dev/null || true
+    fi
+    echo "Building native addons..."
+    (cd "$SRC_DIR" && bun run build:native) || {
+        echo "WARNING: Native addon build failed."
+        echo "  The agent will not start without the native addon."
+        echo "  Ensure Rust is installed: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+        echo "  Then rebuild: cd $SRC_DIR && bun run build:native"
+    }
+
     # Link globally — creates ~/.bun/bin/cint symlink
     (cd "$SRC_DIR/packages/coding-agent" && bun link) || {
         echo "Failed to link cint"
