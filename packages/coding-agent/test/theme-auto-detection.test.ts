@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
 import * as nativesModule from "@incrt/cint-natives";
 import { MacOSAppearance } from "@incrt/cint-natives";
 

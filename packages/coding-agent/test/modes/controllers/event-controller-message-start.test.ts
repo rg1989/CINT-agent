@@ -1,11 +1,11 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { TranscriptContainer } from "@incrt/cint/modes/components/transcript-container";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import type { CustomMessage } from "@incrt/cint/session/messages";
 import type { TextContent, UserMessage } from "@incrt/cint-ai";
-import { TranscriptContainer } from "@incrt/cint-coding-agent/modes/components/transcript-container";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import type { CustomMessage } from "@incrt/cint-coding-agent/session/messages";
 import type { Component } from "@incrt/cint-tui";
 
 beforeAll(() => {

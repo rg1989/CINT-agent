@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it, vi } from "bun:test";
-import { CommandController } from "@incrt/cint-coding-agent/modes/controllers/command-controller";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+import { CommandController } from "@incrt/cint/modes/controllers/command-controller";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 
 function createContainer() {
 	return {

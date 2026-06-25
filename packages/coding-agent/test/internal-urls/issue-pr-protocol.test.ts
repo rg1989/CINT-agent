@@ -9,10 +9,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { InternalUrlRouter } from "@incrt/cint-coding-agent/internal-urls";
-import { resetForTests as resetCacheForTests } from "@incrt/cint-coding-agent/tools/github-cache";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+import { Settings } from "@incrt/cint/config/settings";
+import { InternalUrlRouter } from "@incrt/cint/internal-urls";
+import { resetForTests as resetCacheForTests } from "@incrt/cint/tools/github-cache";
+import * as git from "@incrt/cint/utils/git";
 
 let tempDir: string;
 let originalEnv: string | undefined;

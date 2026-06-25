@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { ReadyInfo, WorkerInbound, WorkerOutbound } from "@incrt/cint-coding-agent/tools/browser/tab-protocol";
-import { initializeTabWorkerForTest } from "@incrt/cint-coding-agent/tools/browser/tab-supervisor";
+import type { ReadyInfo, WorkerInbound, WorkerOutbound } from "@incrt/cint/tools/browser/tab-protocol";
+import { initializeTabWorkerForTest } from "@incrt/cint/tools/browser/tab-supervisor";
 
 class FakeStartupWorker {
 	#errorHandlers = new Set<(error: Error) => void>();

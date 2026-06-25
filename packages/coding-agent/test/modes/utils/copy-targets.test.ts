@@ -1,5 +1,4 @@
 import { describe, expect, it } from "bun:test";
-import type { AgentMessage } from "@incrt/cint-agent-core";
 import {
 	buildCopyTargets,
 	type CopySource,
@@ -7,7 +6,8 @@ import {
 	extractCodeBlocks,
 	extractLastCommand,
 	extractQuoteBlocks,
-} from "@incrt/cint-coding-agent/modes/utils/copy-targets";
+} from "@incrt/cint/modes/utils/copy-targets";
+import type { AgentMessage } from "@incrt/cint-agent-core";
 
 function source(overrides: Partial<CopySource>): CopySource {
 	return {

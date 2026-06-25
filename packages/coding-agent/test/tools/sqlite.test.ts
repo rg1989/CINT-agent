@@ -3,17 +3,17 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import "@incrt/cint-coding-agent/tools/renderers";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
+import "@incrt/cint/tools/renderers";
+import { Settings } from "@incrt/cint/config/settings";
+import { ReadTool } from "@incrt/cint/tools/read";
 import {
 	listTables,
 	parseSqlitePathCandidates,
 	parseSqliteSelector,
 	renderTable,
 	renderTableList,
-} from "@incrt/cint-coding-agent/tools/sqlite-reader";
-import { WriteTool } from "@incrt/cint-coding-agent/tools/write";
+} from "@incrt/cint/tools/sqlite-reader";
+import { WriteTool } from "@incrt/cint/tools/write";
 
 type ToolTextResult = {
 	content: Array<{ type: string; text?: string }>;

@@ -1,15 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import type { SettingPath } from "@incrt/cint/config/settings-schema";
+import { IrcBus, type IrcMessage } from "@incrt/cint/irc/bus";
+import { AgentLifecycleManager } from "@incrt/cint/registry/agent-lifecycle";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import { AgentSession, type AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import type { CustomMessage } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import type { ToolSession } from "@incrt/cint/tools";
+import { IrcTool } from "@incrt/cint/tools/irc";
 import { Agent } from "@incrt/cint-agent-core";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { SettingPath } from "@incrt/cint-coding-agent/config/settings-schema";
-import { IrcBus, type IrcMessage } from "@incrt/cint-coding-agent/irc/bus";
-import { AgentLifecycleManager } from "@incrt/cint-coding-agent/registry/agent-lifecycle";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import { AgentSession, type AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import type { CustomMessage } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { IrcTool } from "@incrt/cint-coding-agent/tools/irc";
 
 interface FakeSession {
 	session: AgentSession;

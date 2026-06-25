@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { BuiltinToolLoadMode, ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import type { BuiltinToolLoadMode, ToolSession } from "@incrt/cint/tools";
 import {
 	AskTool,
 	BUILTIN_TOOLS,
@@ -11,7 +11,7 @@ import {
 	IrcTool,
 	JobTool,
 	SshTool,
-} from "@incrt/cint-coding-agent/tools";
+} from "@incrt/cint/tools";
 
 const allToolsSettings = Settings.isolated({
 	"astGrep.enabled": true,

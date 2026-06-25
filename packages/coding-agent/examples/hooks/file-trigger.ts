@@ -8,7 +8,7 @@
  *   echo "Run the tests" > /tmp/agent-trigger.txt
  */
 import * as fs from "node:fs";
-import type { HookAPI } from "@incrt/cint-coding-agent";
+import type { HookAPI } from "@incrt/cint";
 
 export default function (pi: HookAPI) {
 	pi.on("session_start", async (_event, ctx) => {

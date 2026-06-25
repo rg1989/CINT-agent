@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { containsWorkflow, highlightWorkflow, WORKFLOW_NOTICE } from "@incrt/cint-coding-agent/modes/workflow";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { containsWorkflow, highlightWorkflow, WORKFLOW_NOTICE } from "@incrt/cint/modes/workflow";
 
 beforeAll(() => {
 	// highlightWorkflow reads the global theme's color mode.

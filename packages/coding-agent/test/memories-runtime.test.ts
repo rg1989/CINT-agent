@@ -2,15 +2,11 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, test, vi 
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { Settings } from "@incrt/cint/config/settings";
+import { buildMemoryToolDeveloperInstructions, getMemoryRoot, startMemoryStartupTask } from "@incrt/cint/memories";
+import * as memoryStorage from "@incrt/cint/memories/storage";
 import * as ai from "@incrt/cint-ai";
 import { Effort, type Model } from "@incrt/cint-ai";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import {
-	buildMemoryToolDeveloperInstructions,
-	getMemoryRoot,
-	startMemoryStartupTask,
-} from "@incrt/cint-coding-agent/memories";
-import * as memoryStorage from "@incrt/cint-coding-agent/memories/storage";
 import { getAgentDbPath, Snowflake, TempDir } from "@incrt/cint-utils";
 
 interface SessionFixture {

@@ -31,11 +31,23 @@ The most capable agent surface that ships. Continuously tuned by real-world use 
 
 CINT ships a full offensive-security suite bundled into the same agent surface — reconnaissance through exploitation through reporting, driven by the recursive agentic loop. No separate toolchain to wire up; the capabilities are first-class tools and skills the agent already knows how to orchestrate.
 
+### 38 bundled skills (cyber + dev methodology)
+
+The agent ships with **38 skills** in `.cint/skills/`, installed to `~/.cint/agent/skills/` on first run. Skills are non-destructive — existing user skills are never overwritten. Install them separately with `cint --install-skills`, or as part of the full toolchain with `cint --install-cyber-tools`.
+
+- **23 cyber/pentest skills** — pentest, cybersec-operations, cyber-recon, cyber-web-exploitation, cyber-tool-playbooks, cyber-penetration-loop, cyber-full-spectrum-loop, cyber-vuln-research, cyber-cve-reproduction, cyber-reverse-engineering, cyber-fuzzing, cyber-bug-identification, cyber-vuln-classes, cyber-crash-analysis, cyber-exploit-development, cyber-basic-exploitation, cyber-mitigations, cyber-toctou, cyber-exploit-validation, cyber-defensive-ops, cyber-reporting, cyber-exploit-dev-course, cyber-fuzzing-course.
+- **14 dev methodology skills** — api-design, codebase-design, creating-agentic-loops, running-agentic-loops, opensrc, resolving-merge-conflicts, workflow, grilling, implement, prototype, improve-codebase-architecture, semantic-compression, system-prompts, tool-prompt-optimization.
+- **1 cyber-suite manifest** — documents every cyber skill, the installed tool inventory, and the operational guardrails.
+
+Binary installs (no local repo) automatically download skills from GitHub as a fallback. Override the source repo with the `CINT_REPO` env var.
+
 ### Full-stack penetration testing (26 tools)
 
-A five-phase methodology with the worst-case-first reporting baked in. The agent runs recon, maps the attack surface, exploits web/API/host weaknesses, validates every finding with a non-destructive PoC, and writes both `.md` and `.html` deliverables. One directory per engagement under `cyber-runs/<run-name>/` with `ROE.md`, `surface.md`, `findings.md`, `journal.md`, and `poc/`.
+A five-phase methodology with the worst-case-first reporting baked in. The agent runs recon, maps the attack surface, exploits web/API/host weaknesses, validates every finding with a non-destructive PoC, and writes both `.md` and `.html` deliverables. One directory per engagement under `cyber-runs/<run-name>/` with `ROE.md`, `surface.md`, `findings.json`, `findings.md`, `journal.md`, `poc/`, and `evidence/`.
 
 Bundled tooling: `subfinder`, `naabu`, `nmap`, `masscan`, `httpx`, `katana`, `ffuf`, `nuclei`, `sqlmap`, `arjun`, `dirsearch`, `wafw00f`, `semgrep`, `ast-grep`, `bandit`, `trivy`, `trufflehog`, `gitleaks`, `jwt_tool`, `interactsh`, `hydra`, `john`, `hashcat`, `python3`, `docker`, `playwright`.
+
+Optional wordlists (SecLists + dirb) install alongside the toolchain by default — skip the ~500MB download with `--no-wordlists`.
 
 ### Exploit research (13 skills)
 
@@ -53,6 +65,10 @@ Thirteen skills covering the full vulnerability-research lifecycle — from atta
 
 Exploit-research tools installed: **Ghidra** (analyzeHeadless + ghidraRun), **AFL++**, **libFuzzer**, **pwntools**, **ROPgadget**, **ropper**, **capstone**, **Diaphora**. Native debugger: **lldb** (macOS); **gdb+pwndbg** inside a Linux VM for Linux targets.
 
+### Cyber report contract
+
+Every engagement produces a worst-case-first report following a strict contract: `findings.json` is the authoritative source for all counts (hand-counting is prohibited), every finding requires a `primary_cwe` and a reproducing PoC (scanner-only results are candidates, not findings), evidence is redacted before drafting, and both `report.md` and a self-contained `report.html` are always produced. Quality gates (`report-lint.json`) block finalization on count mismatches, missing CWE, or unreviewed PII. Loop engagements add a metrics banner and interactive attack-tree infographic.
+
 ### Web intelligence (camofox + firecrawl)
 
 CINT bundles two web-intelligence services that extend the agent's reach beyond what the built-in `browser` and `web_search` tools can do:
@@ -60,7 +76,7 @@ CINT bundles two web-intelligence services that extend the agent's reach beyond 
 - **camofox-browser** — stealth headless browser powered by Camoufox (Firefox fork with C++-level fingerprint spoofing). Bypasses Cloudflare, bot detection, and anti-scraping. Runs as a local REST API on `:9377` with accessibility snapshots, stable element refs, cookie import, proxy/GeoIP routing, and search macros. Start with `npx @askjo/camofox-browser`.
 - **firecrawl** — web scraping, search, and crawl at scale. Exposed as an MCP server (`firecrawl-mcp`) so the agent gets `mcp__firecrawl_search`, `mcp__firecrawl_scrape`, `mcp__firecrawl_crawl`, and `mcp__firecrawl_map` tools automatically. Works with the hosted API (`firecrawl.dev`) or self-hosted via Docker.
 
-Install both with `cint --install-cyber-tools`. Configure firecrawl by adding an MCP server entry to `~/.cint/agent/mcp.json`:
+Install everything with `cint --install-cyber-tools`. Skills-only with `cint --install-skills`. Configure firecrawl by adding an MCP server entry to `~/.cint/agent/mcp.json`:
 
 ```json
 {"mcpServers":{"firecrawl":{"command":"npx","args":["-y","firecrawl-mcp"],"env":{"FIRECRAWL_API_KEY":"fc-YOUR_KEY"}}}}
@@ -72,10 +88,18 @@ The loop declares a goal, scope, and exit criteria, then iterates recon→exploi
 
 ## Install
 
+One command installs everything — the agent, the full cyber toolchain (26 security tools), 38 skills, and optional wordlists (SecLists + dirb).
+
 **macOS · Linux**
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
+```
+
+**From a cloned repo**
+
+```sh
+sh scripts/install.sh
 ```
 
 **Windows (PowerShell)**
@@ -84,10 +108,10 @@ curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/inst
 irm https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.ps1 | iex
 ```
 
-**Bun (source)**
+**Agent only (no cyber toolchain)**
 
 ```sh
-bun install -g ./packages/coding-agent
+curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh -s -- --no-cyber
 ```
 
 **Pinned versions (mise)**

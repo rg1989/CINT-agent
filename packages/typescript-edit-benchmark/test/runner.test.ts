@@ -1,9 +1,8 @@
 import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
+import { formatSessionDumpText, SessionManager } from "@incrt/cint";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { formatSessionDumpText, SessionManager } from "@incrt/cint-coding-agent";
-import { TempDir } from "@incrt/cint-utils";
 import { generateReport } from "@incrt/cint-typescript-edit-benchmark/report";
 import {
 	buildBenchmarkResult,
@@ -11,6 +10,7 @@ import {
 	writeConversationDump,
 } from "@incrt/cint-typescript-edit-benchmark/runner";
 import type { EditTask } from "@incrt/cint-typescript-edit-benchmark/tasks";
+import { TempDir } from "@incrt/cint-utils";
 
 const tempDirs: TempDir[] = [];
 

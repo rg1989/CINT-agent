@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "bun:test";
-import { completionBudgetReport, GoalRuntime } from "@incrt/cint-coding-agent/goals/runtime";
-import type { Goal, GoalModeState, GoalTokenUsage } from "@incrt/cint-coding-agent/goals/state";
-import { GoalTool } from "@incrt/cint-coding-agent/goals/tools/goal-tool";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { completionBudgetReport, GoalRuntime } from "@incrt/cint/goals/runtime";
+import type { Goal, GoalModeState, GoalTokenUsage } from "@incrt/cint/goals/state";
+import { GoalTool } from "@incrt/cint/goals/tools/goal-tool";
+import type { ToolSession } from "@incrt/cint/tools";
 
 function createUsage(overrides: Partial<GoalTokenUsage> = {}): GoalTokenUsage {
 	return {

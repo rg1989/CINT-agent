@@ -8,8 +8,8 @@
  * 1. Copy this file to ~/.omp/agent/extensions/ (legacy: ~/.pi/agent/extensions/) or your project's .omp/extensions/
  * 2. Use /tools to open the tool selector
  */
-import type { ExtensionAPI, ExtensionContext } from "@incrt/cint-coding-agent";
-import { getSettingsListTheme } from "@incrt/cint-coding-agent";
+import type { ExtensionAPI, ExtensionContext } from "@incrt/cint";
+import { getSettingsListTheme } from "@incrt/cint";
 import { Container, type SettingItem, SettingsList } from "@incrt/cint-tui";
 
 // State persisted to session

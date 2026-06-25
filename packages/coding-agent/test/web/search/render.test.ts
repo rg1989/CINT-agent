@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { renderSearchResult, type SearchRenderDetails } from "@incrt/cint-coding-agent/web/search/render";
-import type { SearchResponse } from "@incrt/cint-coding-agent/web/search/types";
+import { getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import { renderSearchResult, type SearchRenderDetails } from "@incrt/cint/web/search/render";
+import type { SearchResponse } from "@incrt/cint/web/search/types";
 import { sanitizeText } from "@incrt/cint-utils";
 
 const ANSWER = [

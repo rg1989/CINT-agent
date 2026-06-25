@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { SelectorController } from "@incrt/cint-coding-agent/modes/controllers/selector-controller";
-import { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { SelectorController } from "@incrt/cint/modes/controllers/selector-controller";
+import { AgentStorage } from "@incrt/cint/session/agent-storage";
 import { getProjectAgentDir, TempDir } from "@incrt/cint-utils";
 import { YAML } from "bun";
 import { beginSettingsTest, restoreSettingsTestState, type SettingsTestState } from "./helpers/settings-test-state";

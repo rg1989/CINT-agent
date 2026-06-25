@@ -2,20 +2,20 @@ import { beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import {
-	type InMemorySnapshotStore as FileReadCache,
-	formatHashlineHeader,
-	MismatchError as HashlineMismatchError,
-} from "@incrt/cint-hashline";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
 import {
 	canonicalSnapshotKey,
 	type ExecuteHashlineSingleOptions,
 	executeHashlineSingle,
 	getFileSnapshotStore as getFileReadCache,
 	hashlineEditParamsSchema,
-} from "@incrt/cint-coding-agent/edit";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+} from "@incrt/cint/edit";
+import type { ToolSession } from "@incrt/cint/tools";
+import {
+	type InMemorySnapshotStore as FileReadCache,
+	formatHashlineHeader,
+	MismatchError as HashlineMismatchError,
+} from "@incrt/cint-hashline";
 import { type Type, type } from "arktype";
 
 beforeAll(async () => {

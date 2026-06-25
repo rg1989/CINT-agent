@@ -13,16 +13,16 @@ const arkSessionNotification = type({
 	},
 });
 
-import type { Model } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
-import { AcpAgent } from "@incrt/cint-coding-agent/modes/acp/acp-agent";
+import { AcpAgent } from "@incrt/cint/modes/acp/acp-agent";
 import {
 	buildToolCallStartUpdate,
 	mapAgentSessionEventToAcpSessionUpdates,
 	normalizeReplayToolArguments,
-} from "@incrt/cint-coding-agent/modes/acp/acp-event-mapper";
-import type { AgentSession, AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+} from "@incrt/cint/modes/acp/acp-event-mapper";
+import type { AgentSession, AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import type { Model } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
 import { expectAcpStructure, expectAcpStructureRejects } from "./helpers/acp-schema";
 
 function makeAssistantMessage(text: string) {

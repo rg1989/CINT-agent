@@ -8,7 +8,7 @@ import {
 	visibleWidth,
 } from "@incrt/cint-tui";
 import { APP_NAME } from "@incrt/cint-utils";
-import { gradientLogo, CINT_LOGO } from "../components/welcome";
+import { CINT_LOGO, gradientLogo } from "../components/welcome";
 import { theme } from "../theme/theme";
 import type { InteractiveModeContext } from "../types";
 import { renderSetupOutro, SETUP_OUTRO_MS } from "./scenes/outro";

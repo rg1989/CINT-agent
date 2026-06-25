@@ -2,14 +2,14 @@ import { afterEach, describe, expect, it, spyOn, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { ReviewCommand } from "@incrt/cint-coding-agent/extensibility/custom-commands/bundled/review";
-import type { CustomCommandAPI } from "@incrt/cint-coding-agent/extensibility/custom-commands/types";
-import type { HookCommandContext } from "@incrt/cint-coding-agent/extensibility/hooks/types";
-import type { SessionEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import type { PrDiffPayload, ViewLookupResult } from "@incrt/cint-coding-agent/tools/gh";
-import * as gh from "@incrt/cint-coding-agent/tools/gh";
-import * as git from "@incrt/cint-coding-agent/utils/git";
-import * as jj from "@incrt/cint-coding-agent/utils/jj";
+import { ReviewCommand } from "@incrt/cint/extensibility/custom-commands/bundled/review";
+import type { CustomCommandAPI } from "@incrt/cint/extensibility/custom-commands/types";
+import type { HookCommandContext } from "@incrt/cint/extensibility/hooks/types";
+import type { SessionEntry } from "@incrt/cint/session/session-entries";
+import type { PrDiffPayload, ViewLookupResult } from "@incrt/cint/tools/gh";
+import * as gh from "@incrt/cint/tools/gh";
+import * as git from "@incrt/cint/utils/git";
+import * as jj from "@incrt/cint/utils/jj";
 
 const SAMPLE_JJ_DIFF = `diff --git a/src/workspace.ts b/src/workspace.ts
 --- a/src/workspace.ts

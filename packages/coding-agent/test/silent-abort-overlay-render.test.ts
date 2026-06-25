@@ -11,12 +11,12 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentTranscriptViewer } from "@incrt/cint-coding-agent/modes/components/agent-transcript-viewer";
-import type { ObservableSession } from "@incrt/cint-coding-agent/modes/session-observer-registry";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import { SILENT_ABORT_MARKER } from "@incrt/cint-coding-agent/session/messages";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AgentTranscriptViewer } from "@incrt/cint/modes/components/agent-transcript-viewer";
+import type { ObservableSession } from "@incrt/cint/modes/session-observer-registry";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import { SILENT_ABORT_MARKER } from "@incrt/cint/session/messages";
 import type { TUI } from "@incrt/cint-tui";
 
 const SESSION_ID = "test-session-1";
@@ -34,7 +34,7 @@ function makeSubagentRegistry(sessions: ObservableSession[]) {
 		onChange: () => () => {},
 		setMainSession: () => {},
 		getActiveSubagentCount: () => sessions.filter(s => s.status === "active").length,
-	} as unknown as import("@incrt/cint-coding-agent/modes/session-observer-registry").SessionObserverRegistry;
+	} as unknown as import("@incrt/cint/modes/session-observer-registry").SessionObserverRegistry;
 }
 
 function makeViewer(sessionFile: string, observed: ObservableSession[]): AgentTranscriptViewer {

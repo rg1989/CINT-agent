@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
+import { type TSchema, Type } from "@incrt/cint/extensibility/typebox";
 import { isValidJsonSchema, toolWireSchema } from "@incrt/cint-ai/utils/schema";
-import { type TSchema, Type } from "@incrt/cint-coding-agent/extensibility/typebox";
 
 /**
  * The typebox shim's `Type.*` builders return arktype-backed validator wrappers

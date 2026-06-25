@@ -3,10 +3,7 @@ import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
 
-import {
-	MarketplaceManager,
-	readInstalledPluginsRegistry,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+import { MarketplaceManager, readInstalledPluginsRegistry } from "@incrt/cint/extensibility/plugins/marketplace";
 
 // Minimal marketplace fixture, built once into a temp dir (see beforeAll). It carries only
 // what these tests assert — one plugin entry plus a plugin.json for the version-fallback path —

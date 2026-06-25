@@ -6,10 +6,10 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { disableProvider, enableProvider } from "@incrt/cint-coding-agent/capability";
-import { clearCache as clearFsCache } from "@incrt/cint-coding-agent/capability/fs";
-import { clearClaudePluginRootsCache } from "@incrt/cint-coding-agent/discovery/helpers";
-import { discoverAgents } from "@incrt/cint-coding-agent/task/discovery";
+import { disableProvider, enableProvider } from "@incrt/cint/capability";
+import { clearCache as clearFsCache } from "@incrt/cint/capability/fs";
+import { clearClaudePluginRootsCache } from "@incrt/cint/discovery/helpers";
+import { discoverAgents } from "@incrt/cint/task/discovery";
 
 const PLUGIN_AGENT_MD = [
 	"---",

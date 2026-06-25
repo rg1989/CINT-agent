@@ -1,9 +1,9 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { GALLERY_STATES, renderGalleryState, resolveFixture } from "@incrt/cint-coding-agent/cli/gallery-cli";
-import type { GalleryFixture } from "@incrt/cint-coding-agent/cli/gallery-fixtures";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { toolRenderers } from "@incrt/cint-coding-agent/tools/renderers";
+import { GALLERY_STATES, renderGalleryState, resolveFixture } from "@incrt/cint/cli/gallery-cli";
+import type { GalleryFixture } from "@incrt/cint/cli/gallery-fixtures";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import { toolRenderers } from "@incrt/cint/tools/renderers";
 
 beforeAll(async () => {
 	resetSettingsForTest();

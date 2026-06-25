@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { InternalUrlRouter } from "@incrt/cint-coding-agent/internal-urls";
+import { InternalUrlRouter } from "@incrt/cint/internal-urls";
 
 describe("OmpProtocolHandler", () => {
 	it("treats omp://docs as the documentation root", async () => {

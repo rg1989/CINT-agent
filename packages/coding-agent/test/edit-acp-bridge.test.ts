@@ -2,14 +2,14 @@ import { afterEach, beforeEach, describe, expect, it, spyOn } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { DEFAULT_FUZZY_THRESHOLD, executePatchSingle, executeReplaceSingle } from "@incrt/cint-coding-agent/edit";
-import { HashlineFilesystem } from "@incrt/cint-coding-agent/edit/hashline/filesystem";
-import { resolveLocalUrlToPath } from "@incrt/cint-coding-agent/internal-urls";
-import type { WritethroughCallback } from "@incrt/cint-coding-agent/lsp";
-import type { PlanModeState } from "@incrt/cint-coding-agent/plan-mode/state";
-import type { ClientBridge } from "@incrt/cint-coding-agent/session/client-bridge";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { DEFAULT_FUZZY_THRESHOLD, executePatchSingle, executeReplaceSingle } from "@incrt/cint/edit";
+import { HashlineFilesystem } from "@incrt/cint/edit/hashline/filesystem";
+import { resolveLocalUrlToPath } from "@incrt/cint/internal-urls";
+import type { WritethroughCallback } from "@incrt/cint/lsp";
+import type { PlanModeState } from "@incrt/cint/plan-mode/state";
+import type { ClientBridge } from "@incrt/cint/session/client-bridge";
+import type { ToolSession } from "@incrt/cint/tools";
 
 // ─── Shared helpers ───────────────────────────────────────────────────────────
 

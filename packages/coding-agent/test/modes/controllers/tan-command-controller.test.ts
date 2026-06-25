@@ -1,14 +1,14 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import type { AsyncJobRegisterOptions } from "@incrt/cint/async/job-manager";
+import { Settings } from "@incrt/cint/config/settings";
+import { TanCommandController } from "@incrt/cint/modes/controllers/tan-command-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { AgentRegistry, MAIN_AGENT_ID } from "@incrt/cint/registry/agent-registry";
+import type { CreateAgentSessionResult } from "@incrt/cint/sdk";
+import * as sdkModule from "@incrt/cint/sdk";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type { AssistantMessage, Model } from "@incrt/cint-ai";
-import type { AsyncJobRegisterOptions } from "@incrt/cint-coding-agent/async/job-manager";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { TanCommandController } from "@incrt/cint-coding-agent/modes/controllers/tan-command-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { AgentRegistry, MAIN_AGENT_ID } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 interface CapturedJobRunContext {

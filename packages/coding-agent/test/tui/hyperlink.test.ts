@@ -1,9 +1,9 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
 import * as url from "node:url";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { LocalProtocolHandler } from "@incrt/cint-coding-agent/internal-urls/local-protocol";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { LocalProtocolHandler } from "@incrt/cint/internal-urls/local-protocol";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
 import {
 	fileHyperlink,
 	isHyperlinkEnabled,
@@ -11,7 +11,7 @@ import {
 	uriHyperlink,
 	urlHyperlink,
 	urlHyperlinkAlways,
-} from "@incrt/cint-coding-agent/tui/hyperlink";
+} from "@incrt/cint/tui/hyperlink";
 import * as terminalCaps from "@incrt/cint-tui";
 
 // OSC 8 sequence markers

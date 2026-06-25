@@ -2,12 +2,12 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { kNoAuth, ModelRegistry } from "@incrt/cint/config/model-registry";
+import { resetSettingsForTest } from "@incrt/cint/config/settings";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { Effort, type FetchImpl, type Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
 import { writeModelCache } from "@incrt/cint-catalog/model-cache";
-import { kNoAuth, ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { resetSettingsForTest } from "@incrt/cint-coding-agent/config/settings";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
 import { Snowflake } from "@incrt/cint-utils";
 
 describe("ModelRegistry runtime discovery", () => {

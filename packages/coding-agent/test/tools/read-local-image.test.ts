@@ -11,10 +11,10 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { InternalUrlRouter, LocalProtocolHandler } from "@incrt/cint-coding-agent/internal-urls";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
+import { Settings } from "@incrt/cint/config/settings";
+import { InternalUrlRouter, LocalProtocolHandler } from "@incrt/cint/internal-urls";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ReadTool } from "@incrt/cint/tools/read";
 
 // 1x1 transparent PNG — small enough to pass through image loading untouched.
 const TINY_PNG = Buffer.from(

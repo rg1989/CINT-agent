@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { TreeSelectorComponent } from "@incrt/cint-coding-agent/modes/components/tree-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { SessionEntry, SessionTreeNode } from "@incrt/cint-coding-agent/session/session-entries";
+import { TreeSelectorComponent } from "@incrt/cint/modes/components/tree-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { SessionEntry, SessionTreeNode } from "@incrt/cint/session/session-entries";
 
 beforeAll(async () => {
 	await initTheme(false, undefined, undefined, "dark", "light");

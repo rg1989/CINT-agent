@@ -9,8 +9,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { getOrFetchIssue, getOrFetchPr } from "@incrt/cint-coding-agent/tools/gh";
+import { Settings } from "@incrt/cint/config/settings";
+import { getOrFetchIssue, getOrFetchPr } from "@incrt/cint/tools/gh";
 import {
 	clearAll,
 	getCached,
@@ -18,9 +18,9 @@ import {
 	openDb,
 	putCached,
 	resetForTests as resetCacheForTests,
-} from "@incrt/cint-coding-agent/tools/github-cache";
-import { ToolAbortError, throwIfAborted } from "@incrt/cint-coding-agent/tools/tool-errors";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+} from "@incrt/cint/tools/github-cache";
+import { ToolAbortError, throwIfAborted } from "@incrt/cint/tools/tool-errors";
+import * as git from "@incrt/cint/utils/git";
 
 const TEST_REPO = "owner/example";
 const TEST_AUTH_KEY = "test-auth";

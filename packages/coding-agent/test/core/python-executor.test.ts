@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
-import { disposeAllKernelSessions, executePythonWithKernel } from "@incrt/cint-coding-agent/eval/py/executor";
-import { DEFAULT_MAX_BYTES } from "@incrt/cint-coding-agent/session/streaming-output";
+import { disposeAllKernelSessions, executePythonWithKernel } from "@incrt/cint/eval/py/executor";
+import { DEFAULT_MAX_BYTES } from "@incrt/cint/session/streaming-output";
 import { TempDir } from "@incrt/cint-utils";
 import { FakeKernel } from "./helpers";
 

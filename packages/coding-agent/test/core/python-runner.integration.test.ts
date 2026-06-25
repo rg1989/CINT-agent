@@ -6,10 +6,10 @@
  */
 import { afterEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { disposeAllKernelSessions, executePythonWithKernel } from "@incrt/cint-coding-agent/eval/py/executor";
-import { PythonKernel } from "@incrt/cint-coding-agent/eval/py/kernel";
-import { filterEnv, resolvePythonRuntime } from "@incrt/cint-coding-agent/eval/py/runtime";
+import { Settings } from "@incrt/cint/config/settings";
+import { disposeAllKernelSessions, executePythonWithKernel } from "@incrt/cint/eval/py/executor";
+import { PythonKernel } from "@incrt/cint/eval/py/kernel";
+import { filterEnv, resolvePythonRuntime } from "@incrt/cint/eval/py/runtime";
 import { TempDir } from "@incrt/cint-utils";
 
 const SHOULD_RUN = Bun.env.PI_PYTHON_INTEGRATION === "1";

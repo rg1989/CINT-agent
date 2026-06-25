@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { ToolExecutionComponent } from "@incrt/cint-coding-agent/modes/components/tool-execution";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
-import { writeToolRenderer } from "@incrt/cint-coding-agent/tools/write";
+import { ToolExecutionComponent } from "@incrt/cint/modes/components/tool-execution";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
+import { writeToolRenderer } from "@incrt/cint/tools/write";
 import type { TUI } from "@incrt/cint-tui";
 
 const stripAnsi = (s: string): string => s.replace(/\u001b\[[0-9;]*m/g, "");

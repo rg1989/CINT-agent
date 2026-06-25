@@ -1,7 +1,7 @@
 import { Database } from "bun:sqlite";
 import { afterEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
+import { AgentStorage } from "@incrt/cint/session/agent-storage";
 import { TempDir } from "@incrt/cint-utils";
 import { readTableSql } from "./helpers/sqlite-inspect";
 

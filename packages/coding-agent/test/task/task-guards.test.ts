@@ -1,14 +1,14 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import type { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { LoadExtensionsResult } from "@incrt/cint-coding-agent/extensibility/extensions/types";
-import type { CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession, AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { formatResultOutputFallback } from "@incrt/cint-coding-agent/task";
-import { runSubprocess } from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition } from "@incrt/cint-coding-agent/task/types";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+import type { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import type { LoadExtensionsResult } from "@incrt/cint/extensibility/extensions/types";
+import type { CreateAgentSessionResult } from "@incrt/cint/sdk";
+import * as sdkModule from "@incrt/cint/sdk";
+import type { AgentSession, AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { formatResultOutputFallback } from "@incrt/cint/task";
+import { runSubprocess } from "@incrt/cint/task/executor";
+import type { AgentDefinition } from "@incrt/cint/task/types";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 
 /**
  * Contract: runaway-subagent guards.

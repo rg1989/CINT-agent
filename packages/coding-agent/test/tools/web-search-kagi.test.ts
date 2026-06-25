@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, setSystemTime, vi } from "bun:test";
+import { type KagiSearchRequest, searchWithKagi } from "@incrt/cint/web/kagi";
+import { KagiProvider, searchKagi } from "@incrt/cint/web/search/providers/kagi";
+import { SearchProviderError } from "@incrt/cint/web/search/types";
 import type { AuthStorage, FetchImpl } from "@incrt/cint-ai";
-import { type KagiSearchRequest, searchWithKagi } from "@incrt/cint-coding-agent/web/kagi";
-import { KagiProvider, searchKagi } from "@incrt/cint-coding-agent/web/search/providers/kagi";
-import { SearchProviderError } from "@incrt/cint-coding-agent/web/search/types";
 
 const fakeAuthStorage = {
 	async getApiKey() {

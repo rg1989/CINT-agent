@@ -2,16 +2,11 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { type CompactionEntry, type FileEntry, parseSessionEntries, type SessionMessageEntry } from "@incrt/cint";
+import { RpcClient } from "@incrt/cint/modes/rpc/rpc-client";
+import type { BashExecutionMessage } from "@incrt/cint/session/messages";
 import type { AgentEvent, AgentMessage } from "@incrt/cint-agent-core";
 import { type AssistantMessage, Effort, type TextContent } from "@incrt/cint-ai";
-import {
-	type CompactionEntry,
-	type FileEntry,
-	parseSessionEntries,
-	type SessionMessageEntry,
-} from "@incrt/cint-coding-agent";
-import { RpcClient } from "@incrt/cint-coding-agent/modes/rpc/rpc-client";
-import type { BashExecutionMessage } from "@incrt/cint-coding-agent/session/messages";
 import { Snowflake } from "@incrt/cint-utils";
 import { e2eApiKey } from "./utilities";
 

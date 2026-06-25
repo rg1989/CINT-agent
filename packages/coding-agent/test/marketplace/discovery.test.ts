@@ -6,8 +6,8 @@
  *
  * Instead these tests validate the structural contract that listClaudePluginRoots
  * depends on:
- *   1. OMP registry lives at path.join(home, ".omp", "plugins", "installed_plugins.json")
- *      (matches getConfigDirName() == ".omp")
+ *   1. OMP registry lives at path.join(home, ".cint", "plugins", "installed_plugins.json")
+ *      (matches getConfigDirName() == ".cint")
  *   2. The registry format passes the same validator that parseClaudePluginsRegistry uses
  *   3. readInstalledPluginsRegistry / writeInstalledPluginsRegistry produce files that
  *      satisfy that validator
@@ -19,13 +19,13 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { InstalledPluginEntry } from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+import type { InstalledPluginEntry } from "@incrt/cint/extensibility/plugins/marketplace";
 import {
 	addInstalledPlugin,
 	buildPluginId,
 	readInstalledPluginsRegistry,
 	writeInstalledPluginsRegistry,
-} from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
+} from "@incrt/cint/extensibility/plugins/marketplace";
 
 // ── Inline validator ───────────────────────────────────────────────────────────
 //
@@ -52,9 +52,9 @@ function validateClaudeRegistryFormat(content: string): Record<string, unknown> 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 // Matches getConfigDirName() — single source of truth is in @incrt/cint-utils,
-// but we know the value is ".omp" and hardcoding it here keeps tests free of
+// but we know the value is ".cint" and hardcoding it here keeps tests free of
 // native-addon transitive imports.
-const OMP_CONFIG_DIR = ".omp";
+const OMP_CONFIG_DIR = ".cint";
 
 function makeEntry(installPath: string, version = "1.0.0"): InstalledPluginEntry {
 	return {
@@ -88,7 +88,7 @@ describe("OMP registry path contract", () => {
 	it("OMP registry lives at home/.omp/plugins/installed_plugins.json", () => {
 		// This is the path that listClaudePluginRoots reads.
 		// Any change to this path must be reflected in helpers.ts.
-		const expected = path.join(tmpHome, ".omp", "plugins", "installed_plugins.json");
+		const expected = path.join(tmpHome, ".cint", "plugins", "installed_plugins.json");
 		expect(ompRegistryPath).toBe(expected);
 	});
 });

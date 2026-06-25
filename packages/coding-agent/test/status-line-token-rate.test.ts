@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
+import { calculateTokensPerSecond } from "@incrt/cint/modes/components/status-line/token-rate";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { calculateTokensPerSecond } from "@incrt/cint-coding-agent/modes/components/status-line/token-rate";
 
 function assistantMessage(overrides?: Partial<AssistantMessage>): AssistantMessage {
 	return {

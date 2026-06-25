@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { getDefaultPasteImageKeys, KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
+import { getDefaultPasteImageKeys, KeybindingsManager } from "@incrt/cint/config/keybindings";
 
 describe("KeybindingsManager.getDisplayString", () => {
 	it("formats a single binding as a human-readable key hint", () => {

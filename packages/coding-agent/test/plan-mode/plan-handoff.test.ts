@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { LocalProtocolOptions } from "@incrt/cint-coding-agent/internal-urls";
-import { loadOverallPlanReference } from "@incrt/cint-coding-agent/plan-mode/plan-handoff";
+import type { LocalProtocolOptions } from "@incrt/cint/internal-urls";
+import { loadOverallPlanReference } from "@incrt/cint/plan-mode/plan-handoff";
 
 describe("loadOverallPlanReference", () => {
 	let tmpDir: string;

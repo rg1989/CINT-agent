@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import type { AgentStorage } from "@incrt/cint/session/agent-storage";
+import { searchWithParallel } from "@incrt/cint/web/parallel";
+import { searchParallel } from "@incrt/cint/web/search/providers/parallel";
 import type { AuthStorage, FetchImpl } from "@incrt/cint-ai";
-import type { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
-import { searchWithParallel } from "@incrt/cint-coding-agent/web/parallel";
-import { searchParallel } from "@incrt/cint-coding-agent/web/search/providers/parallel";
 
 describe("Parallel web search", () => {
 	const fakeStorage = {

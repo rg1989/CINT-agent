@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import { renderSegment } from "@incrt/cint-coding-agent/modes/components/status-line/segments";
-import type { SegmentContext } from "@incrt/cint-coding-agent/modes/components/status-line/types";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { renderSegment } from "@incrt/cint/modes/components/status-line/segments";
+import type { SegmentContext } from "@incrt/cint/modes/components/status-line/types";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await initTheme();

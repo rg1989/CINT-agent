@@ -1,14 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "bun:test";
 import * as fs from "node:fs";
+import { Settings } from "@incrt/cint/config/settings";
+import * as pythonExecutor from "@incrt/cint/eval/py/executor";
+import type { PythonKernel as PythonKernelInstance } from "@incrt/cint/eval/py/kernel";
+import * as pythonKernel from "@incrt/cint/eval/py/kernel";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import { createAgentSession, type ExtensionFactory, type WorkspaceTree } from "@incrt/cint/sdk";
+import { AgentStorage } from "@incrt/cint/session/agent-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as pythonExecutor from "@incrt/cint-coding-agent/eval/py/executor";
-import type { PythonKernel as PythonKernelInstance } from "@incrt/cint-coding-agent/eval/py/kernel";
-import * as pythonKernel from "@incrt/cint-coding-agent/eval/py/kernel";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import { createAgentSession, type ExtensionFactory, type WorkspaceTree } from "@incrt/cint-coding-agent/sdk";
-import { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Snowflake, TempDir } from "@incrt/cint-utils";
 
 const OK_EXECUTION = { status: "ok", cancelled: false, timedOut: false, stdinRequested: false } as const;

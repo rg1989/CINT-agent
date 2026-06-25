@@ -12,11 +12,11 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { InternalUrlRouter } from "@incrt/cint-coding-agent/internal-urls";
-import { HistoryProtocolHandler } from "@incrt/cint-coding-agent/internal-urls/history-protocol";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { CURRENT_SESSION_VERSION } from "@incrt/cint-coding-agent/session/session-entries";
+import { InternalUrlRouter } from "@incrt/cint/internal-urls";
+import { HistoryProtocolHandler } from "@incrt/cint/internal-urls/history-protocol";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { CURRENT_SESSION_VERSION } from "@incrt/cint/session/session-entries";
 
 async function withTempDir<T>(fn: (dir: string) => Promise<T>): Promise<T> {
 	const dir = await fs.mkdtemp(path.join(os.tmpdir(), "history-protocol-"));

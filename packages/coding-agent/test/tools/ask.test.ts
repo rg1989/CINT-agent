@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, it, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ExtensionUISelectItem } from "@incrt/cint/extensibility/extensions";
+import { getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import type { ToolSession } from "@incrt/cint/tools";
+import { AskTool, askToolRenderer } from "@incrt/cint/tools/ask";
+import { ToolAbortError } from "@incrt/cint/tools/tool-errors";
 import type { AgentToolContext } from "@incrt/cint-agent-core";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ExtensionUISelectItem } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { AskTool, askToolRenderer } from "@incrt/cint-coding-agent/tools/ask";
-import { ToolAbortError } from "@incrt/cint-coding-agent/tools/tool-errors";
 
 function createSession(overrides: Partial<ToolSession> = {}): ToolSession {
 	return {

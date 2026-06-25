@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { FileEntry, SessionHeader } from "@incrt/cint-coding-agent/session/session-entries";
-import { findMostRecentSession, resolveResumableSession } from "@incrt/cint-coding-agent/session/session-listing";
-import { loadEntriesFromFile } from "@incrt/cint-coding-agent/session/session-loader";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import type { FileEntry, SessionHeader } from "@incrt/cint/session/session-entries";
+import { findMostRecentSession, resolveResumableSession } from "@incrt/cint/session/session-listing";
+import { loadEntriesFromFile } from "@incrt/cint/session/session-loader";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { getConfigRootDir, getSessionsDir, Snowflake, setAgentDir } from "@incrt/cint-utils";
 
 describe("loadEntriesFromFile", () => {

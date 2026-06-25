@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { buildCoordinationAdvisory, composeSpawnAdvisory } from "@incrt/cint-coding-agent/task";
-import type { TaskItem } from "@incrt/cint-coding-agent/task/types";
+import { buildCoordinationAdvisory, composeSpawnAdvisory } from "@incrt/cint/task";
+import type { TaskItem } from "@incrt/cint/task/types";
 import { prompt } from "@incrt/cint-utils";
 import subagentSystemPromptTemplate from "../../src/prompts/system/subagent-system-prompt.md" with { type: "text" };
 

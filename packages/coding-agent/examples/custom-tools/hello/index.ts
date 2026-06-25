@@ -1,4 +1,4 @@
-import type { CustomToolFactory } from "@incrt/cint-coding-agent";
+import type { CustomToolFactory } from "@incrt/cint";
 
 const factory: CustomToolFactory = pi => ({
 	name: "hello",

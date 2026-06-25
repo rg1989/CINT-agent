@@ -1,15 +1,15 @@
 import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
-import type { Model } from "@incrt/cint-ai";
-import type { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import type { CustomToolContext } from "@incrt/cint-coding-agent/extensibility/custom-tools";
-import type { ReadonlySessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import type { ModelRegistry } from "@incrt/cint/config/model-registry";
+import type { CustomToolContext } from "@incrt/cint/extensibility/custom-tools";
+import type { ReadonlySessionManager } from "@incrt/cint/session/session-manager";
 import {
 	getImageGenTools,
 	getImageGenToolsWithRegistry,
 	imageGenTool,
 	setPreferredImageProvider,
-} from "@incrt/cint-coding-agent/tools/image-gen";
+} from "@incrt/cint/tools/image-gen";
+import type { Model } from "@incrt/cint-ai";
 
 const originalOpenRouterKey = Bun.env.OPENROUTER_API_KEY;
 const generatedImagePaths: string[] = [];
@@ -183,7 +183,7 @@ describe("imageGenTool", () => {
 
 		expect(requestUrl).toBe("https://api.x.ai/v1/images/generations");
 		expect(captured.authorization).toBe("Bearer test-xai-token");
-		expect(captured.userAgent).toBe("oh-my-pi/xai");
+		expect(captured.userAgent).toBe("cint/xai");
 		expect(requestBody).toMatchObject({
 			model: "grok-imagine-image",
 			prompt: "a cat.",

@@ -1,11 +1,11 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
 import {
 	createHandoffSummaryMessageComponent,
 	HandoffSummaryMessageComponent,
-} from "@incrt/cint-coding-agent/modes/components/compaction-summary-message";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { CustomMessage } from "@incrt/cint-coding-agent/session/messages";
+} from "@incrt/cint/modes/components/compaction-summary-message";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { CustomMessage } from "@incrt/cint/session/messages";
 
 beforeAll(async () => {
 	resetSettingsForTest();

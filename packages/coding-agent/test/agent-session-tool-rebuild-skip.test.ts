@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, setSystemTime } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import type { CustomTool } from "@incrt/cint/extensibility/custom-tools/types";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentTool } from "@incrt/cint-agent-core";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { CustomTool } from "@incrt/cint-coding-agent/extensibility/custom-tools/types";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { type } from "arktype";
 
 // Cache-stability invariant: when MCP servers reconnect with byte-identical tool

@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { InteractiveMode } from "@incrt/cint-coding-agent/modes/interactive-mode";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import * as sessionColor from "@incrt/cint-coding-agent/utils/session-color";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { InteractiveMode } from "@incrt/cint/modes/interactive-mode";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import * as sessionColor from "@incrt/cint/utils/session-color";
 import type { Container, NativeScrollbackLiveRegion } from "@incrt/cint-tui";
 import { TempDir } from "@incrt/cint-utils";
 

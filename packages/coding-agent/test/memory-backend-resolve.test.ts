@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createMemoryRuntimeContext, resolveMemoryBackend } from "@incrt/cint-coding-agent/memory-backend";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { createMemoryRuntimeContext, resolveMemoryBackend } from "@incrt/cint/memory-backend";
 
 describe("resolveMemoryBackend", () => {
 	beforeEach(() => {

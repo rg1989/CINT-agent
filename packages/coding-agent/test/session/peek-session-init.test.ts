@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const tempDirs: TempDir[] = [];

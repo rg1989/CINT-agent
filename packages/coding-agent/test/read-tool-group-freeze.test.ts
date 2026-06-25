@@ -1,8 +1,8 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { ReadToolGroupComponent } from "@incrt/cint-coding-agent/modes/components/read-tool-group";
-import { TranscriptContainer } from "@incrt/cint-coding-agent/modes/components/transcript-container";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { ReadToolGroupComponent } from "@incrt/cint/modes/components/read-tool-group";
+import { TranscriptContainer } from "@incrt/cint/modes/components/transcript-container";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
 import type { Component } from "@incrt/cint-tui";
 
 /** Minimal transcript block whose finalized state is fixed at construction. */

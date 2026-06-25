@@ -6,12 +6,12 @@
  * agents that appear while the hub is open are appended at the end.
  */
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { IrcBus } from "@incrt/cint-coding-agent/irc/bus";
-import { AgentHubOverlayComponent } from "@incrt/cint-coding-agent/modes/components/agent-hub";
-import { SessionObserverRegistry } from "@incrt/cint-coding-agent/modes/session-observer-registry";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
+import { IrcBus } from "@incrt/cint/irc/bus";
+import { AgentHubOverlayComponent } from "@incrt/cint/modes/components/agent-hub";
+import { SessionObserverRegistry } from "@incrt/cint/modes/session-observer-registry";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
 import { visibleWidth } from "@incrt/cint-tui/utils";
 
 interface GeometryStub {

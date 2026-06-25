@@ -1,14 +1,14 @@
 import { describe, expect, it } from "bun:test";
-import type { AgentMessage } from "@incrt/cint-agent-core";
-import type { AssistantMessage, Usage } from "@incrt/cint-ai";
-import type { Rule } from "@incrt/cint-coding-agent/capability/rule";
+import type { Rule } from "@incrt/cint/capability/rule";
 import {
 	type ParsedGeneratedRule,
 	parseGeneratedRule,
 	ruleMatchesAssistantHistory,
 	sanitizeRuleName,
 	validateParsedRuleAgainstAssistantHistory,
-} from "@incrt/cint-coding-agent/modes/controllers/omfg-rule";
+} from "@incrt/cint/modes/controllers/omfg-rule";
+import type { AgentMessage } from "@incrt/cint-agent-core";
+import type { AssistantMessage, Usage } from "@incrt/cint-ai";
 
 const usage: Usage = {
 	input: 0,

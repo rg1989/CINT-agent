@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { applyEligibleNestedPatches, mergeIsolatedChanges } from "@incrt/cint-coding-agent/task/isolation-runner";
-import type { SingleResult } from "@incrt/cint-coding-agent/task/types";
-import * as worktreeModule from "@incrt/cint-coding-agent/task/worktree";
+import { applyEligibleNestedPatches, mergeIsolatedChanges } from "@incrt/cint/task/isolation-runner";
+import type { SingleResult } from "@incrt/cint/task/types";
+import * as worktreeModule from "@incrt/cint/task/worktree";
 
 function result(overrides: Partial<SingleResult> = {}): SingleResult {
 	return {

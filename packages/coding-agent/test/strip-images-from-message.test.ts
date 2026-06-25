@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import { stripImagesFromMessage } from "@incrt/cint/session/messages";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import type { ImageContent, TextContent } from "@incrt/cint-ai";
-import { stripImagesFromMessage } from "@incrt/cint-coding-agent/session/messages";
 
 const png = (data: string = "iVBORw0KGgo"): ImageContent => ({ type: "image", data, mimeType: "image/png" });
 const text = (value: string): TextContent => ({ type: "text", text: value });

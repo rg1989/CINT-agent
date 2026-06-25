@@ -1,18 +1,18 @@
 import { afterEach, beforeAll, describe, expect, test, vi } from "bun:test";
-import type { AgentMessage } from "@incrt/cint-agent-core";
-import type { ImageContent, TextContent } from "@incrt/cint-ai";
 import type {
 	ExtensionActions,
 	ExtensionCommandContextActions,
 	ExtensionContextActions,
 	ExtensionUIContext,
-} from "@incrt/cint-coding-agent/extensibility/extensions";
-import { ExtensionUiController } from "@incrt/cint-coding-agent/modes/controllers/extension-ui-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import { buildSessionContext, type SessionContext } from "@incrt/cint-coding-agent/session/session-context";
-import type { CustomMessageEntry, SessionEntry } from "@incrt/cint-coding-agent/session/session-entries";
+} from "@incrt/cint/extensibility/extensions";
+import { ExtensionUiController } from "@incrt/cint/modes/controllers/extension-ui-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import { buildSessionContext, type SessionContext } from "@incrt/cint/session/session-context";
+import type { CustomMessageEntry, SessionEntry } from "@incrt/cint/session/session-entries";
+import type { AgentMessage } from "@incrt/cint-agent-core";
+import type { ImageContent, TextContent } from "@incrt/cint-ai";
 import { Container } from "@incrt/cint-tui";
 
 /**

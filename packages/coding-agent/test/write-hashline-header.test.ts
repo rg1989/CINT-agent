@@ -2,13 +2,13 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { Settings } from "@incrt/cint/config/settings";
+import { canonicalSnapshotKey, getFileSnapshotStore } from "@incrt/cint/edit/file-snapshot-store";
+import { HashlineFilesystem } from "@incrt/cint/edit/hashline/filesystem";
+import { writethroughNoop } from "@incrt/cint/lsp";
+import type { ToolSession } from "@incrt/cint/tools";
+import { WriteTool } from "@incrt/cint/tools/write";
 import { Patch, Patcher } from "@incrt/cint-hashline";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { canonicalSnapshotKey, getFileSnapshotStore } from "@incrt/cint-coding-agent/edit/file-snapshot-store";
-import { HashlineFilesystem } from "@incrt/cint-coding-agent/edit/hashline/filesystem";
-import { writethroughNoop } from "@incrt/cint-coding-agent/lsp";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { WriteTool } from "@incrt/cint-coding-agent/tools/write";
 
 function createSession(cwd: string): ToolSession {
 	return {

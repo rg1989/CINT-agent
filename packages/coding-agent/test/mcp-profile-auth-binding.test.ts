@@ -10,12 +10,12 @@
  */
 import { Database } from "bun:sqlite";
 import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
+import { MCPManager } from "@incrt/cint/mcp/manager";
+import { removeManagedMcpOAuthCredential } from "@incrt/cint/mcp/oauth-credentials";
+import * as oauthFlow from "@incrt/cint/mcp/oauth-flow";
+import { mcpOAuthCredentialId } from "@incrt/cint/mcp/oauth-flow";
+import type { MCPServerConfig } from "@incrt/cint/mcp/types";
 import { AuthStorage, SqliteAuthCredentialStore } from "@incrt/cint-ai";
-import { MCPManager } from "@incrt/cint-coding-agent/mcp/manager";
-import { removeManagedMcpOAuthCredential } from "@incrt/cint-coding-agent/mcp/oauth-credentials";
-import * as oauthFlow from "@incrt/cint-coding-agent/mcp/oauth-flow";
-import { mcpOAuthCredentialId } from "@incrt/cint-coding-agent/mcp/oauth-flow";
-import type { MCPServerConfig } from "@incrt/cint-coding-agent/mcp/types";
 import { getActiveProfile, setProfile } from "@incrt/cint-utils/dirs";
 
 const SERVER_URL = "https://mcp.example.com/mcp";

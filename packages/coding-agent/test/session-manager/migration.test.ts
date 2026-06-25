@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import type { FileEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import { migrateSessionEntries } from "@incrt/cint-coding-agent/session/session-migrations";
+import type { FileEntry } from "@incrt/cint/session/session-entries";
+import { migrateSessionEntries } from "@incrt/cint/session/session-migrations";
 
 describe("migrateSessionEntries", () => {
 	it("should add id/parentId to v1 entries", () => {

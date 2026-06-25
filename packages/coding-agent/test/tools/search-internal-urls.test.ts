@@ -2,20 +2,20 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { resetActiveSkillsForTests, setActiveSkills } from "@incrt/cint-coding-agent/extensibility/skills";
+import { Settings } from "@incrt/cint/config/settings";
+import { resetActiveSkillsForTests, setActiveSkills } from "@incrt/cint/extensibility/skills";
 import {
 	type InternalResource,
 	type InternalUrl,
 	InternalUrlRouter,
 	LocalProtocolHandler,
 	type ProtocolHandler,
-} from "@incrt/cint-coding-agent/internal-urls";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { FindTool } from "@incrt/cint-coding-agent/tools/find";
-import { ReadTool } from "@incrt/cint-coding-agent/tools/read";
-import { SearchTool } from "@incrt/cint-coding-agent/tools/search";
+} from "@incrt/cint/internal-urls";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { ToolSession } from "@incrt/cint/tools";
+import { FindTool } from "@incrt/cint/tools/find";
+import { ReadTool } from "@incrt/cint/tools/read";
+import { SearchTool } from "@incrt/cint/tools/search";
 
 function getResultText(result: { content: Array<{ type: string; text?: string }> }): string {
 	return result.content

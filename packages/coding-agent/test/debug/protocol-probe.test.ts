@@ -4,8 +4,8 @@ import {
 	buildSampleImage,
 	encodeRgbPng,
 	ProtocolProbeComponent,
-} from "@incrt/cint-coding-agent/debug/protocol-probe";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+} from "@incrt/cint/debug/protocol-probe";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import { getImageDimensions, ImageBudget, ImageProtocol, TERMINAL } from "@incrt/cint-tui";
 
 beforeAll(async () => {

@@ -1,6 +1,5 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import type { AssistantMessage } from "@incrt/cint-ai";
-import { AssistantMessageComponent } from "@incrt/cint-coding-agent/modes/components/assistant-message";
+import { AssistantMessageComponent } from "@incrt/cint/modes/components/assistant-message";
 import {
 	buildDisplayMessage,
 	CATCHUP_FRAMES,
@@ -9,8 +8,9 @@ import {
 	STREAMING_REVEAL_FRAME_MS,
 	StreamingRevealController,
 	visibleUnits,
-} from "@incrt/cint-coding-agent/modes/controllers/streaming-reveal";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+} from "@incrt/cint/modes/controllers/streaming-reveal";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { AssistantMessage } from "@incrt/cint-ai";
 
 beforeAll(async () => {
 	await initTheme(false);

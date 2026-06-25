@@ -2,24 +2,21 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it } from "bun:test"
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { canonicalSnapshotKey } from "@incrt/cint/edit/file-snapshot-store";
+import type { RenderResultOptions } from "@incrt/cint/extensibility/custom-tools/types";
+import { AgentTranscriptViewer } from "@incrt/cint/modes/components/agent-transcript-viewer";
+import { TreeSelectorComponent } from "@incrt/cint/modes/components/tree-selector";
+import type { ObservableSession, SessionObserverRegistry } from "@incrt/cint/modes/session-observer-registry";
+import type { Theme } from "@incrt/cint/modes/theme/theme";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { SessionEntry, SessionTreeNode } from "@incrt/cint/session/session-entries";
+import { ToolChoiceQueue } from "@incrt/cint/session/tool-choice-queue";
+import { createTools, type ToolSession } from "@incrt/cint/tools";
+import { searchToolRenderer } from "@incrt/cint/tools/search";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import { validateToolArguments } from "@incrt/cint-ai/utils/validation";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { canonicalSnapshotKey } from "@incrt/cint-coding-agent/edit/file-snapshot-store";
-import type { RenderResultOptions } from "@incrt/cint-coding-agent/extensibility/custom-tools/types";
-import { AgentTranscriptViewer } from "@incrt/cint-coding-agent/modes/components/agent-transcript-viewer";
-import { TreeSelectorComponent } from "@incrt/cint-coding-agent/modes/components/tree-selector";
-import type {
-	ObservableSession,
-	SessionObserverRegistry,
-} from "@incrt/cint-coding-agent/modes/session-observer-registry";
-import type { Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { SessionEntry, SessionTreeNode } from "@incrt/cint-coding-agent/session/session-entries";
-import { ToolChoiceQueue } from "@incrt/cint-coding-agent/session/tool-choice-queue";
-import { createTools, type ToolSession } from "@incrt/cint-coding-agent/tools";
-import { searchToolRenderer } from "@incrt/cint-coding-agent/tools/search";
 import { Text } from "@incrt/cint-tui";
 
 function createTestSession(cwd: string, overrides: Partial<ToolSession> = {}): ToolSession {

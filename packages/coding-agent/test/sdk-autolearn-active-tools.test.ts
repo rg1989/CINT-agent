@@ -2,13 +2,13 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAgentSession } from "@incrt/cint/sdk";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { AuthStorage } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Snowflake } from "@incrt/cint-utils";
 
 // Guards the auto-learn tool ACTIVATION wiring in createAgentSession: createTools

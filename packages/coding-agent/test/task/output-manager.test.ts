@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { AgentOutputManager } from "@incrt/cint-coding-agent/task/output-manager";
+import { AgentOutputManager } from "@incrt/cint/task/output-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 // Contract: subagent output ids are the requested name, used verbatim the first

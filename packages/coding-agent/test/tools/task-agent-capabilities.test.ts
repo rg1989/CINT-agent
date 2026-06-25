@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { isReadOnlyAgent, TaskTool } from "@incrt/cint-coding-agent/task";
-import { loadBundledAgents } from "@incrt/cint-coding-agent/task/agents";
-import * as discoveryModule from "@incrt/cint-coding-agent/task/discovery";
-import type { AgentDefinition } from "@incrt/cint-coding-agent/task/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { isReadOnlyAgent, TaskTool } from "@incrt/cint/task";
+import { loadBundledAgents } from "@incrt/cint/task/agents";
+import * as discoveryModule from "@incrt/cint/task/discovery";
+import type { AgentDefinition } from "@incrt/cint/task/types";
+import type { ToolSession } from "@incrt/cint/tools";
 
 function createSession(overrides: Partial<Record<string, unknown>> = {}): ToolSession {
 	return {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { parseArgs } from "@incrt/cint-coding-agent/cli/args";
+import { parseArgs } from "@incrt/cint/cli/args";
 
 describe("parseArgs — --advisor flag", () => {
 	it("parses --advisor as a boolean flag", () => {

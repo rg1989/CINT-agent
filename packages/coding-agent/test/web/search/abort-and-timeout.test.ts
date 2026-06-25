@@ -12,17 +12,17 @@
  * helper itself is exercised directly.
  */
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import type { AgentStorage } from "@incrt/cint/session/agent-storage";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ToolAbortError } from "@incrt/cint/tools/tool-errors";
+import { WebSearchTool } from "@incrt/cint/web/search";
+import * as provider from "@incrt/cint/web/search/provider";
+import { searchAnthropic } from "@incrt/cint/web/search/providers/anthropic";
+import type { SearchParams } from "@incrt/cint/web/search/providers/base";
+import { searchBrave } from "@incrt/cint/web/search/providers/brave";
+import { withHardTimeout } from "@incrt/cint/web/search/providers/utils";
+import type { SearchProviderId, SearchResponse } from "@incrt/cint/web/search/types";
 import type { AuthStorage, FetchImpl } from "@incrt/cint-ai";
-import type { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ToolAbortError } from "@incrt/cint-coding-agent/tools/tool-errors";
-import { WebSearchTool } from "@incrt/cint-coding-agent/web/search";
-import * as provider from "@incrt/cint-coding-agent/web/search/provider";
-import { searchAnthropic } from "@incrt/cint-coding-agent/web/search/providers/anthropic";
-import type { SearchParams } from "@incrt/cint-coding-agent/web/search/providers/base";
-import { searchBrave } from "@incrt/cint-coding-agent/web/search/providers/brave";
-import { withHardTimeout } from "@incrt/cint-coding-agent/web/search/providers/utils";
-import type { SearchProviderId, SearchResponse } from "@incrt/cint-coding-agent/web/search/types";
 
 const FAKE_SESSION = {} as ToolSession;
 const fakeStorage = {

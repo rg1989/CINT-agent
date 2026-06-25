@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { type SettingPath, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint-coding-agent/tools";
+import { type SettingPath, Settings } from "@incrt/cint/config/settings";
+import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint/tools";
 
 Bun.env.PI_PYTHON_SKIP_CHECK = "1";
 
@@ -116,10 +116,7 @@ describe("createTools", () => {
 
 	it("still exposes eval when python kernel is unavailable (dispatches to js)", async () => {
 		const session = createTestSession();
-		vi.spyOn(
-			await import("@incrt/cint-coding-agent/eval/py/kernel"),
-			"checkPythonKernelAvailability",
-		).mockResolvedValue({
+		vi.spyOn(await import("@incrt/cint/eval/py/kernel"), "checkPythonKernelAvailability").mockResolvedValue({
 			ok: false,
 			reason: "missing python",
 		});

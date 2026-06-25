@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import { resolvePrimaryModel, resolveSmolModel } from "@incrt/cint/commit/model-selection";
 import { Effort } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { resolvePrimaryModel, resolveSmolModel } from "@incrt/cint-coding-agent/commit/model-selection";
 
 function getModelOrThrow(id: string) {
 	const model = getBundledModel("anthropic", id);

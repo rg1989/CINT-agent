@@ -1,9 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { EvalToolDetails } from "@incrt/cint-coding-agent/eval/types";
-import { getThemeByName, setThemeInstance, type Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { evalToolRenderer } from "@incrt/cint-coding-agent/tools/eval";
-import { previewWindowRows } from "@incrt/cint-coding-agent/tools/render-utils";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import type { EvalToolDetails } from "@incrt/cint/eval/types";
+import { getThemeByName, setThemeInstance, type Theme } from "@incrt/cint/modes/theme/theme";
+import { evalToolRenderer } from "@incrt/cint/tools/eval";
+import { previewWindowRows } from "@incrt/cint/tools/render-utils";
 
 /**
  * Defends the bounded code-window contract for eval cells: collapsed views cap

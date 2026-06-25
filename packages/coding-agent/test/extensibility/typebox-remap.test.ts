@@ -2,11 +2,8 @@ import { afterAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import {
-	installLegacyPiSpecifierShim,
-	loadLegacyPiModule,
-} from "@incrt/cint-coding-agent/extensibility/plugins/legacy-pi-compat";
-import { Type as TypeBoxShimType } from "@incrt/cint-coding-agent/extensibility/typebox";
+import { installLegacyPiSpecifierShim, loadLegacyPiModule } from "@incrt/cint/extensibility/plugins/legacy-pi-compat";
+import { Type as TypeBoxShimType } from "@incrt/cint/extensibility/typebox";
 
 // The remap installs a Bun.plugin onResolve hook plus an explicit
 // rewrite branch inside `rewriteBareImportsForLegacyExtension` that

@@ -1,4 +1,6 @@
 import { describe, expect, it } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint/tools";
 import {
 	adaptSchemaForStrict,
 	normalizeSchemaForCCA,
@@ -9,8 +11,6 @@ import {
 	validateSchemaCompatibility,
 	validateStrictSchemaEnforcement,
 } from "@incrt/cint-ai/utils/schema";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint-coding-agent/tools";
 
 interface ToolSchemaEntry {
 	name: string;

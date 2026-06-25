@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
+import { AuthStorage as CodingAuthStorage } from "@incrt/cint/session/auth-storage";
+import { searchAnthropic } from "@incrt/cint/web/search/providers/anthropic";
 import type { AuthStorage, FetchImpl } from "@incrt/cint-ai";
-import { AuthStorage as CodingAuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { searchAnthropic } from "@incrt/cint-coding-agent/web/search/providers/anthropic";
 import { TempDir } from "@incrt/cint-utils";
 
 function makeCaptureFetch(): { fetch: FetchImpl; body: () => Record<string, unknown> | undefined } {

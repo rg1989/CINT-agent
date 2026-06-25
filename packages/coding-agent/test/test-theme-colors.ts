@@ -1,4 +1,4 @@
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
 
 // Initialize with dark theme explicitly
 Bun.env.COLORTERM = "truecolor";

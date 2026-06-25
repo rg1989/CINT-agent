@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { searchTavily } from "@incrt/cint/web/search/providers/tavily";
+import type { SearchProviderError } from "@incrt/cint/web/search/types";
 import type { AuthStorage } from "@incrt/cint-ai";
-import { searchTavily } from "@incrt/cint-coding-agent/web/search/providers/tavily";
-import type { SearchProviderError } from "@incrt/cint-coding-agent/web/search/types";
 
 describe("Tavily web search provider", () => {
 	beforeEach(() => {

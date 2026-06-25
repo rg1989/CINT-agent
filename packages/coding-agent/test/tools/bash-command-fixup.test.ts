@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { applyBashFixups, type BashFixupResult } from "@incrt/cint-coding-agent/tools/bash-command-fixup";
+import { applyBashFixups, type BashFixupResult } from "@incrt/cint/tools/bash-command-fixup";
 
 function fixup(command: string): BashFixupResult {
 	return applyBashFixups(command);

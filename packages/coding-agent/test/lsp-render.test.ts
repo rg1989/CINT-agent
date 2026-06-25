@@ -1,6 +1,6 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { renderResult } from "@incrt/cint-coding-agent/lsp/render";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
+import { renderResult } from "@incrt/cint/lsp/render";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await themeModule.initTheme(false, undefined, undefined, "dark", "light");

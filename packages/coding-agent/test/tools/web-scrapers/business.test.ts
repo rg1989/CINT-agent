@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { handleOpenCorporates } from "@incrt/cint-coding-agent/web/scrapers/opencorporates";
-import { handleSecEdgar } from "@incrt/cint-coding-agent/web/scrapers/sec-edgar";
+import { handleOpenCorporates } from "@incrt/cint/web/scrapers/opencorporates";
+import { handleSecEdgar } from "@incrt/cint/web/scrapers/sec-edgar";
 
 const SKIP = !Bun.env.WEB_FETCH_INTEGRATION;
 

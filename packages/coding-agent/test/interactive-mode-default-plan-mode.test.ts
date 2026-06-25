@@ -1,12 +1,12 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentTool } from "@incrt/cint-agent-core";
 import { type Api, Effort, type Model } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 import { type } from "arktype";
 import { ModelRegistry } from "../src/config/model-registry";

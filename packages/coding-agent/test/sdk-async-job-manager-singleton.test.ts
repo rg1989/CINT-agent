@@ -2,11 +2,11 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { AsyncJobManager } from "@incrt/cint-coding-agent/async/job-manager";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { AsyncJobManager } from "@incrt/cint/async/job-manager";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAgentSession } from "@incrt/cint/sdk";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { Snowflake } from "@incrt/cint-utils";
 
 describe("AsyncJobManager singleton across concurrent top-level sessions", () => {

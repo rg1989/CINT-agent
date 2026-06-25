@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import * as sdkModule from "@incrt/cint/sdk";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { runSubprocess } from "@incrt/cint/task/executor";
+import type { AgentDefinition } from "@incrt/cint/task/types";
 import type { Api, Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { runSubprocess } from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition } from "@incrt/cint-coding-agent/task/types";
 
 function model(provider: string, id: string): Model<Api> {
 	return buildModel({

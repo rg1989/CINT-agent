@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { QrCode, type QrEcLevel, renderQrHalfBlocks } from "@incrt/cint-coding-agent/utils/qrcode";
+import { QrCode, type QrEcLevel, renderQrHalfBlocks } from "@incrt/cint/utils/qrcode";
 
 function matrixFingerprint(qr: QrCode): string {
 	let bits = "";

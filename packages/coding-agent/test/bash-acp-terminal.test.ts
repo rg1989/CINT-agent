@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, mock, spyOn } from "bun:test";
-import type { ClientBridge, ClientBridgeTerminalHandle } from "@incrt/cint-coding-agent/session/client-bridge";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { BashTool } from "@incrt/cint-coding-agent/tools/bash";
+import type { ClientBridge, ClientBridgeTerminalHandle } from "@incrt/cint/session/client-bridge";
+import type { ToolSession } from "@incrt/cint/tools";
+import { BashTool } from "@incrt/cint/tools/bash";
 
 function makeSession(bridge: ClientBridge): ToolSession {
 	return {

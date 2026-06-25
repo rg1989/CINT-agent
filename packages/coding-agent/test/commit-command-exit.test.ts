@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import CommitCommand from "@incrt/cint-coding-agent/commands/commit";
-import * as commitModule from "@incrt/cint-coding-agent/commit";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
+import CommitCommand from "@incrt/cint/commands/commit";
+import * as commitModule from "@incrt/cint/commit";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
 import { postmortem } from "@incrt/cint-utils";
 
 describe("omp commit command lifecycle (issue #1041)", () => {

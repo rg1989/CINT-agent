@@ -11,7 +11,7 @@
 
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import type { ExtensionAPI, ExtensionCommandContext } from "@incrt/cint-coding-agent";
+import type { ExtensionAPI, ExtensionCommandContext } from "@incrt/cint";
 import { formatDuration } from "@incrt/cint-utils";
 import { buildDependencyGraph, buildExecutionWaves, detectCycles } from "./swarm/dag";
 import { PipelineController } from "./swarm/pipeline";

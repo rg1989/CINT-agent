@@ -15,12 +15,12 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { LoadExtensionsResult } from "@incrt/cint-coding-agent/extensibility/extensions/types";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import type { LoadExtensionsResult } from "@incrt/cint/extensibility/extensions/types";
+import { createAgentSession } from "@incrt/cint/sdk";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 
 describe("createAgentSession preloadedExtensions isolation (issue #2190)", () => {
 	let sharedDir: string;

@@ -2,10 +2,10 @@ import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { searchSearXNG } from "@incrt/cint/web/search/providers/searxng";
+import { SearchProviderError } from "@incrt/cint/web/search/types";
 import type { FetchImpl } from "@incrt/cint-ai/types";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { searchSearXNG } from "@incrt/cint-coding-agent/web/search/providers/searxng";
-import { SearchProviderError } from "@incrt/cint-coding-agent/web/search/types";
 
 describe("SearXNG web search provider", () => {
 	afterEach(() => {

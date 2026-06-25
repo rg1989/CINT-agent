@@ -1,9 +1,6 @@
 import { describe, expect, it } from "bun:test";
+import { createConventionalAnalysisTool, parseConventionalAnalysisResponse } from "@incrt/cint/commit/shared-llm";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import {
-	createConventionalAnalysisTool,
-	parseConventionalAnalysisResponse,
-} from "@incrt/cint-coding-agent/commit/shared-llm";
 
 describe("commit shared LLM parsing", () => {
 	it("ignores harmless extra fields in conventional analysis tool output", () => {

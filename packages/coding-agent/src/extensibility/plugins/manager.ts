@@ -452,7 +452,7 @@ export class PluginManager {
 			}
 
 			const pkgPath = path.join(getPluginsNodeModules(), actualName, "package.json");
-			let pkg: { name: string; version: string; omp?: PluginManifest; pi?: PluginManifest };
+			let pkg: { name: string; version: string; cint?: PluginManifest; omp?: PluginManifest; pi?: PluginManifest };
 			try {
 				pkg = await Bun.file(pkgPath).json();
 			} catch (err) {
@@ -577,14 +577,16 @@ export class PluginManager {
 		for (const name of installedNames) {
 			const pluginPath = path.join(getPluginsNodeModules(), name);
 			const pluginPkgPath = path.join(pluginPath, "package.json");
-			let pluginPkg: { version: string; omp?: PluginManifest; pi?: PluginManifest };
+			let pluginPkg: { version: string; cint?: PluginManifest; omp?: PluginManifest; pi?: PluginManifest };
 			try {
 				pluginPkg = await Bun.file(pluginPkgPath).json();
 			} catch (err) {
 				if (isEnoent(err)) continue;
 				throw err;
 			}
-			const manifest: PluginManifest = pluginPkg.omp || pluginPkg.pi || { version: pluginPkg.version };
+			const manifest: PluginManifest = pluginPkg.cint ||
+				pluginPkg.omp ||
+				pluginPkg.pi || { version: pluginPkg.version };
 			manifest.version = pluginPkg.version;
 
 			const runtimeState = config.plugins[name] || {
@@ -616,7 +618,7 @@ export class PluginManager {
 		const absolutePath = path.resolve(this.#cwd, localPath);
 
 		const pkgFilePath = path.join(absolutePath, "package.json");
-		let pkg: { name?: string; version: string; omp?: PluginManifest; pi?: PluginManifest };
+		let pkg: { name?: string; version: string; cint?: PluginManifest; omp?: PluginManifest; pi?: PluginManifest };
 		try {
 			pkg = await Bun.file(pkgFilePath).json();
 		} catch (err) {
@@ -824,7 +826,13 @@ export class PluginManager {
 			const pluginPkgPath = path.join(pluginPath, "package.json");
 			const fromDependencies = name in deps;
 
-			let pluginPkg: { version: string; description?: string; omp?: PluginManifest; pi?: PluginManifest };
+			let pluginPkg: {
+				version: string;
+				description?: string;
+				cint?: PluginManifest;
+				omp?: PluginManifest;
+				pi?: PluginManifest;
+			};
 			try {
 				pluginPkg = await Bun.file(pluginPkgPath).json();
 			} catch (err) {
@@ -858,15 +866,15 @@ export class PluginManager {
 				}
 				throw err;
 			}
-			const hasManifest = !!(pluginPkg.omp || pluginPkg.pi);
-			const manifest: PluginManifest | undefined = pluginPkg.omp || pluginPkg.pi;
+			const hasManifest = !!(pluginPkg.cint || pluginPkg.omp || pluginPkg.pi);
+			const manifest: PluginManifest | undefined = pluginPkg.cint || pluginPkg.omp || pluginPkg.pi;
 
 			checks.push({
 				name: `plugin:${name}`,
 				status: hasManifest ? "ok" : "warning",
 				message: hasManifest
 					? `v${pluginPkg.version}${pluginPkg.description ? ` - ${pluginPkg.description}` : ""}`
-					: `v${pluginPkg.version} - No omp/pi manifest (not an omp plugin)`,
+					: `v${pluginPkg.version} - No cint/omp/pi manifest (not a cint plugin)`,
 			});
 
 			// Check tools path exists if specified

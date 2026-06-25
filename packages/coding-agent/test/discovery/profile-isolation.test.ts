@@ -17,10 +17,10 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { clearCache as clearFsCache } from "@incrt/cint-coding-agent/capability/fs";
-import { type Skill, skillCapability } from "@incrt/cint-coding-agent/capability/skill";
-import { type SlashCommand, slashCommandCapability } from "@incrt/cint-coding-agent/capability/slash-command";
-import { loadCapability } from "@incrt/cint-coding-agent/discovery";
+import { clearCache as clearFsCache } from "@incrt/cint/capability/fs";
+import { type Skill, skillCapability } from "@incrt/cint/capability/skill";
+import { type SlashCommand, slashCommandCapability } from "@incrt/cint/capability/slash-command";
+import { loadCapability } from "@incrt/cint/discovery";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 const originalAgentDirEnv = process.env.PI_CODING_AGENT_DIR;
@@ -58,7 +58,7 @@ describe("native user-level config discovery follows the active profile", () => 
 		await writeSkill(path.join(profileAgentDir, "skills"), "profile-skill");
 
 		// Decoy: default profile's config at the literal-home path the old loader read.
-		const defaultAgentDir = path.join(tempHome, ".omp", "agent");
+		const defaultAgentDir = path.join(tempHome, ".cint", "agent");
 		await writeFile(path.join(defaultAgentDir, "commands", "default-cmd.md"), "Default command.\n");
 		await writeSkill(path.join(defaultAgentDir, "skills"), "default-skill");
 	});

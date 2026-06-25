@@ -7,7 +7,7 @@
  */
 
 import { describe, expect, it } from "bun:test";
-import { SqlSessionStorage, type SqlSessionStorageClient } from "@incrt/cint-coding-agent/session/sql-session-storage";
+import { SqlSessionStorage, type SqlSessionStorageClient } from "@incrt/cint/session/sql-session-storage";
 import { SQL } from "bun";
 
 async function createSqlite(): Promise<{ client: InstanceType<typeof SQL>; storage: SqlSessionStorage }> {

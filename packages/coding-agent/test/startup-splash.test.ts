@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { runStartupSplash } from "@incrt/cint-coding-agent/modes/setup-wizard/startup-splash";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { shouldShowStartupSplash } from "@incrt/cint-coding-agent/startup-splash";
+import { runStartupSplash } from "@incrt/cint/modes/setup-wizard/startup-splash";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { shouldShowStartupSplash } from "@incrt/cint/startup-splash";
 import type { Component } from "@incrt/cint-tui";
 
 beforeAll(async () => {

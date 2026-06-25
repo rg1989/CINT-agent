@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import type { SegmentContext } from "@incrt/cint-coding-agent/modes/components/status-line/segments";
-import { renderSegment } from "@incrt/cint-coding-agent/modes/components/status-line/segments";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import type { SegmentContext } from "@incrt/cint/modes/components/status-line/segments";
+import { renderSegment } from "@incrt/cint/modes/components/status-line/segments";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await initTheme();

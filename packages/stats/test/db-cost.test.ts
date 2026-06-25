@@ -2,9 +2,9 @@ import { Database } from "bun:sqlite";
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as os from "node:os";
 import * as path from "node:path";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 import { closeDb, getRecentRequests, initDb, insertMessageStats } from "@incrt/cint-stats/db";
 import type { MessageStats } from "@incrt/cint-stats/types";
-import { getBundledModel } from "@incrt/cint-catalog/models";
 import { getAgentDir, getStatsDbPath, setAgentDir, TempDir } from "@incrt/cint-utils";
 
 const originalConfigDir = process.env.PI_CONFIG_DIR;

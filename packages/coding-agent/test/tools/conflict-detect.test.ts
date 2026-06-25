@@ -8,8 +8,8 @@ import {
 	renderConflictRegion,
 	scanConflictLines,
 	spliceConflict,
-} from "@incrt/cint-coding-agent/tools/conflict-detect";
-import { ToolError } from "@incrt/cint-coding-agent/tools/tool-errors";
+} from "@incrt/cint/tools/conflict-detect";
+import { ToolError } from "@incrt/cint/tools/tool-errors";
 
 describe("scanConflictLines", () => {
 	it("detects a 2-way conflict with correct line numbers and labels", () => {

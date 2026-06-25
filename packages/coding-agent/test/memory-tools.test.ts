@@ -10,12 +10,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import { existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { HindsightApi } from "@incrt/cint-coding-agent/hindsight/client";
-import type { HindsightConfig } from "@incrt/cint-coding-agent/hindsight/config";
-import { HindsightSessionState } from "@incrt/cint-coding-agent/hindsight/state";
-import { mnemopiBackend } from "@incrt/cint-coding-agent/mnemopi/backend";
-import { loadMnemopiConfig, type MnemopiBackendConfig } from "@incrt/cint-coding-agent/mnemopi/config";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { HindsightApi } from "@incrt/cint/hindsight/client";
+import type { HindsightConfig } from "@incrt/cint/hindsight/config";
+import { HindsightSessionState } from "@incrt/cint/hindsight/state";
+import { mnemopiBackend } from "@incrt/cint/mnemopi/backend";
+import { loadMnemopiConfig, type MnemopiBackendConfig } from "@incrt/cint/mnemopi/config";
 import {
 	getMnemopiScopedDbPaths,
 	getMnemopiSessionState,
@@ -23,12 +23,12 @@ import {
 	loadMnemopiCore,
 	MnemopiSessionState,
 	setMnemopiSessionState,
-} from "@incrt/cint-coding-agent/mnemopi/state";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools/index";
-import { MemoryEditTool } from "@incrt/cint-coding-agent/tools/memory-edit";
-import { MemoryRecallTool } from "@incrt/cint-coding-agent/tools/memory-recall";
-import { MemoryReflectTool } from "@incrt/cint-coding-agent/tools/memory-reflect";
-import { MemoryRetainTool } from "@incrt/cint-coding-agent/tools/memory-retain";
+} from "@incrt/cint/mnemopi/state";
+import type { ToolSession } from "@incrt/cint/tools/index";
+import { MemoryEditTool } from "@incrt/cint/tools/memory-edit";
+import { MemoryRecallTool } from "@incrt/cint/tools/memory-recall";
+import { MemoryReflectTool } from "@incrt/cint/tools/memory-reflect";
+import { MemoryRetainTool } from "@incrt/cint/tools/memory-retain";
 import { resetMemoryForTests } from "@incrt/cint-mnemopi";
 import { TempDir } from "@incrt/cint-utils";
 

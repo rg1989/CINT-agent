@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
-import { openPath } from "@incrt/cint-coding-agent/utils/open";
+import { openPath } from "@incrt/cint/utils/open";
 import * as piUtils from "@incrt/cint-utils";
 import type { Subprocess } from "bun";
 

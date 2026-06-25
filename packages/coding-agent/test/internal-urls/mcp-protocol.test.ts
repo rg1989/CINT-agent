@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { InternalUrlRouter } from "@incrt/cint-coding-agent/internal-urls";
-import { MCPManager } from "@incrt/cint-coding-agent/mcp/manager";
-import type { MCPResource, MCPResourceReadResult, MCPResourceTemplate } from "@incrt/cint-coding-agent/mcp/types";
+import { InternalUrlRouter } from "@incrt/cint/internal-urls";
+import { MCPManager } from "@incrt/cint/mcp/manager";
+import type { MCPResource, MCPResourceReadResult, MCPResourceTemplate } from "@incrt/cint/mcp/types";
 
 function createMockManager(opts: {
 	servers?: string[];

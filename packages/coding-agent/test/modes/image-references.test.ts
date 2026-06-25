@@ -1,9 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import {
-	type PlaceholderKind,
-	renderPlaceholders,
-	shiftImageMarkers,
-} from "@incrt/cint-coding-agent/modes/image-references";
+import { type PlaceholderKind, renderPlaceholders, shiftImageMarkers } from "@incrt/cint/modes/image-references";
 
 function capture(text: string): {
 	out: string;

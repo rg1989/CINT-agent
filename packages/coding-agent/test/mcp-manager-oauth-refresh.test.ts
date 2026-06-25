@@ -11,10 +11,10 @@
  */
 import { Database } from "bun:sqlite";
 import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
+import { MCPManager } from "@incrt/cint/mcp/manager";
+import * as oauthFlow from "@incrt/cint/mcp/oauth-flow";
+import type { MCPServerConfig } from "@incrt/cint/mcp/types";
 import { AuthStorage, SqliteAuthCredentialStore } from "@incrt/cint-ai";
-import { MCPManager } from "@incrt/cint-coding-agent/mcp/manager";
-import * as oauthFlow from "@incrt/cint-coding-agent/mcp/oauth-flow";
-import type { MCPServerConfig } from "@incrt/cint-coding-agent/mcp/types";
 
 const CREDENTIAL_ID = "mcp_oauth_test_1908";
 const TOKEN_URL = "https://example.com/oauth/token";

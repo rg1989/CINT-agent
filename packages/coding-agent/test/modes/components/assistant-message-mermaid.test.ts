@@ -1,11 +1,11 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import type { AssistantThinkingRenderer } from "@incrt/cint/extensibility/extensions";
+import { AssistantMessageComponent } from "@incrt/cint/modes/components/assistant-message";
+import { clearMermaidCache } from "@incrt/cint/modes/theme/mermaid-cache";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { AssistantThinkingRenderer } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { AssistantMessageComponent } from "@incrt/cint-coding-agent/modes/components/assistant-message";
-import { clearMermaidCache } from "@incrt/cint-coding-agent/modes/theme/mermaid-cache";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
 import { ImageProtocol, setTerminalImageProtocol, TERMINAL, Text } from "@incrt/cint-tui";
 
 const originalImageProtocol = TERMINAL.imageProtocol;

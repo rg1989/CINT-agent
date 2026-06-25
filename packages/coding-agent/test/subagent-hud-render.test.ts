@@ -6,20 +6,17 @@
  * their progress is already rendered inline (tool block / eval cell).
  */
 import { beforeAll, describe, expect, it } from "bun:test";
-import { renderSubagentHudLines } from "@incrt/cint-coding-agent/modes/interactive-mode";
-import {
-	type ObservableSession,
-	SessionObserverRegistry,
-} from "@incrt/cint-coding-agent/modes/session-observer-registry";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { renderSubagentHudLines } from "@incrt/cint/modes/interactive-mode";
+import { type ObservableSession, SessionObserverRegistry } from "@incrt/cint/modes/session-observer-registry";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import {
 	type AgentProgress,
 	type SubagentLifecyclePayload,
 	type SubagentProgressPayload,
 	TASK_SUBAGENT_LIFECYCLE_CHANNEL,
 	TASK_SUBAGENT_PROGRESS_CHANNEL,
-} from "@incrt/cint-coding-agent/task";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
+} from "@incrt/cint/task";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 
 function makeSession(overrides: Partial<ObservableSession> & { id: string }): ObservableSession {
 	return {

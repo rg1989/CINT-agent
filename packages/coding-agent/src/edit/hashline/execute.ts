@@ -10,6 +10,8 @@
  * batch's `flush` flag to true only for the final write so diagnostics
  * round-trip once.
  */
+
+import type { AgentToolResult } from "@incrt/cint-agent-core";
 import {
 	type BlockResolution,
 	buildCompactDiffPreview,
@@ -19,7 +21,6 @@ import {
 	type PatchSectionResult,
 	type PreparedSection,
 } from "@incrt/cint-hashline";
-import type { AgentToolResult } from "@incrt/cint-agent-core";
 import type { FileDiagnosticsResult, WritethroughCallback, WritethroughDeferredHandle } from "../../lsp";
 import type { ToolSession } from "../../tools";
 import { outputMeta } from "../../tools/output-meta";

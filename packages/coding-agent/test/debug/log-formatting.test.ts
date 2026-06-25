@@ -3,7 +3,7 @@ import {
 	formatDebugLogExpandedLines,
 	formatDebugLogLine,
 	parseDebugLogTimestampMs,
-} from "@incrt/cint-coding-agent/debug/log-formatting";
+} from "@incrt/cint/debug/log-formatting";
 
 describe("formatDebugLogLine", () => {
 	it("strips ANSI codes and carriage returns", () => {

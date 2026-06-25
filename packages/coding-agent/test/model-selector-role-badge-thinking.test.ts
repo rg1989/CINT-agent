@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, test, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
+import type { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { ModelSelectorComponent } from "@incrt/cint/modes/components/model-selector";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import type { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ModelSelectorComponent } from "@incrt/cint-coding-agent/modes/components/model-selector";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
 import type { TUI } from "@incrt/cint-tui";
 
 function normalizeRenderedText(text: string): string {

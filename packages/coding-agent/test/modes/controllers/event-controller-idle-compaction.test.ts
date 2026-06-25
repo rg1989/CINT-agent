@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
 
 function createAssistantMessage(): AssistantMessage {
 	return {

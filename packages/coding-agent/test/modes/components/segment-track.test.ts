@@ -3,8 +3,8 @@ import {
 	renderSegmentTrack,
 	resolveSegmentPalette,
 	type TrackSegment,
-} from "@incrt/cint-coding-agent/modes/components/segment-track";
-import { initTheme, type ThemeColor, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+} from "@incrt/cint/modes/components/segment-track";
+import { initTheme, type ThemeColor, theme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await initTheme();

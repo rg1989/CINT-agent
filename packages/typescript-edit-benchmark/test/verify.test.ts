@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import { TempDir } from "@incrt/cint-utils";
 import { verifyExpectedFiles } from "@incrt/cint-typescript-edit-benchmark/verify";
+import { TempDir } from "@incrt/cint-utils";
 
 async function createTempDirs(): Promise<{
 	root: string;

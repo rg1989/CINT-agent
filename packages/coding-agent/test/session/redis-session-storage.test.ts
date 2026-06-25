@@ -15,10 +15,7 @@
  */
 
 import { beforeEach, describe, expect, it } from "bun:test";
-import {
-	RedisSessionStorage,
-	type RedisSessionStorageClient,
-} from "@incrt/cint-coding-agent/session/redis-session-storage";
+import { RedisSessionStorage, type RedisSessionStorageClient } from "@incrt/cint/session/redis-session-storage";
 
 interface FakeRedisCall {
 	method: string;

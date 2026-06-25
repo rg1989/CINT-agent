@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { hasMagicKeyword, highlightMagicKeywords } from "@incrt/cint-coding-agent/modes/magic-keywords";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { hasMagicKeyword, highlightMagicKeywords } from "@incrt/cint/modes/magic-keywords";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	// Gradient palettes read the active theme's color mode.

@@ -2,14 +2,14 @@ import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import type { AgentEvent } from "@incrt/cint-agent-core";
-import { defineRpcClientTool, RpcClient } from "@incrt/cint-coding-agent/modes";
-import { RpcHostToolBridge } from "@incrt/cint-coding-agent/modes/rpc/host-tools";
+import { defineRpcClientTool, RpcClient } from "@incrt/cint/modes";
+import { RpcHostToolBridge } from "@incrt/cint/modes/rpc/host-tools";
 import type {
 	RpcHostToolCallRequest,
 	RpcHostToolCancelRequest,
 	RpcHostToolUpdate,
-} from "@incrt/cint-coding-agent/modes/rpc/rpc-types";
+} from "@incrt/cint/modes/rpc/rpc-types";
+import type { AgentEvent } from "@incrt/cint-agent-core";
 
 const tempPaths: string[] = [];
 

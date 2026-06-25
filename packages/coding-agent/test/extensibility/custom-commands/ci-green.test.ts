@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import * as piCodingAgent from "@incrt/cint-coding-agent";
-import { GreenCommand } from "@incrt/cint-coding-agent/extensibility/custom-commands/bundled/ci-green";
-import type { CustomCommandAPI } from "@incrt/cint-coding-agent/extensibility/custom-commands/types";
-import type { HookCommandContext } from "@incrt/cint-coding-agent/extensibility/hooks/types";
-import type * as TypeBox from "@incrt/cint-coding-agent/extensibility/typebox";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+import * as piCodingAgent from "@incrt/cint";
+import { GreenCommand } from "@incrt/cint/extensibility/custom-commands/bundled/ci-green";
+import type { CustomCommandAPI } from "@incrt/cint/extensibility/custom-commands/types";
+import type { HookCommandContext } from "@incrt/cint/extensibility/hooks/types";
+import type * as TypeBox from "@incrt/cint/extensibility/typebox";
+import * as git from "@incrt/cint/utils/git";
 import * as arktype from "arktype";
 import * as zod from "zod/v4";
 

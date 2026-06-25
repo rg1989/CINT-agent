@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { SessionSelectorComponent } from "@incrt/cint-coding-agent/modes/components/session-selector";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { SessionInfo, SessionStatus } from "@incrt/cint-coding-agent/session/session-listing";
+import { SessionSelectorComponent } from "@incrt/cint/modes/components/session-selector";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
+import type { SessionInfo, SessionStatus } from "@incrt/cint/session/session-listing";
 
 beforeAll(async () => {
 	await initTheme();

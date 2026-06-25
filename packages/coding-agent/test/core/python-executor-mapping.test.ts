@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { executePythonWithKernel, type PythonKernelExecutor } from "@incrt/cint-coding-agent/eval/py/executor";
-import type { KernelExecuteOptions, KernelExecuteResult } from "@incrt/cint-coding-agent/eval/py/kernel";
+import { executePythonWithKernel, type PythonKernelExecutor } from "@incrt/cint/eval/py/executor";
+import type { KernelExecuteOptions, KernelExecuteResult } from "@incrt/cint/eval/py/kernel";
 
 class FakeKernel implements PythonKernelExecutor {
 	constructor(

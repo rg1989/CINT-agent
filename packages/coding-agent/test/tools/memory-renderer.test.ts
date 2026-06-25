@@ -1,10 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
-import {
-	recallToolRenderer,
-	reflectToolRenderer,
-	retainToolRenderer,
-} from "@incrt/cint-coding-agent/tools/memory-render";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
+import { recallToolRenderer, reflectToolRenderer, retainToolRenderer } from "@incrt/cint/tools/memory-render";
 import { sanitizeText } from "@incrt/cint-utils";
 
 async function theme() {

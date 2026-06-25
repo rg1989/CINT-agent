@@ -1,11 +1,8 @@
 import { describe, expect, test } from "bun:test";
+import { kNoAuth } from "@incrt/cint/config/model-registry";
+import { type ModelLookupRegistry, resolveModelOverrideWithAuthFallback } from "@incrt/cint/config/model-resolver";
 import type { Api, Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { kNoAuth } from "@incrt/cint-coding-agent/config/model-registry";
-import {
-	type ModelLookupRegistry,
-	resolveModelOverrideWithAuthFallback,
-} from "@incrt/cint-coding-agent/config/model-resolver";
 
 /**
  * Regression test for #985.

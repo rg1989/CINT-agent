@@ -1,10 +1,10 @@
 import { describe, expect, it } from "bun:test";
+import { BlobStore, isBlobRef } from "@incrt/cint/session/blob-store";
+import type { FileEntry, SessionMessageEntry } from "@incrt/cint/session/session-entries";
+import { resolveBlobRefsInEntries } from "@incrt/cint/session/session-loader";
+import { prepareEntryForPersistence } from "@incrt/cint/session/session-persistence";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import type { ImageContent, TextContent } from "@incrt/cint-ai";
-import { BlobStore, isBlobRef } from "@incrt/cint-coding-agent/session/blob-store";
-import type { FileEntry, SessionMessageEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import { resolveBlobRefsInEntries } from "@incrt/cint-coding-agent/session/session-loader";
-import { prepareEntryForPersistence } from "@incrt/cint-coding-agent/session/session-persistence";
 import { TempDir } from "@incrt/cint-utils";
 
 type ImagePayload = { data: string; mimeType: string; type?: "image" };

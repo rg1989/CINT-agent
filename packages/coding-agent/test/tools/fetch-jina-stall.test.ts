@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { renderHtmlToText } from "@incrt/cint-coding-agent/tools/fetch";
+import { Settings } from "@incrt/cint/config/settings";
+import { renderHtmlToText } from "@incrt/cint/tools/fetch";
 import { asGlobalFetch } from "../helpers/fetch-mock";
 
 /**

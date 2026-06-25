@@ -1,13 +1,13 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
-import { CollabHost } from "@incrt/cint-coding-agent/collab/host";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+import { CollabHost } from "@incrt/cint/collab/host";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import {
 	type BuiltinSlashCommandRuntime,
 	executeBuiltinSlashCommand,
-} from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
-import { CollabQrCodeComponent } from "@incrt/cint-coding-agent/slash-commands/helpers/collab-qrcode";
+} from "@incrt/cint/slash-commands/builtin-registry";
+import { CollabQrCodeComponent } from "@incrt/cint/slash-commands/helpers/collab-qrcode";
 import { Spacer } from "@incrt/cint-tui";
 
 beforeAll(async () => {

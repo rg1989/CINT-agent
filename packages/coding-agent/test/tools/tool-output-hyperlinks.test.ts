@@ -3,14 +3,14 @@ import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
 import * as url from "node:url";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { editToolRenderer } from "@incrt/cint-coding-agent/edit/renderer";
-import { getThemeByName, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { astGrepToolRenderer } from "@incrt/cint-coding-agent/tools/ast-grep";
-import { ReadTool, readToolRenderer } from "@incrt/cint-coding-agent/tools/read";
-import { searchToolRenderer } from "@incrt/cint-coding-agent/tools/search";
-import { WriteTool, writeToolRenderer } from "@incrt/cint-coding-agent/tools/write";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { editToolRenderer } from "@incrt/cint/edit/renderer";
+import { getThemeByName, initTheme } from "@incrt/cint/modes/theme/theme";
+import type { ToolSession } from "@incrt/cint/tools";
+import { astGrepToolRenderer } from "@incrt/cint/tools/ast-grep";
+import { ReadTool, readToolRenderer } from "@incrt/cint/tools/read";
+import { searchToolRenderer } from "@incrt/cint/tools/search";
+import { WriteTool, writeToolRenderer } from "@incrt/cint/tools/write";
 
 // 1x1 PNG so the read tool takes its image branch.
 const TINY_PNG_BASE64 =

@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { MCPAuthorizationLinkPrompt } from "@incrt/cint-coding-agent/modes/controllers/mcp-command-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { MCPAuthorizationLinkPrompt } from "@incrt/cint/modes/controllers/mcp-command-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 
 const OSC = "\x1b]";
 const BEL = "\x07";

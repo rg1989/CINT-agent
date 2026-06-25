@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { keywordInProse, maskNonProse } from "@incrt/cint-coding-agent/modes/markdown-prose";
+import { keywordInProse, maskNonProse } from "@incrt/cint/modes/markdown-prose";
 
 const ORCHESTRATE = /\borchestrate\b/i;
 

@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { runEvalAgent } from "@incrt/cint-coding-agent/eval/agent-bridge";
-import type { LocalProtocolOptions } from "@incrt/cint-coding-agent/internal-urls";
-import type { MCPManager } from "@incrt/cint-coding-agent/mcp";
-import * as taskDiscovery from "@incrt/cint-coding-agent/task/discovery";
-import * as taskExecutor from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition, SingleResult } from "@incrt/cint-coding-agent/task/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { runEvalAgent } from "@incrt/cint/eval/agent-bridge";
+import type { LocalProtocolOptions } from "@incrt/cint/internal-urls";
+import type { MCPManager } from "@incrt/cint/mcp";
+import * as taskDiscovery from "@incrt/cint/task/discovery";
+import * as taskExecutor from "@incrt/cint/task/executor";
+import type { AgentDefinition, SingleResult } from "@incrt/cint/task/types";
+import type { ToolSession } from "@incrt/cint/tools";
 
 function createResult(): SingleResult {
 	return {

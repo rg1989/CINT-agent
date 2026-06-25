@@ -9,8 +9,8 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 
 function createContext(options?: { threshold?: number; choice?: string; artifactsDir?: string }) {
 	const insertPaste = vi.fn();

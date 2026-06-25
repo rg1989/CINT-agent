@@ -3,8 +3,8 @@ import * as fs from "node:fs";
 import * as fsp from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { readTerminalBreadcrumbEntry } from "@incrt/cint-coding-agent/session/session-paths";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { readTerminalBreadcrumbEntry } from "@incrt/cint/session/session-paths";
 import { getTerminalId } from "@incrt/cint-tui";
 import { getConfigRootDir, getTerminalSessionsDir, setAgentDir } from "@incrt/cint-utils";
 

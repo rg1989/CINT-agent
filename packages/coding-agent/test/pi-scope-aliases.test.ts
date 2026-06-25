@@ -10,7 +10,7 @@
  *   - `@juicesharp/rpiv-ask-user-question` ⇒ `@earendil-works/pi-tui`
  *   - `@incrt/cint-swarm-extension`         ⇒ `@incrt/cint-utils`
  *   - `@plannotator/pi-extension`         ⇒ `@incrt/cint-agent-core`
- *   - `@runfusion/fusion`                 ⇒ `@incrt/cint-coding-agent/...`
+ *   - `@runfusion/fusion`                 ⇒ `@incrt/cint/...`
  *
  * Plus the two upstream-only surfaces that turned up via real-plugin E2E:
  *   - `Key` runtime helper from `pi-tui` (used by plannotator + rpiv-*).
@@ -19,14 +19,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { loadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
+import { loadExtensions } from "@incrt/cint/extensibility/extensions/loader";
 import { TempDir } from "@incrt/cint-utils";
 
-const canonicalCodingAgent = Bun.resolveSync("@incrt/cint-coding-agent", import.meta.dir);
-const canonicalCodingAgentExtensions = Bun.resolveSync(
-	"@incrt/cint-coding-agent/extensibility/extensions",
-	import.meta.dir,
-);
+const canonicalCodingAgent = Bun.resolveSync("@incrt/cint", import.meta.dir);
+const canonicalCodingAgentExtensions = Bun.resolveSync("@incrt/cint/extensibility/extensions", import.meta.dir);
 const canonicalUtils = Bun.resolveSync("@incrt/cint-utils", import.meta.dir);
 const canonicalTui = Bun.resolveSync("@incrt/cint-tui", import.meta.dir);
 // Subpath: upstream `pi-ai/oauth` re-exported `utils/oauth/index`; our pi-ai now
@@ -54,7 +51,7 @@ const CASES: readonly AliasCase[] = [
 	{ id: "ohmypi-utils", aliasSpecifier: "@incrt/cint-utils", canonicalPath: canonicalUtils, symbol: "logger" },
 	{
 		id: "ohmypi-coding-agent",
-		aliasSpecifier: "@incrt/cint-coding-agent",
+		aliasSpecifier: "@incrt/cint",
 		canonicalPath: canonicalCodingAgent,
 		symbol: "isToolCallEventType",
 	},

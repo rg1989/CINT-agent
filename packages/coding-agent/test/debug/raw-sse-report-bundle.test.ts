@@ -2,10 +2,10 @@ import { afterEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { RawSseDebugBuffer } from "@incrt/cint/debug/raw-sse-buffer";
+import { createReportBundle } from "@incrt/cint/debug/report-bundle";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { RawSseDebugBuffer } from "@incrt/cint-coding-agent/debug/raw-sse-buffer";
-import { createReportBundle } from "@incrt/cint-coding-agent/debug/report-bundle";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 const model: Model<"anthropic-messages"> = buildModel({

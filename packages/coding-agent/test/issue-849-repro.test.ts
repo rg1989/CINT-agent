@@ -1,11 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import { buildSessionContext } from "@incrt/cint/session/session-context";
+import type { ModelChangeEntry, SessionEntry, SessionMessageEntry } from "@incrt/cint/session/session-entries";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { buildSessionContext } from "@incrt/cint-coding-agent/session/session-context";
-import type {
-	ModelChangeEntry,
-	SessionEntry,
-	SessionMessageEntry,
-} from "@incrt/cint-coding-agent/session/session-entries";
 
 /**
  * Issue #849: After a user explicitly switches to gpt-5.5, the session reverts

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { normalizeWindowsDriveAliasPath } from "@incrt/cint-coding-agent/tools/path-utils";
+import { normalizeWindowsDriveAliasPath } from "@incrt/cint/tools/path-utils";
 
 describe("Windows drive alias paths", () => {
 	it("maps MSYS drive roots to native Windows paths", () => {

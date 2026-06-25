@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import { callSessionTool } from "@incrt/cint/eval/js/tool-bridge";
+import type { ToolSession } from "@incrt/cint/tools";
 import type { AgentTool, AgentToolResult } from "@incrt/cint-agent-core";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { callSessionTool } from "@incrt/cint-coding-agent/eval/js/tool-bridge";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
 import { INTENT_FIELD } from "@incrt/cint-wire";
 import { type } from "arktype";
 

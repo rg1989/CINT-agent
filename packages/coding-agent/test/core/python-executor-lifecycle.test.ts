@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { disposeAllKernelSessions, executePython } from "@incrt/cint-coding-agent/eval/py/executor";
-import type { KernelExecuteResult } from "@incrt/cint-coding-agent/eval/py/kernel";
-import * as pythonKernel from "@incrt/cint-coding-agent/eval/py/kernel";
+import { disposeAllKernelSessions, executePython } from "@incrt/cint/eval/py/executor";
+import type { KernelExecuteResult } from "@incrt/cint/eval/py/kernel";
+import * as pythonKernel from "@incrt/cint/eval/py/kernel";
 import { getProjectDir } from "@incrt/cint-utils";
 
 class FakeKernel {

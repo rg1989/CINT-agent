@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { __validateLegacyPiPackageRootOverrides } from "@incrt/cint-coding-agent/extensibility/plugins/legacy-pi-compat";
+import { __validateLegacyPiPackageRootOverrides } from "@incrt/cint/extensibility/plugins/legacy-pi-compat";
 
 // Regression for issue #2168: in compiled-binary mode the package-root
 // override branch of `resolveCanonicalPiSpecifier` returned a bunfs path
@@ -23,7 +23,7 @@ describe("legacy pi compat package-root override validation (issue #2168)", () =
 	it("drops overrides whose targets are missing on disk", () => {
 		const candidates = {
 			"@incrt/cint-ai": "/tmp/exists-ai.js",
-			"@incrt/cint-coding-agent": "/tmp/exists-shim.js",
+			"@incrt/cint": "/tmp/exists-shim.js",
 			"@incrt/cint-utils": "/$bunfs/root/packages/utils/src/index.js",
 			"@incrt/cint-tui": "/$bunfs/root/packages/tui/src/index.js",
 		};
@@ -31,7 +31,7 @@ describe("legacy pi compat package-root override validation (issue #2168)", () =
 		const result = __validateLegacyPiPackageRootOverrides(candidates, p => !missing.has(p));
 		expect(result).toEqual({
 			"@incrt/cint-ai": "/tmp/exists-ai.js",
-			"@incrt/cint-coding-agent": "/tmp/exists-shim.js",
+			"@incrt/cint": "/tmp/exists-shim.js",
 		});
 		// `pi-utils` and `pi-tui` are absent so the resolver falls through to
 		// `getResolvedSpecifier` (which throws under bunfs), which triggers

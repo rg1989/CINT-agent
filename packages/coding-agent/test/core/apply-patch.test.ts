@@ -10,7 +10,7 @@ import {
 	parseApplyPatch,
 	parseDiffHunks,
 	seekSequence,
-} from "@incrt/cint-coding-agent/edit";
+} from "@incrt/cint/edit";
 import { removeSyncWithRetries } from "@incrt/cint-utils";
 
 // ═══════════════════════════════════════════════════════════════════════════

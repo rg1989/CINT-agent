@@ -4,9 +4,9 @@
  * Run with: npx tsx test/streaming-render-debug.ts
  */
 import * as path from "node:path";
+import { AssistantMessageComponent } from "@incrt/cint/modes/components/assistant-message";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { AssistantMessageComponent } from "@incrt/cint-coding-agent/modes/components/assistant-message";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
 import { ProcessTerminal, TUI } from "@incrt/cint-tui";
 import { sleep } from "bun";
 

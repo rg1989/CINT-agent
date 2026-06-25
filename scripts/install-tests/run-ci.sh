@@ -48,8 +48,8 @@ bun --cwd=packages/coding-agent run build
 
 BINARY_DIR="$WORK_DIR/binary-bin"
 mkdir -p "$BINARY_DIR"
-cp packages/coding-agent/dist/omp "$BINARY_DIR/omp"
-smoke_cli "$BINARY_DIR/omp"
+cp packages/coding-agent/dist/cint "$BINARY_DIR/cint"
+smoke_cli "$BINARY_DIR/cint"
 
 section "Source install smoke"
 SOURCE_BUN_HOME="$WORK_DIR/bun-source"
@@ -57,7 +57,7 @@ SOURCE_BUN_HOME="$WORK_DIR/bun-source"
    export BUN_INSTALL="$SOURCE_BUN_HOME"
    export PATH="$BUN_INSTALL/bin:$PATH"
    bun --cwd="$ROOT_DIR/packages/coding-agent" link
-   smoke_cli "$BUN_INSTALL/bin/omp"
+   smoke_cli "$BUN_INSTALL/bin/cint"
 )
 
 section "Tarball install smoke"
@@ -116,20 +116,20 @@ agent_rc=0
 cp "$agent_pkg_backup" "$ROOT_DIR/packages/coding-agent/package.json"
 [ "$agent_rc" -eq 0 ] || exit "$agent_rc"
 
-utils_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-utils-*.tgz)"
-wire_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-wire-*.tgz)"
-natives_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-natives-[0-9]*.tgz)"
-natives_leaf_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-natives-"$host_tag"-*.tgz)"
-hashline_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-hashline-*.tgz)"
-catalog_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-catalog-*.tgz)"
-ai_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-ai-*.tgz)"
-mnemopi_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-mnemopi-*.tgz)"
-snapcompact_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-snapcompact-*.tgz)"
-agent_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-agent-core-*.tgz)"
-tui_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-tui-*.tgz)"
-stats_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-omp-stats-*.tgz)"
-coding_agent_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-pi-coding-agent-*.tgz)"
-collab_web_tgz="$(find_tarball "$TARBALL_DIR"/oh-my-pi-collab-web-*.tgz)"
+utils_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-utils-*.tgz)"
+wire_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-wire-*.tgz)"
+natives_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-natives-[0-9]*.tgz)"
+natives_leaf_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-natives-"$host_tag"-*.tgz)"
+hashline_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-hashline-*.tgz)"
+catalog_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-catalog-*.tgz)"
+ai_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-ai-*.tgz)"
+mnemopi_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-mnemopi-*.tgz)"
+snapcompact_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-snapcompact-*.tgz)"
+agent_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-agent-core-*.tgz)"
+tui_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-tui-*.tgz)"
+stats_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-stats-*.tgz)"
+coding_agent_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-[0-9]*.tgz)"
+collab_web_tgz="$(find_tarball "$TARBALL_DIR"/incrt-cint-collab-web-*.tgz)"
 
 TARBALL_APP_DIR="$WORK_DIR/tarball-install"
 mkdir -p "$TARBALL_APP_DIR"
@@ -142,20 +142,20 @@ mkdir -p "$TARBALL_APP_DIR"
    node -e "
 		const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8'));
 		pkg.overrides = {
-			'@oh-my-pi/pi-utils': '$utils_tgz',
-			'@oh-my-pi/pi-wire': '$wire_tgz',
-			'@oh-my-pi/pi-natives': '$natives_tgz',
-			'@oh-my-pi/pi-natives-$host_tag': '$natives_leaf_tgz',
-			'@oh-my-pi/hashline': '$hashline_tgz',
-			'@oh-my-pi/pi-ai': '$ai_tgz',
-			'@oh-my-pi/pi-catalog': '$catalog_tgz',
-			'@oh-my-pi/pi-mnemopi': '$mnemopi_tgz',
-			'@oh-my-pi/snapcompact': '$snapcompact_tgz',
-			'@oh-my-pi/pi-agent-core': '$agent_tgz',
-			'@oh-my-pi/pi-tui': '$tui_tgz',
-			'@oh-my-pi/omp-stats': '$stats_tgz',
-			'@oh-my-pi/pi-coding-agent': '$coding_agent_tgz',
-			'@oh-my-pi/collab-web': '$collab_web_tgz'
+			'@incrt/cint-utils': '$utils_tgz',
+			'@incrt/cint-wire': '$wire_tgz',
+			'@incrt/cint-natives': '$natives_tgz',
+			'@incrt/cint-natives-$host_tag': '$natives_leaf_tgz',
+			'@incrt/cint-hashline': '$hashline_tgz',
+			'@incrt/cint-ai': '$ai_tgz',
+			'@incrt/cint-catalog': '$catalog_tgz',
+			'@incrt/cint-mnemopi': '$mnemopi_tgz',
+			'@incrt/cint-snapcompact': '$snapcompact_tgz',
+			'@incrt/cint-agent-core': '$agent_tgz',
+			'@incrt/cint-tui': '$tui_tgz',
+			'@incrt/cint-stats': '$stats_tgz',
+			'@incrt/cint': '$coding_agent_tgz',
+			'@incrt/cint-collab-web': '$collab_web_tgz'
 		};
 		require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));
 	"
@@ -164,21 +164,21 @@ mkdir -p "$TARBALL_APP_DIR"
    # The platform leaf must arrive through the core's optionalDependencies +
    # override, not as a direct dependency — assert it landed before smoking so a
    # resolution regression is distinguishable from a runtime loader bug.
-   leaf_dir="node_modules/@oh-my-pi/pi-natives-$host_tag"
+   leaf_dir="node_modules/@incrt/cint-natives-$host_tag"
    [ -d "$leaf_dir" ] || {
       echo "Platform leaf package not installed: $leaf_dir"
       exit 1
    }
-   wire_proto="$(bun -e 'import { COLLAB_PROTO } from "@oh-my-pi/pi-wire"; process.stdout.write(String(COLLAB_PROTO));')"
+   wire_proto="$(bun -e 'import { COLLAB_PROTO } from "@incrt/cint-wire"; process.stdout.write(String(COLLAB_PROTO));')"
    [ "$wire_proto" = "2" ] || {
-      echo "Unexpected @oh-my-pi/pi-wire COLLAB_PROTO: $wire_proto"
+      echo "Unexpected @incrt/cint-wire COLLAB_PROTO: $wire_proto"
       exit 1
    }
-   [ -f "node_modules/@oh-my-pi/collab-web/dist/index.html" ] || {
+   [ -f "node_modules/@incrt/cint-collab-web/dist/index.html" ] || {
       echo "Collab web tarball did not install built dist/index.html"
       exit 1
    }
-   smoke_cli ./node_modules/.bin/omp
+   smoke_cli ./node_modules/.bin/cint
 )
 
 echo ""

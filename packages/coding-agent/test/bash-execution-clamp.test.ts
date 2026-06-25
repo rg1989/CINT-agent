@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "bun:test";
-import { BashExecutionComponent } from "@incrt/cint-coding-agent/modes/components/bash-execution";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { BashExecutionComponent } from "@incrt/cint/modes/components/bash-execution";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
 import type { TUI } from "@incrt/cint-tui";
 import { visibleWidth } from "@incrt/cint-tui";
 

@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { SearchTool, type ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ToolError } from "@incrt/cint-coding-agent/tools/tool-errors";
+import { Settings } from "@incrt/cint/config/settings";
+import { SearchTool, type ToolSession } from "@incrt/cint/tools";
+import { ToolError } from "@incrt/cint/tools/tool-errors";
 
 function createTestSession(cwd: string, overrides: Partial<ToolSession> = {}): ToolSession {
 	return {

@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { dropIncompleteLastEdit, EDIT_MODE_STRATEGIES } from "@incrt/cint/edit";
 import { computeFileHash, formatHashlineHeader, InMemorySnapshotStore } from "@incrt/cint-hashline";
-import { dropIncompleteLastEdit, EDIT_MODE_STRATEGIES } from "@incrt/cint-coding-agent/edit";
 
 describe("dropIncompleteLastEdit", () => {
 	test("keeps all entries when partialJson is undefined", () => {

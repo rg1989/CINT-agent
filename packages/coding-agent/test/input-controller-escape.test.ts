@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import type { InteractiveModeContext, SubmittedUserInput } from "@incrt/cint/modes/types";
+import { USER_INTERRUPT_LABEL } from "@incrt/cint/session/messages";
 import type { ImageContent } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import type { InteractiveModeContext, SubmittedUserInput } from "@incrt/cint-coding-agent/modes/types";
-import { USER_INTERRUPT_LABEL } from "@incrt/cint-coding-agent/session/messages";
 
 type Spy = Mock<(...args: unknown[]) => unknown>;
 type StartPendingSubmissionSpy = Mock<InteractiveModeContext["startPendingSubmission"]>;

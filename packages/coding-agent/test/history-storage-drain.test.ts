@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { HistoryStorage } from "@incrt/cint-coding-agent/session/history-storage";
+import { HistoryStorage } from "@incrt/cint/session/history-storage";
 
 let tempDir = "";
 

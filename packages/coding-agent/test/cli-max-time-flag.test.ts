@@ -1,10 +1,10 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { parseArgs } from "@incrt/cint-coding-agent/cli/args";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { runRootCommand } from "@incrt/cint-coding-agent/main";
-import type { CreateAgentSessionOptions } from "@incrt/cint-coding-agent/sdk";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { parseArgs } from "@incrt/cint/cli/args";
+import { Settings } from "@incrt/cint/config/settings";
+import { runRootCommand } from "@incrt/cint/main";
+import type { CreateAgentSessionOptions } from "@incrt/cint/sdk";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("parseArgs — --max-time flag", () => {

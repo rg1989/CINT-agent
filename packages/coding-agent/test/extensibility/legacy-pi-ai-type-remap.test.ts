@@ -3,13 +3,13 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 import * as url from "node:url";
-import { getBundledModel, getBundledModels } from "@incrt/cint-catalog/models";
 import {
 	__resetLegacyPiResolutionCache,
 	installLegacyPiSpecifierShim,
 	loadLegacyPiModule,
-} from "@incrt/cint-coding-agent/extensibility/plugins/legacy-pi-compat";
-import { Type as TypeBoxShimType } from "@incrt/cint-coding-agent/extensibility/typebox";
+} from "@incrt/cint/extensibility/plugins/legacy-pi-compat";
+import { Type as TypeBoxShimType } from "@incrt/cint/extensibility/typebox";
+import { getBundledModel, getBundledModels } from "@incrt/cint-catalog/models";
 
 // pi-ai 15.1.0 removed the runtime `Type` export from `@incrt/cint-ai`'s
 // package root. Legacy extensions (and their aliased-scope variants such as
@@ -143,7 +143,7 @@ describe("legacy pi package root remaps (issue #1474)", () => {
 	it("loads @earendil-works/pi-coding-agent root imports when host package resolution is unavailable", async () => {
 		const realResolveSync = Bun.resolveSync.bind(Bun);
 		vi.spyOn(Bun, "resolveSync").mockImplementation((specifier: string, from: string) => {
-			if (specifier === "@incrt/cint-coding-agent" && from.endsWith(path.join("src", "extensibility", "plugins"))) {
+			if (specifier === "@incrt/cint" && from.endsWith(path.join("src", "extensibility", "plugins"))) {
 				throw new Error("compiled binary host package resolution unavailable");
 			}
 			return realResolveSync(specifier, from);

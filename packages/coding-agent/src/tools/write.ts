@@ -1,9 +1,8 @@
 import { Database } from "bun:sqlite";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-
-import { formatHashlineHeader, stripHashlinePrefixes } from "@incrt/cint-hashline";
 import type { AgentTool, AgentToolContext, AgentToolResult, AgentToolUpdateCallback } from "@incrt/cint-agent-core";
+import { formatHashlineHeader, stripHashlinePrefixes } from "@incrt/cint-hashline";
 import type { Component } from "@incrt/cint-tui";
 import { isEnoent, isRecord, prompt, untilAborted } from "@incrt/cint-utils";
 import { type } from "arktype";

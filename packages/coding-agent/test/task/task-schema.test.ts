@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { TaskTool, taskSchema } from "@incrt/cint-coding-agent/task";
-import * as discoveryModule from "@incrt/cint-coding-agent/task/discovery";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { TaskTool, taskSchema } from "@incrt/cint/task";
+import * as discoveryModule from "@incrt/cint/task/discovery";
+import type { ToolSession } from "@incrt/cint/tools";
 import { type } from "arktype";
 
 // Contract: the single-spawn schema (`task.batch: false`; the exported

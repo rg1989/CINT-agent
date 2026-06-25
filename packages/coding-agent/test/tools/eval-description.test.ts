@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
+import { EvalTool, getEvalToolDescription } from "@incrt/cint/tools/eval";
 import type { Tool as AiTool } from "@incrt/cint-ai";
 import { toolWireSchema } from "@incrt/cint-ai/utils/schema";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { EvalTool, getEvalToolDescription } from "@incrt/cint-coding-agent/tools/eval";
 
 function makeSession(opts: { spawns?: string | null; backends?: Record<string, boolean> }): ToolSession {
 	const settings = Settings.isolated();

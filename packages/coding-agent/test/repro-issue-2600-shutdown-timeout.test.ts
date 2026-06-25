@@ -18,17 +18,17 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { discoverAndLoadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { discoverAndLoadExtensions } from "@incrt/cint/extensibility/extensions/loader";
 import {
 	EXTENSION_HANDLER_TIMEOUT_MS,
 	ExtensionRunner,
 	SESSION_SHUTDOWN_HANDLER_TIMEOUT_MS,
 	testSetExtensionHandlerTimeoutMs,
 	testSetSessionShutdownHandlerTimeoutMs,
-} from "@incrt/cint-coding-agent/extensibility/extensions/runner";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+} from "@incrt/cint/extensibility/extensions/runner";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { getProjectAgentDir, logger, TempDir } from "@incrt/cint-utils";
 
 const HANG_EXTENSION_SRC = `

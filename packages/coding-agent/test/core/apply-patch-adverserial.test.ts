@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { ApplyPatchError, applyPatch } from "@incrt/cint-coding-agent/edit";
+import { ApplyPatchError, applyPatch } from "@incrt/cint/edit";
 
 describe("applyPatch adversarial inputs", () => {
 	let tempDir: string;

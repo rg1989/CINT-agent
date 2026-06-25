@@ -1,7 +1,7 @@
 import * as path from "node:path";
-import { formatHashlineHeader } from "@incrt/cint-hashline";
 import type { AgentTool, AgentToolContext, AgentToolResult, AgentToolUpdateCallback } from "@incrt/cint-agent-core";
 import type { ToolExample } from "@incrt/cint-ai";
+import { formatHashlineHeader } from "@incrt/cint-hashline";
 import { type AstFindMatch, astGrep } from "@incrt/cint-natives";
 import type { Component } from "@incrt/cint-tui";
 import { Text } from "@incrt/cint-tui";

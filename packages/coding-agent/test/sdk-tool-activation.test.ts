@@ -2,16 +2,16 @@ import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:te
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
 import {
 	type CreateAgentSessionOptions,
 	createAgentSession,
 	discoverAuthStorage,
 	type ExtensionFactory,
-} from "@incrt/cint-coding-agent/sdk";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+} from "@incrt/cint/sdk";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 import { Snowflake } from "@incrt/cint-utils";
 import { type } from "arktype";
 

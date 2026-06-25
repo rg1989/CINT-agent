@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
-import { KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import type { HookSelectorSlider } from "@incrt/cint-coding-agent/modes/components/hook-selector";
-import { PlanReviewOverlay } from "@incrt/cint-coding-agent/modes/components/plan-review-overlay";
-import { getThemeByName, setThemeInstance, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { KeybindingsManager } from "@incrt/cint/config/keybindings";
+import type { HookSelectorSlider } from "@incrt/cint/modes/components/hook-selector";
+import { PlanReviewOverlay } from "@incrt/cint/modes/components/plan-review-overlay";
+import { getThemeByName, setThemeInstance, theme } from "@incrt/cint/modes/theme/theme";
 import { setKeybindings } from "@incrt/cint-tui";
 
 const UP = "\x1b[A";

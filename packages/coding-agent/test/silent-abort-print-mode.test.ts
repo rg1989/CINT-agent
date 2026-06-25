@@ -6,10 +6,10 @@
  * (and exit with code 1). This test verifies the guard skips silent-abort.
  */
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "bun:test";
+import { runPrintMode } from "@incrt/cint/modes/print-mode";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
+import { SILENT_ABORT_MARKER } from "@incrt/cint/session/messages";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { runPrintMode } from "@incrt/cint-coding-agent/modes/print-mode";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SILENT_ABORT_MARKER } from "@incrt/cint-coding-agent/session/messages";
 
 function makeAssistantMessage(overrides: Partial<AssistantMessage> = {}): AssistantMessage {
 	return {

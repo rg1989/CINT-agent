@@ -1,9 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import {
-	analyzeAuthError,
-	discoverOAuthEndpoints,
-	extractMcpAuthServerUrl,
-} from "@incrt/cint-coding-agent/mcp/oauth-discovery";
+import { analyzeAuthError, discoverOAuthEndpoints, extractMcpAuthServerUrl } from "@incrt/cint/mcp/oauth-discovery";
 import { type FetchInput, mockFetch } from "./helpers/fetch-mock";
 
 describe("mcp oauth discovery", () => {

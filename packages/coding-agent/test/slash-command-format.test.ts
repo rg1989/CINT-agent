@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import * as settingsModule from "@incrt/cint-coding-agent/config/settings";
-import type { Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { renderAsciiBar } from "@incrt/cint-coding-agent/slash-commands/helpers/format";
+import * as settingsModule from "@incrt/cint/config/settings";
+import type { Theme } from "@incrt/cint/modes/theme/theme";
+import { renderAsciiBar } from "@incrt/cint/slash-commands/helpers/format";
 
 const testTheme = {
 	fg(color: Parameters<Theme["fg"]>[0], text: string): string {

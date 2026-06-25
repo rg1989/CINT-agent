@@ -1,5 +1,5 @@
 import { padding, truncateToWidth, visibleWidth } from "@incrt/cint-tui";
-import { gradientLogo, CINT_LOGO } from "../../components/welcome";
+import { CINT_LOGO, gradientLogo } from "../../components/welcome";
 import { theme } from "../../theme/theme";
 import { renderStarfield, SETUP_TICK_MS } from "./splash";
 

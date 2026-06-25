@@ -9,17 +9,17 @@
  * in-memory transport, so the suite stays fast and time-independent.
  */
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
-import { importRoomKey } from "@incrt/cint-coding-agent/collab/crypto";
-import { CollabHost } from "@incrt/cint-coding-agent/collab/host";
+import { importRoomKey } from "@incrt/cint/collab/crypto";
+import { CollabHost } from "@incrt/cint/collab/host";
 import {
 	COLLAB_PROTO,
 	type CollabFrame,
 	parseCollabLink,
 	rewriteEnvelopePeer,
 	unpackEnvelope,
-} from "@incrt/cint-coding-agent/collab/protocol";
-import { CollabSocket } from "@incrt/cint-coding-agent/collab/relay-client";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+} from "@incrt/cint/collab/protocol";
+import { CollabSocket } from "@incrt/cint/collab/relay-client";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 
 // ── In-memory transport ────────────────────────────────────────────────────
 // FakeWebSocket + InMemoryRelay replace the real Bun.serve relay and loopback

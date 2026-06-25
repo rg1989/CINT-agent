@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { getThemeByName } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { ResolveTool, resolveToolRenderer } from "@incrt/cint-coding-agent/tools/resolve";
+import { Settings } from "@incrt/cint/config/settings";
+import { getThemeByName } from "@incrt/cint/modes/theme/theme";
+import type { ToolSession } from "@incrt/cint/tools";
+import { ResolveTool, resolveToolRenderer } from "@incrt/cint/tools/resolve";
 import { sanitizeText } from "@incrt/cint-utils";
 
 function createSession(handler?: (input: unknown) => Promise<unknown>, clearPendingInvokers?: () => void): ToolSession {

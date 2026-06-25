@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { readImageFromClipboard } from "@incrt/cint-coding-agent/utils/clipboard";
+import { readImageFromClipboard } from "@incrt/cint/utils/clipboard";
 import * as native from "@incrt/cint-natives";
 import type { Subprocess } from "bun";
 

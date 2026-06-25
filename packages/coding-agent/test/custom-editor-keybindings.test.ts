@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from "bun:test";
-import { CustomEditor } from "@incrt/cint-coding-agent/modes/components/custom-editor";
-import { getEditorTheme, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { CustomEditor } from "@incrt/cint/modes/components/custom-editor";
+import { getEditorTheme, initTheme } from "@incrt/cint/modes/theme/theme";
 
 describe("CustomEditor keybindings", () => {
 	beforeAll(async () => {

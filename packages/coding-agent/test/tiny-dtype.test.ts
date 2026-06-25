@@ -6,7 +6,7 @@ import {
 	TINY_MODEL_DTYPE_SETTING_OPTIONS,
 	TINY_MODEL_DTYPE_SETTING_VALUES,
 	tinyModelDtypeSettingToEnv,
-} from "@incrt/cint-coding-agent/tiny/dtype";
+} from "@incrt/cint/tiny/dtype";
 
 describe("tiny model dtype selection", () => {
 	it("returns undefined when unset so callers keep the per-model spec dtype", () => {

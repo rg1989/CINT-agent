@@ -2,14 +2,10 @@ import { beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { type ExecuteHashlineSingleOptions, executeHashlineSingle, getFileSnapshotStore } from "@incrt/cint/edit";
+import type { ToolSession } from "@incrt/cint/tools";
 import { formatHashlineHeader } from "@incrt/cint-hashline";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import {
-	type ExecuteHashlineSingleOptions,
-	executeHashlineSingle,
-	getFileSnapshotStore,
-} from "@incrt/cint-coding-agent/edit";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
 
 beforeAll(async () => {
 	resetSettingsForTest();

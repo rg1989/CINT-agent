@@ -2,10 +2,10 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { applyResolvedSystemPromptInputs, submitInteractiveInput } from "@incrt/cint-coding-agent/main";
-import type { SubmittedUserInput } from "@incrt/cint-coding-agent/modes/types";
-import type { CreateAgentSessionOptions } from "@incrt/cint-coding-agent/sdk";
-import { discoverTitleSystemPromptFile } from "@incrt/cint-coding-agent/system-prompt";
+import { applyResolvedSystemPromptInputs, submitInteractiveInput } from "@incrt/cint/main";
+import type { SubmittedUserInput } from "@incrt/cint/modes/types";
+import type { CreateAgentSessionOptions } from "@incrt/cint/sdk";
+import { discoverTitleSystemPromptFile } from "@incrt/cint/system-prompt";
 
 const cleanupDirs: string[] = [];
 
@@ -27,7 +27,7 @@ describe("discoverTitleSystemPromptFile", () => {
 	it("discovers TITLE_SYSTEM.md from the project omp config directory", async () => {
 		const projectDir = await fs.mkdtemp(path.join(os.tmpdir(), "omp-title-system-"));
 		cleanupDirs.push(projectDir);
-		const configDir = path.join(projectDir, ".omp");
+		const configDir = path.join(projectDir, ".cint");
 		await fs.mkdir(configDir, { recursive: true });
 		const promptPath = path.join(configDir, "TITLE_SYSTEM.md");
 		await fs.writeFile(promptPath, "custom title prompt");

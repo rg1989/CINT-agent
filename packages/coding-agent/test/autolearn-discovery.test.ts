@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it, spyOn } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { getManagedSkillsDir } from "@incrt/cint-coding-agent/autolearn/managed-skills";
-import "@incrt/cint-coding-agent/discovery";
-import { loadSkills } from "@incrt/cint-coding-agent/extensibility/skills";
+import { getManagedSkillsDir } from "@incrt/cint/autolearn/managed-skills";
+import "@incrt/cint/discovery";
+import { loadSkills } from "@incrt/cint/extensibility/skills";
 import { getAgentDir, setAgentDir } from "@incrt/cint-utils/dirs";
 
 async function writeSkill(dir: string, name: string, description: string): Promise<void> {
@@ -28,7 +28,7 @@ describe("managed-skills discovery", () => {
 		tempCwd = path.join(tempHome, "work");
 		await fs.mkdir(tempCwd, { recursive: true });
 		spyOn(os, "homedir").mockReturnValue(tempHome);
-		setAgentDir(path.join(tempHome, ".omp", "agent"));
+		setAgentDir(path.join(tempHome, ".cint", "agent"));
 		managedDir = getManagedSkillsDir();
 		// Authored user skills live in the sibling `skills/` dir under .../agent.
 		authoredDir = path.join(path.dirname(managedDir), "skills");

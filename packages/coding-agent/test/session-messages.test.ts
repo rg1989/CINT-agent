@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
+import { convertToLlm, wrapSteeringForModel } from "@incrt/cint/session/messages";
 import type { AgentMessage } from "@incrt/cint-agent-core";
 import type { ImageContent, Message, TextContent } from "@incrt/cint-ai";
 import { inferCopilotInitiator } from "@incrt/cint-ai/providers/github-copilot-headers";
-import { convertToLlm, wrapSteeringForModel } from "@incrt/cint-coding-agent/session/messages";
 
 function expectAttribution(message: Message | undefined, expected: "user" | "agent" | undefined): void {
 	expect(message).toBeDefined();

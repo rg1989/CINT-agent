@@ -1,12 +1,9 @@
 import { describe, expect, it, vi } from "bun:test";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { ShakeMode } from "@incrt/cint-coding-agent/session/shake-types";
-import {
-	ACP_BUILTIN_SLASH_COMMANDS,
-	executeAcpBuiltinSlashCommand,
-} from "@incrt/cint-coding-agent/slash-commands/acp-builtins";
-import { executeBuiltinSlashCommand } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
-import type { SlashCommandRuntime } from "@incrt/cint-coding-agent/slash-commands/types";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { ShakeMode } from "@incrt/cint/session/shake-types";
+import { ACP_BUILTIN_SLASH_COMMANDS, executeAcpBuiltinSlashCommand } from "@incrt/cint/slash-commands/acp-builtins";
+import { executeBuiltinSlashCommand } from "@incrt/cint/slash-commands/builtin-registry";
+import type { SlashCommandRuntime } from "@incrt/cint/slash-commands/types";
 
 function acpRuntime() {
 	const shake = vi.fn(async (mode: ShakeMode) => ({

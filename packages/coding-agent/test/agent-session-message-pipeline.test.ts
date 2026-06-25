@@ -1,4 +1,12 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import * as memoryBackend from "@incrt/cint/memory-backend";
+import type { MemoryBackend } from "@incrt/cint/memory-backend/types";
+import { type MnemopiSessionState, setMnemopiSessionState } from "@incrt/cint/mnemopi/state";
+import { obfuscateProviderContext, SecretObfuscator } from "@incrt/cint/secrets";
+import { AgentSession, type AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { convertToLlm, wrapSteeringForModel } from "@incrt/cint/session/messages";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentMessage, type AgentTool, AppendOnlyContextManager } from "@incrt/cint-agent-core";
 import {
 	type Api,
@@ -14,14 +22,6 @@ import {
 } from "@incrt/cint-ai";
 import { AssistantMessageEventStream } from "@incrt/cint-ai/utils/event-stream";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import * as memoryBackend from "@incrt/cint-coding-agent/memory-backend";
-import type { MemoryBackend } from "@incrt/cint-coding-agent/memory-backend/types";
-import { type MnemopiSessionState, setMnemopiSessionState } from "@incrt/cint-coding-agent/mnemopi/state";
-import { obfuscateProviderContext, SecretObfuscator } from "@incrt/cint-coding-agent/secrets";
-import { AgentSession, type AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { convertToLlm, wrapSteeringForModel } from "@incrt/cint-coding-agent/session/messages";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 import { createAssistantMessage } from "./helpers/agent-session-setup";
 

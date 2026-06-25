@@ -15,8 +15,8 @@ import { describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { commands, isSubcommand, resolveCliArgv } from "@incrt/cint-coding-agent/cli-commands";
-import { looksLikeLocalPath } from "@incrt/cint-coding-agent/commands/install";
+import { commands, isSubcommand, resolveCliArgv } from "@incrt/cint/cli-commands";
+import { looksLikeLocalPath } from "@incrt/cint/commands/install";
 
 describe("install command is registered as a top-level subcommand", () => {
 	test("CLI runner sees `install` as a known command", () => {
@@ -26,7 +26,7 @@ describe("install command is registered as a top-level subcommand", () => {
 
 	test("CLI runner rejects only bare reserved management words", () => {
 		expect(resolveCliArgv(["extensions"])).toEqual({
-			error: '`omp extensions` is not a management command. Use `omp plugin list` / `omp plugin install`, or run `omp launch extensions` if you meant to send "extensions" as a prompt.',
+			error: '`cint extensions` is not a management command. Use `cint plugin list` / `cint plugin install`, or run `cint launch extensions` if you meant to send "extensions" as a prompt.',
 		});
 		expect(resolveCliArgv(["extensions", "are", "not", "loading"])).toEqual({
 			argv: ["launch", "extensions", "are", "not", "loading"],

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "bun:test";
-import { handleInputOrEscape } from "@incrt/cint-coding-agent/modes/components/plugin-settings";
+import { handleInputOrEscape } from "@incrt/cint/modes/components/plugin-settings";
 import { setKittyProtocolActive } from "@incrt/cint-tui";
 
 afterEach(() => {

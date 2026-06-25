@@ -2,17 +2,17 @@ import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:te
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { toolWireSchema } from "@incrt/cint-ai/utils/schema";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ToolSession } from "@incrt/cint/tools";
 import {
 	buildSearchDateQualifier,
 	GithubTool,
 	parsePrUnifiedDiff,
 	parseSearchDateBound,
 	resolveDefaultRepoMemoized,
-} from "@incrt/cint-coding-agent/tools/gh";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+} from "@incrt/cint/tools/gh";
+import * as git from "@incrt/cint/utils/git";
+import { toolWireSchema } from "@incrt/cint-ai/utils/schema";
 import { getAgentDir, hashPath, setAgentDir } from "@incrt/cint-utils";
 
 // Isolate every `git` invocation in this file from the developer's host
@@ -192,7 +192,7 @@ async function setupTempHome(): Promise<{ home: string; cleanup: () => Promise<v
 	// we must rebuild the resolver after the spy is in place. `setAgentDir`
 	// recreates it; we point it at the temp home's default agent dir.
 	const originalAgentDir = getAgentDir();
-	setAgentDir(path.join(home, ".omp", "agent"));
+	setAgentDir(path.join(home, ".cint", "agent"));
 	return {
 		home,
 		cleanup: async () => {
@@ -211,7 +211,7 @@ async function setupTempHome(): Promise<{ home: string; cleanup: () => Promise<v
 async function expectedWorktreePath(home: string, primaryRoot: string, localBranch: string): Promise<string> {
 	const prNumber = localBranch.replace(/^pr-/, "");
 	const segment = `${prNumber}-${hashPath(primaryRoot)}`;
-	return fs.realpath(path.join(home, ".omp", "wt", segment));
+	return fs.realpath(path.join(home, ".cint", "wt", segment));
 }
 
 describe("parsePrUnifiedDiff", () => {

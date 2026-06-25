@@ -1,13 +1,13 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import * as path from "node:path";
 import * as url from "node:url";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { CustomEditor } from "@incrt/cint/modes/components/custom-editor";
+import { UserMessageComponent } from "@incrt/cint/modes/components/user-message";
+import { getEditorTheme, initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { CustomEditor } from "@incrt/cint-coding-agent/modes/components/custom-editor";
-import { UserMessageComponent } from "@incrt/cint-coding-agent/modes/components/user-message";
-import { getEditorTheme, initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
 import { Container } from "@incrt/cint-tui";
 
 beforeAll(async () => {

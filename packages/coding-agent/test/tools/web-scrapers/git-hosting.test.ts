@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { handleGitHub, parseGitHubUrl, stripActionsLogTimestamps } from "@incrt/cint-coding-agent/web/scrapers/github";
-import { handleGitHubGist } from "@incrt/cint-coding-agent/web/scrapers/github-gist";
+import { handleGitHub, parseGitHubUrl, stripActionsLogTimestamps } from "@incrt/cint/web/scrapers/github";
+import { handleGitHubGist } from "@incrt/cint/web/scrapers/github-gist";
 
 const SKIP = !Bun.env.WEB_FETCH_INTEGRATION;
 

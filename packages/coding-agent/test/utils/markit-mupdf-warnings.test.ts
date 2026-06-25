@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import { convertBufferWithMarkit } from "@incrt/cint-coding-agent/utils/markit";
+import { convertBufferWithMarkit } from "@incrt/cint/utils/markit";
 import { logger } from "@incrt/cint-utils";
 
 function warningPdf(): Uint8Array {

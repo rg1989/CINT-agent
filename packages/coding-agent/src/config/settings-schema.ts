@@ -1,6 +1,6 @@
 import { THINKING_EFFORTS } from "@incrt/cint-ai";
-import { DEFAULT_SHARE_URL } from "@incrt/cint-wire";
 import { SHAPE_VARIANT_NAMES } from "@incrt/cint-snapcompact";
+import { DEFAULT_SHARE_URL } from "@incrt/cint-wire";
 import { DEFAULT_RELAY_URL } from "../collab/protocol";
 import { DEFAULT_STT_MODEL_KEY, STT_MODEL_OPTIONS, STT_MODEL_VALUES } from "../stt/models";
 import { AUTO_THINKING, getConfiguredThinkingLevelMetadata, getThinkingLevelMetadata } from "../thinking";
@@ -1007,7 +1007,8 @@ export const SETTINGS_SCHEMA = {
 				{
 					value: "operator",
 					label: "Operator",
-					description: "CINTiya — senior intelligence operative; methodical, risk-aware, engages offensive techniques directly",
+					description:
+						"CINTiya — senior intelligence operative; methodical, risk-aware, engages offensive techniques directly",
 				},
 				{ value: "none", label: "None", description: "Omit the personality block entirely" },
 			],

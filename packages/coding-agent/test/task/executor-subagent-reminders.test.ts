@@ -1,19 +1,15 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
+import { Settings } from "@incrt/cint/config/settings";
+import type { ExtensionActions, LoadExtensionsResult } from "@incrt/cint/extensibility/extensions/types";
+import type { CreateAgentSessionResult } from "@incrt/cint/sdk";
+import * as sdkModule from "@incrt/cint/sdk";
+import type { AgentSession, AgentSessionEvent, PromptOptions } from "@incrt/cint/session/agent-session";
+import type { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { finalizeSubprocessOutput, runSubprocess, SUBAGENT_WARNING_MISSING_YIELD } from "@incrt/cint/task/executor";
+import type { AgentDefinition } from "@incrt/cint/task/types";
+import { EventBus } from "@incrt/cint/utils/event-bus";
 import { AgentBusyError, type AgentTelemetryConfig, type Tracer } from "@incrt/cint-agent-core";
 import { type AssistantMessage, Effort } from "@incrt/cint-ai";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { ExtensionActions, LoadExtensionsResult } from "@incrt/cint-coding-agent/extensibility/extensions/types";
-import type { CreateAgentSessionResult } from "@incrt/cint-coding-agent/sdk";
-import * as sdkModule from "@incrt/cint-coding-agent/sdk";
-import type { AgentSession, AgentSessionEvent, PromptOptions } from "@incrt/cint-coding-agent/session/agent-session";
-import type { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import {
-	finalizeSubprocessOutput,
-	runSubprocess,
-	SUBAGENT_WARNING_MISSING_YIELD,
-} from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition } from "@incrt/cint-coding-agent/task/types";
-import { EventBus } from "@incrt/cint-coding-agent/utils/event-bus";
 import { logger } from "@incrt/cint-utils";
 
 function createAssistantStopMessage(text: string): AssistantMessage {
@@ -117,7 +113,7 @@ describe("runSubprocess yield reminders", () => {
 		settings: Settings.isolated(),
 		modelRegistry: {
 			refresh: async () => {},
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry,
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry,
 		enableLsp: false,
 	};
 
@@ -192,7 +188,7 @@ describe("runSubprocess yield reminders", () => {
 		const createAgentSessionSpy = mockCreateAgentSession(session);
 		const modelRegistry = {
 			refresh: async () => {},
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry;
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry;
 		const refreshSpy = vi.spyOn(modelRegistry, "refresh");
 
 		await runSubprocess({ ...baseOptions, id: "subagent-skip-refresh", modelRegistry });
@@ -392,7 +388,7 @@ describe("runSubprocess yield reminders", () => {
 		const modelRegistry = {
 			refresh: async () => {},
 			getAvailable: () => [{ provider: "openai", id: "gpt-4o", name: "GPT-4o" }],
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry;
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry;
 
 		await runSubprocess({
 			...baseOptions,
@@ -411,7 +407,7 @@ describe("runSubprocess yield reminders", () => {
 		const modelRegistry = {
 			refresh: async () => {},
 			getAvailable: () => [{ provider: "openai", id: "gpt-4o", name: "GPT-4o" }],
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry;
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry;
 
 		const cases = [
 			{ modelOverride: "openai/gpt-4o:low", expectedThinkingLevel: Effort.Low },
@@ -559,7 +555,7 @@ describe("runSubprocess yield reminders", () => {
 		const modelRegistry = {
 			authStorage: fakeAuthStorage,
 			refresh: async () => {},
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry;
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry;
 
 		await runSubprocess({ ...baseOptions, id: "subagent-registry-only", modelRegistry });
 
@@ -575,7 +571,7 @@ describe("runSubprocess yield reminders", () => {
 		const modelRegistry = {
 			authStorage: registryStorage,
 			refresh: async () => {},
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry;
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry;
 
 		const result = await runSubprocess({
 			...baseOptions,
@@ -647,7 +643,7 @@ describe("runSubprocess telemetry propagation", () => {
 		settings: Settings.isolated(),
 		modelRegistry: {
 			refresh: async () => {},
-		} as unknown as import("@incrt/cint-coding-agent/config/model-registry").ModelRegistry,
+		} as unknown as import("@incrt/cint/config/model-registry").ModelRegistry,
 		enableLsp: false,
 	};
 

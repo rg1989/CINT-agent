@@ -9,16 +9,16 @@
  * headroom) must never spend a credit — it self-heals within the hour.
  */
 import { describe, expect, it } from "bun:test";
-import type { OAuthAccountIdentity, UsageReport } from "@incrt/cint-ai";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { SETTINGS_SCHEMA } from "@incrt/cint-coding-agent/config/settings-schema";
+import { Settings } from "@incrt/cint/config/settings";
+import { SETTINGS_SCHEMA } from "@incrt/cint/config/settings-schema";
 import {
 	type CodexAutoRedeemInput,
 	DEBOUNCE_BUCKET_MS,
 	evaluateCodexAutoRedeem,
 	shouldEvaluateCodexAutoRedeem,
 	shouldPromptCodexAutoRedeem,
-} from "@incrt/cint-coding-agent/session/codex-auto-reset";
+} from "@incrt/cint/session/codex-auto-reset";
+import type { OAuthAccountIdentity, UsageReport } from "@incrt/cint-ai";
 
 // Epoch ms divisible by 60_000 so a minute-boundary `resetsAt` lets the
 // debounce-jitter cases reason about bucket crossings precisely.

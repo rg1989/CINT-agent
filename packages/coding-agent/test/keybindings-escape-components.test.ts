@@ -1,12 +1,12 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { KeybindingsManager } from "@incrt/cint/config/keybindings";
+import type { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { ModelSelectorComponent } from "@incrt/cint/modes/components/model-selector";
+import { SessionSelectorComponent } from "@incrt/cint/modes/components/session-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { SessionInfo } from "@incrt/cint/session/session-listing";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { KeybindingsManager } from "@incrt/cint-coding-agent/config/keybindings";
-import type { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ModelSelectorComponent } from "@incrt/cint-coding-agent/modes/components/model-selector";
-import { SessionSelectorComponent } from "@incrt/cint-coding-agent/modes/components/session-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { SessionInfo } from "@incrt/cint-coding-agent/session/session-listing";
 import { setKeybindings, type TUI } from "@incrt/cint-tui";
 
 beforeAll(() => {

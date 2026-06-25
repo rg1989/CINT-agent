@@ -3,7 +3,7 @@
  *
  * Demonstrates using ExtensionAPI's logger, injected `pi.zod`, and pi module access.
  */
-import type { ExtensionAPI } from "@incrt/cint-coding-agent";
+import type { ExtensionAPI } from "@incrt/cint";
 
 export default function (pi: ExtensionAPI) {
 	const { z } = pi.zod;

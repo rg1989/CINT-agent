@@ -2,14 +2,14 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { formatHashlineHeader, InMemorySnapshotStore, missingSnapshotTagMessage } from "@incrt/cint-hashline";
 import {
 	adjustIndentation,
 	computeEditDiff,
 	computeHashlineDiff,
 	DEFAULT_FUZZY_THRESHOLD,
 	findMatch,
-} from "@incrt/cint-coding-agent/edit";
+} from "@incrt/cint/edit";
+import { formatHashlineHeader, InMemorySnapshotStore, missingSnapshotTagMessage } from "@incrt/cint-hashline";
 
 describe("findMatch", () => {
 	describe("exact matching", () => {

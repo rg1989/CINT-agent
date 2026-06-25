@@ -8,7 +8,7 @@ import {
 	type TinyModelDevice,
 	tinyModelDeviceLoadOrder,
 	tinyModelDeviceSettingToEnv,
-} from "@incrt/cint-coding-agent/tiny/device";
+} from "@incrt/cint/tiny/device";
 
 describe("tiny model device selection", () => {
 	it("defaults to CPU-only inference on every platform", () => {

@@ -5,7 +5,7 @@ import {
 	planFileUrlForSlug,
 	resolveApprovedPlan,
 	resolvePlanTitle,
-} from "@incrt/cint-coding-agent/plan-mode/approved-plan";
+} from "@incrt/cint/plan-mode/approved-plan";
 
 describe("planFileUrlForSlug", () => {
 	it("maps a slug to its local plan URL", () => {

@@ -7,8 +7,8 @@
  */
 
 import { describe, expect, it, vi } from "bun:test";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 
 function createContext(options?: { focused?: { pasteText(text: string): void } }) {
 	const pasteText = vi.fn();

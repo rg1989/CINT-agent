@@ -4,11 +4,16 @@ set -e
 # CINT — Cyber Intelligence Coding Agent Installer
 # Roman Grinevich
 #
-# Usage: curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
+# Usage:
+#   curl -fsSL https://raw.githubusercontent.com/rg1989/CINT-agent/main/scripts/install.sh | sh
+#   sh scripts/install.sh                   # from a cloned repo — installs everything
 #
+# Installs the agent, then the full cyber toolchain + skills + wordlists.
+# Use --no-cyber to skip the toolchain (agent only).
 # Options:
 #   --source       Install via bun (installs bun if needed)
 #   --binary       Always install prebuilt binary
+#   --no-cyber     Skip cyber toolchain/skills/wordlists (agent only)
 #   --ref <ref>    Install specific tag/commit/branch
 #   -r <ref>       Shorthand for --ref
 
@@ -17,9 +22,9 @@ PACKAGE="@incrt/cint"
 INSTALL_DIR="${CINT_INSTALL_DIR:-$HOME/.local/bin}"
 MIN_BUN_VERSION="1.3.14"
 
-# Parse arguments
 MODE=""
 REF=""
+NO_CYBER=0
 while [ $# -gt 0 ]; do
     case "$1" in
         --source)
@@ -28,6 +33,10 @@ while [ $# -gt 0 ]; do
             ;;
         --binary)
             MODE="binary"
+            shift
+            ;;
+        --no-cyber)
+            NO_CYBER=1
             shift
             ;;
         --ref)
@@ -205,10 +214,34 @@ install_via_bun() {
     fi
     echo ""
     echo "✓ Installed cint via bun"
-    echo "Run 'cint' to get started!"
+}
+
+# Install cyber toolchain + skills + wordlists.
+# Tries the local scripts/ dir first (cloned repo), then downloads from GitHub.
+install_cyber() {
     echo ""
-    echo "To install cyber/exploit toolchain (recommended):"
-    echo "  cint --install-cyber-tools"
+    echo "============================================================"
+    echo " Installing cyber toolchain + skills + wordlists..."
+    echo "============================================================"
+
+    # Find the cyber tools installer: local scripts/ dir first, then download.
+    _script_dir="$(cd "$(dirname "$0")" 2>/dev/null && pwd)"
+    _cyber_script="$_script_dir/install-cyber-tools.sh"
+
+    if [ -f "$_cyber_script" ]; then
+        # Running from a cloned repo — script and skills are local.
+        sh "$_cyber_script"
+    else
+        # Piped install (curl | sh) — download the cyber tools installer.
+        echo "Downloading cyber tools installer..."
+        _tmp_cyber="$(mktemp 2>/dev/null || echo /tmp/cint-cyber-$$.sh)"
+        if curl -fsSL "https://raw.githubusercontent.com/${REPO}/main/scripts/install-cyber-tools.sh" -o "$_tmp_cyber" 2>/dev/null; then
+            sh "$_tmp_cyber"
+            rm -f "$_tmp_cyber"
+        else
+            echo "  (could not download cyber tools installer — run 'cint --install-cyber-tools' later)"
+        fi
+    fi
 }
 
 # Install binary from GitHub releases
@@ -257,7 +290,6 @@ install_binary() {
     BINARY_URL="https://github.com/${REPO}/releases/download/${LATEST}/${BINARY}"
     echo "Downloading ${BINARY}..."
     curl -fsSL "$BINARY_URL" -o "${INSTALL_DIR}/cint"
-    chmod +x "${INSTALL_DIR}/cint"
     echo ""
     echo "✓ Installed cint to ${INSTALL_DIR}/cint"
 
@@ -266,10 +298,6 @@ install_binary() {
         *":$INSTALL_DIR:"*) echo "Run 'cint' to get started!" ;;
         *) echo "Add ${INSTALL_DIR} to your PATH, then run 'cint'" ;;
     esac
-
-    echo ""
-    echo "To install cyber/exploit toolchain (recommended):"
-    echo "  cint --install-cyber-tools"
 }
 
 # Main logic
@@ -294,3 +322,11 @@ case "$MODE" in
         fi
         ;;
 esac
+
+# Install cyber toolchain + skills unless explicitly skipped.
+if [ "$NO_CYBER" = "0" ]; then
+    install_cyber
+fi
+
+echo ""
+echo "✓ Done. Run 'cint' to get started!"

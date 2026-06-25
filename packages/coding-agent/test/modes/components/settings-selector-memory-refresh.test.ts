@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { SettingsSelectorComponent } from "@incrt/cint-coding-agent/modes/components/settings-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { SettingsSelectorComponent } from "@incrt/cint/modes/components/settings-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
 
 beforeAll(async () => {
 	await initTheme();

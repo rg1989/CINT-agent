@@ -1,4 +1,4 @@
-import type { ExtensionFactory } from "@incrt/cint-coding-agent";
+import type { ExtensionFactory } from "@incrt/cint";
 import { Container, Text } from "@incrt/cint-tui";
 
 const extension: ExtensionFactory = pi => {

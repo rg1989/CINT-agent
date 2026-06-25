@@ -4,7 +4,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import * as url from "node:url";
 
-import * as git from "@incrt/cint-coding-agent/utils/git";
+import * as git from "@incrt/cint/utils/git";
 
 // Regression coverage for #1589: `git.clone({ sha })` used to hardcode
 // `--depth 1`, producing a shallow clone whose object store never contained

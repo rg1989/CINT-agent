@@ -7,9 +7,9 @@
  */
 
 import { describe, expect, it } from "bun:test";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { SqlSessionStorage } from "@incrt/cint/session/sql-session-storage";
 import type { Usage } from "@incrt/cint-ai";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { SqlSessionStorage } from "@incrt/cint-coding-agent/session/sql-session-storage";
 import { SQL } from "bun";
 
 function fakeUsage(input: number, output: number): Usage {

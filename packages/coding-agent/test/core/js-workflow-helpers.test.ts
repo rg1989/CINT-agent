@@ -1,9 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it, setDefaultTimeout } from "bun:test";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { disposeAllVmContexts } from "@incrt/cint-coding-agent/eval/js/context-manager";
-import { executeJs, type JsResult } from "@incrt/cint-coding-agent/eval/js/executor";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { disposeAllVmContexts } from "@incrt/cint/eval/js/context-manager";
+import { executeJs, type JsResult } from "@incrt/cint/eval/js/executor";
+import type { ToolSession } from "@incrt/cint/tools";
 import { TempDir } from "@incrt/cint-utils";
 
 // JS eval cold-starts a Bun worker; under --isolate + high CI concurrency that startup

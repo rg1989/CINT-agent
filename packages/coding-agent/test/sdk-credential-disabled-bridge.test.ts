@@ -2,15 +2,15 @@ import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import type { Extension, ExtensionError, ExtensionFactory } from "@incrt/cint/extensibility/extensions";
+import { ExtensionRunner } from "@incrt/cint/extensibility/extensions";
+import { ExtensionRuntime } from "@incrt/cint/extensibility/extensions/loader";
+import { createAgentSession } from "@incrt/cint/sdk";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { AuthStorage, type CredentialDisabledEvent } from "@incrt/cint-ai";
 import * as oauthUtils from "@incrt/cint-ai/oauth";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { Extension, ExtensionError, ExtensionFactory } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { ExtensionRunner } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { ExtensionRuntime } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { Snowflake } from "@incrt/cint-utils";
 
 interface SessionDirs {

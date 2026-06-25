@@ -1,13 +1,10 @@
 import { describe, expect, it, vi } from "bun:test";
-import type { CompactOptions } from "@incrt/cint-coding-agent/extensibility/extensions/types";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { CompactMode } from "@incrt/cint-coding-agent/session/compact-modes";
-import {
-	ACP_BUILTIN_SLASH_COMMANDS,
-	executeAcpBuiltinSlashCommand,
-} from "@incrt/cint-coding-agent/slash-commands/acp-builtins";
-import { executeBuiltinSlashCommand } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
-import type { SlashCommandRuntime } from "@incrt/cint-coding-agent/slash-commands/types";
+import type { CompactOptions } from "@incrt/cint/extensibility/extensions/types";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { CompactMode } from "@incrt/cint/session/compact-modes";
+import { ACP_BUILTIN_SLASH_COMMANDS, executeAcpBuiltinSlashCommand } from "@incrt/cint/slash-commands/acp-builtins";
+import { executeBuiltinSlashCommand } from "@incrt/cint/slash-commands/builtin-registry";
+import type { SlashCommandRuntime } from "@incrt/cint/slash-commands/types";
 
 function acpRuntime() {
 	const compact = vi.fn(async (_instructions?: string, _options?: CompactOptions) => {});

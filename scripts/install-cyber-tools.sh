@@ -2,12 +2,21 @@
 # CINT Cyber Intelligence — cyber/exploit toolchain installer
 #
 # Installs the full offensive + defensive cyber toolchain for the CINT agent.
+# Also installs the bundled cyber + dev methodology skills to the user-level
+# skill directory (~/.cint/agent/skills/) and optional wordlists (SecLists,
+# dirb) for content discovery. Existing skills are NEVER overwritten — the
+# user's custom version always wins. Wordlists can be skipped with
+# --no-wordlists to avoid the large SecLists download.
+#
 # Idempotent: already-installed tools are skipped. Run with --check to audit
 # presence without installing anything.
 #
 # Usage:
-#   cint --install-cyber-tools            # install everything
-#   cint --install-cyber-tools --check     # audit only, no changes
+#   cint --install-cyber-tools              # install tools + skills + wordlists
+#   cint --install-cyber-tools --check       # audit only, no changes
+#   cint --install-cyber-tools --no-wordlists # skip the ~500MB SecLists download
+#   cint --install-skills                    # install only skills (no tools)
+#   cint --install-skills --check             # audit skills only
 #   ./scripts/install-cyber-tools.sh
 #   ./scripts/install-cyber-tools.sh --check
 set -e
@@ -17,9 +26,15 @@ set -e
 # ---------------------------------------------------------------------------
 
 CHECK_ONLY=0
-if [ "$1" = "--check" ] || [ "$2" = "--check" ]; then
-    CHECK_ONLY=1
-fi
+SKILLS_ONLY=0
+NO_WORDLISTS=0
+for _arg in "$@"; do
+    case "$_arg" in
+        --check) CHECK_ONLY=1 ;;
+        --install-skills) SKILLS_ONLY=1 ;;
+        --no-wordlists) NO_WORDLISTS=1 ;;
+    esac
+done
 
 # Accumulators for the end-of-run summary.
 INSTALLED=""
@@ -271,6 +286,152 @@ cask_install() {
 # Install routine
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Skill installation (non-destructive)
+# ---------------------------------------------------------------------------
+
+# Resolve the script's directory to find the bundled .cint/skills/ source.
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+# Skills source: repo's .cint/skills/ (two levels up from scripts/).
+SKILLS_SRC="$SCRIPT_DIR/../.cint/skills"
+# Skills destination: user-level agent skill directory.
+SKILLS_DST="$HOME/.cint/agent/skills"
+# GitHub repo for download fallback (binary installs with no local repo).
+CINT_REPO="${CINT_REPO:-rg1989/CINT-agent}"
+
+# Download skills from GitHub as a tarball and extract to a temp directory.
+# Sets SKILLS_SRC to the extracted path on success; returns 1 on failure.
+download_skills_from_github() {
+    _tmpdir=$(mktemp -d 2>/dev/null || echo "/tmp/cint-skills.$$")
+    mkdir -p "$_tmpdir"
+    _tarball="$_tmpdir/repo.tar.gz"
+    _url="https://github.com/${CINT_REPO}/archive/refs/heads/main.tar.gz"
+    echo "  Downloading skills from GitHub..."
+    if ! curl -fsSL "$_url" -o "$_tarball" 2>/dev/null; then
+        echo "  (download failed — check network or set CINT_REPO env var)"
+        rm -rf "$_tmpdir"
+        return 1
+    fi
+    # Extract just the .cint/skills/ directory from the tarball.
+    # GitHub tarballs have a top-level <repo>-<ref>/ directory.
+    if tar -xzf "$_tarball" -C "$_tmpdir" --strip-components=1 ".cint/skills" 2>/dev/null; then
+        : # GNU tar with --strip-components
+    elif tar -xzf "$_tarball" -C "$_tmpdir" 2>/dev/null; then
+        # BSD tar (macOS) — extract then move to expected location.
+        _extracted=$(find "$_tmpdir" -type d -path "*/.cint/skills" 2>/dev/null | head -1)
+        if [ -n "$_extracted" ] && [ -d "$_extracted" ]; then
+            # Move the skills dir to $_tmpdir/.cint/skills so the caller finds it.
+            mkdir -p "$_tmpdir/.cint"
+            mv "$_extracted" "$_tmpdir/.cint/skills"
+        else
+            echo "  (extraction failed — skills directory not found in tarball)"
+            rm -rf "$_tmpdir"
+            return 1
+        fi
+    else
+        echo "  (extraction failed)"
+        rm -rf "$_tmpdir"
+        return 1
+    fi
+    SKILLS_SRC="$_tmpdir/.cint/skills"
+    # Clean up the tarball (keep the extracted dir for the install loop).
+    rm -f "$_tarball"
+    # Register temp dir for cleanup after install_skills finishes.
+    _SKILLS_TMPDIR="$_tmpdir"
+    return 0
+}
+
+install_skills() {
+    echo
+    echo "### SKILLS ##################################################"
+
+    _SKILLS_TMPDIR=""
+
+    # Source resolution: local repo dir first, then GitHub download fallback.
+    if [ ! -d "$SKILLS_SRC" ]; then
+        # No local .cint/skills/ — this is a binary install. Try downloading.
+        if [ "$CHECK_ONLY" = "1" ]; then
+            # In check mode, just report what's installed on the user's machine.
+            SKILLS_SRC=""
+        elif have curl && have tar; then
+            if ! download_skills_from_github; then
+                echo "  (could not download skills — run from a source install or check network)"
+                mark_failed "skills (download failed)"
+                return 0
+            fi
+        else
+            echo "  (no local skills source and curl/tar unavailable — skipping)"
+            mark_failed "skills (no source available)"
+            return 0
+        fi
+    fi
+
+    # If we have no source (check mode on binary install), audit user dir directly.
+    if [ -z "$SKILLS_SRC" ] || [ ! -d "$SKILLS_SRC" ]; then
+        if [ "$CHECK_ONLY" = "1" ]; then
+            if [ -d "$SKILLS_DST" ]; then
+                _count=0
+                for _d in "$SKILLS_DST"/*/; do
+                    [ -f "${_d}SKILL.md" ] && _count=$((_count + 1))
+                done
+                if [ "$_count" -gt 0 ]; then
+                    echo "  $_count skill(s) already installed in $SKILLS_DST"
+                    mark_skipped "skills ($_count already installed)"
+                else
+                    mark_failed "skills (not installed)"
+                fi
+            else
+                mark_failed "skills (not installed)"
+            fi
+            return 0
+        fi
+        echo "  (no skills source available)"
+        return 0
+    fi
+
+    # Ensure destination directory exists (even in check mode, for reporting).
+    if [ "$CHECK_ONLY" = "0" ]; then
+        mkdir -p "$SKILLS_DST"
+    fi
+
+    _installed=0
+    _skipped=0
+    _failed=0
+    for _skill_dir in "$SKILLS_SRC"/*/; do
+        [ -d "$_skill_dir" ] || continue
+        _skill_name=$(basename "$_skill_dir")
+        _dst_skill="$SKILLS_DST/$_skill_name"
+
+        if [ -f "$_dst_skill/SKILL.md" ]; then
+            mark_skipped "skill: $_skill_name (already exists — user version preserved)"
+            _skipped=$((_skipped + 1))
+        elif [ "$CHECK_ONLY" = "1" ]; then
+            mark_failed "skill: $_skill_name (not installed)"
+            _failed=$((_failed + 1))
+        else
+            if cp -R "$_skill_dir" "$_dst_skill" 2>/dev/null; then
+                # Clean up any .DS_Store files copied from macOS source.
+                find "$_dst_skill" -name '.DS_Store' -delete 2>/dev/null || true
+                mark_installed "skill: $_skill_name"
+                _installed=$((_installed + 1))
+            else
+                mark_failed "skill: $_skill_name (copy failed)"
+                _failed=$((_failed + 1))
+            fi
+        fi
+    done
+
+    # Clean up downloaded temp directory if we used one.
+    if [ -n "$_SKILLS_TMPDIR" ] && [ -d "$_SKILLS_TMPDIR" ]; then
+        rm -rf "$_SKILLS_TMPDIR"
+    fi
+
+    echo "  Skills: $_installed installed, $_skipped skipped, $_failed failed"
+    if [ "$_skipped" -gt 0 ]; then
+        echo "  (skipped skills are user customizations — not overwritten)"
+    fi
+}
+
 install_all() {
     echo "============================================================"
     echo " CINT Cyber Intelligence — Toolchain Installer"
@@ -429,6 +590,69 @@ install_all() {
     fi
 
     # ===================================================================
+    # WORDLISTS (optional — large download)
+    # ===================================================================
+    echo
+    echo "### WORDLISTS ##############################################"
+    if [ "$NO_WORDLISTS" = "1" ]; then
+        echo "  (skipped via --no-wordlists)"
+        mark_skipped "seclists (skipped via --no-wordlists)"
+        mark_skipped "dirb wordlists (skipped via --no-wordlists)"
+    else
+        # SecLists — the standard wordlist collection for ffuf/content discovery.
+        # ~500MB on disk; skip if the directory already exists.
+        _seclists_brew="/opt/homebrew/share/seclists"
+        _seclists_linux="/usr/share/seclists"
+        if [ -d "$_seclists_brew" ] || [ -d "$_seclists_linux" ]; then
+            mark_skipped "seclists (already installed)"
+        elif [ "$CHECK_ONLY" = "1" ]; then
+            mark_failed "seclists (not installed — run without --check, or skip with --no-wordlists)"
+        else
+            echo "==> Installing seclists (this is a ~500MB download) ..."
+            if [ "$PKG_MGR" = "brew" ]; then
+                if brew install seclists >/dev/null 2>&1; then
+                    mark_installed "seclists"
+                else
+                    mark_failed "seclists (brew install failed — try manually or skip with --no-wordlists)"
+                fi
+            elif [ "$PKG_MGR" = "apt" ]; then
+                if sudo apt-get install -y seclists >/dev/null 2>&1; then
+                    mark_installed "seclists"
+                else
+                    mark_failed "seclists (apt install failed — try manually or skip with --no-wordlists)"
+                fi
+            else
+                mark_failed "seclists (no package manager — clone from https://github.com/danielmiessler/SecLists or skip with --no-wordlists)"
+            fi
+        fi
+
+        # dirb wordlists — smaller, ships common.txt used by the pentest skill.
+        _dirb_brew="/opt/homebrew/share/wordlists/dirb"
+        _dirb_linux="/usr/share/wordlists/dirb"
+        if [ -d "$_dirb_brew" ] || [ -d "$_dirb_linux" ]; then
+            mark_skipped "dirb wordlists (already installed)"
+        elif [ "$CHECK_ONLY" = "1" ]; then
+            mark_failed "dirb wordlists (not installed)"
+        else
+            if [ "$PKG_MGR" = "brew" ]; then
+                if brew install dirb >/dev/null 2>&1; then
+                    mark_installed "dirb wordlists"
+                else
+                    mark_failed "dirb wordlists (brew install failed)"
+                fi
+            elif [ "$PKG_MGR" = "apt" ]; then
+                if sudo apt-get install -y dirb >/dev/null 2>&1; then
+                    mark_installed "dirb wordlists"
+                else
+                    mark_failed "dirb wordlists (apt install failed)"
+                fi
+            else
+                mark_failed "dirb wordlists (no package manager)"
+            fi
+        fi
+    fi
+
+    # ===================================================================
     # WEB INTELLIGENCE
     # ===================================================================
     echo
@@ -480,7 +704,20 @@ print_summary() {
 # ---------------------------------------------------------------------------
 
 detect_os
-install_all
+if [ "$SKILLS_ONLY" = "1" ]; then
+    echo "============================================================"
+    echo " CINT Cyber Intelligence — Skills Installer"
+    if [ "$CHECK_ONLY" = "1" ]; then
+        echo " Mode: CHECK ONLY (no installation will be performed)"
+    else
+        echo " Mode: INSTALL"
+    fi
+    echo "============================================================"
+    install_skills
+else
+    install_all
+    install_skills
+fi
 print_summary
 
 if [ "$FAILED_COUNT" -gt 0 ] && [ "$CHECK_ONLY" = "0" ]; then

@@ -1,11 +1,11 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
 import { stripVTControlCharacters } from "node:util";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { AssistantMessageComponent } from "@incrt/cint/modes/components/assistant-message";
+import { TranscriptContainer } from "@incrt/cint/modes/components/transcript-container";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { USER_INTERRUPT_LABEL } from "@incrt/cint/session/messages";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AssistantMessageComponent } from "@incrt/cint-coding-agent/modes/components/assistant-message";
-import { TranscriptContainer } from "@incrt/cint-coding-agent/modes/components/transcript-container";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { USER_INTERRUPT_LABEL } from "@incrt/cint-coding-agent/session/messages";
 import { type Component, Text } from "@incrt/cint-tui";
 
 // Models a transcript block that re-lays-out (tool preview collapsing, assistant

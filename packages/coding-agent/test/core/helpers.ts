@@ -1,5 +1,5 @@
-import type { PythonKernelExecutor } from "@incrt/cint-coding-agent/eval/py/executor";
-import type { KernelExecuteOptions, KernelExecuteResult } from "@incrt/cint-coding-agent/eval/py/kernel";
+import type { PythonKernelExecutor } from "@incrt/cint/eval/py/executor";
+import type { KernelExecuteOptions, KernelExecuteResult } from "@incrt/cint/eval/py/kernel";
 
 export class FakeKernel implements PythonKernelExecutor {
 	private result: KernelExecuteResult;

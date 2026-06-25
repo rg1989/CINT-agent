@@ -5,12 +5,12 @@
  * rule of the same name overrides a bundled default (first-wins dedup).
  */
 import { describe, expect, it } from "bun:test";
-import { getCapability } from "@incrt/cint-coding-agent/capability";
-import { BUILTIN_DEFAULTS_PROVIDER_ID, type Rule, ruleCapability } from "@incrt/cint-coding-agent/capability/rule";
-import type { LoadContext } from "@incrt/cint-coding-agent/capability/types";
+import { getCapability } from "@incrt/cint/capability";
+import { BUILTIN_DEFAULTS_PROVIDER_ID, type Rule, ruleCapability } from "@incrt/cint/capability/rule";
+import type { LoadContext } from "@incrt/cint/capability/types";
 // Register all discovery providers as a side effect.
-import "@incrt/cint-coding-agent/discovery";
-import { TtsrManager, type TtsrMatchContext } from "@incrt/cint-coding-agent/export/ttsr";
+import "@incrt/cint/discovery";
+import { TtsrManager, type TtsrMatchContext } from "@incrt/cint/export/ttsr";
 
 function ruleProvider() {
 	const cap = getCapability(ruleCapability.id);

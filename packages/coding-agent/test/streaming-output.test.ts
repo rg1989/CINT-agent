@@ -14,7 +14,7 @@ import {
 	truncateMiddle,
 	truncateTail,
 	truncateTailBytes,
-} from "@incrt/cint-coding-agent/session/streaming-output";
+} from "@incrt/cint/session/streaming-output";
 
 const createdTempDirs: string[] = [];
 const originalForceProtocol = Bun.env.PI_FORCE_IMAGE_PROTOCOL;

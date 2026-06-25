@@ -3,7 +3,7 @@
  *
  * Control session persistence: in-memory, new file, continue, or open specific.
  */
-import { createAgentSession, SessionManager } from "@incrt/cint-coding-agent";
+import { createAgentSession, SessionManager } from "@incrt/cint";
 
 // In-memory (no persistence)
 const { session: inMemory } = await createAgentSession({

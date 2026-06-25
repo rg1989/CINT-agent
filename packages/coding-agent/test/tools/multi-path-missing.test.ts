@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createTools, type ToolSession } from "@incrt/cint-coding-agent/tools";
+import { Settings } from "@incrt/cint/config/settings";
+import { createTools, type ToolSession } from "@incrt/cint/tools";
 
 // Regression for grievances #208 (find) and #209 (search): a multi-path call
 // that includes an entry which does not exist on disk must not abort the whole

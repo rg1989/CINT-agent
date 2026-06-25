@@ -2,15 +2,15 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import type { Rule } from "@incrt/cint/capability/rule";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { createAgentSession } from "@incrt/cint/sdk";
+import { SecretObfuscator } from "@incrt/cint/secrets";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import type { AssistantMessage } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import type { Rule } from "@incrt/cint-coding-agent/capability/rule";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { SecretObfuscator } from "@incrt/cint-coding-agent/secrets";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { getSessionsDir, Snowflake } from "@incrt/cint-utils";
 
 function createTtsrRule(name: string): Rule {
@@ -176,8 +176,11 @@ describe("createAgentSession session storage isolation", () => {
 				await withoutSecrets.session.dispose();
 			}
 
-			fs.mkdirSync(path.join(cwd, ".omp"), { recursive: true });
-			fs.writeFileSync(path.join(cwd, ".omp", "secrets.yml"), "- type: plain\n  content: sdk-secret-token-123456\n");
+			fs.mkdirSync(path.join(cwd, ".cint"), { recursive: true });
+			fs.writeFileSync(
+				path.join(cwd, ".cint", "secrets.yml"),
+				"- type: plain\n  content: sdk-secret-token-123456\n",
+			);
 
 			const withSecrets = await createAgentSession(commonOptions);
 			try {
@@ -194,8 +197,11 @@ describe("createAgentSession session storage isolation", () => {
 			tempDirs.push(tempDir);
 			const cwd = path.join(tempDir, "project");
 			const agentDir = path.join(tempDir, "agent");
-			fs.mkdirSync(path.join(cwd, ".omp"), { recursive: true });
-			fs.writeFileSync(path.join(cwd, ".omp", "secrets.yml"), "- type: plain\n  content: sdk-secret-token-123456\n");
+			fs.mkdirSync(path.join(cwd, ".cint"), { recursive: true });
+			fs.writeFileSync(
+				path.join(cwd, ".cint", "secrets.yml"),
+				"- type: plain\n  content: sdk-secret-token-123456\n",
+			);
 
 			const model = getBundledModel("anthropic", "claude-sonnet-4-5");
 			if (!model) throw new Error("Expected anthropic model");

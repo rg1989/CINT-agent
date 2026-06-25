@@ -11,7 +11,7 @@ import {
 	replaceBinaryForUpdate,
 	resolveUpdateMethodForTest,
 	sweepStaleBackups,
-} from "@incrt/cint-coding-agent/cli/update-cli";
+} from "@incrt/cint/cli/update-cli";
 
 const tempDirs: string[] = [];
 
@@ -108,7 +108,7 @@ describe("update-cli bun install command", () => {
 			"-g",
 			"--no-cache",
 			"--registry=https://registry.npmjs.org/",
-			"@incrt/cint-coding-agent@15.7.6",
+			"@incrt/cint@15.7.6",
 		]);
 	});
 
@@ -155,7 +155,7 @@ describe("update-cli binary replacement", () => {
 				expectedVersion: "15.1.8",
 				verifyInstalledVersion: async () => ({ ok: false, path: targetPath }),
 			}),
-		).rejects.toThrow("restored previous omp binary");
+		).rejects.toThrow("restored previous cint binary");
 
 		expect(await Bun.file(targetPath).text()).toBe("old binary");
 		expect(await Bun.file(tempPath).exists()).toBe(false);

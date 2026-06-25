@@ -13,11 +13,11 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
 import { TERMINAL } from "@incrt/cint-tui";
 
 beforeAll(() => {

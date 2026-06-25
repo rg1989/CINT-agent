@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
+import { parseArgs } from "@incrt/cint/cli/args";
+import { AUTO_THINKING } from "@incrt/cint/thinking";
 import { ThinkingLevel } from "@incrt/cint-agent-core";
 import { Effort } from "@incrt/cint-ai";
-import { parseArgs } from "@incrt/cint-coding-agent/cli/args";
-import { AUTO_THINKING } from "@incrt/cint-coding-agent/thinking";
 
 describe("parseArgs — --hide-thinking flag", () => {
 	it("parses --hide-thinking as a boolean flag", () => {

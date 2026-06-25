@@ -14,12 +14,12 @@
  * asserting `#onBranchChange` never fires post-dispose.
  */
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { StatusLineSettings } from "@incrt/cint-coding-agent/modes/components/status-line";
-import { StatusLineComponent } from "@incrt/cint-coding-agent/modes/components/status-line";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { GitRefHead } from "@incrt/cint-coding-agent/utils/git";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import type { StatusLineSettings } from "@incrt/cint/modes/components/status-line";
+import { StatusLineComponent } from "@incrt/cint/modes/components/status-line";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { GitRefHead } from "@incrt/cint/utils/git";
+import * as git from "@incrt/cint/utils/git";
 import { getProjectDir, setProjectDir } from "@incrt/cint-utils";
 
 const originalProjectDir = getProjectDir();

@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test";
+import type { ModelRegistry } from "@incrt/cint/config/model-registry";
+import type { Settings } from "@incrt/cint/config/settings";
 import type { Api, Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import type { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import type { Settings } from "@incrt/cint-coding-agent/config/settings";
 import { createExtensionModelQuery } from "../../src/extensibility/extensions/model-api";
 
 function model(id: string, name: string, provider: string): Model<"anthropic-messages"> {

@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from "bun:test";
+import { AgentStorage } from "@incrt/cint/session/agent-storage";
+import type { SearchParams } from "@incrt/cint/web/search/providers/base";
+import { searchCodex } from "@incrt/cint/web/search/providers/codex";
 import type { AuthStorage } from "@incrt/cint-ai";
 import type { FetchImpl } from "@incrt/cint-ai/types";
-import { AgentStorage } from "@incrt/cint-coding-agent/session/agent-storage";
-import type { SearchParams } from "@incrt/cint-coding-agent/web/search/providers/base";
-import { searchCodex } from "@incrt/cint-coding-agent/web/search/providers/codex";
 
 function makeSseResponse(): string {
 	return [

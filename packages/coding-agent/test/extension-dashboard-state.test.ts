@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { applyDisabledExtensionsToState } from "@incrt/cint-coding-agent/modes/components/extensions/state-manager";
-import type { DashboardState, Extension } from "@incrt/cint-coding-agent/modes/components/extensions/types";
+import { applyDisabledExtensionsToState } from "@incrt/cint/modes/components/extensions/state-manager";
+import type { DashboardState, Extension } from "@incrt/cint/modes/components/extensions/types";
 
 function extension(overrides: Partial<Extension> & Pick<Extension, "id">): Extension {
 	return {

@@ -1,13 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { convertAnthropicMessages } from "@incrt/cint-ai/providers/anthropic";
-import type {
-	AssistantMessage,
-	Message,
-	Model,
-	ModelSpec,
-	ToolResultMessage,
-	UserMessage,
-} from "@incrt/cint-ai/types";
+import type { AssistantMessage, Message, Model, ModelSpec, ToolResultMessage, UserMessage } from "@incrt/cint-ai/types";
 import { buildModel } from "@incrt/cint-catalog/build";
 
 // These tests pin the wire-validity contract that was verified end-to-end against the

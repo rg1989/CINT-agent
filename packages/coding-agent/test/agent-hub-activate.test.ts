@@ -5,15 +5,15 @@
  */
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { IrcBus } from "@incrt/cint-coding-agent/irc/bus";
-import { AgentHubOverlayComponent } from "@incrt/cint-coding-agent/modes/components/agent-hub";
-import { SelectorController } from "@incrt/cint-coding-agent/modes/controllers/selector-controller";
-import { SessionObserverRegistry } from "@incrt/cint-coding-agent/modes/session-observer-registry";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { IrcBus } from "@incrt/cint/irc/bus";
+import { AgentHubOverlayComponent } from "@incrt/cint/modes/components/agent-hub";
+import { SelectorController } from "@incrt/cint/modes/controllers/selector-controller";
+import { SessionObserverRegistry } from "@incrt/cint/modes/session-observer-registry";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
 import { TempDir } from "@incrt/cint-utils";
 
 const AGENT_ID = "Worker";

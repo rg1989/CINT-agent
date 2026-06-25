@@ -1,6 +1,6 @@
 /**
  * Collab link + wire-envelope handling (browser-safe vendored mirror of the
- * link/envelope half of `@incrt/cint-coding-agent/src/collab/protocol.ts`;
+ * link/envelope half of `@incrt/cint/src/collab/protocol.ts`;
  * base64url goes through atob/btoa instead of Buffer).
  *
  * Link format: `wss://<host[:port]>/r/<roomId>.<base64url-32-byte-key>`

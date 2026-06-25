@@ -4,9 +4,9 @@ import type {
 	ExtensionCommandContextActions,
 	ExtensionContextActions,
 	ExtensionUIContext,
-} from "@incrt/cint-coding-agent/extensibility/extensions";
-import { ExtensionUiController } from "@incrt/cint-coding-agent/modes/controllers/extension-ui-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+} from "@incrt/cint/extensibility/extensions";
+import { ExtensionUiController } from "@incrt/cint/modes/controllers/extension-ui-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 
 /**
  * Issue #1020: `ctx.shutdown()` is a no-op in interactive mode.

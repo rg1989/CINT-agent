@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { SessionSelectorComponent } from "@incrt/cint-coding-agent/modes/components/session-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { SessionInfo } from "@incrt/cint-coding-agent/session/session-listing";
+import { SessionSelectorComponent } from "@incrt/cint/modes/components/session-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { SessionInfo } from "@incrt/cint/session/session-listing";
 import { TUI } from "@incrt/cint-tui";
 import { StressRenderScheduler } from "../../../../tui/test/render-stress-scheduler";
 import { VirtualTerminal } from "../../../../tui/test/virtual-terminal";

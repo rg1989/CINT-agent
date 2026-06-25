@@ -1,16 +1,16 @@
 import { afterEach, describe, expect, it, spyOn } from "bun:test";
+import { reset as resetCapabilities } from "@incrt/cint/capability";
+import { type SSHHost, sshCapability } from "@incrt/cint/capability/ssh";
+import { Settings } from "@incrt/cint/config/settings";
+import { loadCapability } from "@incrt/cint/discovery";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { addSSHHost, removeSSHHost, updateSSHHost } from "@incrt/cint/ssh/config-writer";
+import * as connectionManager from "@incrt/cint/ssh/connection-manager";
+import { loadSshTool, type ToolSession } from "@incrt/cint/tools";
 import { Agent, type AgentTool } from "@incrt/cint-agent-core";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import { reset as resetCapabilities } from "@incrt/cint-coding-agent/capability";
-import { type SSHHost, sshCapability } from "@incrt/cint-coding-agent/capability/ssh";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { loadCapability } from "@incrt/cint-coding-agent/discovery";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { addSSHHost, removeSSHHost, updateSSHHost } from "@incrt/cint-coding-agent/ssh/config-writer";
-import * as connectionManager from "@incrt/cint-coding-agent/ssh/connection-manager";
-import { loadSshTool, type ToolSession } from "@incrt/cint-coding-agent/tools";
 import { getSSHConfigPath, TempDir } from "@incrt/cint-utils";
 
 function createModel(): Model<"openai-responses"> {

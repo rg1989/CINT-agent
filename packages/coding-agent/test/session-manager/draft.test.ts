@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { isEnoent, TempDir } from "@incrt/cint-utils";
 
 async function fileExists(p: string): Promise<boolean> {

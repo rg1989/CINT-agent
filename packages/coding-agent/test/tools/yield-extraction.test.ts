@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import "@incrt/cint-coding-agent/tools/yield";
-import { subprocessToolRegistry } from "@incrt/cint-coding-agent/task/subprocess-tool-registry";
+import "@incrt/cint/tools/yield";
+import { subprocessToolRegistry } from "@incrt/cint/task/subprocess-tool-registry";
 
 describe("yield subprocess extraction", () => {
 	const handler = subprocessToolRegistry.getHandler("yield");

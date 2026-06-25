@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { StatusLineComponent } from "@incrt/cint-coding-agent/modes/components/status-line";
-import { initTheme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { StatusLineComponent } from "@incrt/cint/modes/components/status-line";
+import { initTheme, theme } from "@incrt/cint/modes/theme/theme";
 import { getProjectDir, setProjectDir } from "@incrt/cint-utils";
 
 const originalProjectDir = getProjectDir();

@@ -12,16 +12,29 @@ const IS_COMPILED_BINARY = isCompiledBinary();
 // keeps plugins running against the exact runtime state of the host (single
 // module registry, single tool registry, etc.) regardless of which historical
 // scope name they happened to declare in their peerDependencies.
-const CANONICAL_PI_SCOPE = "@oh-my-pi";
+const CANONICAL_PI_SCOPE = "@incrt";
 
 // Scopes that have historically been used to publish (or alias) the same set
-// of internal pi-* packages. `@oh-my-pi` is intentionally included so direct
-// canonical imports still pass through the same host-bundled package resolution
-// path instead of pulling a duplicate copy from plugin node_modules.
-const PI_SCOPE_ALIASES = ["oh-my-pi", "mariozechner", "earendil-works"] as const;
+// of internal cint-* packages. Legacy scopes (`oh-my-pi`, `mariozechner`,
+// `earendil-works`) are included so old plugins still resolve through the
+// host-bundled packages. `incrt` is included so direct canonical imports
+// pass through the same host-bundled package resolution path instead of
+// pulling a duplicate copy from plugin node_modules.
+const PI_SCOPE_ALIASES = ["incrt", "oh-my-pi", "mariozechner", "earendil-works"] as const;
 
-// Internal pi-* package basenames bundled inside the omp binary.
-const PI_PACKAGE_NAMES = ["pi-agent-core", "pi-ai", "pi-coding-agent", "pi-natives", "pi-tui", "pi-utils"] as const;
+// Package name remap: old pi-* basename → new cint-* basename.
+// Legacy specifiers like `@oh-my-pi/pi-ai` are remapped to `@incrt/cint-ai`.
+const PI_PACKAGE_NAME_REMAPS: ReadonlyMap<string, string> = new Map<string, string>([
+	["pi-ai", "cint-ai"],
+	["pi-coding-agent", "cint"],
+	["pi-agent-core", "cint-agent-core"],
+	["pi-natives", "cint-natives"],
+	["pi-tui", "cint-tui"],
+	["pi-utils", "cint-utils"],
+]);
+
+// All recognized package names (old + new) for the specifier filter.
+const PI_PACKAGE_NAMES = [...new Set([...PI_PACKAGE_NAME_REMAPS.keys(), ...PI_PACKAGE_NAME_REMAPS.values()])] as const;
 
 const PI_SCOPE_ALTERNATION = PI_SCOPE_ALIASES.join("|");
 const PI_PACKAGE_ALTERNATION = PI_PACKAGE_NAMES.join("|");
@@ -33,11 +46,25 @@ const PI_PACKAGE_ALTERNATION = PI_PACKAGE_NAMES.join("|");
 // bundled copy. Entries ending in `/` rewrite the whole subtree; add new
 // `pkg/from -> pkg/to` pairs whenever an upstream-only subpath breaks resolution.
 const PI_SUBPATH_REMAPS: ReadonlyMap<string, string> = new Map<string, string>([
-	["pi-ai/utils/oauth", "pi-ai/oauth"],
-	["pi-ai/utils/oauth/", "pi-ai/oauth/"],
+	["pi-ai/utils/oauth", "cint-ai/oauth"],
+	["pi-ai/utils/oauth/", "cint-ai/oauth/"],
+	["cint-ai/utils/oauth", "cint-ai/oauth"],
+	["cint-ai/utils/oauth/", "cint-ai/oauth/"],
 ]);
 
 function remapLegacyPiSubpath(rest: string): string {
+	// First, remap old package name to new (e.g. pi-ai → cint-ai).
+	for (const [oldName, newName] of PI_PACKAGE_NAME_REMAPS) {
+		if (rest === oldName) {
+			rest = newName;
+			break;
+		}
+		if (rest.startsWith(`${oldName}/`)) {
+			rest = newName + rest.slice(oldName.length);
+			break;
+		}
+	}
+	// Then, apply subpath remaps (e.g. cint-ai/utils/oauth → cint-ai/oauth).
 	const exact = PI_SUBPATH_REMAPS.get(rest);
 	if (exact) {
 		return exact;
@@ -130,7 +157,7 @@ export function __computeBunfsPackageRoot(metaDir: string, pathImpl: typeof path
  *
  * `bundle-dist.ts` defines `process.env.PI_BUNDLED="true"`; after bundling,
  * `import.meta.dir` points at `<package>/dist`. Do not resolve the package via
- * bare `@incrt/cint-coding-agent` here: from a global install Bun can pick an
+ * bare `@incrt/cint` here: from a global install Bun can pick an
  * older cache entry, recreating mixed-runtime plugin loading.
  */
 export function __computeBundledSelfPackageRoot(metaDir: string, pathImpl: typeof path = path): string {
@@ -246,14 +273,14 @@ export function __validateLegacyPiPackageRootOverrides(
 }
 
 const LEGACY_PI_PACKAGE_ROOT_OVERRIDES = __validateLegacyPiPackageRootOverrides({
-	[`${CANONICAL_PI_SCOPE}/pi-ai`]: LEGACY_PI_AI_SHIM_PATH,
-	[`${CANONICAL_PI_SCOPE}/pi-coding-agent`]: LEGACY_PI_CODING_AGENT_SHIM_PATH,
+	[`${CANONICAL_PI_SCOPE}/cint-ai`]: LEGACY_PI_AI_SHIM_PATH,
+	[`${CANONICAL_PI_SCOPE}/cint`]: LEGACY_PI_CODING_AGENT_SHIM_PATH,
 	...(BUNFS_PACKAGE_ROOT
 		? {
-				[`${CANONICAL_PI_SCOPE}/pi-agent-core`]: bunfsPath("agent", "src", "index.js"),
-				[`${CANONICAL_PI_SCOPE}/pi-natives`]: bunfsPath("natives", "native", "index.js"),
-				[`${CANONICAL_PI_SCOPE}/pi-tui`]: bunfsPath("tui", "src", "index.js"),
-				[`${CANONICAL_PI_SCOPE}/pi-utils`]: bunfsPath("utils", "src", "index.js"),
+				[`${CANONICAL_PI_SCOPE}/cint-agent-core`]: bunfsPath("agent", "src", "index.js"),
+				[`${CANONICAL_PI_SCOPE}/cint-natives`]: bunfsPath("natives", "native", "index.js"),
+				[`${CANONICAL_PI_SCOPE}/cint-tui`]: bunfsPath("tui", "src", "index.js"),
+				[`${CANONICAL_PI_SCOPE}/cint-utils`]: bunfsPath("utils", "src", "index.js"),
 			}
 		: {}),
 });

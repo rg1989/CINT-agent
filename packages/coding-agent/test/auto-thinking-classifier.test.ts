@@ -1,16 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
-import { ThinkingLevel } from "@incrt/cint-agent-core";
-import { Effort, type Model } from "@incrt/cint-ai";
-import { getBundledModel } from "@incrt/cint-catalog/models";
-import {
-	classifyDifficulty,
-	parseDifficultyBucket,
-	parseDifficultyLevel,
-} from "@incrt/cint-coding-agent/auto-thinking/classifier";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { classifyDifficulty, parseDifficultyBucket, parseDifficultyLevel } from "@incrt/cint/auto-thinking/classifier";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import {
 	AUTO_THINKING,
 	clampAutoThinkingEffort,
@@ -18,9 +11,12 @@ import {
 	parseConfiguredThinkingLevel,
 	parseEffort,
 	parseThinkingLevel,
-} from "@incrt/cint-coding-agent/thinking";
-import type { TinyMemoryLocalModelKey } from "@incrt/cint-coding-agent/tiny/models";
-import { tinyModelClient } from "@incrt/cint-coding-agent/tiny/title-client";
+} from "@incrt/cint/thinking";
+import type { TinyMemoryLocalModelKey } from "@incrt/cint/tiny/models";
+import { tinyModelClient } from "@incrt/cint/tiny/title-client";
+import { ThinkingLevel } from "@incrt/cint-agent-core";
+import { Effort, type Model } from "@incrt/cint-ai";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("auto thinking classifier helpers", () => {

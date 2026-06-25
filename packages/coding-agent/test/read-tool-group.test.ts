@@ -1,13 +1,10 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
 import * as url from "node:url";
-import { resetSettingsForTest, Settings, settings } from "@incrt/cint-coding-agent/config/settings";
-import { getDefault } from "@incrt/cint-coding-agent/config/settings-schema";
-import {
-	ReadToolGroupComponent,
-	readArgsTargetInternalUrl,
-} from "@incrt/cint-coding-agent/modes/components/read-tool-group";
-import * as themeModule from "@incrt/cint-coding-agent/modes/theme/theme";
+import { resetSettingsForTest, Settings, settings } from "@incrt/cint/config/settings";
+import { getDefault } from "@incrt/cint/config/settings-schema";
+import { ReadToolGroupComponent, readArgsTargetInternalUrl } from "@incrt/cint/modes/components/read-tool-group";
+import * as themeModule from "@incrt/cint/modes/theme/theme";
 
 function extractLinkUris(text: string): string[] {
 	return [...text.matchAll(/\x1b\]8;[^;]*;([^\x1b]+)\x1b\\/g)].map(match => match[1]!);

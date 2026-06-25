@@ -22,8 +22,8 @@ import {
 } from "@incrt/cint-ai";
 import { preferredDialect } from "@incrt/cint-catalog/identity";
 import { clampThinkingLevelForModel } from "@incrt/cint-catalog/model-thinking";
-import { logger, prompt } from "@incrt/cint-utils";
 import * as snapcompact from "@incrt/cint-snapcompact";
+import { logger, prompt } from "@incrt/cint-utils";
 import { type AgentTelemetry, instrumentedCompleteSimple } from "../telemetry";
 import { ThinkingLevel } from "../thinking";
 import { countTokens } from "../tokenizer";

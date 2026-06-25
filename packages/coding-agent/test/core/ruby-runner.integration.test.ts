@@ -5,8 +5,8 @@
  * (or sandboxes where subprocess spawning is restricted) does not fail.
  */
 import { afterEach, describe, expect, it } from "bun:test";
-import { disposeAllRubyKernelSessions, executeRubyWithKernel } from "@incrt/cint-coding-agent/eval/rb/executor";
-import { RubyKernel } from "@incrt/cint-coding-agent/eval/rb/kernel";
+import { disposeAllRubyKernelSessions, executeRubyWithKernel } from "@incrt/cint/eval/rb/executor";
+import { RubyKernel } from "@incrt/cint/eval/rb/kernel";
 import { TempDir } from "@incrt/cint-utils";
 
 const SHOULD_RUN = Bun.env.PI_RUBY_INTEGRATION === "1";

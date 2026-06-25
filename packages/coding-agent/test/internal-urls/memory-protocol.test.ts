@@ -2,10 +2,10 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { InternalUrlRouter } from "@incrt/cint-coding-agent/internal-urls";
-import { getMemoryRoot } from "@incrt/cint-coding-agent/memories";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import type { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
+import { InternalUrlRouter } from "@incrt/cint/internal-urls";
+import { getMemoryRoot } from "@incrt/cint/memories";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import type { AgentSession } from "@incrt/cint/session/agent-session";
 import { getAgentDir, setAgentDir } from "@incrt/cint-utils";
 
 interface MemoryFixture {

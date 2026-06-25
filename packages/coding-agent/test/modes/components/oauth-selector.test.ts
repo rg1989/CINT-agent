@@ -1,9 +1,9 @@
 import { afterEach, beforeAll, describe, expect, it } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { OAuthSelectorComponent } from "@incrt/cint/modes/components/oauth-selector";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { getOAuthProviders } from "@incrt/cint-ai/oauth";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { OAuthSelectorComponent } from "@incrt/cint-coding-agent/modes/components/oauth-selector";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
 
 beforeAll(async () => {
 	await initTheme();

@@ -9,7 +9,7 @@
  * flags.
  */
 import { describe, expect, test } from "bun:test";
-import { resolveCliArgv } from "@incrt/cint-coding-agent/cli-commands";
+import { resolveCliArgv } from "@incrt/cint/cli-commands";
 
 describe("resolveCliArgv routes subcommands hidden behind leading global flags", () => {
 	test("`--approval-mode=yolo acp` dispatches the acp subcommand with the flag preserved", () => {

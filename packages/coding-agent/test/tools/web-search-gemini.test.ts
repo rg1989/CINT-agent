@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "bun:test";
+import { searchGemini } from "@incrt/cint/web/search/providers/gemini";
 import type { AuthStorage } from "@incrt/cint-ai";
 import type { FetchImpl } from "@incrt/cint-ai/types";
-import { searchGemini } from "@incrt/cint-coding-agent/web/search/providers/gemini";
 
 const SSE_RESPONSE =
 	'data: {"response":{"candidates":[{"content":{"role":"model","parts":[{"text":"Gemini answer"}]}}],"modelVersion":"gemini-2.5-flash"}}\n\n';

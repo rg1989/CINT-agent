@@ -5,17 +5,17 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import type { AgentMessage } from "@incrt/cint-agent-core";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { discoverAndLoadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { discoverAndLoadExtensions } from "@incrt/cint/extensibility/extensions/loader";
 import {
 	EXTENSION_HANDLER_TIMEOUT_MS,
 	ExtensionRunner,
 	testSetExtensionHandlerTimeoutMs,
-} from "@incrt/cint-coding-agent/extensibility/extensions/runner";
-import { ExtensionToolWrapper } from "@incrt/cint-coding-agent/extensibility/extensions/wrapper";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+} from "@incrt/cint/extensibility/extensions/runner";
+import { ExtensionToolWrapper } from "@incrt/cint/extensibility/extensions/wrapper";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import type { AgentMessage } from "@incrt/cint-agent-core";
 import { getProjectAgentDir, logger, TempDir } from "@incrt/cint-utils";
 
 describe("ExtensionRunner", () => {

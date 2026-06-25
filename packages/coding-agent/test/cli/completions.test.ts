@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { buildSpec, type CompletionSpec, generateCompletion } from "@incrt/cint-coding-agent/cli/completion-gen";
+import { buildSpec, type CompletionSpec, generateCompletion } from "@incrt/cint/cli/completion-gen";
 import type { CliConfig, CommandCtor } from "@incrt/cint-utils/cli";
 
 const repoRoot = path.resolve(import.meta.dir, "..", "..", "..", "..");
@@ -220,7 +220,7 @@ describe("omp completions (integration / drift)", () => {
 		// itself shells out to `omp __complete $kind`.
 		expect(stdout).toContain("_omp_call models");
 		expect(stdout).toContain("_omp_call sessions");
-		expect(stdout).toContain("command omp __complete $kind");
+		expect(stdout).toContain("command cint __complete $kind");
 		// Hidden/default commands must NOT surface as completable subcommands.
 		expect(stdout).not.toContain("_omp_cmd_launch");
 		expect(stdout).not.toContain("_omp_cmd___complete");

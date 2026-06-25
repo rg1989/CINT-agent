@@ -2,12 +2,12 @@ import { afterEach, beforeEach, describe, expect, it, spyOn } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { resolveLocalUrlToPath } from "@incrt/cint-coding-agent/internal-urls";
-import type { PlanModeState } from "@incrt/cint-coding-agent/plan-mode/state";
-import type { ClientBridge } from "@incrt/cint-coding-agent/session/client-bridge";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { WriteTool } from "@incrt/cint-coding-agent/tools/write";
+import { Settings } from "@incrt/cint/config/settings";
+import { resolveLocalUrlToPath } from "@incrt/cint/internal-urls";
+import type { PlanModeState } from "@incrt/cint/plan-mode/state";
+import type { ClientBridge } from "@incrt/cint/session/client-bridge";
+import type { ToolSession } from "@incrt/cint/tools";
+import { WriteTool } from "@incrt/cint/tools/write";
 
 const FILE_CONTENT = "bridge write content\n";
 

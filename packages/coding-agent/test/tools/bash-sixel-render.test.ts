@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it } from "bun:test";
 import * as os from "node:os";
 import * as path from "node:path";
+import { getThemeByName, setThemeInstance } from "@incrt/cint/modes/theme/theme";
+import { bashToolRenderer } from "@incrt/cint/tools/bash";
+import { previewWindowRows } from "@incrt/cint/tools/render-utils";
 import type { RenderResultOptions } from "@incrt/cint-agent-core";
-import { getThemeByName, setThemeInstance } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { bashToolRenderer } from "@incrt/cint-coding-agent/tools/bash";
-import { previewWindowRows } from "@incrt/cint-coding-agent/tools/render-utils";
 import { ImageProtocol, TERMINAL } from "@incrt/cint-tui";
 import { sanitizeText } from "@incrt/cint-utils";
 

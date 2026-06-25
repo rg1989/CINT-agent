@@ -1,8 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import {
-	isOpenAICompletionsProgressChunk,
-	streamOpenAICompletions,
-} from "@incrt/cint-ai/providers/openai-completions";
+import { isOpenAICompletionsProgressChunk, streamOpenAICompletions } from "@incrt/cint-ai/providers/openai-completions";
 import type { Context, FetchImpl, Model, ModelSpec } from "@incrt/cint-ai/types";
 import { buildModel } from "@incrt/cint-catalog/build";
 import { getBundledModel } from "@incrt/cint-catalog/models";

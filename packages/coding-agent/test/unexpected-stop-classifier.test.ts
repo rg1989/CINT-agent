@@ -1,9 +1,9 @@
 import { describe, expect, it } from "bun:test";
-import type { AssistantMessage } from "@incrt/cint-ai";
 import {
 	isUnexpectedStopCandidate,
 	parseUnexpectedStopClassification,
-} from "@incrt/cint-coding-agent/session/unexpected-stop-classifier";
+} from "@incrt/cint/session/unexpected-stop-classifier";
+import type { AssistantMessage } from "@incrt/cint-ai";
 
 function makeAssistantMessage(options: {
 	stopReason: AssistantMessage["stopReason"];

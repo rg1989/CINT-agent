@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { ConfigFile } from "@incrt/cint-coding-agent/config/config-file";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { ModelsConfigSchema } from "@incrt/cint-coding-agent/config/models-config-schema";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
+import { ConfigFile } from "@incrt/cint/config/config-file";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { ModelsConfigSchema } from "@incrt/cint/config/models-config-schema";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("ModelRegistry.create() factory (F6)", () => {

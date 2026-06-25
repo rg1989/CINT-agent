@@ -15,16 +15,16 @@
  *    runtime for internal callers.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
+import { AsyncJobManager } from "@incrt/cint/async/job-manager";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentLifecycleManager } from "@incrt/cint/registry/agent-lifecycle";
+import { AgentRegistry } from "@incrt/cint/registry/agent-registry";
+import { TaskTool } from "@incrt/cint/task";
+import * as discoveryModule from "@incrt/cint/task/discovery";
+import * as executorModule from "@incrt/cint/task/executor";
+import type { AgentDefinition, SingleResult, TaskParams } from "@incrt/cint/task/types";
+import type { ToolSession } from "@incrt/cint/tools";
 import { toolWireSchema } from "@incrt/cint-ai/utils/schema";
-import { AsyncJobManager } from "@incrt/cint-coding-agent/async/job-manager";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentLifecycleManager } from "@incrt/cint-coding-agent/registry/agent-lifecycle";
-import { AgentRegistry } from "@incrt/cint-coding-agent/registry/agent-registry";
-import { TaskTool } from "@incrt/cint-coding-agent/task";
-import * as discoveryModule from "@incrt/cint-coding-agent/task/discovery";
-import * as executorModule from "@incrt/cint-coding-agent/task/executor";
-import type { AgentDefinition, SingleResult, TaskParams } from "@incrt/cint-coding-agent/task/types";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
 
 const taskAgent: AgentDefinition = {
 	name: "task",

@@ -16,10 +16,10 @@ import { afterEach, beforeEach, describe, expect, mock, spyOn, test } from "bun:
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { runPluginCommand } from "@incrt/cint-coding-agent/cli/plugin-cli";
-import { PluginManager } from "@incrt/cint-coding-agent/extensibility/plugins/manager";
-import { MarketplaceManager } from "@incrt/cint-coding-agent/extensibility/plugins/marketplace";
-import type { InstalledPlugin } from "@incrt/cint-coding-agent/extensibility/plugins/types";
+import { runPluginCommand } from "@incrt/cint/cli/plugin-cli";
+import { PluginManager } from "@incrt/cint/extensibility/plugins/manager";
+import { MarketplaceManager } from "@incrt/cint/extensibility/plugins/marketplace";
+import type { InstalledPlugin } from "@incrt/cint/extensibility/plugins/types";
 import * as piUtils from "@incrt/cint-utils";
 
 const FAKE_INSTALLED: InstalledPlugin = {

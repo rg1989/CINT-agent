@@ -1,17 +1,17 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { ExtensionRunner, loadExtensions } from "@incrt/cint/extensibility/extensions";
+import { SecretObfuscator } from "@incrt/cint/secrets";
+import { AgentSession, type AgentSessionEvent } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentMessage } from "@incrt/cint-agent-core";
 import * as compactionModule from "@incrt/cint-agent-core/compaction";
 import type { AssistantMessage, Model, ToolCall } from "@incrt/cint-ai";
 import { createMockModel } from "@incrt/cint-ai/providers/mock";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ExtensionRunner, loadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions";
-import { SecretObfuscator } from "@incrt/cint-coding-agent/secrets";
-import { AgentSession, type AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const HANDOFF_SECRET = "HANDOFF_SECRET_TOKEN_12345";

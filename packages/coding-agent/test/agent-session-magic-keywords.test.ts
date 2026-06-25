@@ -2,16 +2,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import * as autoThinkingClassifier from "@incrt/cint/auto-thinking/classifier";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { AUTO_THINKING } from "@incrt/cint/thinking";
 import { Agent } from "@incrt/cint-agent-core";
 import { Effort } from "@incrt/cint-ai";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import * as autoThinkingClassifier from "@incrt/cint-coding-agent/auto-thinking/classifier";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { AUTO_THINKING } from "@incrt/cint-coding-agent/thinking";
 
 async function createMagicKeywordSession(root: string): Promise<{
 	session: AgentSession;

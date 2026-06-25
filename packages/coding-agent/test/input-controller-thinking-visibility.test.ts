@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "bun:test";
-import { AssistantMessageComponent } from "@incrt/cint-coding-agent/modes/components/assistant-message";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
+import { AssistantMessageComponent } from "@incrt/cint/modes/components/assistant-message";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 
 describe("InputController thinking visibility", () => {
 	it("keeps pre-stream pending transcript content mounted when Ctrl+T toggles thinking blocks", () => {

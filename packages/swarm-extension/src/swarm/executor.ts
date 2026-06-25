@@ -5,15 +5,8 @@
  * Each agent runs in the swarm workspace with its task instructions as the user prompt.
  */
 import * as path from "node:path";
-import type {
-	AgentDefinition,
-	AgentProgress,
-	AgentSource,
-	ModelRegistry,
-	Settings,
-	SingleResult,
-} from "@incrt/cint-coding-agent";
-import { runSubprocess } from "@incrt/cint-coding-agent";
+import type { AgentDefinition, AgentProgress, AgentSource, ModelRegistry, Settings, SingleResult } from "@incrt/cint";
+import { runSubprocess } from "@incrt/cint";
 import type { SwarmAgent } from "./schema";
 import type { StateTracker } from "./state";
 

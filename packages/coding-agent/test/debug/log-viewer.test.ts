@@ -4,7 +4,7 @@ import {
 	DebugLogViewerModel,
 	LOAD_OLDER_LABEL,
 	SESSION_BOUNDARY_WARNING,
-} from "@incrt/cint-coding-agent/debug/log-viewer";
+} from "@incrt/cint/debug/log-viewer";
 
 describe("DebugLogViewerModel", () => {
 	const describeRow = (row: { kind: string; logIndex?: number }): string => {

@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it } from "bun:test";
 import * as path from "node:path";
-import { isBlobRef } from "@incrt/cint-coding-agent/session/blob-store";
-import type { SessionEntry } from "@incrt/cint-coding-agent/session/session-entries";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
+import { isBlobRef } from "@incrt/cint/session/blob-store";
+import type { SessionEntry } from "@incrt/cint/session/session-entries";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 const tempDirs: TempDir[] = [];

@@ -1,12 +1,8 @@
 import { describe, expect, test } from "bun:test";
+import { resolveCliModel, resolveModelFromSettings, resolveModelRoleValue } from "@incrt/cint/config/model-resolver";
+import { Settings } from "@incrt/cint/config/settings";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import {
-	resolveCliModel,
-	resolveModelFromSettings,
-	resolveModelRoleValue,
-} from "@incrt/cint-coding-agent/config/model-resolver";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
 
 function model(provider: string, id: string): Model<"anthropic-messages"> {
 	return buildModel({

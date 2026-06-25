@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
+import { runAuthBrokerCommand } from "@incrt/cint/cli/auth-broker-cli";
 import { AuthStorage, SqliteAuthCredentialStore } from "@incrt/cint-ai";
 import { type AuthBrokerServerHandle, startAuthBroker } from "@incrt/cint-ai/auth-broker";
-import { runAuthBrokerCommand } from "@incrt/cint-coding-agent/cli/auth-broker-cli";
 import { getAgentDbPath, setAgentDir } from "@incrt/cint-utils";
 
 const ORIGINAL_STDOUT_WRITE = process.stdout.write.bind(process.stdout);

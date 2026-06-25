@@ -1,11 +1,7 @@
 import { afterAll, describe, expect, it } from "bun:test";
+import { disposePyToolBridge, ensurePyToolBridge, registerPyToolBridge } from "@incrt/cint/eval/py/tool-bridge";
+import type { ToolSession } from "@incrt/cint/tools";
 import type { AgentTool, AgentToolResult } from "@incrt/cint-agent-core";
-import {
-	disposePyToolBridge,
-	ensurePyToolBridge,
-	registerPyToolBridge,
-} from "@incrt/cint-coding-agent/eval/py/tool-bridge";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
 import { INTENT_FIELD } from "@incrt/cint-wire";
 
 interface FakeCall {

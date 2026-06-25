@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { initializeWithSettings } from "@incrt/cint-coding-agent/discovery";
-import { discoverAndLoadExtensions, loadExtensions } from "@incrt/cint-coding-agent/extensibility/extensions/loader";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { initializeWithSettings } from "@incrt/cint/discovery";
+import { discoverAndLoadExtensions, loadExtensions } from "@incrt/cint/extensibility/extensions/loader";
 import { getProjectAgentDir, TempDir } from "@incrt/cint-utils";
 import { filterUserScoped } from "./utils/filter-user-extensions";
 

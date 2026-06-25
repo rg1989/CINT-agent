@@ -2,8 +2,8 @@ import { describe, expect, it } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { buildMemoryToolDeveloperInstructions, getMemoryRoot } from "@incrt/cint-coding-agent/memories";
+import { Settings } from "@incrt/cint/config/settings";
+import { buildMemoryToolDeveloperInstructions, getMemoryRoot } from "@incrt/cint/memories";
 
 async function withTempDir<T>(fn: (dir: string) => Promise<T>): Promise<T> {
 	const dir = await fs.mkdtemp(path.join(os.tmpdir(), "memory-instructions-"));

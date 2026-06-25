@@ -21,12 +21,12 @@
  */
 
 import { beforeAll, describe, expect, mock, test } from "bun:test";
+import { InputController } from "@incrt/cint/modes/controllers/input-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { CompactionQueuedMessage, InteractiveModeContext } from "@incrt/cint/modes/types";
+import { UiHelpers } from "@incrt/cint/modes/utils/ui-helpers";
+import type { RestoredQueuedMessage } from "@incrt/cint/session/agent-session";
 import type { ImageContent } from "@incrt/cint-ai";
-import { InputController } from "@incrt/cint-coding-agent/modes/controllers/input-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { CompactionQueuedMessage, InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { UiHelpers } from "@incrt/cint-coding-agent/modes/utils/ui-helpers";
-import type { RestoredQueuedMessage } from "@incrt/cint-coding-agent/session/agent-session";
 
 beforeAll(() => {
 	initTheme();

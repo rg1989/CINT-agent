@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { createBackgroundTanDispatchBlock } from "@incrt/cint-coding-agent/modes/components/background-tan-message";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { BACKGROUND_TAN_DISPATCH_MESSAGE_TYPE, type CustomMessage } from "@incrt/cint-coding-agent/session/messages";
+import { createBackgroundTanDispatchBlock } from "@incrt/cint/modes/components/background-tan-message";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { BACKGROUND_TAN_DISPATCH_MESSAGE_TYPE, type CustomMessage } from "@incrt/cint/session/messages";
 
 function dispatchMessage(details: { jobId: string; work: string; sessionFile: string }): CustomMessage<unknown> {
 	return {

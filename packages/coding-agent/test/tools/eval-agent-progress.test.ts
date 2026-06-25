@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, describe, expect, it } from "bun:test";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { EvalStatusEvent, EvalToolDetails } from "@incrt/cint-coding-agent/eval/types";
-import { getThemeByName, setThemeInstance, type Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { evalToolRenderer } from "@incrt/cint-coding-agent/tools/eval";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import type { EvalStatusEvent, EvalToolDetails } from "@incrt/cint/eval/types";
+import { getThemeByName, setThemeInstance, type Theme } from "@incrt/cint/modes/theme/theme";
+import { evalToolRenderer } from "@incrt/cint/tools/eval";
 
 /**
  * Defends the contract that `agent()` calls inside an eval cell surface as a

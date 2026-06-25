@@ -1,8 +1,8 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "bun:test";
+import { CommandController } from "@incrt/cint/modes/controllers/command-controller";
+import { getThemeByName, setThemeInstance, type Theme, theme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
 import { CompactionCancelledError, type CompactionResult } from "@incrt/cint-agent-core/compaction";
-import { CommandController } from "@incrt/cint-coding-agent/modes/controllers/command-controller";
-import { getThemeByName, setThemeInstance, type Theme, theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
 import { Container, Spacer } from "@incrt/cint-tui";
 
 /**

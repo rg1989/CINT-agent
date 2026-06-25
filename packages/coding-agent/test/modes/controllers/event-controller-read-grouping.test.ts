@@ -13,13 +13,13 @@
  * one-entry block).
  */
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
+import { resetSettingsForTest, Settings } from "@incrt/cint/config/settings";
+import { ReadToolGroupComponent } from "@incrt/cint/modes/components/read-tool-group";
+import { EventController } from "@incrt/cint/modes/controllers/event-controller";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import type { AgentSessionEvent } from "@incrt/cint/session/agent-session";
 import type { AssistantMessage } from "@incrt/cint-ai";
-import { resetSettingsForTest, Settings } from "@incrt/cint-coding-agent/config/settings";
-import { ReadToolGroupComponent } from "@incrt/cint-coding-agent/modes/components/read-tool-group";
-import { EventController } from "@incrt/cint-coding-agent/modes/controllers/event-controller";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import type { AgentSessionEvent } from "@incrt/cint-coding-agent/session/agent-session";
 import { Container } from "@incrt/cint-tui";
 
 beforeAll(async () => {

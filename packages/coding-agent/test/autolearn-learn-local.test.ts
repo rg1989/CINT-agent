@@ -2,15 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, spyOn } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import {
-	buildMemoryToolDeveloperInstructions,
-	getMemoryRoot,
-	saveLearnedLesson,
-} from "@incrt/cint-coding-agent/memories";
-import { localBackend } from "@incrt/cint-coding-agent/memory-backend/local-backend";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { LearnTool } from "@incrt/cint-coding-agent/tools/learn";
+import { Settings } from "@incrt/cint/config/settings";
+import { buildMemoryToolDeveloperInstructions, getMemoryRoot, saveLearnedLesson } from "@incrt/cint/memories";
+import { localBackend } from "@incrt/cint/memory-backend/local-backend";
+import type { ToolSession } from "@incrt/cint/tools";
+import { LearnTool } from "@incrt/cint/tools/learn";
 
 Bun.env.PI_PYTHON_SKIP_CHECK = "1";
 

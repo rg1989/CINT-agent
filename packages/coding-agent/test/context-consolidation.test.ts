@@ -1,17 +1,17 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from "bun:test";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import { StatusLineComponent } from "@incrt/cint/modes/components/status-line";
+import { initTheme } from "@incrt/cint/modes/theme/theme";
+import { computeContextBreakdown } from "@incrt/cint/modes/utils/context-usage";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
 import { Agent, type AgentMessage } from "@incrt/cint-agent-core";
 import { estimateTokens } from "@incrt/cint-agent-core/compaction/compaction";
 import type { AssistantMessage, Message, Model } from "@incrt/cint-ai";
 import { createMockModel } from "@incrt/cint-ai/providers/mock";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { StatusLineComponent } from "@incrt/cint-coding-agent/modes/components/status-line";
-import { initTheme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { computeContextBreakdown } from "@incrt/cint-coding-agent/modes/utils/context-usage";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
 import { TempDir } from "@incrt/cint-utils";
 
 describe("Context usage consolidation", () => {

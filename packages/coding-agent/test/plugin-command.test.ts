@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import Plugin from "@incrt/cint-coding-agent/commands/plugin";
+import Plugin from "@incrt/cint/commands/plugin";
 import type { CliConfig } from "@incrt/cint-utils/cli";
 
 const TEST_CONFIG: CliConfig = {

@@ -1,6 +1,6 @@
 import { Database } from "bun:sqlite";
 import { afterEach, beforeEach, expect, it } from "bun:test";
-import { HistoryStorage } from "@incrt/cint-coding-agent/session/history-storage";
+import { HistoryStorage } from "@incrt/cint/session/history-storage";
 import { TempDir } from "@incrt/cint-utils";
 import { readTableSql } from "./helpers/sqlite-inspect";
 

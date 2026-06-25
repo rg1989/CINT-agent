@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, test } from "bun:test";
+import { type AsyncJob, AsyncJobManager } from "@incrt/cint/async";
+import type { CustomMessage } from "@incrt/cint/session/messages";
+import { YieldQueue } from "@incrt/cint/session/yield-queue";
+import type { ToolSession } from "@incrt/cint/tools";
+import { JobTool } from "@incrt/cint/tools/job";
 import type { AgentMessage } from "@incrt/cint-agent-core";
-import { type AsyncJob, AsyncJobManager } from "@incrt/cint-coding-agent/async";
-import type { CustomMessage } from "@incrt/cint-coding-agent/session/messages";
-import { YieldQueue } from "@incrt/cint-coding-agent/session/yield-queue";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { JobTool } from "@incrt/cint-coding-agent/tools/job";
 
 type AsyncEntry = {
 	jobId: string;

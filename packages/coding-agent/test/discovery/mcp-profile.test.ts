@@ -16,9 +16,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "bun:test";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
-import { clearCache as clearFsCache } from "@incrt/cint-coding-agent/capability/fs";
-import { type MCPServer, mcpCapability } from "@incrt/cint-coding-agent/capability/mcp";
-import { loadCapability } from "@incrt/cint-coding-agent/discovery";
+import { clearCache as clearFsCache } from "@incrt/cint/capability/fs";
+import { type MCPServer, mcpCapability } from "@incrt/cint/capability/mcp";
+import { loadCapability } from "@incrt/cint/discovery";
 import { getConfigRootDir, setAgentDir } from "@incrt/cint-utils";
 
 const originalAgentDirEnv = process.env.PI_CODING_AGENT_DIR;
@@ -71,7 +71,7 @@ describe("native user-level MCP discovery follows the active profile", () => {
 
 		// Decoy: the default profile's user file at the literal-home path the old
 		// (buggy) loader read. It must NOT leak into the active profile.
-		await writeMcpJson(path.join(tempHome, ".omp", "agent"), {
+		await writeMcpJson(path.join(tempHome, ".cint", "agent"), {
 			"default-only": { command: "default-cmd" },
 		});
 		await writeMcpJson(profileAgentDir, {
@@ -93,7 +93,7 @@ describe("native user-level MCP discovery follows the active profile", () => {
 	});
 
 	test("default profile loads the user server from ~/.omp/agent", async () => {
-		const defaultAgentDir = path.join(tempHome, ".omp", "agent");
+		const defaultAgentDir = path.join(tempHome, ".cint", "agent");
 		setAgentDir(defaultAgentDir);
 		await writeMcpJson(defaultAgentDir, {
 			"default-only": { command: "default-cmd" },

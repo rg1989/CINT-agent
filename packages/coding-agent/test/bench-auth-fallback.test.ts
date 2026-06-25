@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+import { type BenchModelRegistry, runBenchCommand } from "@incrt/cint/cli/bench-cli";
 import type {
 	Api,
 	ApiKeyResolver,
@@ -7,7 +8,6 @@ import type {
 	AssistantMessageEventStream,
 	Model,
 } from "@incrt/cint-ai";
-import { type BenchModelRegistry, runBenchCommand } from "@incrt/cint-coding-agent/cli/bench-cli";
 
 function fakeModel(provider: string, id: string): Model<Api> {
 	return {

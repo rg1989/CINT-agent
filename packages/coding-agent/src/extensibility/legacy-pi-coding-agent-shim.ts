@@ -1,6 +1,6 @@
 /**
  * Compatibility shim for legacy extensions importing the package root of
- * `@incrt/cint-coding-agent` (or one of its aliased scopes like
+ * `@incrt/cint` (or one of its aliased scopes like
  * `@earendil-works/pi-coding-agent` or `@mariozechner/pi-coding-agent`).
  *
  * The coding-agent package's own barrel (`./src/index.ts`) cannot be listed
@@ -9,7 +9,7 @@
  * Routing legacy plugin imports through this sibling shim sidesteps that
  * conflict: bun bundles a distinct entry whose path differs from the CLI
  * entry, while still re-exporting the canonical surface so plugins observe
- * the same module identity as a direct `@incrt/cint-coding-agent` import.
+ * the same module identity as a direct `@incrt/cint` import.
  */
 
 import type { AgentToolUpdateCallback } from "@incrt/cint-agent-core";

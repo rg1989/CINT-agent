@@ -6,22 +6,22 @@ import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Agent } from "@incrt/cint-agent-core";
-import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
 import {
 	HookRunner,
 	type LoadedHook,
 	type SessionBeforeCompactEvent,
 	type SessionCompactEvent,
 	type SessionEvent,
-} from "@incrt/cint-coding-agent/extensibility/hooks";
-import { theme } from "@incrt/cint-coding-agent/modes/theme/theme";
-import { AgentSession } from "@incrt/cint-coding-agent/session/agent-session";
-import { AuthStorage } from "@incrt/cint-coding-agent/session/auth-storage";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { createTools, type ToolSession } from "@incrt/cint-coding-agent/tools";
+} from "@incrt/cint/extensibility/hooks";
+import { theme } from "@incrt/cint/modes/theme/theme";
+import { AgentSession } from "@incrt/cint/session/agent-session";
+import { AuthStorage } from "@incrt/cint/session/auth-storage";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { createTools, type ToolSession } from "@incrt/cint/tools";
+import { Agent } from "@incrt/cint-agent-core";
+import { getBundledModel } from "@incrt/cint-catalog/models";
 import { removeSyncWithRetries, Snowflake } from "@incrt/cint-utils";
 import { e2eApiKey } from "./utilities";
 

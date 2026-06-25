@@ -2,16 +2,16 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import { ModelRegistry } from "@incrt/cint/config/model-registry";
+import { Settings } from "@incrt/cint/config/settings";
+import type { CustomTool } from "@incrt/cint/extensibility/custom-tools/types";
+import { createAgentSession } from "@incrt/cint/sdk";
+import { SessionManager } from "@incrt/cint/session/session-manager";
+import { TOOL_DISCOVERY_AUTO_THRESHOLD } from "@incrt/cint/tool-discovery/mode";
 import { ThinkingLevel } from "@incrt/cint-agent-core";
 import { AuthStorage, Effort, type Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
 import { getBundledModel } from "@incrt/cint-catalog/models";
-import { ModelRegistry } from "@incrt/cint-coding-agent/config/model-registry";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import type { CustomTool } from "@incrt/cint-coding-agent/extensibility/custom-tools/types";
-import { createAgentSession } from "@incrt/cint-coding-agent/sdk";
-import { SessionManager } from "@incrt/cint-coding-agent/session/session-manager";
-import { TOOL_DISCOVERY_AUTO_THRESHOLD } from "@incrt/cint-coding-agent/tool-discovery/mode";
 import { Snowflake } from "@incrt/cint-utils";
 import { type } from "arktype";
 

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
-import { SelectorController } from "@incrt/cint-coding-agent/modes/controllers/selector-controller";
+import { Settings } from "@incrt/cint/config/settings";
+import { SelectorController } from "@incrt/cint/modes/controllers/selector-controller";
 import { beginSettingsTest, restoreSettingsTestState, type SettingsTestState } from "./helpers/settings-test-state";
 
 let settingsState: SettingsTestState | undefined;

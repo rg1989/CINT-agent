@@ -1,21 +1,21 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "bun:test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import type { ImageContent, TextContent } from "@incrt/cint-ai";
-import { createSessionRuntime } from "@incrt/cint-coding-agent/autoresearch/state";
+import { createSessionRuntime } from "@incrt/cint/autoresearch/state";
 import {
 	type AutoresearchStorage,
 	closeAllAutoresearchStorages,
 	openAutoresearchStorage,
 	type SessionRow,
-} from "@incrt/cint-coding-agent/autoresearch/storage";
-import { createInitExperimentTool } from "@incrt/cint-coding-agent/autoresearch/tools/init-experiment";
-import { createLogExperimentTool } from "@incrt/cint-coding-agent/autoresearch/tools/log-experiment";
-import { createRunExperimentTool } from "@incrt/cint-coding-agent/autoresearch/tools/run-experiment";
-import { createUpdateNotesTool } from "@incrt/cint-coding-agent/autoresearch/tools/update-notes";
-import type { ASIData, LogDetails, NumericMetricMap, RunDetails } from "@incrt/cint-coding-agent/autoresearch/types";
-import type { ExtensionAPI, ExtensionContext } from "@incrt/cint-coding-agent/extensibility/extensions";
-import * as git from "@incrt/cint-coding-agent/utils/git";
+} from "@incrt/cint/autoresearch/storage";
+import { createInitExperimentTool } from "@incrt/cint/autoresearch/tools/init-experiment";
+import { createLogExperimentTool } from "@incrt/cint/autoresearch/tools/log-experiment";
+import { createRunExperimentTool } from "@incrt/cint/autoresearch/tools/run-experiment";
+import { createUpdateNotesTool } from "@incrt/cint/autoresearch/tools/update-notes";
+import type { ASIData, LogDetails, NumericMetricMap, RunDetails } from "@incrt/cint/autoresearch/types";
+import type { ExtensionAPI, ExtensionContext } from "@incrt/cint/extensibility/extensions";
+import * as git from "@incrt/cint/utils/git";
+import type { ImageContent, TextContent } from "@incrt/cint-ai";
 import { TempDir } from "@incrt/cint-utils";
 import { $ } from "bun";
 

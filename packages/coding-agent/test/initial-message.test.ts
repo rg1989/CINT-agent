@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import type { Args } from "@incrt/cint/cli/args";
+import { buildInitialMessage } from "@incrt/cint/cli/initial-message";
 import type { ImageContent } from "@incrt/cint-ai";
-import type { Args } from "@incrt/cint-coding-agent/cli/args";
-import { buildInitialMessage } from "@incrt/cint-coding-agent/cli/initial-message";
 
 function createArgs(messages: string[]): Args {
 	return {

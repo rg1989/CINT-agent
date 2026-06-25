@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "bun:test";
-import * as settingsModule from "@incrt/cint-coding-agent/config/settings";
-import { shimmerText } from "@incrt/cint-coding-agent/modes/theme/shimmer";
-import type { Theme } from "@incrt/cint-coding-agent/modes/theme/theme";
+import * as settingsModule from "@incrt/cint/config/settings";
+import { shimmerText } from "@incrt/cint/modes/theme/shimmer";
+import type { Theme } from "@incrt/cint/modes/theme/theme";
 
 const testTheme = {
 	bold(text: string): string {

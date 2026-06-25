@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { buildNonInteractiveEnv } from "@incrt/cint-coding-agent/exec/non-interactive-env";
+import { buildNonInteractiveEnv } from "@incrt/cint/exec/non-interactive-env";
 
 describe("buildNonInteractiveEnv", () => {
 	it("defaults Windows child-process encoding to UTF-8 when inherited env is unset", () => {

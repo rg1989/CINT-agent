@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { truncateToVisualLines } from "@incrt/cint-coding-agent/modes/components/visual-truncate";
+import { truncateToVisualLines } from "@incrt/cint/modes/components/visual-truncate";
 
 describe("truncateToVisualLines", () => {
 	it("returns empty output for empty text", () => {

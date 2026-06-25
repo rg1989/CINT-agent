@@ -1,12 +1,12 @@
 import { describe, expect, it, spyOn } from "bun:test";
-import type { Context, ImageContent, Message, TextContent, ToolResultMessage } from "@incrt/cint-ai";
-import { buildModel } from "@incrt/cint-catalog/build";
 import {
 	estimateInlineSavings,
 	planInlineSwaps,
 	type SnapcompactInlineOptions,
 	SnapcompactInlineTransformer,
-} from "@incrt/cint-coding-agent/session/snapcompact-inline";
+} from "@incrt/cint/session/snapcompact-inline";
+import type { Context, ImageContent, Message, TextContent, ToolResultMessage } from "@incrt/cint-ai";
+import { buildModel } from "@incrt/cint-catalog/build";
 import * as snapcompact from "@incrt/cint-snapcompact";
 
 /**

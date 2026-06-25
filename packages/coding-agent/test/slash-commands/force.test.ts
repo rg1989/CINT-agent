@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from "bun:test";
+import type { InteractiveModeContext } from "@incrt/cint/modes/types";
+import { executeBuiltinSlashCommand } from "@incrt/cint/slash-commands/builtin-registry";
+import { buildNamedToolChoice } from "@incrt/cint/utils/tool-choice";
 import type { Model } from "@incrt/cint-ai";
 import { buildModel } from "@incrt/cint-catalog/build";
-import type { InteractiveModeContext } from "@incrt/cint-coding-agent/modes/types";
-import { executeBuiltinSlashCommand } from "@incrt/cint-coding-agent/slash-commands/builtin-registry";
-import { buildNamedToolChoice } from "@incrt/cint-coding-agent/utils/tool-choice";
 
 function createRuntimeHarness(overrides?: { setForcedToolChoice?: (toolName: string) => void }) {
 	const setForcedToolChoice = vi.fn(overrides?.setForcedToolChoice ?? ((_toolName: string) => {}));

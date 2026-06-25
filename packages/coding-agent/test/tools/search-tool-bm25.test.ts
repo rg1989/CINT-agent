@@ -1,12 +1,12 @@
 import { describe, expect, it } from "bun:test";
-import { Settings } from "@incrt/cint-coding-agent/config/settings";
+import { Settings } from "@incrt/cint/config/settings";
 import {
 	buildDiscoverableToolSearchIndex,
 	type DiscoverableTool,
 	type DiscoverableToolSearchIndex,
-} from "@incrt/cint-coding-agent/tool-discovery/tool-index";
-import type { ToolSession } from "@incrt/cint-coding-agent/tools";
-import { renderSearchToolBm25Description, SearchToolBm25Tool } from "@incrt/cint-coding-agent/tools/search-tool-bm25";
+} from "@incrt/cint/tool-discovery/tool-index";
+import type { ToolSession } from "@incrt/cint/tools";
+import { renderSearchToolBm25Description, SearchToolBm25Tool } from "@incrt/cint/tools/search-tool-bm25";
 
 type DiscoveryToolSession = ToolSession & {
 	isMCPDiscoveryEnabled: () => boolean;
