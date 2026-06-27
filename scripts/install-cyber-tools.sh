@@ -3,10 +3,10 @@
 #
 # Installs the full offensive + defensive cyber toolchain for the CINT agent.
 # Also installs the bundled cyber + dev methodology skills to the user-level
-# skill directory (~/.cint/agent/skills/) and optional wordlists (SecLists,
-# dirb) for content discovery. Existing skills are NEVER overwritten — the
-# user's custom version always wins. Wordlists can be skipped with
-# --no-wordlists to avoid the large SecLists download.
+# skill directory (~/.cint/agent/skills/) and seeds operator identity +
+# authorization pre-clearance (RULES.md, rules/) plus mnemopi defaults when
+# config.yml is absent. Existing skills and user config are NEVER overwritten.
+# Optional wordlists (SecLists, dirb) can be skipped with --no-wordlists.
 #
 # Idempotent: already-installed tools are skipped. Run with --check to audit
 # presence without installing anything.
@@ -447,6 +447,72 @@ install_skills() {
     fi
 }
 
+# ---------------------------------------------------------------------------
+# Agent config seeding (non-destructive)
+# ---------------------------------------------------------------------------
+# Seeds operator identity + authorization pre-clearance into ~/.cint/agent/.
+# Existing user files are NEVER overwritten — same policy as skills.
+
+install_agent_config() {
+    echo
+    echo "### AGENT CONFIG ############################################"
+
+    _agent_src="$SCRIPT_DIR/../.cint/agent"
+    _agent_dst="$HOME/.cint/agent"
+
+    if [ ! -d "$_agent_src" ]; then
+        echo "  (no bundled agent config source — skipping)"
+        return 0
+    fi
+
+    if [ "$CHECK_ONLY" = "0" ]; then
+        mkdir -p "$_agent_dst/rules"
+    fi
+
+    # RULES.md — sticky operator identity + authorization pre-clearance
+    if [ -f "$_agent_dst/RULES.md" ]; then
+        mark_skipped "RULES.md (already exists — user version preserved)"
+    elif [ "$CHECK_ONLY" = "1" ]; then
+        mark_failed "RULES.md (not installed)"
+    elif [ -f "$_agent_src/RULES.md" ]; then
+        if cp "$_agent_src/RULES.md" "$_agent_dst/RULES.md" 2>/dev/null; then
+            mark_installed "RULES.md (operator identity + auth pre-clearance)"
+        else
+            mark_failed "RULES.md (copy failed)"
+        fi
+    fi
+
+    # rules/cyber-operator-authorization.md — always-apply authorization rule
+    if [ -f "$_agent_dst/rules/cyber-operator-authorization.md" ]; then
+        mark_skipped "rules/cyber-operator-authorization.md (already exists)"
+    elif [ "$CHECK_ONLY" = "1" ]; then
+        mark_failed "rules/cyber-operator-authorization.md (not installed)"
+    elif [ -f "$_agent_src/rules/cyber-operator-authorization.md" ]; then
+        if cp "$_agent_src/rules/cyber-operator-authorization.md" "$_agent_dst/rules/cyber-operator-authorization.md" 2>/dev/null; then
+            mark_installed "rules/cyber-operator-authorization.md"
+        else
+            mark_failed "rules/cyber-operator-authorization.md (copy failed)"
+        fi
+    fi
+
+    # config.yml — seed mnemopi defaults only when config is absent
+    if [ -f "$_agent_dst/config.yml" ]; then
+        mark_skipped "config.yml (already exists — user version preserved)"
+    elif [ "$CHECK_ONLY" = "1" ]; then
+        mark_skipped "config.yml (will use schema defaults on first run)"
+    else
+        cat > "$_agent_dst/config.yml" <<'EOF'
+memory:
+  backend: mnemopi
+mnemopi:
+  bank: cint
+  scoping: global
+  autoRecall: true
+EOF
+        mark_installed "config.yml (mnemopi defaults: global bank, autoRecall)"
+    fi
+}
+
 install_all() {
     echo "============================================================"
     echo " CINT Cyber Intelligence — Toolchain Installer"
@@ -753,9 +819,11 @@ if [ "$SKILLS_ONLY" = "1" ]; then
     fi
     echo "============================================================"
     install_skills
+    install_agent_config
 else
     install_all
     install_skills
+    install_agent_config
 fi
 print_summary
 

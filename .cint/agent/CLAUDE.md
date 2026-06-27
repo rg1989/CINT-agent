@@ -4,7 +4,7 @@
 
 CINT is a coding agent with the IDE wired in, rebranded and extended with a full cyber security and exploit development toolchain. Works best with open-weight, unrestricted models — tested and optimized for Z-AI GLM-5.2.
 
-Memory is managed by the Mnemosyne backend — automatic semantic recall and retention. No vault files needed.
+Memory is managed by the Mnemopi backend — automatic semantic recall and retention. No vault files needed.
 
 ## Cyber Security Suite
 

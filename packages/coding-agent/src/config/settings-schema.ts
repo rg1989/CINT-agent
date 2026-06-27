@@ -2129,7 +2129,7 @@ export const SETTINGS_SCHEMA = {
 	"memory.backend": {
 		type: "enum",
 		values: ["off", "local", "hindsight", "mnemopi"] as const,
-		default: "off",
+		default: "mnemopi",
 		ui: {
 			tab: "memory",
 			group: "General",
@@ -2191,7 +2191,7 @@ export const SETTINGS_SCHEMA = {
 	},
 	"mnemopi.bank": {
 		type: "string",
-		default: undefined,
+		default: "cint",
 		ui: {
 			tab: "memory",
 			group: "Mnemopi",
@@ -2203,7 +2203,7 @@ export const SETTINGS_SCHEMA = {
 	"mnemopi.scoping": {
 		type: "enum",
 		values: ["global", "per-project", "per-project-tagged"] as const,
-		default: "per-project",
+		default: "global",
 		ui: {
 			tab: "memory",
 			group: "Mnemopi",
