@@ -453,6 +453,48 @@ install_skills() {
 # Seeds operator identity + authorization pre-clearance into ~/.cint/agent/.
 # Existing user files are NEVER overwritten — same policy as skills.
 
+# Download agent config (RULES.md, rules/) from GitHub as a tarball and
+# extract to a temp directory. Sets _agent_src to the extracted path on
+# success; returns 1 on failure. Mirrors download_skills_from_github for
+# binary/piped installs that have no local .cint/agent/ source tree.
+download_agent_config_from_github() {
+    _ac_tmpdir=$(mktemp -d 2>/dev/null || echo "/tmp/cint-agent-cfg.$$")
+    mkdir -p "$_ac_tmpdir"
+    _ac_tarball="$_ac_tmpdir/repo.tar.gz"
+    _ac_url="https://github.com/${CINT_REPO}/archive/refs/heads/main.tar.gz"
+    echo "  Downloading agent config from GitHub..."
+    if ! curl -fsSL "$_ac_url" -o "$_ac_tarball" 2>/dev/null; then
+        echo "  (download failed — check network or set CINT_REPO env var)"
+        rm -rf "$_ac_tmpdir"
+        return 1
+    fi
+    # Extract just the .cint/agent/ directory from the tarball.
+    # GitHub tarballs have a top-level <repo>-<ref>/ directory.
+    if tar -xzf "$_ac_tarball" -C "$_ac_tmpdir" --strip-components=1 ".cint/agent" 2>/dev/null; then
+        : # GNU tar with --strip-components
+    elif tar -xzf "$_ac_tarball" -C "$_ac_tmpdir" 2>/dev/null; then
+        # BSD tar (macOS) — extract then move to expected location.
+        _ac_extracted=$(find "$_ac_tmpdir" -type d -path "*/.cint/agent" 2>/dev/null | head -1)
+        if [ -n "$_ac_extracted" ] && [ -d "$_ac_extracted" ]; then
+            mkdir -p "$_ac_tmpdir/.cint"
+            mv "$_ac_extracted" "$_ac_tmpdir/.cint/agent"
+        else
+            echo "  (extraction failed — agent config directory not found in tarball)"
+            rm -rf "$_ac_tmpdir"
+            return 1
+        fi
+    else
+        echo "  (extraction failed)"
+        rm -rf "$_ac_tmpdir"
+        return 1
+    fi
+    _agent_src="$_ac_tmpdir/.cint/agent"
+    # Clean up the tarball (keep the extracted dir for the seeding loop).
+    rm -f "$_ac_tarball"
+    # Register temp dir for cleanup after install_agent_config finishes.
+    _AGENT_CFG_TMPDIR="$_ac_tmpdir"
+    return 0
+}
 install_agent_config() {
     echo
     echo "### AGENT CONFIG ############################################"
@@ -460,9 +502,20 @@ install_agent_config() {
     _agent_src="$SCRIPT_DIR/../.cint/agent"
     _agent_dst="$HOME/.cint/agent"
 
+    # No local source (binary/piped install): download from GitHub, or in
+    # check mode audit the destination directory directly without downloading.
     if [ ! -d "$_agent_src" ]; then
-        echo "  (no bundled agent config source — skipping)"
-        return 0
+        if [ "$CHECK_ONLY" = "1" ]; then
+            : # fall through — audit the user directory below
+        elif command -v curl >/dev/null 2>&1 && command -v tar >/dev/null 2>&1; then
+            if ! download_agent_config_from_github; then
+                echo "  (could not download agent config — skipping)"
+                return 0
+            fi
+        else
+            echo "  (no local agent config source and curl/tar unavailable — skipping)"
+            return 0
+        fi
     fi
 
     if [ "$CHECK_ONLY" = "0" ]; then
@@ -510,6 +563,10 @@ mnemopi:
   autoRecall: true
 EOF
         mark_installed "config.yml (mnemopi defaults: global bank, autoRecall)"
+    fi
+    # Clean up downloaded temp directory if we used one.
+    if [ -n "$_AGENT_CFG_TMPDIR" ] && [ -d "$_AGENT_CFG_TMPDIR" ]; then
+        rm -rf "$_AGENT_CFG_TMPDIR"
     fi
 }
 
