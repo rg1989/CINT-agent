@@ -20,11 +20,14 @@ set -e
 REPO="rg1989/CINT-agent"
 PACKAGE="@incrt/cint"
 INSTALL_DIR="${CINT_INSTALL_DIR:-$HOME/.local/bin}"
+BUN_BIN_DIR="${BUN_INSTALL:-$HOME/.bun}/bin"
 MIN_BUN_VERSION="1.3.14"
+CINT_PATH_MARKER="# CINT agent CLI"
 
 MODE=""
 REF=""
 NO_CYBER=0
+CINT_INSTALLED_BIN=""
 while [ $# -gt 0 ]; do
     case "$1" in
         --source)
@@ -142,12 +145,160 @@ install_bun() {
     fi
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
+    BUN_BIN_DIR="$BUN_INSTALL/bin"
+    persist_path_dir "$BUN_BIN_DIR" "bun"
     require_bun_version
 }
 
 # Check if git-lfs is available
 has_git_lfs() {
     command -v git-lfs >/dev/null 2>&1
+}
+
+path_contains_dir() {
+    _dir="$1"
+    case ":$PATH:" in
+        *":$_dir:"*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Shell profiles to update, ordered by preference for the user's login shell.
+shell_profile_candidates() {
+    _shell_name=$(basename "${SHELL:-}")
+    if [ -z "$_shell_name" ] || [ "$_shell_name" = "sh" ]; then
+        _shell_name=bash
+    fi
+
+    if [ "$(uname -s)" = "Darwin" ]; then
+        case "$_shell_name" in
+            zsh)  set -- "$HOME/.zprofile" "$HOME/.zshrc" ;;
+            bash) set -- "$HOME/.bash_profile" "$HOME/.bashrc" ;;
+            *)    set -- "$HOME/.profile" ;;
+        esac
+    else
+        case "$_shell_name" in
+            zsh)  set -- "$HOME/.zshrc" "$HOME/.profile" ;;
+            bash) set -- "$HOME/.bashrc" "$HOME/.profile" ;;
+            *)    set -- "$HOME/.profile" ;;
+        esac
+    fi
+
+    for _profile in "$@"; do
+        printf '%s\n' "$_profile"
+    done
+}
+
+# Append a PATH export to the user's shell profile(s) when the bin dir is missing.
+persist_path_dir() {
+    _dir="$1"
+    _label="${2:-$1}"
+
+    if [ -z "$_dir" ]; then
+        return 1
+    fi
+
+    if ! path_contains_dir "$_dir"; then
+        export PATH="$_dir:$PATH"
+    fi
+
+    _updated=0
+    _first_profile=""
+    for _profile in $(shell_profile_candidates); do
+        if [ -z "$_first_profile" ]; then
+            _first_profile="$_profile"
+        fi
+        if [ ! -f "$_profile" ]; then
+            continue
+        fi
+        if grep -q "$CINT_PATH_MARKER" "$_profile" 2>/dev/null; then
+            continue
+        fi
+        {
+            echo ""
+            echo "$CINT_PATH_MARKER ($_label)"
+            echo "export PATH=\"$_dir:\$PATH\""
+        } >> "$_profile"
+        _updated=1
+        echo "  Added $_dir to PATH via $_profile"
+    done
+
+    if [ "$_updated" = "0" ]; then
+        if [ -n "$_first_profile" ] && [ ! -f "$_first_profile" ]; then
+            mkdir -p "$(dirname "$_first_profile")"
+            {
+                echo "$CINT_PATH_MARKER ($_label)"
+                echo "export PATH=\"$_dir:\$PATH\""
+            } > "$_first_profile"
+            echo "  Created $_first_profile with PATH entry for $_dir"
+            _updated=1
+        elif grep -q "$CINT_PATH_MARKER" "$HOME/.profile" 2>/dev/null \
+            || grep -q "$CINT_PATH_MARKER" "$HOME/.zshrc" 2>/dev/null \
+            || grep -q "$CINT_PATH_MARKER" "$HOME/.zprofile" 2>/dev/null \
+            || grep -q "$CINT_PATH_MARKER" "$HOME/.bashrc" 2>/dev/null \
+            || grep -q "$CINT_PATH_MARKER" "$HOME/.bash_profile" 2>/dev/null; then
+            : # already configured in a profile we did not iterate (race/manual edit)
+        fi
+    fi
+
+    return 0
+}
+
+resolve_cint_binary() {
+    if [ -n "$CINT_INSTALLED_BIN" ] && [ -x "$CINT_INSTALLED_BIN" ]; then
+        printf '%s\n' "$CINT_INSTALLED_BIN"
+        return 0
+    fi
+
+    for _candidate in \
+        "$BUN_BIN_DIR/cint" \
+        "$INSTALL_DIR/cint" \
+        "$HOME/.local/bin/cint"; do
+        if [ -x "$_candidate" ]; then
+            CINT_INSTALLED_BIN="$_candidate"
+            printf '%s\n' "$_candidate"
+            return 0
+        fi
+    done
+
+    if command -v cint >/dev/null 2>&1; then
+        CINT_INSTALLED_BIN=$(command -v cint)
+        printf '%s\n' "$CINT_INSTALLED_BIN"
+        return 0
+    fi
+
+    return 1
+}
+
+finalize_cint_install() {
+    _cint_bin=$(resolve_cint_binary) || {
+        echo ""
+        echo "ERROR: cint was not installed. No executable found in:"
+        echo "  - $BUN_BIN_DIR/cint"
+        echo "  - $INSTALL_DIR/cint"
+        echo ""
+        echo "Re-run with --source after fixing any errors above, or check the install log."
+        exit 1
+    }
+
+    _cint_dir=$(dirname "$_cint_bin")
+    echo ""
+    echo "cint installed at: $_cint_bin"
+
+    if path_contains_dir "$_cint_dir"; then
+        echo "  $_cint_dir is already on PATH for this shell."
+    else
+        echo "  $_cint_dir is not on PATH yet — updating shell profile..."
+    fi
+
+    persist_path_dir "$_cint_dir" "cint"
+
+    echo ""
+    if path_contains_dir "$_cint_dir"; then
+        echo "You can run 'cint' in this terminal now."
+    fi
+    echo "Open a new terminal (or run: source ~/.zshrc / source ~/.bashrc) so PATH"
+    echo "updates everywhere — then run 'cint' to start the agent."
 }
 
 # Clone the repo at ref $1 and link packages/coding-agent globally via bun.
@@ -228,18 +379,28 @@ install_from_git() {
         echo "Failed to link cint"
         exit 1
     }
+    CINT_INSTALLED_BIN="$BUN_BIN_DIR/cint"
 }
 
 # Install via bun
 install_via_bun() {
     echo "Installing CINT via bun..."
+    _bun_pm_bin=$(bun pm bin -g 2>/dev/null || true)
+    if [ -n "$_bun_pm_bin" ]; then
+        BUN_BIN_DIR="$_bun_pm_bin"
+    fi
     if [ -n "$REF" ]; then
         install_from_git "$REF"
     else
         # Fast path: published npm package. Falls back to git clone + bun link
         # so the installer works even before the package is on npm.
         if bun install -g "$PACKAGE" 2>/dev/null; then
-            :
+            _global_bin=$(bun pm bin -g 2>/dev/null || true)
+            if [ -n "$_global_bin" ] && [ -x "$_global_bin/cint" ]; then
+                CINT_INSTALLED_BIN="$_global_bin/cint"
+            else
+                CINT_INSTALLED_BIN="$BUN_BIN_DIR/cint"
+            fi
         else
             echo "Package $PACKAGE not available on npm; installing from source..."
             install_from_git main
@@ -338,14 +499,9 @@ install_binary() {
         return
     fi
     chmod +x "${INSTALL_DIR}/cint"
+    CINT_INSTALLED_BIN="${INSTALL_DIR}/cint"
     echo ""
     echo "✓ Installed cint to ${INSTALL_DIR}/cint"
-
-    # Check if in PATH
-    case ":$PATH:" in
-        *":$INSTALL_DIR:"*) echo "Run 'cint' to get started!" ;;
-        *) echo "Add ${INSTALL_DIR} to your PATH, then run 'cint'" ;;
-    esac
 }
 
 # Main logic
@@ -376,8 +532,7 @@ if [ "$NO_CYBER" = "0" ]; then
     install_cyber
 fi
 
+finalize_cint_install
+
 echo ""
 echo "✓ Done."
-echo ""
-echo "IMPORTANT: Restart your terminal session (or run: source ~/.bashrc / source ~/.zshrc)"
-echo "for 'cint' to be available on your PATH."
