@@ -18,6 +18,7 @@ function createTestSession(overrides: Partial<ToolSession> = {}): ToolSession {
 
 function createSettingsWithOverrides(overrides: Partial<Record<SettingPath, unknown>> = {}): Settings {
 	return Settings.isolated({
+		"memory.backend": "off",
 		"lsp.formatOnWrite": true,
 		"bashInterceptor.enabled": true,
 		...overrides,
