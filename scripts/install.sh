@@ -188,7 +188,12 @@ install_bun_linux_explicit() {
         exit 1
     fi
     mkdir -p "${_bun_install}/bin"
-    install -m 755 "${_tmp_dir}/bun-linux-${_zip_arch}/bun" "${_bun_install}/bin/bun"
+    if command -v install >/dev/null 2>&1; then
+        install -m 755 "${_tmp_dir}/bun-linux-${_zip_arch}/bun" "${_bun_install}/bin/bun"
+    else
+        cp "${_tmp_dir}/bun-linux-${_zip_arch}/bun" "${_bun_install}/bin/bun"
+        chmod 755 "${_bun_install}/bin/bun"
+    fi
     rm -rf "$_tmp_dir"
     export BUN_INSTALL="$_bun_install"
     export PATH="${_bun_install}/bin:$PATH"
@@ -197,10 +202,22 @@ install_bun_linux_explicit() {
 
 # Map the CPU to the Rust host triple rustup must install for native builds.
 rust_host_triple() {
-    case "$1" in
-        x86_64|amd64) printf '%s' "x86_64-unknown-linux-gnu" ;;
-        aarch64|arm64) printf '%s' "aarch64-unknown-linux-gnu" ;;
-        armv7l|armv7) printf '%s' "armv7-unknown-linux-gnueabihf" ;;
+    case "$(uname -s)" in
+        Darwin)
+            case "$1" in
+                x86_64|amd64) printf '%s' "x86_64-apple-darwin" ;;
+                arm64|aarch64) printf '%s' "aarch64-apple-darwin" ;;
+                *) return 1 ;;
+            esac
+            ;;
+        Linux)
+            case "$1" in
+                x86_64|amd64) printf '%s' "x86_64-unknown-linux-gnu" ;;
+                aarch64|arm64) printf '%s' "aarch64-unknown-linux-gnu" ;;
+                armv7l|armv7) printf '%s' "armv7-unknown-linux-gnueabihf" ;;
+                *) return 1 ;;
+            esac
+            ;;
         *) return 1 ;;
     esac
 }
@@ -263,7 +280,7 @@ ensure_rust_for_native_build() {
 
     _cpu_raw=$(uname -m)
     _rust_host=$(rust_host_triple "$_cpu_raw") || {
-        echo "Unsupported Linux CPU architecture for native builds: $_cpu_raw"
+        echo "Unsupported CPU architecture for native builds on $(uname -s): $_cpu_raw"
         exit 1
     }
     _rust_channel=$(read_rust_toolchain_channel "$_src_dir/rust-toolchain.toml")
@@ -436,6 +453,49 @@ persist_path_dir() {
     return 0
 }
 
+# Native builds need several GiB under $HOME for Rust crates and Bun deps.
+check_disk_space_for_build() {
+    _avail=$(df -Pm "$HOME" 2>/dev/null | awk 'NR==2 {print $4}')
+    if [ -z "$_avail" ]; then
+        return 0
+    fi
+    if [ "$_avail" -lt 1024 ]; then
+        echo ""
+        echo "FATAL: need at least 1 GiB free under \$HOME for the native build (found ${_avail} MiB)."
+        echo "Free disk space and re-run install."
+        exit 1
+    fi
+}
+
+# OS-specific toolchain prerequisites for compiling pi-natives from source.
+install_native_build_prereqs() {
+    case "$(uname -s)" in
+        Linux)
+            if command -v apt-get >/dev/null 2>&1; then
+                echo "Installing build dependencies (build-essential, pkg-config, libssl-dev, unzip)..."
+                sudo apt-get update -qq >/dev/null 2>&1 && sudo apt-get install -y -qq build-essential pkg-config libssl-dev unzip >/dev/null 2>&1 || true
+            elif command -v dnf >/dev/null 2>&1; then
+                echo "Installing build dependencies (gcc, make, pkgconfig, openssl-devel, unzip)..."
+                sudo dnf install -y -q gcc gcc-c++ make pkgconfig openssl-devel unzip >/dev/null 2>&1 || true
+            fi
+            ;;
+        Darwin)
+            if ! xcode-select -p >/dev/null 2>&1; then
+                echo ""
+                echo "Xcode Command Line Tools are required to compile native addons on macOS."
+                echo "Run: xcode-select --install"
+                echo "Then re-run this installer after the install completes."
+                exit 1
+            fi
+            ;;
+    esac
+}
+
+verify_cint_runs() {
+    _bin=$(resolve_cint_binary) || return 1
+    PI_PYTHON_SKIP_CHECK=1 "$_bin" --version >/dev/null 2>&1
+}
+
 resolve_cint_binary() {
     if [ -n "$CINT_INSTALLED_BIN" ] && [ -x "$CINT_INSTALLED_BIN" ]; then
         printf '%s\n' "$CINT_INSTALLED_BIN"
@@ -485,6 +545,13 @@ finalize_cint_install() {
 
     persist_path_dir "$_cint_dir" "cint"
 
+    if ! verify_cint_runs; then
+        echo ""
+        echo "ERROR: cint is on disk at $_cint_bin but failed to start."
+        echo "If you installed from source, rebuild natives: cd \"\${CINT_SRC_DIR:-\$HOME/.cint/src}\" && bun run build:native"
+        exit 1
+    fi
+
     echo ""
     if path_contains_dir "$_cint_dir"; then
         echo "You can run 'cint' in this terminal now."
@@ -529,7 +596,7 @@ install_from_git() {
 
     _cpu_raw=$(uname -m)
     _rust_host=$(rust_host_triple "$_cpu_raw") || {
-        echo "Unsupported CPU architecture for native builds: $_cpu_raw"
+        echo "Unsupported CPU architecture for native builds on $(uname -s): $_cpu_raw"
         exit 1
     }
 
@@ -541,20 +608,8 @@ install_from_git() {
         exit 1
     }
 
-    # Build native addons (Rust .node files) — required for the agent to run.
-    # The npm package ships prebuilt binaries, but source installs must compile.
-
-    # Install build dependencies
-    if [ "$(uname -s)" = "Linux" ]; then
-        if command -v apt-get >/dev/null 2>&1; then
-            echo "Installing build dependencies (build-essential, pkg-config, libssl-dev, unzip)..."
-            sudo apt-get update -qq >/dev/null 2>&1 && sudo apt-get install -y -qq build-essential pkg-config libssl-dev unzip >/dev/null 2>&1 || true
-        elif command -v dnf >/dev/null 2>&1; then
-            echo "Installing build dependencies (gcc, make, pkgconfig, openssl-devel, unzip)..."
-            sudo dnf install -y -q gcc gcc-c++ make pkgconfig openssl-devel unzip >/dev/null 2>&1 || true
-        fi
-    fi
-
+    check_disk_space_for_build
+    install_native_build_prereqs
     ensure_rust_for_native_build "$SRC_DIR"
 
     if ! cargo_ready_for_cpu "$_cpu_raw"; then
@@ -588,6 +643,11 @@ install_from_git() {
 # Install via bun
 install_via_bun() {
     echo "Installing CINT via bun..."
+    if ! has_bun; then
+        install_bun
+    else
+        ensure_bun_matches_cpu
+    fi
     _bun_pm_bin=$(bun pm bin -g 2>/dev/null || true)
     if [ -n "$_bun_pm_bin" ]; then
         BUN_BIN_DIR="$_bun_pm_bin"
@@ -597,7 +657,7 @@ install_via_bun() {
     else
         # Fast path: published npm package. Falls back to git clone + bun link
         # so the installer works even before the package is on npm.
-        if bun install -g "$PACKAGE" 2>/dev/null; then
+        if bun install -g "$PACKAGE" 2>/dev/null && verify_cint_runs; then
             _global_bin=$(bun pm bin -g 2>/dev/null || true)
             if [ -n "$_global_bin" ] && [ -x "$_global_bin/cint" ]; then
                 CINT_INSTALLED_BIN="$_global_bin/cint"
@@ -605,7 +665,7 @@ install_via_bun() {
                 CINT_INSTALLED_BIN="$BUN_BIN_DIR/cint"
             fi
         else
-            echo "Package $PACKAGE not available on npm; installing from source..."
+            echo "Package $PACKAGE not available on npm or did not produce a working cint; installing from source..."
             install_from_git main
         fi
     fi

@@ -373,6 +373,19 @@ const canonicalAddonPath = path.join(nativeDir, canonicalAddonFilename);
 
 console.log(`Building pi-natives for ${targetPlatform}-${targetArch}${variantSuffix}${profileSuffix}…`);
 
+const cargoProbe = await $`cargo --version`.quiet().nothrow();
+if (cargoProbe.exitCode !== 0) {
+	const probeErr = cargoProbe.stderr.toString("utf-8");
+	if (probeErr.includes("Exec format error") || probeErr.includes("os error 8")) {
+		throw new Error(
+			"cargo cannot execute on this CPU (architecture mismatch — Exec format error).\n" +
+				"Ensure uname -m matches your Bun binary (bun -e 'process.stdout.write(process.arch)') " +
+				"and reinstall Rust for the native host triple, then re-run install.",
+		);
+	}
+	throw new Error(`cargo is unavailable:${probeErr ? `\n${probeErr}` : ""}`);
+}
+
 await fs.mkdir(nativeDir, { recursive: true });
 await cleanupStaleTemps(nativeDir);
 await fs.mkdir(path.join(nativeDir, ".build"), { recursive: true });
