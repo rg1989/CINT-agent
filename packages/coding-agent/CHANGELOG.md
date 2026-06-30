@@ -4,6 +4,7 @@
 
 ### Fixed
 
+- Fixed curl/source install not persisting `cint` on PATH: the installer now writes `~/.bun/bin` or `~/.local/bin` into the shell profile and verifies the binary exists before reporting success.
 - Fixed `createTools` tests to disable the default mnemopi memory backend so explicit tool subsets are asserted without auto-included `recall`/`retain`/`reflect` tools.
 
 ## [16.2.0] - 2026-06-25
