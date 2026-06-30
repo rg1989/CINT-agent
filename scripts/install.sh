@@ -143,6 +143,58 @@ normalize_cpu_arch() {
     esac
 }
 
+# Map `uname -m` to the Bun Linux release zip suffix (not the Node `process.arch` label).
+bun_linux_zip_arch() {
+    case "$1" in
+        x86_64|amd64) printf '%s' "x64" ;;
+        aarch64|arm64) printf '%s' "aarch64" ;;
+        *) return 1 ;;
+    esac
+}
+
+# True when cargo exists, executes, and matches the native host triple.
+cargo_ready_for_cpu() {
+    _cpu_raw="$1"
+    _rust_host=$(rust_host_triple "$_cpu_raw") || return 1
+    load_cargo_env
+    _cargo=$(command -v cargo 2>/dev/null) || return 1
+    case "$_cargo" in
+        *"${_rust_host}/bin/cargo"*) ;;
+        *) return 1 ;;
+    esac
+    cargo --version >/dev/null 2>&1
+}
+
+# Install Bun on Linux from the official release zip for `uname -m` (not bun.sh guessing).
+install_bun_linux_explicit() {
+    _cpu_raw=$(uname -m)
+    _zip_arch=$(bun_linux_zip_arch "$_cpu_raw") || {
+        echo "Unsupported CPU architecture for Bun on Linux: $_cpu_raw"
+        exit 1
+    }
+    _bun_install="${BUN_INSTALL:-$HOME/.bun}"
+    _tmp_dir=$(mktemp -d 2>/dev/null || echo "/tmp/cint-bun-$$")
+    _zip="${_tmp_dir}/bun.zip"
+    _url="https://github.com/oven-sh/bun/releases/download/bun-v${MIN_BUN_VERSION}/bun-linux-${_zip_arch}.zip"
+
+    echo "Installing Bun ${MIN_BUN_VERSION} for linux-${_zip_arch}..."
+    curl -fsSL "$_url" -o "$_zip"
+    if command -v unzip >/dev/null 2>&1; then
+        unzip -oq "$_zip" -d "$_tmp_dir"
+    elif command -v python3 >/dev/null 2>&1; then
+        python3 -c "import zipfile; zipfile.ZipFile('$_zip').extractall('$_tmp_dir')"
+    else
+        echo "Need unzip or python3 to install Bun on Linux."
+        exit 1
+    fi
+    mkdir -p "${_bun_install}/bin"
+    install -m 755 "${_tmp_dir}/bun-linux-${_zip_arch}/bun" "${_bun_install}/bin/bun"
+    rm -rf "$_tmp_dir"
+    export BUN_INSTALL="$_bun_install"
+    export PATH="${_bun_install}/bin:$PATH"
+    BUN_BIN_DIR="${_bun_install}/bin"
+}
+
 # Map the CPU to the Rust host triple rustup must install for native builds.
 rust_host_triple() {
     case "$1" in
@@ -153,25 +205,32 @@ rust_host_triple() {
     esac
 }
 
+load_cargo_env() {
+    if [ -f "${HOME}/.cargo/env" ]; then
+        # shellcheck disable=SC1091
+        . "${HOME}/.cargo/env"
+    fi
+}
+
 # Bun reports process.arch, which follows the Bun binary — not necessarily the CPU.
 # An x64 Bun on arm64 Linux (common in misconfigured VMs) breaks native Rust builds.
 ensure_bun_matches_cpu() {
-    if ! has_bun; then
-        return 0
-    fi
-
     _cpu_raw=$(uname -m)
     _cpu_arch=$(normalize_cpu_arch "$_cpu_raw")
-    _bun_arch=$(bun -e 'process.stdout.write(process.arch)' 2>/dev/null || true)
 
-    if [ -z "$_bun_arch" ] || [ "$_bun_arch" = "$_cpu_arch" ]; then
-        return 0
+    if has_bun; then
+        _bun_arch=$(bun -e 'process.stdout.write(process.arch)' 2>/dev/null || true)
+        if [ -n "$_bun_arch" ] && [ "$_bun_arch" = "$_cpu_arch" ]; then
+            return 0
+        fi
+        if [ -n "$_bun_arch" ]; then
+            echo ""
+            echo "Bun architecture mismatch — reinstalling native Bun."
+            echo "  CPU (uname -m): $_cpu_raw ($_cpu_arch)"
+            echo "  Bun binary:     $_bun_arch"
+        fi
     fi
 
-    echo ""
-    echo "Bun architecture mismatch — reinstalling native Bun."
-    echo "  CPU (uname -m): $_cpu_raw ($_cpu_arch)"
-    echo "  Bun binary:     $_bun_arch"
     rm -rf "${BUN_INSTALL:-$HOME/.bun}"
     install_bun
     _bun_arch=$(bun -e 'process.stdout.write(process.arch)' 2>/dev/null || true)
@@ -180,13 +239,6 @@ ensure_bun_matches_cpu() {
         echo "FATAL: Bun is still $_bun_arch after reinstall; this CPU is $_cpu_arch."
         echo "Use a Lima/VM image that matches your Mac (arm64 on Apple Silicon)."
         exit 1
-    fi
-}
-
-load_cargo_env() {
-    if [ -f "${HOME}/.cargo/env" ]; then
-        # shellcheck disable=SC1091
-        . "${HOME}/.cargo/env"
     fi
 }
 
@@ -216,8 +268,15 @@ ensure_rust_for_native_build() {
     }
     _rust_channel=$(read_rust_toolchain_channel "$_src_dir/rust-toolchain.toml")
 
-    if command -v cargo >/dev/null 2>&1 && cargo --version >/dev/null 2>&1; then
+    if cargo_ready_for_cpu "$_cpu_raw"; then
         return 0
+    fi
+
+    if command -v cargo >/dev/null 2>&1 || command -v rustup >/dev/null 2>&1; then
+        echo ""
+        echo "Removing broken or wrong-architecture Rust toolchains..."
+        rustup self uninstall -y 2>/dev/null || true
+        rm -rf "${HOME}/.rustup" "${HOME}/.cargo"
     fi
 
     echo ""
@@ -265,15 +324,20 @@ ensure_rust_for_native_build() {
 # Install bun
 install_bun() {
     echo "Installing bun..."
-    if command -v bash >/dev/null 2>&1; then
+    if [ "$(uname -s)" = "Linux" ]; then
+        install_bun_linux_explicit
+    elif command -v bash >/dev/null 2>&1; then
         curl -fsSL https://bun.sh/install | bash
+        export BUN_INSTALL="$HOME/.bun"
+        export PATH="$BUN_INSTALL/bin:$PATH"
+        BUN_BIN_DIR="$BUN_INSTALL/bin"
     else
         echo "bash not found; attempting install with sh..."
         curl -fsSL https://bun.sh/install | sh
+        export BUN_INSTALL="$HOME/.bun"
+        export PATH="$BUN_INSTALL/bin:$PATH"
+        BUN_BIN_DIR="$BUN_INSTALL/bin"
     fi
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
-    BUN_BIN_DIR="$BUN_INSTALL/bin"
     persist_path_dir "$BUN_BIN_DIR" "bun"
     require_bun_version
 }
@@ -463,6 +527,14 @@ install_from_git() {
         exit 1
     fi
 
+    _cpu_raw=$(uname -m)
+    _rust_host=$(rust_host_triple "$_cpu_raw") || {
+        echo "Unsupported CPU architecture for native builds: $_cpu_raw"
+        exit 1
+    }
+
+    ensure_bun_matches_cpu
+
     # Resolve workspace deps (catalog: protocol needs root install)
     (cd "$SRC_DIR" && bun install) || {
         echo "Failed to install dependencies"
@@ -475,29 +547,21 @@ install_from_git() {
     # Install build dependencies
     if [ "$(uname -s)" = "Linux" ]; then
         if command -v apt-get >/dev/null 2>&1; then
-            echo "Installing build dependencies (build-essential, pkg-config, libssl-dev)..."
-            sudo apt-get update -qq >/dev/null 2>&1 && sudo apt-get install -y -qq build-essential pkg-config libssl-dev >/dev/null 2>&1 || true
+            echo "Installing build dependencies (build-essential, pkg-config, libssl-dev, unzip)..."
+            sudo apt-get update -qq >/dev/null 2>&1 && sudo apt-get install -y -qq build-essential pkg-config libssl-dev unzip >/dev/null 2>&1 || true
         elif command -v dnf >/dev/null 2>&1; then
-            echo "Installing build dependencies (gcc, make, pkgconfig, openssl-devel)..."
-            sudo dnf install -y -q gcc gcc-c++ make pkgconfig openssl-devel >/dev/null 2>&1 || true
+            echo "Installing build dependencies (gcc, make, pkgconfig, openssl-devel, unzip)..."
+            sudo dnf install -y -q gcc gcc-c++ make pkgconfig openssl-devel unzip >/dev/null 2>&1 || true
         fi
     fi
 
-    _cpu_raw=$(uname -m)
-    _rust_host=$(rust_host_triple "$_cpu_raw") || {
-        echo "Unsupported CPU architecture for native builds: $_cpu_raw"
-        exit 1
-    }
-
-    # Install Rust if missing
-    if ! command -v cargo >/dev/null 2>&1; then
-        echo "Installing Rust (required for native addon build)..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-host="$_rust_host"
-        load_cargo_env
-    fi
-
-    ensure_bun_matches_cpu
     ensure_rust_for_native_build "$SRC_DIR"
+
+    if ! cargo_ready_for_cpu "$_cpu_raw"; then
+        echo ""
+        echo "FATAL: cargo is not ready for $_cpu_raw ($_rust_host) after setup."
+        exit 1
+    fi
 
     echo "Building native addons (this takes a few minutes)..."
     if ! (cd "$SRC_DIR" && bun run build:native 2>&1); then
