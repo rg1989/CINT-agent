@@ -152,17 +152,46 @@ bun_linux_zip_arch() {
     esac
 }
 
-# True when cargo exists, executes, and matches the native host triple.
+# True when cargo exists, executes, and rustup's active host matches this CPU.
 cargo_ready_for_cpu() {
     _cpu_raw="$1"
     _rust_host=$(rust_host_triple "$_cpu_raw") || return 1
     load_cargo_env
-    _cargo=$(command -v cargo 2>/dev/null) || return 1
-    case "$_cargo" in
-        *"${_rust_host}/bin/cargo"*) ;;
-        *) return 1 ;;
-    esac
-    cargo --version >/dev/null 2>&1
+    command -v cargo >/dev/null 2>&1 || return 1
+    cargo --version >/dev/null 2>&1 || return 1
+    if command -v rustup >/dev/null 2>&1; then
+        _active=$(rustup show active-toolchain 2>/dev/null | head -n1)
+        case "$_active" in
+            *"$_rust_host"*) return 0 ;;
+            *) return 1 ;;
+        esac
+    fi
+    return 0
+}
+
+# Print diagnostics when cargo_ready_for_cpu fails after rustup setup.
+diagnose_cargo_failure() {
+    _cpu_raw="$1"
+    _rust_host="$2"
+    echo "  uname -m:              $_cpu_raw"
+    echo "  expected rust host:    $_rust_host"
+    if has_bun; then
+        echo -n "  bun process.arch:      "
+        bun -e 'process.stdout.write(process.arch)' 2>/dev/null || echo "(unknown)"
+    fi
+    if command -v cargo >/dev/null 2>&1; then
+        echo "  cargo path:            $(command -v cargo)"
+        if command -v file >/dev/null 2>&1; then
+            file "$(command -v cargo)" 2>/dev/null || true
+        fi
+        echo -n "  cargo --version:       "
+        cargo --version 2>&1 || true
+    else
+        echo "  cargo:                 not found on PATH"
+    fi
+    if command -v rustup >/dev/null 2>&1; then
+        echo "  rustup active:         $(rustup show active-toolchain 2>/dev/null | head -n1)"
+    fi
 }
 
 # Install Bun on Linux from the official release zip for `uname -m` (not bun.sh guessing).
@@ -615,6 +644,10 @@ install_from_git() {
     if ! cargo_ready_for_cpu "$_cpu_raw"; then
         echo ""
         echo "FATAL: cargo is not ready for $_cpu_raw ($_rust_host) after setup."
+        diagnose_cargo_failure "$_cpu_raw" "$_rust_host"
+        echo ""
+        echo "If cargo --version shows 'Exec format error', your VM CPU does not match its"
+        echo "reported architecture — on Apple Silicon use an arm64 Lima image, not x86_64."
         exit 1
     fi
 
