@@ -5,13 +5,14 @@ import { createTools, HIDDEN_TOOLS, type ToolSession } from "@incrt/cint/tools";
 Bun.env.PI_PYTHON_SKIP_CHECK = "1";
 
 function createTestSession(overrides: Partial<ToolSession> = {}): ToolSession {
+	const { settings, ...rest } = overrides;
 	return {
 		cwd: "/tmp/test",
 		hasUI: false,
 		getSessionFile: () => null,
 		getSessionSpawns: () => "*",
-		settings: Settings.isolated(),
-		...overrides,
+		settings: settings ?? createSettingsWithOverrides({ "memory.backend": "off" }),
+		...rest,
 	};
 }
 

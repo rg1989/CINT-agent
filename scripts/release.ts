@@ -247,12 +247,23 @@ async function cmdRelease(version: string): Promise<void> {
 	await Bun.write("package.json", rootPkgRaw);
 	console.log("  Updated root catalog @incrt/cint-* entries");
 
-	// 3. Update Rust workspace version
+	// 3. Update Rust workspace version — only [workspace.package], never
+	// [workspace.dependencies] version pins (a blanket replace corrupted tokio,
+	// serde, etc. on the 16.2.0 release).
 	console.log(`Updating Rust workspace version to ${version}…`);
-	await $`sd '^version = "[^"]+"' ${`version = "${version}"`} Cargo.toml`;
+	let cargoToml = await Bun.file("Cargo.toml").text();
+	const workspaceVersion = cargoToml.replace(
+		/(\[workspace\.package\][\s\S]*?^version = )"[^"]+"/m,
+		`$1"${version}"`,
+	);
+	if (workspaceVersion === cargoToml) {
+		console.error("Error: could not find [workspace.package] version in Cargo.toml");
+		process.exit(1);
+	}
+	cargoToml = workspaceVersion;
+	await Bun.write("Cargo.toml", cargoToml);
 
 	// Verify
-	const cargoToml = await Bun.file("Cargo.toml").text();
 	const versionMatch = cargoToml.match(/^\[workspace\.package\][\s\S]*?^version = "([^"]+)"/m);
 	if (versionMatch) {
 		console.log(`  workspace: ${versionMatch[1]}`);

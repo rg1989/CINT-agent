@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed `createTools` tests to disable the default mnemopi memory backend so explicit tool subsets are asserted without auto-included `recall`/`retain`/`reflect` tools.
+
 ## [16.2.0] - 2026-06-25
 
 ### Added
