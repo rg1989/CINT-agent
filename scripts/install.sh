@@ -169,15 +169,18 @@ ensure_bun_matches_cpu() {
     fi
 
     echo ""
-    echo "ERROR: Bun architecture mismatch."
+    echo "Bun architecture mismatch — reinstalling native Bun."
     echo "  CPU (uname -m): $_cpu_raw ($_cpu_arch)"
     echo "  Bun binary:     $_bun_arch"
-    echo ""
-    echo "Native addon builds require a Bun binary matching the CPU."
-    echo "Reinstall Bun for this machine, then re-run install:"
-    echo "  rm -rf \"\${BUN_INSTALL:-\$HOME/.bun}\""
-    echo "  curl -fsSL https://bun.sh/install | bash"
-    exit 1
+    rm -rf "${BUN_INSTALL:-$HOME/.bun}"
+    install_bun
+    _bun_arch=$(bun -e 'process.stdout.write(process.arch)' 2>/dev/null || true)
+    if [ "$_bun_arch" != "$_cpu_arch" ]; then
+        echo ""
+        echo "FATAL: Bun is still $_bun_arch after reinstall; this CPU is $_cpu_arch."
+        echo "Use a Lima/VM image that matches your Mac (arm64 on Apple Silicon)."
+        exit 1
+    fi
 }
 
 load_cargo_env() {
@@ -233,6 +236,16 @@ ensure_rust_for_native_build() {
     fi
 
     load_cargo_env
+    if ! cargo --version >/dev/null 2>&1 && command -v rustup >/dev/null 2>&1; then
+        echo "Rust still broken after host retarget — reinstalling rustup from scratch..."
+        rustup self uninstall -y || true
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-host="$_rust_host"
+        load_cargo_env
+        rustup toolchain install "$_rust_channel" --profile minimal
+        rustup default "$_rust_channel"
+        load_cargo_env
+    fi
+
     if ! cargo --version >/dev/null 2>&1; then
         echo ""
         echo "FATAL: cargo still cannot execute after rustup setup."
