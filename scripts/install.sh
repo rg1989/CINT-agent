@@ -134,6 +134,121 @@ has_git() {
     command -v git >/dev/null 2>&1
 }
 
+# Map `uname -m` to the Bun/Node arch label used in release tags.
+normalize_cpu_arch() {
+    case "$1" in
+        x86_64|amd64) printf '%s' "x64" ;;
+        aarch64|arm64) printf '%s' "arm64" ;;
+        *) printf '%s' "$1" ;;
+    esac
+}
+
+# Map the CPU to the Rust host triple rustup must install for native builds.
+rust_host_triple() {
+    case "$1" in
+        x86_64|amd64) printf '%s' "x86_64-unknown-linux-gnu" ;;
+        aarch64|arm64) printf '%s' "aarch64-unknown-linux-gnu" ;;
+        armv7l|armv7) printf '%s' "armv7-unknown-linux-gnueabihf" ;;
+        *) return 1 ;;
+    esac
+}
+
+# Bun reports process.arch, which follows the Bun binary — not necessarily the CPU.
+# An x64 Bun on arm64 Linux (common in misconfigured VMs) breaks native Rust builds.
+ensure_bun_matches_cpu() {
+    if ! has_bun; then
+        return 0
+    fi
+
+    _cpu_raw=$(uname -m)
+    _cpu_arch=$(normalize_cpu_arch "$_cpu_raw")
+    _bun_arch=$(bun -e 'process.stdout.write(process.arch)' 2>/dev/null || true)
+
+    if [ -z "$_bun_arch" ] || [ "$_bun_arch" = "$_cpu_arch" ]; then
+        return 0
+    fi
+
+    echo ""
+    echo "ERROR: Bun architecture mismatch."
+    echo "  CPU (uname -m): $_cpu_raw ($_cpu_arch)"
+    echo "  Bun binary:     $_bun_arch"
+    echo ""
+    echo "Native addon builds require a Bun binary matching the CPU."
+    echo "Reinstall Bun for this machine, then re-run install:"
+    echo "  rm -rf \"\${BUN_INSTALL:-\$HOME/.bun}\""
+    echo "  curl -fsSL https://bun.sh/install | bash"
+    exit 1
+}
+
+load_cargo_env() {
+    if [ -f "${HOME}/.cargo/env" ]; then
+        # shellcheck disable=SC1091
+        . "${HOME}/.cargo/env"
+    fi
+}
+
+read_rust_toolchain_channel() {
+    _toolchain_file="$1"
+    if [ ! -f "$_toolchain_file" ]; then
+        printf '%s' "nightly-2026-04-29"
+        return 0
+    fi
+    _channel=$(grep '^channel = ' "$_toolchain_file" | sed -E 's/^channel = "([^"]+)".*/\1/' | head -n1)
+    if [ -n "$_channel" ]; then
+        printf '%s' "$_channel"
+    else
+        printf '%s' "nightly-2026-04-29"
+    fi
+}
+
+# Verify cargo executes on the host CPU; reinstall rustup for the native triple when not.
+ensure_rust_for_native_build() {
+    _src_dir="$1"
+    load_cargo_env
+
+    _cpu_raw=$(uname -m)
+    _rust_host=$(rust_host_triple "$_cpu_raw") || {
+        echo "Unsupported Linux CPU architecture for native builds: $_cpu_raw"
+        exit 1
+    }
+    _rust_channel=$(read_rust_toolchain_channel "$_src_dir/rust-toolchain.toml")
+
+    if command -v cargo >/dev/null 2>&1 && cargo --version >/dev/null 2>&1; then
+        return 0
+    fi
+
+    echo ""
+    echo "Rust/cargo is missing or cannot execute on this CPU ($_cpu_raw)."
+    echo "Installing Rust for native host $_rust_host (channel $_rust_channel)..."
+
+    if command -v rustup >/dev/null 2>&1; then
+        rustup set default-host "$_rust_host"
+        rustup toolchain install "$_rust_channel" --profile minimal
+        rustup default "$_rust_channel"
+    else
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-host="$_rust_host"
+        load_cargo_env
+        rustup toolchain install "$_rust_channel" --profile minimal
+        rustup default "$_rust_channel"
+    fi
+
+    load_cargo_env
+    if ! cargo --version >/dev/null 2>&1; then
+        echo ""
+        echo "FATAL: cargo still cannot execute after rustup setup."
+        echo ""
+        echo "This usually means the CPU architecture and installed toolchains disagree"
+        echo "(Exec format error / os error 8). Check:"
+        echo "  uname -m          # actual CPU"
+        echo "  bun -e 'process.stdout.write(process.arch)'  # Bun binary arch"
+        echo "  file \"\$(command -v cargo)\"  # cargo ELF architecture"
+        echo ""
+        echo "Use a Lima/VM image matching your CPU (arm64 on Apple Silicon), reinstall"
+        echo "native Bun (curl -fsSL https://bun.sh/install | bash), then re-run install."
+        exit 1
+    fi
+}
+
 # Install bun
 install_bun() {
     echo "Installing bun..."
@@ -355,12 +470,21 @@ install_from_git() {
         fi
     fi
 
+    _cpu_raw=$(uname -m)
+    _rust_host=$(rust_host_triple "$_cpu_raw") || {
+        echo "Unsupported CPU architecture for native builds: $_cpu_raw"
+        exit 1
+    }
+
     # Install Rust if missing
     if ! command -v cargo >/dev/null 2>&1; then
         echo "Installing Rust (required for native addon build)..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        . "${HOME}/.cargo/env" 2>/dev/null || true
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-host="$_rust_host"
+        load_cargo_env
     fi
+
+    ensure_bun_matches_cpu
+    ensure_rust_for_native_build "$SRC_DIR"
 
     echo "Building native addons (this takes a few minutes)..."
     if ! (cd "$SRC_DIR" && bun run build:native 2>&1); then
@@ -368,8 +492,10 @@ install_from_git() {
         echo "FATAL: Native addon build failed. The agent cannot run without it."
         echo ""
         echo "Common fixes:"
+        echo "  - Architecture mismatch (Exec format error): ensure uname -m matches your Bun"
+        echo "    binary (bun -e 'process.stdout.write(process.arch)') and use a native Lima/VM image"
         echo "  - Install build tools: sudo apt install build-essential pkg-config libssl-dev"
-        echo "  - Install Rust: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+        echo "  - Reinstall Rust for this CPU: rustup set default-host $_rust_host"
         echo "  - Then rebuild: cd $SRC_DIR && bun run build:native"
         exit 1
     fi
